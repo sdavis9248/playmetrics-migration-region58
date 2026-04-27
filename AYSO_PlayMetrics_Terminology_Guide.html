@@ -1,0 +1,1330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AYSO ↔ PlayMetrics Terminology Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Anybody:wght@400;600;800&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1c1917;
+    --paper: #fafaf9;
+    --warm: #f5f0eb;
+    --accent: #1d4ed8;
+    --accent-soft: #dbeafe;
+    --green: #166534;
+    --green-soft: #dcfce7;
+    --amber: #92400e;
+    --amber-soft: #fef3c7;
+    --red: #991b1b;
+    --red-soft: #fee2e2;
+    --gray: #78716c;
+    --border: #e7e5e4;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Source Serif 4', Georgia, serif;
+    background: var(--paper);
+    color: var(--ink);
+    line-height: 1.7;
+    padding: 0;
+  }
+
+  header {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 3rem 2rem 2.5rem;
+  }
+
+  header h1 {
+    font-family: 'Anybody', sans-serif;
+    font-weight: 800;
+    font-size: 2rem;
+    letter-spacing: -0.03em;
+    line-height: 1.15;
+  }
+
+  header .meta {
+    font-size: 0.85rem;
+    opacity: 0.6;
+    margin-top: 0.5rem;
+    font-family: 'Anybody', sans-serif;
+    font-weight: 400;
+  }
+
+  .container {
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem 4rem;
+  }
+
+  .summary-box {
+    background: var(--warm);
+    border-radius: 8px;
+    padding: 1.5rem 1.75rem;
+    margin: 2rem 0;
+    font-size: 0.95rem;
+  }
+
+  .summary-box strong {
+    font-family: 'Anybody', sans-serif;
+    font-weight: 600;
+    display: block;
+    margin-bottom: 0.4rem;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--gray);
+  }
+
+  h2 {
+    font-family: 'Anybody', sans-serif;
+    font-weight: 800;
+    font-size: 1.3rem;
+    margin: 2.5rem 0 0.75rem;
+    letter-spacing: -0.02em;
+    padding-bottom: 0.4rem;
+    border-bottom: 2px solid var(--ink);
+  }
+
+  h2 a.anchor {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  h2 a.anchor:hover::before {
+    content: "#";
+    color: var(--gray);
+    margin-right: 0.3rem;
+    font-weight: 400;
+    font-size: 0.9em;
+  }
+
+  h3 {
+    font-family: 'Anybody', sans-serif;
+    font-weight: 600;
+    font-size: 1.05rem;
+    margin: 1.5rem 0 0.5rem;
+    color: var(--accent);
+  }
+
+  p { margin-bottom: 0.75rem; }
+
+  a { color: var(--accent); }
+  a:visited { color: #3730a3; }
+
+  .ext::after {
+    content: " ↗";
+    font-size: 0.75em;
+    opacity: 0.5;
+  }
+
+  /* Navigation */
+  nav.toc {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1.25rem 1.5rem;
+    margin: 1.5rem 0 2rem;
+  }
+
+  nav.toc .toc-title {
+    font-family: 'Anybody', sans-serif;
+    font-weight: 600;
+    font-size: 0.82rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--gray);
+    margin-bottom: 0.6rem;
+  }
+
+  nav.toc ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem 0.4rem;
+  }
+
+  nav.toc li a {
+    font-family: 'Anybody', sans-serif;
+    font-weight: 400;
+    font-size: 0.78rem;
+    padding: 0.2rem 0.55rem;
+    background: var(--accent-soft);
+    border-radius: 3px;
+    color: var(--accent);
+    text-decoration: none;
+    white-space: nowrap;
+    display: inline-block;
+    transition: background 0.15s;
+  }
+
+  nav.toc li a:hover {
+    background: #bfdbfe;
+    text-decoration: none;
+  }
+
+  /* Search */
+  .search-wrap {
+    margin: 1rem 0 1.5rem;
+    position: relative;
+  }
+
+  .search-wrap input {
+    width: 100%;
+    padding: 0.6rem 1rem 0.6rem 2.4rem;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    font-family: 'Source Serif 4', Georgia, serif;
+    font-size: 0.95rem;
+    background: white;
+    color: var(--ink);
+    outline: none;
+    transition: border-color 0.15s;
+  }
+
+  .search-wrap input:focus {
+    border-color: var(--accent);
+  }
+
+  .search-wrap .search-icon {
+    position: absolute;
+    left: 0.8rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--gray);
+    font-size: 0.9rem;
+    pointer-events: none;
+  }
+
+  .search-wrap .search-clear {
+    position: absolute;
+    right: 0.6rem;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: var(--gray);
+    cursor: pointer;
+    font-size: 1.1rem;
+    display: none;
+    padding: 0.2rem;
+  }
+
+  .search-count {
+    font-family: 'Anybody', sans-serif;
+    font-size: 0.75rem;
+    color: var(--gray);
+    margin-top: 0.3rem;
+    display: none;
+  }
+
+  /* Tables */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0;
+    font-size: 0.88rem;
+  }
+
+  th {
+    font-family: 'Anybody', sans-serif;
+    font-weight: 600;
+    text-align: left;
+    padding: 0.6rem 0.75rem;
+    background: var(--warm);
+    border: 1px solid var(--border);
+    font-size: 0.82rem;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+  }
+
+  td {
+    padding: 0.5rem 0.75rem;
+    border: 1px solid var(--border);
+    vertical-align: top;
+  }
+
+  td:first-child {
+    font-weight: 600;
+    white-space: nowrap;
+  }
+
+  td:nth-child(2) {
+    font-weight: 600;
+    color: var(--accent);
+    white-space: nowrap;
+  }
+
+  tr.highlight-row td {
+    background: #fef9c3;
+  }
+
+  tr.hidden-row {
+    display: none;
+  }
+
+  /* Callouts */
+  .callout {
+    padding: 1rem 1.25rem;
+    border-left: 4px solid;
+    border-radius: 4px;
+    margin: 1rem 0;
+    font-size: 0.88rem;
+  }
+
+  .callout-blue { background: var(--accent-soft); border-color: var(--accent); }
+  .callout-amber { background: var(--amber-soft); border-color: #d97706; }
+  .callout-green { background: var(--green-soft); border-color: var(--green); }
+  .callout-red { background: var(--red-soft); border-color: var(--red); }
+
+  .callout strong { display: block; margin-bottom: 0.2rem; }
+
+  /* Cards */
+  .card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1.25rem 1.5rem;
+    margin: 1rem 0;
+  }
+
+  .card h4 {
+    font-family: 'Anybody', sans-serif;
+    font-weight: 600;
+    font-size: 0.95rem;
+    margin-bottom: 0.4rem;
+  }
+
+  .card p { font-size: 0.9rem; margin-bottom: 0.5rem; }
+  .card p:last-child { margin-bottom: 0; }
+
+  /* Gotcha list */
+  .gotcha {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1rem 1.25rem;
+    margin: 0.75rem 0;
+    font-size: 0.9rem;
+  }
+
+  .gotcha .q {
+    font-family: 'Anybody', sans-serif;
+    font-weight: 600;
+    font-size: 0.92rem;
+    color: var(--ink);
+    margin-bottom: 0.3rem;
+  }
+
+  .gotcha .a {
+    color: #44403c;
+  }
+
+  .gotcha .a a {
+    font-size: 0.82rem;
+  }
+
+  /* Status tags */
+  .tag {
+    display: inline-block;
+    font-family: 'Anybody', sans-serif;
+    font-weight: 600;
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    padding: 0.15rem 0.5rem;
+    border-radius: 3px;
+    vertical-align: middle;
+    margin-left: 0.4rem;
+  }
+
+  .tag-same { background: var(--green-soft); color: var(--green); }
+  .tag-renamed { background: var(--accent-soft); color: var(--accent); }
+  .tag-new { background: var(--amber-soft); color: var(--amber); }
+  .tag-gone { background: var(--red-soft); color: var(--red); }
+
+  /* Ref links */
+  .ref-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin: 0.75rem 0;
+  }
+
+  .ref-link {
+    font-family: 'Anybody', sans-serif;
+    font-weight: 400;
+    font-size: 0.75rem;
+    padding: 0.2rem 0.5rem;
+    background: var(--accent-soft);
+    border-radius: 3px;
+    color: var(--accent);
+    text-decoration: none;
+    white-space: nowrap;
+  }
+
+  .ref-link:hover { text-decoration: underline; }
+
+  /* Hierarchy diagram */
+  .hierarchy {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    margin: 1rem 0;
+  }
+
+  .hierarchy-row {
+    display: flex;
+    gap: 1.5rem;
+    align-items: stretch;
+  }
+
+  .hierarchy-col {
+    flex: 1;
+  }
+
+  .hierarchy-label {
+    font-family: 'Anybody', sans-serif;
+    font-weight: 600;
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--gray);
+    margin-bottom: 0.3rem;
+  }
+
+  .hierarchy-box {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 0.5rem 0.75rem;
+    text-align: center;
+    font-family: 'Anybody', sans-serif;
+    font-weight: 600;
+    font-size: 0.82rem;
+    margin-bottom: 0.2rem;
+    position: relative;
+  }
+
+  .hierarchy-box small {
+    display: block;
+    font-weight: 400;
+    font-family: 'Source Serif 4', serif;
+    color: var(--gray);
+    font-size: 0.72rem;
+    margin-top: 0.1rem;
+  }
+
+  .hierarchy-box.sc { border-left: 3px solid var(--amber); }
+  .hierarchy-box.pm { border-left: 3px solid var(--accent); }
+
+  .hierarchy-arrow {
+    text-align: center;
+    color: var(--gray);
+    font-size: 0.8rem;
+    padding: 0.1rem 0;
+  }
+
+  /* Footer */
+  footer {
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border);
+    font-size: 0.8rem;
+    color: var(--gray);
+    font-family: 'Anybody', sans-serif;
+  }
+
+  /* Print */
+  @media print {
+    header { background: white; color: black; border-bottom: 3px solid black; }
+    .search-wrap, nav.toc { display: none; }
+    .card, .gotcha { border: 1px solid #ccc; }
+    body { font-size: 11pt; }
+    a { color: black; text-decoration: underline; }
+  }
+
+  @media (max-width: 600px) {
+    header { padding: 2rem 1rem; }
+    header h1 { font-size: 1.5rem; }
+    .container { padding: 1rem; }
+    td:first-child, td:nth-child(2) { white-space: normal; }
+    .hierarchy-row { flex-direction: column; gap: 0.5rem; }
+    nav.toc ul { flex-direction: column; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>AYSO ↔ PlayMetrics<br>Terminology Guide</h1>
+  <div class="meta">For AYSO volunteers navigating the SportsConnect → PlayMetrics transition &nbsp;|&nbsp; Updated April 27, 2026</div>
+</header>
+
+<div class="container">
+
+  <div class="summary-box">
+    <strong>What This Is</strong>
+    PlayMetrics was built for competitive travel clubs, not recreational organizations like AYSO. Many concepts are the same — but the names are different, and the organizational hierarchy is structured differently. This guide maps AYSO and SportsConnect terminology against PlayMetrics equivalents, with notes on where the concepts don't map cleanly. This is a living document — <a href="#contributing">contributions welcome</a>.
+  </div>
+
+  <!-- Search -->
+  <div class="search-wrap">
+    <span class="search-icon">⌕</span>
+    <input type="text" id="searchInput" placeholder="Search for a term… (e.g., division, volunteer, waitlist)">
+    <button class="search-clear" id="searchClear" title="Clear search">×</button>
+  </div>
+  <div class="search-count" id="searchCount"></div>
+
+  <!-- Table of Contents -->
+  <nav class="toc">
+    <div class="toc-title">Jump To</div>
+    <ul>
+      <li><a href="#systems">Systems</a></li>
+      <li><a href="#hierarchy">Hierarchy</a></li>
+      <li><a href="#registration">Registration &amp; Payment</a></li>
+      <li><a href="#players">Players &amp; Teams</a></li>
+      <li><a href="#volunteers">Volunteers &amp; Staff</a></li>
+      <li><a href="#compliance">Compliance</a></li>
+      <li><a href="#setup">Program Setup</a></li>
+      <li><a href="#reports">Reports &amp; Data</a></li>
+      <li><a href="#communication">Communication</a></li>
+      <li><a href="#games">Games &amp; Scheduling</a></li>
+      <li><a href="#new-features">New in PlayMetrics</a></li>
+      <li><a href="#gotchas">Common Gotchas</a></li>
+      <li><a href="#links">Reference Links</a></li>
+    </ul>
+  </nav>
+
+
+  <!-- ================================================================ -->
+  <h2 id="systems"><a class="anchor" href="#systems">System-Level Concepts</a></h2>
+
+  <table class="glossary">
+    <tr><th>AYSO / SportsConnect</th><th>PlayMetrics</th><th>Notes</th></tr>
+    <tr>
+      <td>SportsConnect (BlueSombrero)</td>
+      <td>Club System</td>
+      <td>The registration and operations platform your region uses day-to-day. Sometimes called "Club OS." The interface is <strong>blue</strong>.</td>
+    </tr>
+    <tr>
+      <td>Sports Affinity</td>
+      <td><a href="#compliance">Governing System</a></td>
+      <td>The national-level system for background checks, certifications, and member IDs. In PM, this is a separate interface you toggle into — same login, different account. The interface is <strong>purple</strong>. <a href="https://playmetricsgs.zendesk.com/hc/en-us/articles/23301243189015" class="ext" target="_blank">Import Staff → Governing System</a></td>
+    </tr>
+    <tr>
+      <td>AYSO National</td>
+      <td>Governing Body</td>
+      <td>The organization above all regions. Operates the Governing System and pushes requirements (waivers, NPF) down into your Club System via "<a href="#embedded-reg">embedded registration</a>."</td>
+    </tr>
+    <tr>
+      <td>Region</td>
+      <td>Club</td>
+      <td>Your AYSO region = one PM club instance. <a href="https://help.playmetrics.com/hc/en-us/articles/360021201253" class="ext" target="_blank">Introduction to the Club System</a></td>
+    </tr>
+    <tr>
+      <td>Area / Section</td>
+      <td><em>No direct equivalent</em></td>
+      <td>PM's hierarchy is Governing Body → Club. AYSO's Area and Section layers don't have a structural representation, though regions can be grouped.</td>
+    </tr>
+    <tr id="embedded-reg">
+      <td><em>(no SC equivalent)</em></td>
+      <td>Embedded Registration</td>
+      <td>The connection between Club System and Governing System. AYSO National's requirements (waivers, NPF, birth certificate lookup) are automatically injected into your regional registration flow. You don't build these manually.</td>
+    </tr>
+  </table>
+
+
+  <!-- ================================================================ -->
+  <h2 id="hierarchy"><a class="anchor" href="#hierarchy">Organizational Hierarchy</a></h2>
+
+  <p>The biggest source of confusion: SC and PM use some of the same words to mean different things, and the nesting order is different.</p>
+
+  <div class="hierarchy-row" style="margin: 1.5rem 0;">
+    <div class="hierarchy-col">
+      <div class="hierarchy-label">SportsConnect</div>
+      <div class="hierarchy-box sc">Organization<small>AYSO Region 58</small></div>
+      <div class="hierarchy-arrow">↓</div>
+      <div class="hierarchy-box sc">Program<small>e.g., "2025 Fall Core"</small></div>
+      <div class="hierarchy-arrow">↓</div>
+      <div class="hierarchy-box sc">Division<small>e.g., "10UB - Boys Under 10"</small></div>
+      <div class="hierarchy-arrow">↓</div>
+      <div class="hierarchy-box sc">Team<small>e.g., "10UB-01 Zamani"</small></div>
+    </div>
+    <div class="hierarchy-col">
+      <div class="hierarchy-label">PlayMetrics</div>
+      <div class="hierarchy-box pm">Club<small>AYSO Region 58</small></div>
+      <div class="hierarchy-arrow">↓</div>
+      <div class="hierarchy-box pm">Season<small>Sets dates &amp; age classifications</small></div>
+      <div class="hierarchy-arrow">↓</div>
+      <div class="hierarchy-box pm">Program<small>The registration container</small></div>
+      <div class="hierarchy-arrow">↓</div>
+      <div class="hierarchy-box pm">Package<small>= AYSO Division</small></div>
+      <div class="hierarchy-arrow">↓</div>
+      <div class="hierarchy-box pm">Team<small>Created in Team Assignments</small></div>
+    </div>
+  </div>
+
+  <div class="callout callout-amber">
+    <strong>⚠️ "Program" and "Season" mean different things</strong>
+    In SC, the Program was the top-level container and Season was a label. In PM, Season is the top-level container and Program sits inside it. Create the Season first — it sets date ranges and age classifications that Programs and Leagues inherit.
+  </div>
+
+  <table class="glossary">
+    <tr><th>AYSO / SportsConnect</th><th>PlayMetrics</th><th>Notes</th></tr>
+    <tr>
+      <td>Program</td>
+      <td>Program</td>
+      <td>Same word, shifted meaning. In PM, a Program lives <em>inside</em> a Season. It's the registration container where you build packages, questions, and pricing.</td>
+    </tr>
+    <tr>
+      <td>Season</td>
+      <td>Season</td>
+      <td>In PM, the <strong>top-level container</strong>. Sets the date range and age classifications that all Programs and Leagues underneath inherit.</td>
+    </tr>
+    <tr>
+      <td>Division</td>
+      <td><a href="#packages">Package</a></td>
+      <td>The most commonly confused mapping. A PM "package" defines the age group, gender, price, and linked questions — what families select at registration. Confirmed in the PM webinar: "Program Package = AYSO Division."</td>
+    </tr>
+    <tr>
+      <td>League (Area play)</td>
+      <td>League</td>
+      <td>Similar concept but PM uses it more broadly. In-house games and interregional play would be separate Leagues within the same Season.</td>
+    </tr>
+    <tr>
+      <td>Team</td>
+      <td>Team</td>
+      <td>Same concept. Created within Team Assignments or within a League.</td>
+    </tr>
+    <tr>
+      <td>Membership Year (MY26)</td>
+      <td>Season</td>
+      <td>AYSO's MY runs Aug–Jul. Your PM Season would span this period, or you'd create separate Fall and Spring seasons.</td>
+    </tr>
+  </table>
+
+
+  <!-- ================================================================ -->
+  <h2 id="registration"><a class="anchor" href="#registration">Registration &amp; Payment</a></h2>
+
+  <table class="glossary">
+    <tr><th>AYSO / SportsConnect</th><th>PlayMetrics</th><th>Notes</th></tr>
+    <tr>
+      <td>Registration</td>
+      <td>Registration / Subscription</td>
+      <td>Signing up = "registration." The ongoing record (with payment tracking) = "subscription." <a href="https://help.playmetrics.com/hc/en-us/articles/360019972314" class="ext" target="_blank">Registering with PlayMetrics</a></td>
+    </tr>
+    <tr>
+      <td>Order</td>
+      <td>Receipt</td>
+      <td>SC called each registration an "order." PM uses "receipt" for the payment record.</td>
+    </tr>
+    <tr>
+      <td>Order Number</td>
+      <td>Subscription ID</td>
+      <td>The unique registration identifier.</td>
+    </tr>
+    <tr>
+      <td>Open Order / Pending</td>
+      <td>Overdue Subscription</td>
+      <td>PM tracks unpaid registrations as overdue subscriptions. The export has an "overdue only" filter.</td>
+    </tr>
+    <tr>
+      <td>Order Balance</td>
+      <td>Outstanding Balance</td>
+      <td>Amount still owed. Available in subscriptions export (column added Oct 2023).</td>
+    </tr>
+    <tr>
+      <td>Payment Plan</td>
+      <td>Payment Schedule</td>
+      <td>PM has a payment schedule builder that automates installment creation.</td>
+    </tr>
+    <tr>
+      <td>AutoPay</td>
+      <td>AutoPay</td>
+      <td>Same — automatic monthly charges to card on file. <span class="tag tag-same">Same</span></td>
+    </tr>
+    <tr>
+      <td>Registration Fee</td>
+      <td>Program Fee / Package Fee</td>
+      <td>The price for a specific <a href="#packages">package</a>.</td>
+    </tr>
+    <tr id="npf">
+      <td>National Player Fee (NPF)</td>
+      <td>Club Fee / National Membership</td>
+      <td>The $25 AYSO National fee. In PM, this comes down automatically through <a href="#embedded-reg">embedded registration</a> — you don't build it manually.</td>
+    </tr>
+    <tr>
+      <td>Non-Resident Fee</td>
+      <td>Non-Resident Fee</td>
+      <td>Same concept. PM does <strong>not</strong> support a "resident discount" (the inverse). <span class="tag tag-same">Same</span></td>
+    </tr>
+    <tr>
+      <td>Multi-Player Discount</td>
+      <td>Sibling / Multi-Player Discount</td>
+      <td>PM supports percentage or flat discounts for additional players on the same account.</td>
+    </tr>
+    <tr>
+      <td>Early Bird Discount</td>
+      <td>Early Bird Discount</td>
+      <td>Set start/end dates per package. <span class="tag tag-same">Same</span></td>
+    </tr>
+    <tr>
+      <td>Late Fee</td>
+      <td>Late Fee</td>
+      <td>PM supports flat or percentage-based late fees. <span class="tag tag-same">Same</span></td>
+    </tr>
+    <tr>
+      <td>Financial Aid / Scholarship</td>
+      <td>Financial Aid</td>
+      <td>PM has a built-in financial aid request and distribution workflow. AYSO sometimes says "scholarship" — PM calls it "financial aid."</td>
+    </tr>
+    <tr>
+      <td>Account (parent/guardian)</td>
+      <td>Player Contact / Account Owner</td>
+      <td>SC's "account" = PM's "player contact." The primary contact is the "account owner." <a href="https://help.playmetrics.com/hc/en-us/articles/360025672314" class="ext" target="_blank">Account Types &amp; Roles</a></td>
+    </tr>
+    <tr>
+      <td>User Email</td>
+      <td>Contact Email</td>
+      <td>The parent's login email.</td>
+    </tr>
+    <tr>
+      <td>Additional User / Secondary Contact</td>
+      <td>Additional / Family Contact</td>
+      <td>SC had "Additional User" fields. In PM, you add contacts to the player's account — each gets their own login.</td>
+    </tr>
+    <tr>
+      <td>Waitlist</td>
+      <td>Waitlist</td>
+      <td>Same concept. Enabled per package. PM has built-in waitlist management with invitation emails, expiration dates, and extensions. <span class="tag tag-same">Same</span></td>
+    </tr>
+    <tr>
+      <td>Accounting Codes</td>
+      <td>Accounting Codes</td>
+      <td>Set under Program → More Actions → Accounting Codes. PM added categories and required-code enforcement. <span class="tag tag-same">Same</span></td>
+    </tr>
+  </table>
+
+
+  <!-- ================================================================ -->
+  <h2 id="players"><a class="anchor" href="#players">Players &amp; Teams</a></h2>
+
+  <table class="glossary">
+    <tr><th>AYSO / SportsConnect</th><th>PlayMetrics</th><th>Notes</th></tr>
+    <tr>
+      <td>Player</td>
+      <td>Player</td>
+      <td>Same. PM player profiles include team history, attendance, evaluations, and documents. <span class="tag tag-same">Same</span></td>
+    </tr>
+    <tr>
+      <td>Birth Date</td>
+      <td>Birth Date</td>
+      <td>Same field. PM uses it with "age classifications" (birth year, age group, or grade) to determine package eligibility. <span class="tag tag-same">Same</span></td>
+    </tr>
+    <tr>
+      <td>Birth Certificate Verification</td>
+      <td>Embedded BC Lookup</td>
+      <td>When a returning SC player registers in PM, the system looks them up in the <a href="#compliance">Governing System</a>. If verified in SC, the verification carries over. Ongoing verification stays with the region.</td>
+    </tr>
+    <tr>
+      <td>Division Assignment</td>
+      <td>Package Registration</td>
+      <td>When a player registers for a <a href="#packages">package</a>, that's their division assignment.</td>
+    </tr>
+    <tr>
+      <td>Team Assignment / Allocation</td>
+      <td>Team Assignment</td>
+      <td>Same concept. Drag-and-drop interface in PM. Lives under the Program.</td>
+    </tr>
+    <tr>
+      <td>Unallocated</td>
+      <td>Unassigned</td>
+      <td>Players registered but not yet placed on a team.</td>
+    </tr>
+    <tr>
+      <td>Player Evaluation / Rating</td>
+      <td>Tryout Evaluation</td>
+      <td>In SC, evaluations were a field on the player record. In PM, evaluations run through a dedicated Tryout feature with sessions, check-in, and evaluator scoring (max 10). <a href="https://help.playmetrics.com/hc/en-us/articles/22996140182551" class="ext" target="_blank">Tryout Evaluations</a></td>
+    </tr>
+    <tr>
+      <td>Jersey Number</td>
+      <td>Jersey Number</td>
+      <td>Set per team. PM added an option for whether updating a team jersey number also updates the player's default. <span class="tag tag-same">Same</span></td>
+    </tr>
+    <tr>
+      <td>Player Photo</td>
+      <td>Player Photo / Resource</td>
+      <td>Can be required during registration. Admins can crop photos. Also stored as a "resource" on the player profile.</td>
+    </tr>
+    <tr>
+      <td>Association Player ID</td>
+      <td>Member ID</td>
+      <td>The AYSO national player ID (XXXXX-XXXXXX). Lives in the <a href="#compliance">Governing System</a>, not the Club System.</td>
+    </tr>
+    <tr>
+      <td>Buddy / Friend Request</td>
+      <td>Player Question (custom)</td>
+      <td>Not built-in. Build as a custom <a href="#questions">player question</a> if wanted.</td>
+    </tr>
+    <tr>
+      <td>Coach Request</td>
+      <td>Player Question <em>or</em> Coaching Request</td>
+      <td>Two options: custom <a href="#questions">player question</a>, or PM's built-in Coaching Request feature under Leagues. <a href="https://help.playmetrics.com/hc/en-us/articles/8137576216727" class="ext" target="_blank">Coach Request Link</a></td>
+    </tr>
+    <tr>
+      <td>Play Up</td>
+      <td>Manual Exception</td>
+      <td>No automated play-up workflow. Handle case-by-case by manually registering in a different package.</td>
+    </tr>
+  </table>
+
+
+  <!-- ================================================================ -->
+  <h2 id="volunteers"><a class="anchor" href="#volunteers">Volunteers &amp; Staff</a></h2>
+
+  <p>This is where terminology diverges most. SC treated everyone as a "volunteer" with a role. PM has a structured staff hierarchy with four designation types.</p>
+
+  <div class="callout callout-blue">
+    <strong>💡 The Four Staff Types in PlayMetrics</strong>
+    Every volunteer must be categorized into one of these types before they can flow to the <a href="#compliance">Governing System</a> for background checks: <strong>Admin</strong> (board, RC, registrar), <strong>Director</strong> (division coordinators), <strong>Coach</strong> (assigned to a team), or <strong>Team Staff</strong> (everyone else — referees, team parents, etc.). <a href="https://help.playmetrics.com/hc/en-us/articles/360025672314" class="ext" target="_blank">Account Types &amp; Roles</a>
+  </div>
+
+  <table class="glossary">
+    <tr><th>AYSO / SportsConnect</th><th>PlayMetrics</th><th>Notes</th></tr>
+    <tr>
+      <td>Volunteer</td>
+      <td>Staff</td>
+      <td>PM's umbrella term. Split into four sub-types: Admin, Director, Coach, Team Staff.</td>
+    </tr>
+    <tr>
+      <td>Regional Commissioner</td>
+      <td>Admin (System Administrator)</td>
+      <td>Full system access. Added under Staff → Admins. Auto-syncs to Governing System. <a href="https://help.playmetrics.com/hc/en-us/articles/38946832703767" class="ext" target="_blank">Adding an Admin</a></td>
+    </tr>
+    <tr>
+      <td>Division Coordinator</td>
+      <td>Director</td>
+      <td>Oversight of a subset of teams. Added under Staff → Directors. Auto-syncs to Governing System.</td>
+    </tr>
+    <tr>
+      <td>Registrar</td>
+      <td>Admin (with permissions)</td>
+      <td>No separate "Registrar" role — it's an Admin with appropriate permission flags.</td>
+    </tr>
+    <tr>
+      <td>Treasurer</td>
+      <td>Controller</td>
+      <td>PM has a specific "Controller" role for financial management. Controllers no longer need to be System Administrators (changed May 2024).</td>
+    </tr>
+    <tr>
+      <td>Head Coach</td>
+      <td>Coach</td>
+      <td>Assigned to a team via League → Assignments. Becomes "staff" automatically. <strong>Notified immediately</strong> when assigned. <a href="https://help.playmetrics.com/hc/en-us/articles/18019657539351" class="ext" target="_blank">Adding Coaches &amp; Team Staff</a></td>
+    </tr>
+    <tr>
+      <td>Assistant Coach</td>
+      <td>Coach</td>
+      <td>Same pathway as Head Coach — assigned to a team.</td>
+    </tr>
+    <tr>
+      <td>Referee</td>
+      <td>Team Staff</td>
+      <td>Must be associated with a team — this is why you create hidden "container teams" (Referee Team, Board Team, etc.) for non-coaching volunteers. <a href="https://help.playmetrics.com/hc/en-us/articles/360046084314" class="ext" target="_blank">Importing Team Staff</a></td>
+    </tr>
+    <tr>
+      <td>Team Parent / Manager</td>
+      <td>Team Staff</td>
+      <td>Assigned to actual player teams, not container teams.</td>
+    </tr>
+    <tr>
+      <td>Board Member</td>
+      <td>Team Staff <em>or</em> Admin</td>
+      <td>Board members who need system access → Admin. Board members who just need compliance tracking → Team Staff on a container team.</td>
+    </tr>
+    <tr>
+      <td>Volunteer Interest (registration)</td>
+      <td>Volunteer Sign-Up</td>
+      <td>Three capture pathways: (A) role checkboxes during player registration, (B) standalone <a href="https://help.playmetrics.com/hc/en-us/articles/8137576216727" class="ext" target="_blank">Coach Request Link</a>, (C) separate <a href="https://help.playmetrics.com/hc/en-us/articles/16699152278039" class="ext" target="_blank">Volunteer Sign Up</a> (beta — must request activation).</td>
+    </tr>
+    <tr>
+      <td>Association Volunteer ID</td>
+      <td>Member ID</td>
+      <td>The AYSO national volunteer ID (XXXXX-XXXXXX). Lives in the <a href="#compliance">Governing System</a>, not Club System exports.</td>
+    </tr>
+    <tr>
+      <td>Risk Status</td>
+      <td>JDP Background Check</td>
+      <td>See <a href="#compliance">Compliance</a> section. SC pulled this from Sports Affinity. In PM, this flows through JDP integration — <strong>not yet available</strong> as of April 2026.</td>
+    </tr>
+    <tr>
+      <td>Team Staff Titles</td>
+      <td>Team Staff Titles</td>
+      <td>Managed under Staff → Team Staff → More Actions → Manage Titles. <a href="https://help.playmetrics.com/hc/en-us/articles/9197605784215" class="ext" target="_blank">Adding Staff Titles</a></td>
+    </tr>
+  </table>
+
+
+  <!-- ================================================================ -->
+  <h2 id="compliance"><a class="anchor" href="#compliance">Compliance &amp; Background Checks</a></h2>
+
+  <div class="callout callout-red">
+    <strong>⛔ Governing System Not Yet Accessible</strong>
+    Pilot regions do not yet have access to the Governing System (purple interface). JDP (background checks) and AYSOU (certifications) integrations are expected summer 2026. In the meantime, returning volunteers continue using AYSOU through Sports Connect.
+  </div>
+
+  <table class="glossary">
+    <tr><th>AYSO / SportsConnect</th><th>PlayMetrics</th><th>Notes</th></tr>
+    <tr>
+      <td>Sports Affinity Portal</td>
+      <td>Governing System</td>
+      <td>The purple interface. Handles background checks, certifications, member IDs. <a href="https://playmetricsgs.zendesk.com/hc/en-us/articles/23301243189015" class="ext" target="_blank">Import Staff → Governing System</a></td>
+    </tr>
+    <tr>
+      <td>Admin Credentials Report</td>
+      <td>Connected Systems (Club)</td>
+      <td>Once volunteers complete requirements in the Governing System, compliance status flows back to the Club System via "Connected Systems." Export capability TBD.</td>
+    </tr>
+    <tr>
+      <td>Risk Status: Green</td>
+      <td>Background Check: Cleared</td>
+      <td>JDP integration pending. Exact terminology for statuses TBD.</td>
+    </tr>
+    <tr>
+      <td>AYSOU Certifications</td>
+      <td>AYSOU Integration</td>
+      <td>Safe Haven, Concussion, SafeSport, coaching certs — will be pulled from AYSOU into the Governing System. <strong>Not yet live.</strong></td>
+    </tr>
+    <tr>
+      <td>USSF License</td>
+      <td>USSF License</td>
+      <td>Already integrated — PM displays USSF licenses via the Learning Center. AYSOU grades pending. <span class="tag tag-same">Live</span></td>
+    </tr>
+    <tr>
+      <td>ID Verification</td>
+      <td>Identity Verification</td>
+      <td>Volunteer provides personal info (gender, DOB, address), agrees to waivers, uploads photo in the Governing System.</td>
+    </tr>
+    <tr>
+      <td>LiveScan / Fingerprinting</td>
+      <td>Migration Process TBD</td>
+      <td>No current PM workflow. Data migration to be defined once additional functionality is built.</td>
+    </tr>
+  </table>
+
+
+  <!-- ================================================================ -->
+  <h2 id="setup"><a class="anchor" href="#setup">Program Setup &amp; Configuration</a></h2>
+
+  <table class="glossary">
+    <tr><th>AYSO / SportsConnect</th><th>PlayMetrics</th><th>Notes</th></tr>
+    <tr>
+      <td>Creating a Season</td>
+      <td>Season → Program → Packages</td>
+      <td>In PM: create Season first (dates, age classifications), then Program (registration container), then <a href="#packages">Packages</a> (one per division).</td>
+    </tr>
+    <tr id="packages">
+      <td>Division Setup</td>
+      <td>Package Setup</td>
+      <td>Each AYSO division = one PM package. Set age range, gender, price, and capacity per package.</td>
+    </tr>
+    <tr id="questions">
+      <td>Registration Questions</td>
+      <td>Player Questions / Program Questions</td>
+      <td>PM distinguishes: <strong>Player questions</strong> (asked per player) vs. <strong>Program questions</strong> (asked once per session). Both support short text, dropdown, radio, checkbox, and file upload.</td>
+    </tr>
+    <tr>
+      <td>Custom Questions</td>
+      <td>Custom Questions</td>
+      <td>Questions can be linked to specific packages. Responses exportable to CSV. <span class="tag tag-same">Same</span></td>
+    </tr>
+    <tr>
+      <td>Waivers</td>
+      <td>Agreements</td>
+      <td>PM calls them "agreements." Standard AYSO waivers come down through <a href="#embedded-reg">embedded registration</a>. You can add region-specific agreements.</td>
+    </tr>
+    <tr>
+      <td>Refund Policy</td>
+      <td>Refund Policy (checkout)</td>
+      <td>PM has a built-in refund checkbox and policy link at checkout. Optional additional refund policy agreement.</td>
+    </tr>
+    <tr>
+      <td>Confirmation Email</td>
+      <td>Subscription Confirmation</td>
+      <td>Sent automatically. Customizable templates with variables like $$TeamName$$.</td>
+    </tr>
+    <tr>
+      <td>Waitlist Expiration</td>
+      <td>Waitlist Expiration Date</td>
+      <td>When expiration passes, the player doesn't auto-drop — you can extend or cancel manually.</td>
+    </tr>
+    <tr>
+      <td>Volunteer Discount</td>
+      <td>Volunteer Discount (optional)</td>
+      <td>Available in PM but not recommended for AYSO — volunteers cannot be paid/compensated. Just leave it disabled.</td>
+    </tr>
+  </table>
+
+
+  <!-- ================================================================ -->
+  <h2 id="reports"><a class="anchor" href="#reports">Reports &amp; Data Exports</a></h2>
+
+  <div class="callout callout-amber">
+    <strong>⚠️ No API — Manual Exports Only</strong>
+    PlayMetrics does not offer a public API, webhooks, or scheduled exports. All data extraction is through manual CSV downloads from the admin interface via "More Actions" menus.
+  </div>
+
+  <table class="glossary">
+    <tr><th>AYSO / SportsConnect</th><th>PlayMetrics</th><th>Notes</th></tr>
+    <tr>
+      <td>Saved Reports</td>
+      <td><em>No equivalent</em></td>
+      <td>SC let you build and save custom reports via Report Wizard. PM has fixed-format exports per section — you can't customize columns.</td>
+    </tr>
+    <tr>
+      <td>Report Wizard</td>
+      <td><em>No equivalent</em></td>
+      <td>PM doesn't have a report builder.</td>
+    </tr>
+    <tr>
+      <td>Enrollment Details</td>
+      <td>Export Players + Subscriptions Export</td>
+      <td>Two separate PM exports replace one SC report. Players: Programs → More Actions → Export Players. Payments: Subscriptions tab → Export.</td>
+    </tr>
+    <tr>
+      <td>Open Orders</td>
+      <td>Subscriptions Export (overdue filter)</td>
+      <td>PM can filter to overdue subscriptions only (added July 2023).</td>
+    </tr>
+    <tr>
+      <td>Volunteer Details</td>
+      <td>Staff Exports (Coaches / Team Staff)</td>
+      <td>Separate exports for coaches vs. team staff. Staff → Coaches → More Actions → Export. Staff → Team Staff → More Actions → Export.</td>
+    </tr>
+    <tr>
+      <td>Admin Credentials Report</td>
+      <td><em>Governing System (pending)</em></td>
+      <td>Not available until <a href="#compliance">Governing System</a> access is granted. Export capability TBD.</td>
+    </tr>
+    <tr>
+      <td>Financial Summary</td>
+      <td>Financial Summary / Programs Dashboard</td>
+      <td>Real-time view of registrations, revenue, overdue fees, financial aid, discounts. Exportable.</td>
+    </tr>
+    <tr>
+      <td>Transactions Report</td>
+      <td>Transactions Export</td>
+      <td>Includes payout_id and payout_date. Filterable by payment date or due date.</td>
+    </tr>
+    <tr>
+      <td>Data Export (CSV/Excel)</td>
+      <td>More Actions → Export (CSV)</td>
+      <td>All PM exports are CSV. Accessed via "More Actions" dropdown in each section.</td>
+    </tr>
+  </table>
+
+
+  <!-- ================================================================ -->
+  <h2 id="communication"><a class="anchor" href="#communication">Communication</a></h2>
+
+  <table class="glossary">
+    <tr><th>AYSO / SportsConnect</th><th>PlayMetrics</th><th>Notes</th></tr>
+    <tr>
+      <td>Email Blast</td>
+      <td>Messages</td>
+      <td>PM has multi-channel: email, SMS text, push notifications (via app), and in-app chat.</td>
+    </tr>
+    <tr>
+      <td><em>(no SC equivalent)</em></td>
+      <td>Chat</td>
+      <td>Real-time chat between team members, coaches, and parents. <span class="tag tag-new">New</span></td>
+    </tr>
+    <tr>
+      <td><em>(no SC equivalent)</em></td>
+      <td>Alerts</td>
+      <td>Automated notifications for field changes, overdue payments, form requests, roster changes. <span class="tag tag-new">New</span></td>
+    </tr>
+    <tr>
+      <td>SC Website</td>
+      <td>PM Website (Duda)</td>
+      <td>Drag-and-drop editor with templates. Mobile-responsive. Auto-updates from PM data.</td>
+    </tr>
+    <tr>
+      <td>Registration Link</td>
+      <td>Program Registration URL</td>
+      <td>Each published program has its own registration URL. Can be embedded on your website or shared directly.</td>
+    </tr>
+  </table>
+
+
+  <!-- ================================================================ -->
+  <h2 id="games"><a class="anchor" href="#games">Games &amp; Scheduling</a></h2>
+
+  <table class="glossary">
+    <tr><th>AYSO / SportsConnect</th><th>PlayMetrics</th><th>Notes</th></tr>
+    <tr>
+      <td>Game Schedule</td>
+      <td>League → Games</td>
+      <td>Games live within a League. Create manually or import.</td>
+    </tr>
+    <tr>
+      <td>Game Card</td>
+      <td><em>No built-in equivalent</em></td>
+      <td>PM doesn't have printable game cards. Export roster data and populate your Area's template externally.</td>
+    </tr>
+    <tr>
+      <td>GotSport Format</td>
+      <td>GotSport Import</td>
+      <td>PM supports importing games in GotSport export format. <span class="tag tag-same">Supported</span></td>
+    </tr>
+    <tr>
+      <td>Field Assignment</td>
+      <td>Field Schedule / Field Plan</td>
+      <td>Dedicated module with drag-and-drop, automated closure alerts, and auto-notification on changes.</td>
+    </tr>
+  </table>
+
+
+  <!-- ================================================================ -->
+  <h2 id="new-features"><a class="anchor" href="#new-features">New in PlayMetrics (No SC Equivalent)</a></h2>
+
+  <table class="glossary">
+    <tr><th>PlayMetrics Feature</th><th>What It Does</th><th>AYSO Relevance</th></tr>
+    <tr>
+      <td>Coaching Requests</td>
+      <td>Standalone form for coaches to express interest and answer qualification questions. Shareable via a dedicated <a href="https://help.playmetrics.com/hc/en-us/articles/8137576216727" class="ext" target="_blank">Coach Request Link</a>.</td>
+      <td>Recruiting coaches who aren't registering a player.</td>
+    </tr>
+    <tr>
+      <td>Tryouts / Evaluations</td>
+      <td>Structured evaluation sessions with check-in, evaluator assignments, scoring (1–10), and notes. Results feed into team assignments.</td>
+      <td>Replaces informal evaluation processes.</td>
+    </tr>
+    <tr>
+      <td>Curriculum Builder</td>
+      <td>Season-long coaching plans with training phases, weekly goals, and drill recommendations. Assignable per team.</td>
+      <td>Available for regions that standardize coaching.</td>
+    </tr>
+    <tr>
+      <td>Practice Planner</td>
+      <td>Drag-and-drop session builder with a drill library and illustrator. Coaches can print plans.</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Forms Builder</td>
+      <td>Custom forms with tracking, eSignatures, multi-step workflows. Distributed to groups and tracked for completion.</td>
+      <td>Could replace manual form distribution (medical forms, etc.).</td>
+    </tr>
+    <tr>
+      <td>Team Accounts</td>
+      <td>Per-team financial accounts with budgets, transactions, reimbursements, and a team credit card.</td>
+      <td>Relevant for regions with team-level spending.</td>
+    </tr>
+    <tr>
+      <td>Player Attendance</td>
+      <td>Track attendance per event with team-level summaries and individual history by event type.</td>
+      <td><span class="tag tag-new">New capability</span></td>
+    </tr>
+    <tr>
+      <td>Attribution Tags</td>
+      <td>Marketing tracking for registrations and revenue tied to campaigns.</td>
+      <td>Track which outreach drives registrations.</td>
+    </tr>
+    <tr>
+      <td>Duplicate Detection</td>
+      <td>Player contacts are given options to identify duplicate player situations when adding a player.</td>
+      <td>Helps prevent duplicate registrations.</td>
+    </tr>
+    <tr>
+      <td>Program Duplication</td>
+      <td>Programs can be copied from one season to the next. Saves significant setup time after year one.</td>
+      <td>Confirmed in the webinar: "Programs are easily duplicated."</td>
+    </tr>
+  </table>
+
+
+  <!-- ================================================================ -->
+  <h2 id="gotchas"><a class="anchor" href="#gotchas">Common Gotchas</a></h2>
+
+  <div class="gotcha">
+    <div class="q">"I can't find Divisions"</div>
+    <div class="a">In PM, divisions are called <a href="#packages">"packages."</a> Look under your Program → Packages tab.</div>
+  </div>
+
+  <div class="gotcha">
+    <div class="q">"Where's the Season setup?"</div>
+    <div class="a">Create the <a href="#hierarchy">Season first</a> — it sets dates and age classifications. Then build Programs within it. The Season is the top-level container, which is the reverse of SC.</div>
+  </div>
+
+  <div class="gotcha">
+    <div class="q">"I created a Program but can't open registration"</div>
+    <div class="a">Registration can't open until <a href="#npf">NPF</a> functionality is connected through <a href="#embedded-reg">embedded registration</a>. This was being finalized for the MY2026 launch.</div>
+  </div>
+
+  <div class="gotcha">
+    <div class="q">"Where are my volunteers?"</div>
+    <div class="a">PM doesn't have a single "Volunteers" tab. <a href="#volunteers">Staff</a> are split across Admins, Directors, Coaches, and Team Staff — each under the Staff menu. Volunteer <em>interest</em> captured during registration shows under Programs → Export Volunteers.</div>
+  </div>
+
+  <div class="gotcha">
+    <div class="q">"How do I see all coaches and their teams?"</div>
+    <div class="a">Export coaches from Staff → Coaches (includes team assignments). Or view League → Assignments for a visual drag-and-drop roster. <a href="https://help.playmetrics.com/hc/en-us/articles/18019657539351" class="ext" target="_blank">Adding Coaches &amp; Team Staff</a></div>
+  </div>
+
+  <div class="gotcha">
+    <div class="q">"Where's the auto-team builder?"</div>
+    <div class="a">Not available in PM's initial release. Use the drag-and-drop Team Assignment interface with player data (age, evaluations, question responses). Some regions export to Excel, use a tool like Bravaia, and re-import. PM confirmed balanced team tooling is under review.</div>
+  </div>
+
+  <div class="gotcha">
+    <div class="q">"Can I duplicate last year's setup?"</div>
+    <div class="a">Yes — programs can be duplicated from one season to the next. Saves significant setup time after year one.</div>
+  </div>
+
+  <div class="gotcha">
+    <div class="q">"When a season ends, do volunteers disappear?"</div>
+    <div class="a">Similar to SC — you'll want a Season that spans Fall through Spring so volunteers remain visible. Confirmed in the webinar: "You will likely want to create a Season that extends the full length of Fall and Spring."</div>
+  </div>
+
+  <div class="gotcha">
+    <div class="q">"What's a 'Director' — is that our Division Coordinator?"</div>
+    <div class="a">Yes. PM's <a href="#volunteers">Director</a> role maps to AYSO's Division Coordinator — oversight of a subset of teams. <a href="https://help.playmetrics.com/hc/en-us/articles/360025672314" class="ext" target="_blank">Account Types &amp; Roles</a></div>
+  </div>
+
+  <div class="gotcha">
+    <div class="q">"Can coaches see the admin notes/medical info?"</div>
+    <div class="a">No — admin questions (like evaluations and medical notes) can be hidden from player contacts but visible to admins doing team assignments. Confirmed in the webinar: "the coaches will not see the notes."</div>
+  </div>
+
+
+  <!-- ================================================================ -->
+  <h2 id="links"><a class="anchor" href="#links">Reference Links</a></h2>
+
+  <h3>PlayMetrics Help Center (Club System)</h3>
+  <div class="ref-links">
+    <a class="ref-link" href="https://help.playmetrics.com/hc/en-us/articles/360021201253" target="_blank">Introduction to the Club System</a>
+    <a class="ref-link" href="https://help.playmetrics.com/hc/en-us/articles/360025672314" target="_blank">Account Types &amp; Roles</a>
+    <a class="ref-link" href="https://help.playmetrics.com/hc/en-us/articles/360019972314" target="_blank">Registering with PlayMetrics</a>
+    <a class="ref-link" href="https://help.playmetrics.com/hc/en-us/articles/360024272234" target="_blank">Using PM as a Player Contact</a>
+    <a class="ref-link" href="https://help.playmetrics.com/hc/en-us/articles/18019657539351" target="_blank">Adding Coaches &amp; Team Staff</a>
+    <a class="ref-link" href="https://help.playmetrics.com/hc/en-us/articles/8137576216727" target="_blank">Coach Request Link</a>
+    <a class="ref-link" href="https://help.playmetrics.com/hc/en-us/articles/16699152278039" target="_blank">Creating Volunteer Signups</a>
+    <a class="ref-link" href="https://help.playmetrics.com/hc/en-us/articles/360046084314" target="_blank">Importing Team Staff</a>
+    <a class="ref-link" href="https://help.playmetrics.com/hc/en-us/articles/9197605784215" target="_blank">Adding Staff Titles</a>
+    <a class="ref-link" href="https://help.playmetrics.com/hc/en-us/articles/360021276353" target="_blank">Importing Teams</a>
+    <a class="ref-link" href="https://help.playmetrics.com/hc/en-us/articles/38946832703767" target="_blank">Adding an Admin</a>
+  </div>
+
+  <h3>PlayMetrics Help Center (Governing System)</h3>
+  <div class="ref-links">
+    <a class="ref-link" href="https://playmetricsgs.zendesk.com/hc/en-us/articles/23301243189015" target="_blank">Import Staff → Governing System</a>
+    <a class="ref-link" href="https://help.playmetrics.com/hc/en-us/articles/39600070246807" target="_blank">Volunteer Compliance Checklist</a>
+    <a class="ref-link" href="https://help.playmetrics.com/hc/en-us/articles/39429633833495" target="_blank">Volunteer Registration &amp; Compliance Webinar</a>
+  </div>
+
+  <h3>AYSO Resources</h3>
+  <div class="ref-links">
+    <a class="ref-link" href="https://usclubsoccer.org/registration-player-age-groups/" target="_blank">US Soccer Birth Date Age Groups</a>
+    <a class="ref-link" href="https://docs.google.com/spreadsheets/d/1gAWje1-UGXT2NpbF3lgRgr0puUWxJxYTegiRgu5dIas/" target="_blank">AYSO Pilot Import Templates</a>
+  </div>
+
+  <h3>Region 58 Migration Docs</h3>
+  <div class="ref-links">
+    <a class="ref-link" href="https://sdavis9248.github.io/playmetrics-migration-region58/" target="_blank">Region 58 GitHub Pages Site</a>
+  </div>
+
+
+  <!-- ================================================================ -->
+  <h2 id="contributing"><a class="anchor" href="#contributing">Contributing</a></h2>
+
+  <p>If you discover a terminology mapping that isn't listed here, add it and share back with the Superusers group. The goal is for this to become a comprehensive reference that any AYSO volunteer can use when they encounter unfamiliar PM terminology.</p>
+
+  <p>No PlayMetrics screenshots are included in this document, consistent with current guidelines. All PM configuration is described in text only (field names, navigation paths, question labels).</p>
+
+  <footer>
+    Prepared by Steve Davis, Registrar — AYSO Region 58 &nbsp;|&nbsp; Sources: PlayMetrics Help Center, MY2026 webinar Q&amp;A transcripts, setup session recordings, Volunteer Compliance webinar (April 2026), Superusers group discussions
+  </footer>
+
+</div>
+
+<script>
+// Search functionality
+const searchInput = document.getElementById('searchInput');
+const searchClear = document.getElementById('searchClear');
+const searchCount = document.getElementById('searchCount');
+
+searchInput.addEventListener('input', function() {
+  const query = this.value.trim().toLowerCase();
+  searchClear.style.display = query ? 'block' : 'none';
+
+  const rows = document.querySelectorAll('table.glossary tr');
+  let matchCount = 0;
+  let totalData = 0;
+
+  rows.forEach(row => {
+    if (row.querySelector('th')) return; // skip headers
+    totalData++;
+    const text = row.textContent.toLowerCase();
+    if (!query) {
+      row.classList.remove('hidden-row', 'highlight-row');
+    } else if (text.includes(query)) {
+      row.classList.remove('hidden-row');
+      row.classList.add('highlight-row');
+      matchCount++;
+    } else {
+      row.classList.add('hidden-row');
+      row.classList.remove('highlight-row');
+    }
+  });
+
+  // Also search gotchas
+  const gotchas = document.querySelectorAll('.gotcha');
+  gotchas.forEach(g => {
+    const text = g.textContent.toLowerCase();
+    if (!query) {
+      g.style.display = '';
+      g.style.background = '';
+    } else if (text.includes(query)) {
+      g.style.display = '';
+      g.style.background = '#fef9c3';
+      matchCount++;
+    } else {
+      g.style.display = 'none';
+      g.style.background = '';
+    }
+  });
+
+  if (query) {
+    searchCount.style.display = 'block';
+    searchCount.textContent = matchCount + ' match' + (matchCount !== 1 ? 'es' : '') + ' found';
+  } else {
+    searchCount.style.display = 'none';
+  }
+});
+
+searchClear.addEventListener('click', function() {
+  searchInput.value = '';
+  searchInput.dispatchEvent(new Event('input'));
+  searchInput.focus();
+});
+
+// Smooth scroll for anchor links
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', function(e) {
+    const target = document.querySelector(this.getAttribute('href'));
+    if (target) {
+      e.preventDefault();
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      history.pushState(null, '', this.getAttribute('href'));
+    }
+  });
+});
+</script>
+
+</body>
+</html>
