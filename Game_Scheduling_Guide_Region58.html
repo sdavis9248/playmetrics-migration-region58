@@ -106,9 +106,39 @@
     PlayMetrics has a built-in game scheduler for in-house leagues that replaces the manual scheduling process in Sports Connect. It can auto-generate weekly matchups across divisions and fields, detect coach and field conflicts, and track standings — all in one place. Field management is more powerful with drag-and-drop scheduling, sub-fields, automatic parent notifications when fields change, and calendar sync. The biggest shift: scheduling, field management, and parent communication are now interconnected instead of being separate workflows. A scheduling webinar for AYSO is being planned — we'll have more specifics after that session.
   </div>
 
+  <div class="callout callout-green">
+    <strong>✅ The Short Answer to Your March 1 Question</strong>
+    Yes, there will be a tutorial. PM has help center articles and video walkthroughs for their scheduling tools, and AYSO is planning a dedicated scheduling webinar for pilot regions. You won't be expected to figure this out alone. The new system is actually designed to do more of the work for you — auto-generating matchups, detecting conflicts, handling notifications — so the parts that take the most time today should get easier, not harder. We'll walk through it together before you need to build anything.
+  </div>
+
   <div class="callout callout-amber">
     <strong>⚠️ We Haven't Done This Part Yet</strong>
     Registration and program setup are complete and verified. Game scheduling happens after teams are formed (post-registration). This guide is based on PlayMetrics documentation, release notes, marketing materials, and the Superusers meeting — we haven't built a schedule in PM yet. When the scheduling webinar happens, we'll update this guide with the actual how-to.
+  </div>
+
+  <!-- ===================== YOUR WORKFLOW TODAY ===================== -->
+  <h2>How Ben Works Today (What We're Mapping From)</h2>
+
+  <p>Based on our email threads, here's the current workflow we need to preserve or improve in PM:</p>
+
+  <div class="card">
+    <h4>The Schedule Needs to Be Final 2–3 Weeks Before Season</h4>
+    <p>Ben builds ONE final schedule — no conditonal versions based on whether coaches have completed requirements. The schedule starts as soon as Division Coordinators finalize their coach lists, then Ben does drafts on a rolling basis across all 12 divisions. Quality-checking takes time.</p>
+  </div>
+
+  <div class="card">
+    <h4>12 Divisions, Rolling Drafts</h4>
+    <p>Each division gets scheduled as its teams are finalized — Ben doesn't wait for all 12 to be done before starting. This rolling approach means he needs to start as early as possible.</p>
+  </div>
+
+  <div class="card">
+    <h4>Season Dates</h4>
+    <p>First Saturday games: September 19, 2026. Exploring mid-week games as well (pending permits). 10 game weeks leading up to Thanksgiving.</p>
+  </div>
+
+  <div class="card">
+    <h4>The Compliance Dependency (Jay's Concern)</h4>
+    <p>Jay (CVPA) wants compliance verified before coaches get teams — background check + fingerprinting done before team assignment, video training done before Game 1. This means the compliance pipeline feeds into Ben's scheduling timeline. In PM, this is exactly what the "verified for the season" status is being built to do: a coach can't be fully assigned until compliance is green. This could actually <em>help</em> Ben by ensuring the coach list he gets from DCs is already vetted — no mid-season surprises.</p>
   </div>
 
   <!-- ===================== CONCEPT MAP ===================== -->
@@ -357,24 +387,32 @@
 
   <div class="card">
     <h4>Integration with Referee Assignment Tools</h4>
-    <p>If we use an external referee assignment tool (like CGI or Assigner), we'll need to understand how game data exports from PM and whether there's an integration. PM reportedly integrates with some external tools, but specifics for AYSO aren't confirmed yet. Assigner (Stack Officials replacement) was demoed — it's not cheap (~$5,000 vs CGI at $350-400). We currently use CGI at $350/year.</p>
+    <p>Mike Lauer (Ref Admin, refadmin@ayso58.org) handles referee scheduling. If we use an external referee assignment tool (like CGI or Assigner), we'll need to understand how game data exports from PM and whether there's an integration. PM reportedly integrates with some external tools, but specifics for AYSO aren't confirmed yet. Assigner (Stack Officials replacement) was demoed — it's not cheap (~$5,000 vs CGI at $350-400). We currently use CGI at $350/year. Game data can be exported from PM as CSV to feed into whatever referee tool Mike uses.</p>
   </div>
 
   <!-- ===================== WHAT BEN NEEDS TO DO ===================== -->
   <h2>What Ben Needs to Do Right Now</h2>
 
   <div class="callout callout-green">
-    <strong>✅ Nothing Yet — Scheduling Comes After Teams Are Formed</strong>
-    Registration hasn't opened yet. Teams get built after registration closes. Scheduling happens after teams are formed. Ben's workload starts later in the process. For now, this guide is to help you understand how things are going to be different.
+    <strong>✅ Nothing in the System Yet — But Get Familiar</strong>
+    Registration hasn't opened yet. Teams get built after registration closes. Scheduling happens after teams are formed. Ben's active workload in PM starts later. For now, this guide is to help understand how things will be different so there aren't surprises in August.
   </div>
 
-  <p>When the time comes, here's the rough sequence:</p>
+  <p>Here's the timeline mapped to Ben's workflow:</p>
 
-  <ul>
-    <li><strong>Before teams form:</strong> Set up Locations & Fields in PM (one-time setup). Get familiar with the PM field management interface. Attend the scheduling webinar when it's announced.</li>
-    <li><strong>After teams form:</strong> Generate or build the game schedule in the League. Review for conflicts. Publish.</li>
-    <li><strong>During the season:</strong> Handle field closures and game changes through PM (automatic notifications). Monitor score entry and standings. Adjust schedule as needed.</li>
-  </ul>
+  <table>
+    <tr><th>When</th><th>What Happens</th><th>Ben's Role</th></tr>
+    <tr><td>Now – May</td><td>Registration setup (Steven & Sara)</td><td>Read this guide. Attend PM scheduling webinar when announced. Ask Steven questions.</td></tr>
+    <tr><td>May – July</td><td>Registration open, families sign up</td><td>Start thinking about field setup in PM. Set up Locations & Fields (one-time).</td></tr>
+    <tr><td>July – Aug</td><td>Registration closes, teams form, coaches vetted by Jay</td><td>Wait for DCs to finalize coach lists. Jay's compliance checkpoint happens here — coaches must clear BG check + fingerprinting before getting a team.</td></tr>
+    <tr><td>Aug (early)</td><td>R58 Fingerprint Fair (Jay organizing)</td><td>Coordinate with Jay — scheduling can't finalize until coaches are cleared.</td></tr>
+    <tr><td>Aug – early Sep</td><td>Teams finalized, rolling drafts</td><td>Build schedule in PM as divisions are finalized. Use auto-generate for matchups. Quality-check. ONE final schedule.</td></tr>
+    <tr><td>Sep 19</td><td>First Saturday games</td><td>Schedule published, parents notified automatically. Manage field closures and changes through PM during the season.</td></tr>
+  </table>
+
+  <div class="callout callout-blue">
+    <strong>💡 The Good News About PM and Compliance</strong>
+    Jay has been asking for years to have compliance verified before coaches get teams. PM is building exactly this — a "verified for the season" status. When that's working, the coach list Ben gets from DCs will already be vetted. No more mid-season scramble to pull a coach off a team because their background check flagged. This is one place where the new system actually solves a real problem for both Jay and Ben.</div>
 
   <!-- ===================== QUICK REFERENCE ===================== -->
   <h2>Quick Reference: Where to Find Things</h2>
@@ -411,14 +449,30 @@
   </div>
 
   <h3>Related Region 58 Guides</h3>
-  <div class="ref-links">
-    <a class="ref-link" href="PlayMetrics_Migration_Status_Region58.html">Migration Status Dashboard</a>
-    <a class="ref-link" href="AYSO_PlayMetrics_Terminology_Guide.html">Terminology Guide</a>
+
+  <div class="card">
+    <h4><a href="Volunteer_Compliance_Guide_Region58.html">Volunteer Compliance Guide</a> — For Jay</h4>
+    <p>Jay's two-step enforcement plan (BG check before team, training before Game 1) directly drives Ben's scheduling timeline. This guide has the full compliance tier system, the fingerprint fair planning, and the legacy data migration details. The compliance→scheduling dependency is documented in both guides.</p>
+  </div>
+
+  <div class="card">
+    <h4><a href="PlayMetrics_Data_Import_Steps.html">Data Import Steps</a></h4>
+    <p>Player data import creates the player pool that feeds into team assignments, which feeds into scheduling. Import must happen before registration opens. If we import team-assigned players (post-draft), they come in with team names already attached.</p>
+  </div>
+
+  <div class="card">
+    <h4><a href="PlayMetrics_Migration_Status_Region58.html">Migration Status Dashboard</a></h4>
+    <p>Master project view showing where scheduling fits in the overall sequence: registration → import → team formation → compliance verification → scheduling → go-live.</p>
+  </div>
+
+  <div class="card">
+    <h4><a href="AYSO_PlayMetrics_Terminology_Guide.html">Terminology Guide</a></h4>
+    <p>Divisions, leagues, seasons, fields, packages — the terminology is different in PM. This guide maps 80+ concepts so Ben knows what things are called when navigating the PM admin.</p>
   </div>
 
   <footer>
     Region 58 — Van Nuys/Sherman Oaks, CA &nbsp;|&nbsp; Prepared by Steve Davis, Registrar, for Ben Hauser (Game Scheduling)<br>
-    Sources: PlayMetrics Help Center, Release Notes, marketing pages, Superusers meeting transcript (April 2026), SportsConnectAutomation export manager code
+    Sources: PlayMetrics Help Center, Release Notes, marketing pages, Superusers meeting (April 2026), Ben Hauser scheduling emails, Jay Spillane SafeSport Compliance thread, SportsConnectAutomation export manager
   </footer>
 
 </div>
