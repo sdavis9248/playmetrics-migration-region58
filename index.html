@@ -3,184 +3,152 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AYSO Region 58 Resources</title>
+  <title>AYSO Region 58 — PlayMetrics Migration Resources</title>
   <style>
-    * {
-      box-sizing: border-box;
-    }
-
+    * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
-      margin: 0;
-      font-family: Arial, Helvetica, sans-serif;
-      color: #163b78;
-      background: linear-gradient(to bottom, #0a2f66 0 240px, #f7f9fc 240px 100%);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      color: #1c1917;
+      background: #0a2351;
+      min-height: 100vh;
     }
-
     .hero {
       text-align: center;
-      padding: 24px 20px 30px;
+      padding: 36px 20px 48px;
       color: white;
+      background: linear-gradient(135deg, #0a2351 0%, #163b78 100%);
     }
-    
-    .hero img {
-      width: 120px;
-      margin-bottom: 12px;
+    .hero img { width: 100px; margin-bottom: 10px; }
+    .hero h1 { font-size: 34px; font-weight: 800; letter-spacing: -0.02em; }
+    .hero h2 { font-size: 17px; font-weight: 400; opacity: 0.7; margin-top: 4px; }
+    .hero p { font-size: 14px; opacity: 0.5; margin-top: 8px; }
+    .grid {
+      max-width: 900px;
+      margin: -28px auto 0;
+      padding: 0 20px 48px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
     }
-    
-    .hero h1 {
-      margin: 0;
-      font-size: 38px;
-    }
-    
-    .hero h2 {
-      margin: 8px 0 0;
-      font-size: 20px;
-      font-weight: 400;
-      opacity: 0.95;
-    }
-
-    .content {
-      max-width: 760px;
-      margin: -20px auto 40px;
-      padding: 0 20px;
-    }
-    
     .card {
       background: white;
-      border-radius: 14px;
-      padding: 24px;
-      box-shadow: 0 10px 30px rgba(0,0,0,.12);
+      border-radius: 12px;
+      padding: 22px 24px 20px;
+      box-shadow: 0 8px 24px rgba(0,0,0,.15);
       border: 1px solid #e6ebf2;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.15s, box-shadow 0.15s;
     }
-    
+    .card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 32px rgba(0,0,0,.2);
+    }
+    .card-icon {
+      width: 40px; height: 40px;
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 20px;
+      margin-bottom: 12px;
+      flex-shrink: 0;
+    }
+    .icon-blue { background: #dbeafe; }
+    .icon-green { background: #dcfce7; }
+    .icon-amber { background: #fef3c7; }
+    .icon-purple { background: #f3e8ff; }
+    .icon-red { background: #fee2e2; }
     .card h3 {
-      margin-top: 0;
-      font-size: 26px;
+      font-size: 17px;
+      font-weight: 700;
       color: #163b78;
+      margin-bottom: 6px;
+      line-height: 1.25;
     }
-    
     .card p {
-      font-size: 18px;
-      color: #555;
-      line-height: 1.5;
+      font-size: 13.5px;
+      color: #64748b;
+      line-height: 1.55;
+      flex: 1;
     }
-    
-    .button {
+    .card a {
       display: inline-block;
-      margin-top: 20px;
-      background: #0067d8;
+      margin-top: 14px;
+      background: #0a2351;
       color: white;
       text-decoration: none;
-      padding: 12px 20px;
-      border-radius: 10px;
-      font-size: 18px;
-      font-weight: bold;
-      transition: 0.2s;
+      padding: 9px 16px;
+      border-radius: 8px;
+      font-size: 13.5px;
+      font-weight: 600;
+      transition: background 0.15s;
+      align-self: flex-start;
     }
-
-    .button:hover {
-      background: #0054b3;
-      transform: translateY(-2px);
-    }
-
-    .filename {
-      margin-top: 12px;
-      color: #9aa3b1;
-      font-family: Consolas, monospace;
-      font-size: 14px;
-    }
-
+    .card a:hover { background: #163b78; }
+    .card-wide { grid-column: 1 / -1; }
     .footer {
       text-align: center;
       padding: 20px;
-      color: #5c6780;
-      font-size: 15px;
+      color: rgba(255,255,255,0.4);
+      font-size: 13px;
+      background: #0a2351;
     }
-
-    @media (max-width: 700px) {
-      .hero h1 {
-        font-size: 32px;
-      }
-    
-      .hero h2 {
-        font-size: 18px;
-      }
-    
-      .card h3 {
-        font-size: 24px;
-      }
-    
-      .card p,
-      .button {
-        font-size: 16px;
-      }
-    
-      .button {
-        padding: 12px 20px;
-      }
+    @media (max-width: 640px) {
+      .grid { grid-template-columns: 1fr; }
+      .hero h1 { font-size: 28px; }
+      .card-wide { grid-column: auto; }
     }
   </style>
 </head>
 <body>
 
   <div class="hero">
-    <img src="AYSO58_logo.png" alt="AYSO Region 58 Logo">
+    <img src="AYSO58_logo.png" alt="AYSO Region 58 Logo" />
     <h1>AYSO Region 58</h1>
     <h2>Van Nuys / Sherman Oaks</h2>
+    <p>PlayMetrics Migration Resources</p>
   </div>
 
-  <div class="content">
+  <div class="grid">
 
-    <div class="card">
-      <h3>Playmetrics Terminology Guide</h3>
-      <p>
-        A comprehensive translation key between AYSO/SportsConnect and PlayMetrics terminology. Maps divisions to packages, accounts to player contacts, volunteers to staff types, and 80+ other concepts across registration, payments, compliance, reports, and program setup. Includes a side-by-side hierarchy diagram, searchable glossary tables, clickable cross-references, links to PlayMetrics Help Center articles, and a "Common Gotchas" section addressing the most frequent questions from the webinar Q&A sessions.
-      </p>
-
-      <a class="button" href="AYSO_PlayMetrics_Terminology_Guide.html">
-        Open Playmetrics Terminology Guide
-      </a>
-
-      <div class="filename">
-        AYSO_PlayMetrics_Terminology_Guide.html
-      </div>
-    </div>
-
-    <div class="card">
-      <h3>Website Migration Guide</h3>
-      <p>
-        Step-by-step instructions and documentation for migrating
-        Region 58 website content and setup.
-      </p>
-
-      <a class="button" href="Website_Migration_Guide_Region58.html">
-        Open Website Migration Guide
-      </a>
-
-      <div class="filename">
-        Website_Migration_Guide_Region58.html
-      </div>
-    </div>
-    
-    <div class="card" style="margin-top: 24px;">
+    <div class="card card-wide">
+      <div class="card-icon icon-blue">&#x1F4CB;</div>
       <h3>Migration Status</h3>
-      <p>
-        Current progress, completed setup steps, outstanding tasks,
-        and overall status of the PlayMetrics migration effort.
-      </p>
-  
-      <a class="button" href="PlayMetrics_Migration_Status_Region58.html">
-        Open Migration Status
-      </a>
-  
-      <div class="filename">
-        PlayMetrics_Migration_Status_Region58.html
-      </div>
+      <p>Live project dashboard showing verified configuration, completed steps, pending tasks, merchant account items, pre-launch sequence, and go-live checklist. All data verified from the test parent registration walkthrough on April 26, 2026.</p>
+      <a href="PlayMetrics_Migration_Status_Region58.html">Open Status Dashboard &rarr;</a>
     </div>
+
+    <div class="card">
+      <div class="card-icon icon-green">&#x1F310;</div>
+      <h3>Website Migration Guide</h3>
+      <p>SC website redirect steps, rotator banners, email templates, social media graphics, and go-live communication plan. All 10 AYSO assets embedded for preview and download.</p>
+      <a href="Website_Migration_Guide_Region58.html">Open Guide &rarr;</a>
+    </div>
+
+    <div class="card">
+      <div class="card-icon icon-purple">&#x1F4DA;</div>
+      <h3>Terminology Guide</h3>
+      <p>Side-by-side translation of AYSO/SportsConnect and PlayMetrics terminology. 80+ concepts mapped across registration, payments, compliance, and program setup with help center links.</p>
+      <a href="AYSO_PlayMetrics_Terminology_Guide.html">Open Guide &rarr;</a>
+    </div>
+
+    <div class="card">
+      <div class="card-icon icon-amber">&#x1F465;</div>
+      <h3>Volunteer Compliance</h3>
+      <p>Two-system compliance model (Club vs Governing), staff designation paths, compliance tiers, legacy data migration plan, import workflow, and interim automation coverage. Updated with Superusers meeting intel.</p>
+      <a href="Volunteer_Compliance_Guide_Region58.html">Open Guide &rarr;</a>
+    </div>
+
+    <div class="card">
+      <div class="card-icon icon-red">&#x1F4E5;</div>
+      <h3>Data Import Steps</h3>
+      <p>12-step interactive checklist for importing historical player data from SportsConnect. Covers data cleanup, deduplication, export automation, BC verification handling, and CSV upload.</p>
+      <a href="PlayMetrics_Data_Import_Steps.html">Open Guide &rarr;</a>
+    </div>
+
   </div>
 
   <div class="footer">
-    AYSO Region 58 • Everyone Plays® • Positive Coaching • Good Sportsmanship
+    AYSO Region 58 &bull; Everyone Plays&reg; &bull; Balanced Teams &bull; Positive Coaching &bull; Good Sportsmanship
   </div>
 
 </body>
