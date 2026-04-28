@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Game Scheduling Guide — Region 58</title>
+<link href="https://fonts.googleapis.com/css2?family=Anybody:wght@400;600;800&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1c1917;
+    --paper: #fafaf9;
+    --warm: #f5f0eb;
+    --accent: #1d4ed8;
+    --accent-soft: #dbeafe;
+    --green: #166534;
+    --green-soft: #dcfce7;
+    --amber: #92400e;
+    --amber-soft: #fef3c7;
+    --red: #991b1b;
+    --red-soft: #fee2e2;
+    --gray: #78716c;
+    --border: #e7e5e4;
+    --sc: #b45309;
+    --sc-soft: #fef3c7;
+    --pm: #1d4ed8;
+    --pm-soft: #dbeafe;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Source Serif 4', Georgia, serif; background: var(--paper); color: var(--ink); line-height: 1.7; }
+  header { background: linear-gradient(135deg, #0a2351 0%, #1e3a5f 100%); color: white; padding: 2.5rem 2rem; }
+  header h1 { font-family: 'Anybody', sans-serif; font-weight: 800; font-size: 1.8rem; letter-spacing: -0.03em; line-height: 1.15; }
+  header .meta { font-size: 0.82rem; opacity: 0.6; margin-top: 0.3rem; font-family: 'Anybody', sans-serif; }
+  .container { max-width: 820px; margin: 0 auto; padding: 1.5rem 1.5rem 4rem; }
+
+  .summary-box { background: var(--warm); border-radius: 8px; padding: 1.25rem 1.5rem; margin: 1.5rem 0; font-size: 0.92rem; }
+  .summary-box strong { font-family: 'Anybody', sans-serif; font-weight: 600; display: block; margin-bottom: 0.3rem; font-size: 0.82rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--gray); }
+
+  h2 { font-family: 'Anybody', sans-serif; font-weight: 800; font-size: 1.25rem; margin: 2.25rem 0 0.6rem; letter-spacing: -0.02em; padding-bottom: 0.35rem; border-bottom: 2px solid var(--ink); }
+  h3 { font-family: 'Anybody', sans-serif; font-weight: 600; font-size: 0.95rem; margin: 1.25rem 0 0.4rem; color: var(--accent); }
+  p { margin-bottom: 0.65rem; font-size: 0.92rem; }
+
+  .callout { padding: 0.85rem 1.1rem; border-left: 4px solid; border-radius: 4px; margin: 1rem 0; font-size: 0.85rem; }
+  .callout-blue { background: var(--accent-soft); border-color: var(--accent); }
+  .callout-amber { background: var(--amber-soft); border-color: #d97706; }
+  .callout-green { background: var(--green-soft); border-color: var(--green); }
+  .callout-red { background: var(--red-soft); border-color: var(--red); }
+  .callout strong { display: block; margin-bottom: 0.15rem; }
+
+  table { width: 100%; border-collapse: collapse; margin: 0.75rem 0; font-size: 0.85rem; }
+  th { font-family: 'Anybody', sans-serif; font-weight: 600; text-align: left; padding: 0.5rem 0.6rem; background: var(--warm); border: 1px solid var(--border); font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.03em; }
+  td { padding: 0.45rem 0.6rem; border: 1px solid var(--border); vertical-align: top; }
+
+  .mapping-table th:first-child { background: var(--sc-soft); color: var(--sc); }
+  .mapping-table th:nth-child(2) { background: var(--pm-soft); color: var(--pm); }
+  .mapping-table th:nth-child(3) { background: var(--warm); }
+
+  .card { background: white; border: 1px solid var(--border); border-radius: 8px; padding: 1rem 1.25rem; margin: 0.75rem 0; }
+  .card h4 { font-family: 'Anybody', sans-serif; font-weight: 600; font-size: 0.88rem; margin-bottom: 0.3rem; }
+  .card p { font-size: 0.85rem; margin-bottom: 0.4rem; }
+
+  .step { background: white; border: 1px solid var(--border); border-radius: 8px; margin: 1.25rem 0; overflow: hidden; }
+  .step-header { display: flex; align-items: center; gap: 0.65rem; padding: 0.85rem 1.25rem; border-bottom: 1px solid var(--border); }
+  .step-num { background: #1e3a5f; color: white; width: 1.75rem; height: 1.75rem; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'Anybody', sans-serif; font-weight: 700; font-size: 0.8rem; flex-shrink: 0; }
+  .step-title { font-family: 'Anybody', sans-serif; font-weight: 600; font-size: 0.95rem; }
+  .step-body { padding: 1.1rem 1.25rem; }
+  .step-body p { font-size: 0.88rem; }
+
+  .compare { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 0.75rem 0; }
+  .compare-box { border-radius: 8px; padding: 0.85rem 1rem; font-size: 0.85rem; }
+  .compare-sc { background: var(--sc-soft); border: 1px solid #fbbf24; }
+  .compare-pm { background: var(--pm-soft); border: 1px solid #93c5fd; }
+  .compare-label { font-family: 'Anybody', sans-serif; font-weight: 600; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 0.4rem; display: block; }
+  .compare-sc .compare-label { color: var(--sc); }
+  .compare-pm .compare-label { color: var(--pm); }
+
+  ul { padding-left: 1.25rem; margin-bottom: 0.75rem; }
+  li { margin-bottom: 0.3rem; font-size: 0.88rem; }
+
+  .tag { display: inline-block; font-family: 'Anybody', sans-serif; font-weight: 600; font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.06em; padding: 0.15rem 0.5rem; border-radius: 3px; vertical-align: middle; margin-left: 0.4rem; }
+  .tag-new { background: var(--green-soft); color: var(--green); }
+  .tag-same { background: #f3e8ff; color: #6b21a8; }
+  .tag-different { background: var(--amber-soft); color: var(--amber); }
+  .tag-gone { background: var(--red-soft); color: var(--red); }
+
+  .ref-links { display: flex; flex-wrap: wrap; gap: 0.35rem; margin: 0.6rem 0; }
+  .ref-link { font-family: 'Anybody', sans-serif; font-weight: 400; font-size: 0.72rem; padding: 0.15rem 0.45rem; background: var(--accent-soft); border-radius: 3px; color: var(--accent); text-decoration: none; white-space: nowrap; }
+  .ref-link:hover { text-decoration: underline; }
+
+  a { color: var(--accent); }
+  footer { margin-top: 2.5rem; padding-top: 1rem; border-top: 1px solid var(--border); font-size: 0.78rem; color: var(--gray); font-family: 'Anybody', sans-serif; }
+  @media (max-width: 600px) { header { padding: 1.5rem 1rem; } .container { padding: 1rem; } .compare { grid-template-columns: 1fr; } }
+  @media print { header { background: white; color: black; border-bottom: 3px solid black; } body { font-size: 10pt; } }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Game Scheduling<br>Sports Connect → PlayMetrics</h1>
+  <div class="meta">AYSO Region 58 — Prepared for Ben Hauser &nbsp;|&nbsp; April 28, 2026</div>
+</header>
+
+<div class="container">
+
+  <div class="summary-box">
+    <strong>Bottom Line for Ben</strong>
+    PlayMetrics has a built-in game scheduler for in-house leagues that replaces the manual scheduling process in Sports Connect. It can auto-generate weekly matchups across divisions and fields, detect coach and field conflicts, and track standings — all in one place. Field management is more powerful with drag-and-drop scheduling, sub-fields, automatic parent notifications when fields change, and calendar sync. The biggest shift: scheduling, field management, and parent communication are now interconnected instead of being separate workflows. A scheduling webinar for AYSO is being planned — we'll have more specifics after that session.
+  </div>
+
+  <div class="callout callout-amber">
+    <strong>⚠️ We Haven't Done This Part Yet</strong>
+    Registration and program setup are complete and verified. Game scheduling happens after teams are formed (post-registration). This guide is based on PlayMetrics documentation, release notes, marketing materials, and the Superusers meeting — we haven't built a schedule in PM yet. When the scheduling webinar happens, we'll update this guide with the actual how-to.
+  </div>
+
+  <!-- ===================== CONCEPT MAP ===================== -->
+  <h2>Concept Map: SC → PlayMetrics</h2>
+
+  <p>The terminology and structure are different. Here's how the key scheduling concepts translate:</p>
+
+  <table class="mapping-table">
+    <tr><th>Sports Connect</th><th>PlayMetrics</th><th>What Changed</th></tr>
+    <tr>
+      <td>Game Schedule (built manually or via scheduler)</td>
+      <td>League → Games (auto-generated or manual)</td>
+      <td><span class="tag tag-different">Different</span> Games live inside the League, not as a standalone schedule. PM can auto-generate matchups by division.</td>
+    </tr>
+    <tr>
+      <td>Divisions (10UB, 12UG, etc.)</td>
+      <td>Divisions within a League</td>
+      <td><span class="tag tag-same">Similar</span> Same concept, different navigation. Divisions are part of the League structure.</td>
+    </tr>
+    <tr>
+      <td>Teams (assigned from Team Builder)</td>
+      <td>Teams (from Team Assignments)</td>
+      <td><span class="tag tag-same">Similar</span> Teams must be assigned before scheduling can happen.</td>
+    </tr>
+    <tr>
+      <td>Fields (set up in SC admin)</td>
+      <td>Locations & Fields (with sub-fields, availability, closures)</td>
+      <td><span class="tag tag-new">Enhanced</span> Fields have availability windows, sub-field support, addresses, surface type, sponsor names. Field closures auto-notify parents.</td>
+    </tr>
+    <tr>
+      <td>Game times (manually entered per game)</td>
+      <td>Time Slots on Fields</td>
+      <td><span class="tag tag-different">Different</span> Set up time slots on fields first, then assign games to slots. Period and day views available.</td>
+    </tr>
+    <tr>
+      <td>Standings (manual or via SC standings module)</td>
+      <td>League Standings (automatic)</td>
+      <td><span class="tag tag-new">Enhanced</span> Standings auto-calculate from game scores. Tiebreaker rules configurable. Option to hide specific values.</td>
+    </tr>
+    <tr>
+      <td>Score reporting (admin enters)</td>
+      <td>Game Scores (coaches/team staff can enter)</td>
+      <td><span class="tag tag-new">Enhanced</span> Coaches and team staff can enter scores from the field. Live score tracking available for parents.</td>
+    </tr>
+    <tr>
+      <td>Practice schedule (separate from games)</td>
+      <td>Practice Planner (drag-and-drop on field calendar)</td>
+      <td><span class="tag tag-new">New Tool</span> Practices and games share the same field calendar. Admin can control whether coaches can edit their own practices.</td>
+    </tr>
+    <tr>
+      <td>Email parents about schedule changes</td>
+      <td>Automatic high-alert notifications</td>
+      <td><span class="tag tag-new">Automatic</span> When a field is closed or a game time changes, affected parents get notified automatically. No manual emails needed.</td>
+    </tr>
+    <tr>
+      <td>Export schedule to share</td>
+      <td>Calendar sync (Google, Apple, personal calendars)</td>
+      <td><span class="tag tag-new">New</span> Parents can subscribe to their player's calendar. Updates automatically when games are added or changed.</td>
+    </tr>
+    <tr>
+      <td>Conflict checking (manual — you check)</td>
+      <td>Coach & field conflict detection (automatic)</td>
+      <td><span class="tag tag-new">Automatic</span> The scheduler highlights when a coach is double-booked or a field has overlapping games.</td>
+    </tr>
+    <tr>
+      <td>Game cards (printed)</td>
+      <td>In-House Game Cards (Beta)</td>
+      <td><span class="tag tag-new">Digital</span> Digital game cards with lineups, depth charts, and scoring — accessible on mobile.</td>
+    </tr>
+    <tr>
+      <td>Import/export game data (manual Excel)</td>
+      <td>Game Import (CSV, GotSport format supported)</td>
+      <td><span class="tag tag-same">Similar</span> CSV import available. Steven's export manager has game export columns ready for this.</td>
+    </tr>
+  </table>
+
+  <!-- ===================== WHAT'S BETTER ===================== -->
+  <h2>What's Better in PlayMetrics</h2>
+
+  <div class="card">
+    <h4>Auto-Generate Matchups</h4>
+    <p>PM can automatically generate weekly game matchups for each division, assigning teams to fields and time slots. It tracks how often two teams have played each other and highlights teams that aren't scheduled in a given week. This replaces the manual process of building round-robin schedules in spreadsheets.</p>
+  </div>
+
+  <div class="card">
+    <h4>Conflict Detection</h4>
+    <p>The game scheduler shows coaching conflicts across divisions (if a coach has kids in two age groups), field double-bookings, and scheduling gaps. In SC, this was a manual check — in PM, it's highlighted in the UI as you build the schedule.</p>
+  </div>
+
+  <div class="card">
+    <h4>Field Management with Automatic Notifications</h4>
+    <p>Fields can be closed on short notice (rain, maintenance) with a few clicks. When a field is closed, PM automatically sends high-alert notifications to all affected families. No need to manually email. Field changes also update the parents' synced calendars automatically.</p>
+  </div>
+
+  <div class="card">
+    <h4>Practices and Games on One Calendar</h4>
+    <p>In SC, practices and games were separate worlds. In PM, they share the same field calendar. This means when you're scheduling games, you can see which fields already have practices on them. Drag-and-drop interface for moving things around.</p>
+  </div>
+
+  <div class="card">
+    <h4>Parents See Everything in One Place</h4>
+    <p>Parents see all their kids' games, practices, and events in a single consolidated calendar view. They can sync it to Google or Apple calendars. When you change a game time or close a field, their calendar updates automatically. No more "I didn't get the email."</p>
+  </div>
+
+  <!-- ===================== WHAT'S DIFFERENT ===================== -->
+  <h2>What's Different (Adjust Your Thinking)</h2>
+
+  <div class="compare">
+    <div class="compare-box compare-sc">
+      <span class="compare-label">Sports Connect</span>
+      Build schedule in a spreadsheet → import or manually enter games → email parents the schedule
+    </div>
+    <div class="compare-box compare-pm">
+      <span class="compare-label">PlayMetrics</span>
+      Set up fields & time slots → auto-generate or manually create games in the League → parents get notified automatically and see it on their calendar
+    </div>
+  </div>
+
+  <div class="compare">
+    <div class="compare-box compare-sc">
+      <span class="compare-label">Sports Connect</span>
+      Fields are just names attached to games — no real "field management" system
+    </div>
+    <div class="compare-box compare-pm">
+      <span class="compare-label">PlayMetrics</span>
+      Fields are full objects — with addresses, availability windows, sub-fields (Field 1A, 1B), surface type, sponsor name. Managed under Locations in the left menu.
+    </div>
+  </div>
+
+  <div class="compare">
+    <div class="compare-box compare-sc">
+      <span class="compare-label">Sports Connect</span>
+      Standings and scores are separate modules you set up and manage independently
+    </div>
+    <div class="compare-box compare-pm">
+      <span class="compare-label">PlayMetrics</span>
+      Standings auto-calculate from game scores. Enter scores → standings update. Tiebreaker rules built in. Can choose what to show/hide.
+    </div>
+  </div>
+
+  <div class="compare">
+    <div class="compare-box compare-sc">
+      <span class="compare-label">Sports Connect</span>
+      Only admins can enter scores — you collect them from coaches and input manually
+    </div>
+    <div class="compare-box compare-pm">
+      <span class="compare-label">PlayMetrics</span>
+      Coaches and Team Staff can enter scores themselves from the field. Admins can also enter/edit. Parents can follow live during games.
+    </div>
+  </div>
+
+  <!-- ===================== SCHEDULING WORKFLOW ===================== -->
+  <h2>Expected Scheduling Workflow in PlayMetrics</h2>
+
+  <p>Based on the documentation and Superusers discussion. Specific steps will be confirmed after the scheduling webinar.</p>
+
+  <div class="step">
+    <div class="step-header"><div class="step-num">1</div><div class="step-title">Set Up Locations & Fields</div></div>
+    <div class="step-body">
+      <p>Before any scheduling, set up the physical fields under <strong>Locations</strong> in the PM admin. Add each field with its address, availability, sub-fields if applicable (e.g., Noble Park Field 1, Field 2, Field 3). Set time slots for when each field is available for games.</p>
+      <p>This only needs to be done once — it carries forward season to season.</p>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-header"><div class="step-num">2</div><div class="step-title">Teams Must Be Formed First</div></div>
+    <div class="step-body">
+      <p>Game scheduling can only happen after teams are built in Team Assignments and assigned to the League. The scheduler needs to know which teams exist in each division before it can generate matchups.</p>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-header"><div class="step-num">3</div><div class="step-title">Generate or Build the Game Schedule</div></div>
+    <div class="step-body">
+      <p>Two options:</p>
+      <ul>
+        <li><strong>Auto-generate:</strong> PM can create weekly matchups across divisions, assigning teams to fields and time slots automatically. It detects coach and field conflicts as it builds. View the schedule by period (week) or by day.</li>
+        <li><strong>Manual:</strong> Create individual games by picking home team, away team, field, date, time, and duration. Or import games from a CSV file.</li>
+      </ul>
+      <p>For our in-house AYSO program, auto-generate is likely the way to go — it's built specifically for this use case.</p>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-header"><div class="step-num">4</div><div class="step-title">Review & Adjust</div></div>
+    <div class="step-body">
+      <p>After generating, review the schedule for conflicts (coach double-booked, field overlap, teams not getting enough games). The scheduler highlights these visually. Make adjustments by dragging games to different slots or swapping matchups.</p>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-header"><div class="step-num">5</div><div class="step-title">Publish & Notify</div></div>
+    <div class="step-body">
+      <p>Once the schedule looks right, publish it. Parents are notified through PM and the games appear on their team calendars. If a parent has synced their calendar, it shows up on their phone automatically.</p>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-header"><div class="step-num">6</div><div class="step-title">During the Season: Score Entry & Standings</div></div>
+    <div class="step-body">
+      <p>Coaches or Team Staff enter scores after each game. Standings update automatically. If a game needs to be rescheduled or a field needs to be closed, make the change in PM and parents get notified automatically.</p>
+    </div>
+  </div>
+
+  <!-- ===================== GAME IMPORT ===================== -->
+  <h2>Game Import / Export</h2>
+
+  <p>If we need to import games from an external source (or export them), PM supports CSV import with these columns:</p>
+
+  <table>
+    <tr><th>Column</th><th>Description</th></tr>
+    <tr><td>Date</td><td>Game date</td></tr>
+    <tr><td>Start Time</td><td>Game start time</td></tr>
+    <tr><td>Game Duration (in minutes)</td><td>Length of game</td></tr>
+    <tr><td>Field Name</td><td>Must match a field set up in PM Locations</td></tr>
+    <tr><td>Division Name</td><td>Must match a division in the League</td></tr>
+    <tr><td>Home Team Name</td><td>Must match a team in the division</td></tr>
+    <tr><td>Home Team Score</td><td>Leave blank for future games</td></tr>
+    <tr><td>Away Team Name</td><td>Must match a team in the division</td></tr>
+    <tr><td>Away Team Score</td><td>Leave blank for future games</td></tr>
+    <tr><td>External Game ID</td><td>Optional — for tracking against external systems</td></tr>
+  </table>
+
+  <div class="callout callout-blue">
+    <strong>💡 Steven's Export Manager</strong>
+    The SportsConnectAutomation export manager already has these columns defined and can produce game CSVs in this format. If we need to bridge SC game data into PM, the tool is ready.
+  </div>
+
+  <!-- ===================== WHAT WE DON'T KNOW YET ===================== -->
+  <h2>What We Don't Know Yet</h2>
+
+  <div class="card">
+    <h4>Auto-Team Building / Balanced Teams</h4>
+    <p>PlayMetrics does NOT have the same auto-team-building feature that Sports Connect had. Team assignment uses a drag-and-drop interface with player evaluation data, but there's no "serpentine auto-balance" tool. PM has acknowledged this is important for AYSO and says more information is coming. For now, teams are built manually (or imported from a spreadsheet if you build them externally).</p>
+  </div>
+
+  <div class="card">
+    <h4>Scheduling Webinar</h4>
+    <p>PM and AYSO are planning a webinar specifically on scheduling and field management features. Jason (Section 8 Area Director) mentioned during the Superusers call that PM has "really built out" scheduling and wanted to demo it before regions commit to other tools. Once that webinar happens, we'll update this guide with the actual step-by-step.</p>
+  </div>
+
+  <div class="card">
+    <h4>Practice Scheduling Details</h4>
+    <p>We know the practice planner exists with drag-and-drop on the field calendar, coach request time slots, and admin control over coach editing. But we haven't used it yet. The Superusers discussed practice scheduling as a PM strength — details coming from the webinar.</p>
+  </div>
+
+  <div class="card">
+    <h4>Integration with Referee Assignment Tools</h4>
+    <p>If we use an external referee assignment tool (like CGI or Assigner), we'll need to understand how game data exports from PM and whether there's an integration. PM reportedly integrates with some external tools, but specifics for AYSO aren't confirmed yet. Assigner (Stack Officials replacement) was demoed — it's not cheap (~$5,000 vs CGI at $350-400). We currently use CGI at $350/year.</p>
+  </div>
+
+  <!-- ===================== WHAT BEN NEEDS TO DO ===================== -->
+  <h2>What Ben Needs to Do Right Now</h2>
+
+  <div class="callout callout-green">
+    <strong>✅ Nothing Yet — Scheduling Comes After Teams Are Formed</strong>
+    Registration hasn't opened yet. Teams get built after registration closes. Scheduling happens after teams are formed. Ben's workload starts later in the process. For now, this guide is to help you understand how things are going to be different.
+  </div>
+
+  <p>When the time comes, here's the rough sequence:</p>
+
+  <ul>
+    <li><strong>Before teams form:</strong> Set up Locations & Fields in PM (one-time setup). Get familiar with the PM field management interface. Attend the scheduling webinar when it's announced.</li>
+    <li><strong>After teams form:</strong> Generate or build the game schedule in the League. Review for conflicts. Publish.</li>
+    <li><strong>During the season:</strong> Handle field closures and game changes through PM (automatic notifications). Monitor score entry and standings. Adjust schedule as needed.</li>
+  </ul>
+
+  <!-- ===================== QUICK REFERENCE ===================== -->
+  <h2>Quick Reference: Where to Find Things</h2>
+
+  <table>
+    <tr><th>What</th><th>Where in PlayMetrics</th></tr>
+    <tr><td>Set up fields</td><td>Locations (left menu)</td></tr>
+    <tr><td>View/edit field schedule</td><td>Locations → [Field] → Schedule</td></tr>
+    <tr><td>Close a field</td><td>Locations → [Field] → Field Closures</td></tr>
+    <tr><td>Build teams</td><td>Team Assignments (in the League)</td></tr>
+    <tr><td>Generate game schedule</td><td>Leagues → [League] → Games</td></tr>
+    <tr><td>Import games from CSV</td><td>Leagues → [League] → Games → Import</td></tr>
+    <tr><td>View standings</td><td>Leagues → [League] → Standings</td></tr>
+    <tr><td>Enter game scores</td><td>Leagues → [League] → Games → [Game] → Scores</td></tr>
+    <tr><td>Practice scheduling</td><td>Locations → [Field] → Practice Planner</td></tr>
+    <tr><td>Parent calendar</td><td>Parents see this under Calendar in their player contact view</td></tr>
+  </table>
+
+  <!-- ===================== HELP CENTER LINKS ===================== -->
+  <h2>Reference Links</h2>
+
+  <h3>PlayMetrics Help Center (requires login)</h3>
+  <div class="ref-links">
+    <a class="ref-link" href="https://help.playmetrics.com/hc/en-us/articles/17919974997783" target="_blank">Creating a League Program</a>
+    <a class="ref-link" href="https://help.playmetrics.com/hc/en-us/articles/360021201253" target="_blank">Introduction to PlayMetrics</a>
+  </div>
+
+  <h3>PlayMetrics Feature Pages (public)</h3>
+  <div class="ref-links">
+    <a class="ref-link" href="https://home.playmetrics.com/clubs/in-house-rec-leagues" target="_blank">In-House Rec Leagues</a>
+    <a class="ref-link" href="https://home.playmetrics.com/youth-soccer-field-manager" target="_blank">Field Scheduler & Manager</a>
+    <a class="ref-link" href="https://home.playmetrics.com/Clubs/In-Season-Operations" target="_blank">In-Season Operations</a>
+    <a class="ref-link" href="https://home.playmetrics.com/clubs/team-management" target="_blank">Team Management</a>
+  </div>
+
+  <h3>Related Region 58 Guides</h3>
+  <div class="ref-links">
+    <a class="ref-link" href="PlayMetrics_Migration_Status_Region58.html">Migration Status Dashboard</a>
+    <a class="ref-link" href="AYSO_PlayMetrics_Terminology_Guide.html">Terminology Guide</a>
+  </div>
+
+  <footer>
+    Region 58 — Van Nuys/Sherman Oaks, CA &nbsp;|&nbsp; Prepared by Steve Davis, Registrar, for Ben Hauser (Game Scheduling)<br>
+    Sources: PlayMetrics Help Center, Release Notes, marketing pages, Superusers meeting transcript (April 2026), SportsConnectAutomation export manager code
+  </footer>
+
+</div>
+</body>
+</html>
