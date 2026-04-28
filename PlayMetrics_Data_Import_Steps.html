@@ -1,0 +1,881 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PlayMetrics Data Import — Region 58</title>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f7f6f3;
+    --surface: #ffffff;
+    --text: #1a1a1a;
+    --muted: #6b6b6b;
+    --accent: #1a5f2a;
+    --accent-light: #e8f5e9;
+    --border: #ddd;
+    --warning-bg: #fff8e1;
+    --warning-border: #f9a825;
+    --danger-bg: #fce4ec;
+    --danger-border: #c62828;
+    --info-bg: #e3f2fd;
+    --info-border: #1565c0;
+    --link: #1565c0;
+    --code-bg: #263238;
+    --code-text: #eeffff;
+    --check-done: #c8e6c9;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.65;
+    padding: 0;
+  }
+
+  .page-header {
+    background: var(--accent);
+    color: white;
+    padding: 2.5rem 2rem;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.15);
+  }
+
+  .page-header h1 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+  }
+
+  .page-header .subtitle {
+    font-size: 0.85rem;
+    opacity: 0.8;
+    margin-top: 0.25rem;
+  }
+
+  .container {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem 4rem;
+  }
+
+  /* Alert boxes */
+  .alert {
+    padding: 1rem 1.25rem;
+    border-left: 4px solid;
+    border-radius: 4px;
+    margin: 1.5rem 0;
+    font-size: 0.9rem;
+  }
+
+  .alert-danger {
+    background: var(--danger-bg);
+    border-color: var(--danger-border);
+  }
+
+  .alert-warning {
+    background: var(--warning-bg);
+    border-color: var(--warning-border);
+  }
+
+  .alert-info {
+    background: var(--info-bg);
+    border-color: var(--info-border);
+  }
+
+  .alert strong {
+    display: block;
+    margin-bottom: 0.25rem;
+  }
+
+  /* Steps */
+  .step {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    margin: 1.75rem 0;
+    overflow: hidden;
+  }
+
+  .step-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1.25rem 1.5rem;
+    border-bottom: 1px solid var(--border);
+    cursor: pointer;
+    user-select: none;
+  }
+
+  .step-header:hover {
+    background: #fafafa;
+  }
+
+  .step-number {
+    background: var(--accent);
+    color: white;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 0.85rem;
+    flex-shrink: 0;
+  }
+
+  .step-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+  }
+
+  .step-body {
+    padding: 1.5rem;
+  }
+
+  .step-body p {
+    margin-bottom: 0.75rem;
+  }
+
+  /* Checklist items */
+  .checklist {
+    list-style: none;
+    padding: 0;
+  }
+
+  .checklist li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    padding: 0.6rem 0;
+    border-bottom: 1px solid #f0f0f0;
+  }
+
+  .checklist li:last-child {
+    border-bottom: none;
+  }
+
+  .checklist input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    margin-top: 2px;
+    flex-shrink: 0;
+    accent-color: var(--accent);
+    cursor: pointer;
+  }
+
+  .checklist label {
+    cursor: pointer;
+    flex: 1;
+  }
+
+  .checklist input:checked + label {
+    color: var(--muted);
+    text-decoration: line-through;
+    text-decoration-color: #ccc;
+  }
+
+  /* Code blocks */
+  .code-block {
+    background: var(--code-bg);
+    color: var(--code-text);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8rem;
+    padding: 1rem 1.25rem;
+    border-radius: 6px;
+    margin: 0.75rem 0;
+    overflow-x: auto;
+    line-height: 1.6;
+  }
+
+  .code-block .comment { color: #546e7a; }
+  .code-block .cmd { color: #c3e88d; }
+
+  /* Tables */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0.75rem 0;
+    font-size: 0.88rem;
+  }
+
+  th {
+    background: #f5f5f5;
+    text-align: left;
+    padding: 0.6rem 0.75rem;
+    border: 1px solid var(--border);
+    font-weight: 600;
+  }
+
+  td {
+    padding: 0.5rem 0.75rem;
+    border: 1px solid var(--border);
+    vertical-align: top;
+  }
+
+  /* Links */
+  a {
+    color: var(--link);
+    text-decoration: none;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+
+  .help-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: 0.82rem;
+    padding: 0.25rem 0.6rem;
+    background: var(--info-bg);
+    border-radius: 4px;
+    margin: 0.2rem 0.25rem 0.2rem 0;
+    white-space: nowrap;
+  }
+
+  .help-link::before {
+    content: "↗";
+    font-size: 0.75rem;
+  }
+
+  .help-links {
+    margin-top: 0.75rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+  }
+
+  /* Subsection headers */
+  h3 {
+    font-size: 0.95rem;
+    font-weight: 600;
+    margin: 1.25rem 0 0.5rem;
+    color: var(--accent);
+  }
+
+  h3:first-child {
+    margin-top: 0;
+  }
+
+  /* Sequence diagram */
+  .sequence {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    margin: 1rem 0;
+    overflow-x: auto;
+    padding: 0.5rem 0;
+  }
+
+  .seq-step {
+    background: var(--accent-light);
+    border: 1px solid #a5d6a7;
+    padding: 0.5rem 0.75rem;
+    border-radius: 6px;
+    font-size: 0.78rem;
+    font-weight: 500;
+    text-align: center;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .seq-arrow {
+    font-size: 1.2rem;
+    color: var(--muted);
+    padding: 0 0.35rem;
+    flex-shrink: 0;
+  }
+
+  /* Progress bar */
+  .progress-bar {
+    background: #e0e0e0;
+    border-radius: 4px;
+    height: 6px;
+    margin: 1rem 0 0.5rem;
+    overflow: hidden;
+  }
+
+  .progress-fill {
+    background: var(--accent);
+    height: 100%;
+    width: 0%;
+    transition: width 0.5s ease;
+    border-radius: 4px;
+  }
+
+  .progress-label {
+    font-size: 0.78rem;
+    color: var(--muted);
+    text-align: right;
+  }
+
+  /* Nav */
+  .nav {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1.25rem 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .nav h2 {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--muted);
+    margin-bottom: 0.75rem;
+  }
+
+  .nav ol {
+    padding-left: 1.25rem;
+    font-size: 0.9rem;
+  }
+
+  .nav ol li {
+    padding: 0.2rem 0;
+  }
+
+  .nav ol a {
+    font-weight: 500;
+  }
+
+  /* Print */
+  @media print {
+    .page-header { position: static; }
+    .step { break-inside: avoid; }
+    .code-block { background: #f5f5f5; color: #333; border: 1px solid #ccc; }
+    body { background: white; }
+  }
+
+  @media (max-width: 600px) {
+    .page-header { padding: 1.5rem 1rem; }
+    .container { padding: 1rem; }
+    .step-body { padding: 1rem; }
+    .sequence { flex-wrap: wrap; }
+  }
+</style>
+</head>
+<body>
+
+<div class="page-header">
+  <h1>PlayMetrics Data Import Guide</h1>
+  <div class="subtitle">AYSO Region 58 — Fall 2026 / Spring 2027 Season</div>
+</div>
+
+<div class="container">
+
+  <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+  <div class="progress-label" id="progressLabel">0 of 42 items checked</div>
+
+  <div class="alert alert-danger">
+    <strong>⛔ Hard Sequencing Rule</strong>
+    All import steps must be completed BEFORE registration is toggled open. Importing after registration opens creates account conflicts when parents who've already registered overlap with imported records.
+  </div>
+
+  <div class="sequence">
+    <div class="seq-step">PM Approves<br>Program</div>
+    <div class="seq-arrow">→</div>
+    <div class="seq-step">Check NPF<br>& Merchant</div>
+    <div class="seq-arrow">→</div>
+    <div class="seq-step">Prepare<br>SC Data</div>
+    <div class="seq-arrow">→</div>
+    <div class="seq-step">Clean &<br>Dedupe</div>
+    <div class="seq-arrow">→</div>
+    <div class="seq-step">Export<br>to CSV</div>
+    <div class="seq-arrow">→</div>
+    <div class="seq-step">Upload<br>to PM</div>
+    <div class="seq-arrow">→</div>
+    <div class="seq-step">Verify<br>Import</div>
+    <div class="seq-arrow">→</div>
+    <div class="seq-step">Send<br>Invites</div>
+    <div class="seq-arrow">→</div>
+    <div class="seq-step">Open<br>Registration</div>
+  </div>
+
+  <nav class="nav">
+    <h2>Steps</h2>
+    <ol>
+      <li><a href="#step1">Verify Pre-Conditions</a></li>
+      <li><a href="#step2">Prepare the Enrollment Details Report</a></li>
+      <li><a href="#step3">Preview the Export</a></li>
+      <li><a href="#step4">Data Cleanup in Excel</a></li>
+      <li><a href="#step5">Run the Export Manager</a></li>
+      <li><a href="#step6">Birth Certificate Verification Split</a></li>
+      <li><a href="#step7">Final CSV Validation</a></li>
+      <li><a href="#step8">Upload to PlayMetrics</a></li>
+      <li><a href="#step9">Verify Imported Data</a></li>
+      <li><a href="#step10">Send Invites to Imported Families</a></li>
+      <li><a href="#step11">Open Registration & Notify Non-Imported Families</a></li>
+      <li><a href="#step12">Post-Launch Volunteer Import</a></li>
+    </ol>
+  </nav>
+
+  <!-- ========== STEP 1 ========== -->
+  <div class="step" id="step1">
+    <div class="step-header">
+      <div class="step-number">1</div>
+      <div class="step-title">Verify Pre-Conditions</div>
+    </div>
+    <div class="step-body">
+      <p>Before touching the import, confirm all of these are in place:</p>
+      <ul class="checklist">
+        <li><input type="checkbox" id="c1"><label for="c1">PlayMetrics has approved the program (email from <code>success@playmetrics.com</code>)</label></li>
+        <li><input type="checkbox" id="c2"><label for="c2">Merchant account is enabled and verified (Kristen confirmed physical address + tax ID)</label></li>
+        <li><input type="checkbox" id="c3"><label for="c3">NPF club fee ($25 "AYSO Membership Fee MY2026") exists under <strong>Financials → Additional Fees → Club Fees</strong> — PM may have pre-created this when they enabled the merchant account</label></li>
+        <li><input type="checkbox" id="c4"><label for="c4">NPF accounting code set to <strong>5703</strong></label></li>
+        <li><input type="checkbox" id="c5"><label for="c5">NPF is attached to <strong>all</strong> packages in the program</label></li>
+        <li><input type="checkbox" id="c6"><label for="c6">Region absorbs CC processing fee and service fee (confirmed by PM in review)</label></li>
+        <li><input type="checkbox" id="c7"><label for="c7">Season name is clean (no "test")</label></li>
+        <li><input type="checkbox" id="c8"><label for="c8">All email confirmations attached to correct packages (including 19U-specific waitlist)</label></li>
+        <li><input type="checkbox" id="c9"><label for="c9">Early bird discount configured ($30 off, May 1–8, excludes 19U)</label></li>
+        <li><input type="checkbox" id="c10"><label for="c10">Multi-player discount configured ($15 off 3rd+ player)</label></li>
+      </ul>
+      <div class="help-links">
+        <a class="help-link" href="https://help.playmetrics.com/hc/en-us/articles/39138510386199" target="_blank">Launch Checklist</a>
+        <a class="help-link" href="https://help.playmetrics.com/hc/en-us/articles/8273544475415" target="_blank">Creating Club Fees</a>
+        <a class="help-link" href="https://help.playmetrics.com/hc/en-us/articles/4411787074071" target="_blank">Merchant Account Setup</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== STEP 2 ========== -->
+  <div class="step" id="step2">
+    <div class="step-header">
+      <div class="step-number">2</div>
+      <div class="step-title">Prepare the Enrollment Details Report</div>
+    </div>
+    <div class="step-body">
+      <p>The SC report must include additional columns beyond the defaults. Customize your Enrollment Details report in SportsConnect to add these:</p>
+      <table>
+        <tr><th>Column to Add</th><th>Maps To</th></tr>
+        <tr><td>Users/Additional Email</td><td>parent2_email</td></tr>
+        <tr><td>Users/Additional First Name</td><td>parent2_first_name</td></tr>
+        <tr><td>Users/Additional Last Name</td><td>parent2_last_name</td></tr>
+        <tr><td>Users/Additional Cellphone</td><td>parent2_mobile_number</td></tr>
+        <tr><td>Players/Birth Date</td><td>birth_date</td></tr>
+        <tr><td>Players/Birth Certificate</td><td>BC verification flag (Verified / Unverified / No File Uploaded)</td></tr>
+      </table>
+
+      <div class="alert alert-warning">
+        <strong>⚠️ Unarchive Past Programs First</strong>
+        If you want to include players from prior seasons, unarchive those registration programs in SportsConnect before running the report. The Enrollment Details report only pulls from active (non-archived) programs.
+      </div>
+
+      <ul class="checklist">
+        <li><input type="checkbox" id="c11"><label for="c11">Additional columns configured in SC report</label></li>
+        <li><input type="checkbox" id="c12"><label for="c12">Past seasons unarchived (if importing historical data)</label></li>
+        <li><input type="checkbox" id="c13"><label for="c13">Report downloaded</label></li>
+      </ul>
+
+      <h3>Download Options</h3>
+      <p><strong>Option A — Automation tool:</strong></p>
+      <div class="code-block">
+        <span class="comment"># From your repo directory:</span><br>
+        <span class="cmd">python main.py ENROLLMENT_DETAILS</span>
+      </div>
+      <p><strong>Option B — Manual download</strong> from SportsConnect → save to <code>data/downloads/</code></p>
+    </div>
+  </div>
+
+  <!-- ========== STEP 3 ========== -->
+  <div class="step" id="step3">
+    <div class="step-header">
+      <div class="step-number">3</div>
+      <div class="step-title">Preview the Export</div>
+    </div>
+    <div class="step-body">
+      <p>Run a preview to see counts by division before doing any cleanup:</p>
+      <div class="code-block">
+        <span class="cmd">python main.py --playmetrics-preview</span>
+      </div>
+      <p>This shows total records, allocated vs. unallocated, Jamboree counts, and team breakdowns without writing any files.</p>
+      <ul class="checklist">
+        <li><input type="checkbox" id="c14"><label for="c14">Preview run — numbers look reasonable (~1,100–1,200 players after Jamboree exclusion)</label></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ========== STEP 4 ========== -->
+  <div class="step" id="step4">
+    <div class="step-header">
+      <div class="step-number">4</div>
+      <div class="step-title">Data Cleanup in Excel</div>
+    </div>
+    <div class="step-body">
+      <p>Open the Enrollment Details file and work through these cleanup steps:</p>
+
+      <h3>4a. Remove Aged-Out Players</h3>
+      <ul class="checklist">
+        <li><input type="checkbox" id="c15"><label for="c15">Delete players born before August 1, 2007 (outside 19U range)</label></li>
+      </ul>
+
+      <h3>4b. Deduplicate</h3>
+      <ul class="checklist">
+        <li><input type="checkbox" id="c16"><label for="c16">Create NameKey column: Player First + Player Last + Account First Name</label></li>
+        <li><input type="checkbox" id="c17"><label for="c17">Highlight duplicate NameKeys with conditional formatting</label></li>
+        <li><input type="checkbox" id="c18"><label for="c18">Sort by registration date (newest first)</label></li>
+        <li><input type="checkbox" id="c19"><label for="c19">Remove duplicates keeping newest instance</label></li>
+        <li><input type="checkbox" id="c20"><label for="c20">Review remaining duplicates (same-name different kids, split households, unaccepted invitations)</label></li>
+      </ul>
+
+      <h3>4c. Handle Split Households</h3>
+      <p>For same-household accounts registered under different parents: copy/paste Parent 2 info (email, name, phone) into the primary row. Don't bother with SC account merges — just fix it in the spreadsheet.</p>
+      <ul class="checklist">
+        <li><input type="checkbox" id="c21"><label for="c21">Split-household records consolidated</label></li>
+      </ul>
+
+      <h3>4d. Clean Contact Data</h3>
+      <ul class="checklist">
+        <li><input type="checkbox" id="c22"><label for="c22">Sort by zip — fix city name misspellings, incorrect zips</label></li>
+        <li><input type="checkbox" id="c23"><label for="c23">Remove obvious out-of-area registrations</label></li>
+        <li><input type="checkbox" id="c24"><label for="c24">Check for unsubscribed emails — consider removing (they won't get transition email anyway)</label></li>
+      </ul>
+
+      <div class="alert alert-info">
+        <strong>💡 Shortcut from Jason's Experience</strong>
+        Of ~2,800 records, he found: 2 same-name-different-kids, 3 split households, 3 unaccepted invitations, 4 accounts needing merge. Your dataset should be similar in scale.
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== STEP 5 ========== -->
+  <div class="step" id="step5">
+    <div class="step-header">
+      <div class="step-number">5</div>
+      <div class="step-title">Run the Export Manager</div>
+    </div>
+    <div class="step-body">
+      <div class="code-block">
+        <span class="comment"># Export all players from cleaned file:</span><br>
+        <span class="cmd">python main.py --playmetrics-players --playmetrics-file "data/downloads/Enrollment_Details_cleaned.xlsx"</span><br><br>
+        <span class="comment"># Output: data/playmetrics/playmetrics_players_YYYYMMDD_HHMMSS.csv</span>
+      </div>
+
+      <p>The export manager automatically handles:</p>
+      <table>
+        <tr><th>Transformation</th><th>Detail</th></tr>
+        <tr><td>Gender derivation</td><td>Division name 4th char: B→M, G→F</td></tr>
+        <tr><td>Phone formatting</td><td>Strips to 10 digits, drops leading "1"</td></tr>
+        <tr><td>Birth date formatting</td><td>Any input format → MM/DD/YYYY</td></tr>
+        <tr><td>Team normalization</td><td>Blanks out "Unallocated" and "Jamboree"</td></tr>
+        <tr><td>Jamboree exclusion</td><td>Removes ~60 Jamboree-division players</td></tr>
+        <tr><td>Deduplication</td><td>By player name + birth date + team</td></tr>
+      </table>
+
+      <ul class="checklist">
+        <li><input type="checkbox" id="c25"><label for="c25">Export manager run completed successfully</label></li>
+        <li><input type="checkbox" id="c26"><label for="c26">Output CSV generated with expected record count</label></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ========== STEP 6 ========== -->
+  <div class="step" id="step6">
+    <div class="step-header">
+      <div class="step-number">6</div>
+      <div class="step-title">Birth Certificate Verification Split</div>
+    </div>
+    <div class="step-body">
+      <p>This is what makes your import more valuable than starting fresh. Previously verified players won't need to re-upload their birth certificate.</p>
+
+      <div class="alert alert-info">
+        <strong>💡 Key Finding from Webinar (Section 3)</strong>
+        "You also have the ability to import previous player birth certificate verifications... you can import players and designate that those players have previously had their birth certificate verified."
+      </div>
+
+      <p>Add the BC status from the original Enrollment Details to the exported CSV:</p>
+      <table>
+        <tr><th>BC Status</th><th>Action</th></tr>
+        <tr><td><strong>Verified</strong></td><td>Flag as verified in import — player won't be prompted again</td></tr>
+        <tr><td><strong>Unverified</strong></td><td>Include — they'll need to re-upload during registration</td></tr>
+        <tr><td><strong>No File Uploaded</strong></td><td>Include — prompted during registration via your BC player question</td></tr>
+      </table>
+
+      <ul class="checklist">
+        <li><input type="checkbox" id="c27"><label for="c27">BC verification status added to CSV from source data</label></li>
+        <li><input type="checkbox" id="c28"><label for="c28">Confirmed with Jason/PM how to flag BC-verified status in the import file (column name, format)</label></li>
+      </ul>
+
+      <div class="alert alert-warning">
+        <strong>⚠️ Ask PM About This</strong>
+        PlayMetrics hasn't published the exact column name or format for BC verification in the CSV import template. Include this question in your review email or ask Jason directly.
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== STEP 7 ========== -->
+  <div class="step" id="step7">
+    <div class="step-header">
+      <div class="step-number">7</div>
+      <div class="step-title">Final CSV Validation</div>
+    </div>
+    <div class="step-body">
+      <p>Before uploading, spot-check the file:</p>
+      <ul class="checklist">
+        <li><input type="checkbox" id="c29"><label for="c29">Column headers match PM template exactly (team, season_id, season, player_first_name, player_last_name, gender, birth_date, age_group, position, number, Foot, parent1_email, parent1_first_name, parent1_last_name, parent1_mobile_number, parent2_*, street, city, state, zip)</label></li>
+        <li><input type="checkbox" id="c30"><label for="c30">Spot-checked 10–15 records: names, birth dates, parent emails all correct</label></li>
+        <li><input type="checkbox" id="c31"><label for="c31">Gender column contains only M or F (not Male/Female)</label></li>
+        <li><input type="checkbox" id="c32"><label for="c32">Birth dates are MM/DD/YYYY (not Excel serial numbers)</label></li>
+        <li><input type="checkbox" id="c33"><label for="c33">Phone numbers are 10-digit format (no country codes, no parentheses)</label></li>
+        <li><input type="checkbox" id="c34"><label for="c34">No leading/trailing whitespace in email addresses</label></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ========== STEP 8 ========== -->
+  <div class="step" id="step8">
+    <div class="step-header">
+      <div class="step-number">8</div>
+      <div class="step-title">Upload to PlayMetrics</div>
+    </div>
+    <div class="step-body">
+      <p>Import the CSV into your PlayMetrics instance. The import tool is located under <strong>Players</strong> in the club admin.</p>
+      <ul class="checklist">
+        <li><input type="checkbox" id="c35"><label for="c35">CSV uploaded via PlayMetrics data import tool</label></li>
+        <li><input type="checkbox" id="c36"><label for="c36">Import completed without errors (check for any rejection notifications)</label></li>
+      </ul>
+
+      <div class="help-links">
+        <a class="help-link" href="https://help.playmetrics.com/hc/en-us/articles/360046084314" target="_blank">Importing Team Staff</a>
+        <a class="help-link" href="https://help.playmetrics.com/hc/en-us/articles/18019657539351" target="_blank">Adding Coaches & Team Staff</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== STEP 9 ========== -->
+  <div class="step" id="step9">
+    <div class="step-header">
+      <div class="step-number">9</div>
+      <div class="step-title">Verify Imported Data</div>
+    </div>
+    <div class="step-body">
+      <ul class="checklist">
+        <li><input type="checkbox" id="c37"><label for="c37">Spot-check 10–15 player records in PlayMetrics against SC source data</label></li>
+        <li><input type="checkbox" id="c38"><label for="c38">Parent email addresses correctly mapped (parent1 vs parent2)</label></li>
+        <li><input type="checkbox" id="c39"><label for="c39">Birth dates imported correctly (no off-by-one or format errors)</label></li>
+        <li><input type="checkbox" id="c40"><label for="c40">Total player count matches expected number from export</label></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ========== STEP 10 ========== -->
+  <div class="step" id="step10">
+    <div class="step-header">
+      <div class="step-number">10</div>
+      <div class="step-title">Send Invites to Imported Families</div>
+    </div>
+    <div class="step-body">
+      <p>Once players are imported, you can send invite emails from PlayMetrics. The invite is tied to the email address on record — the parent clicks it, creates or connects their PlayMetrics account, and the player record links to them automatically.</p>
+
+      <div class="alert alert-info">
+        <strong>💡 Your Key Discovery</strong>
+        Post-import invites are tied to the original email on record. This eliminates the account-mismatch risk that PM originally warned about. This is why importing is safe despite their "start fresh" recommendation.
+      </div>
+
+      <p><strong>Path:</strong> Players (club admin sidebar) → select imported players → invite action (visible once players exist in the current season)</p>
+
+      <ul class="checklist">
+        <li><input type="checkbox" id="c41"><label for="c41">Invites sent to all imported family email addresses</label></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ========== STEP 11 ========== -->
+  <div class="step" id="step11">
+    <div class="step-header">
+      <div class="step-number">11</div>
+      <div class="step-title">Open Registration & Notify Non-Imported Families</div>
+    </div>
+    <div class="step-body">
+      <p>Now that imported families have their invites, you can safely open registration and send the generic link to everyone else.</p>
+
+      <h3>Two-Track Communication</h3>
+      <table>
+        <tr><th>Audience</th><th>Source</th><th>Message</th><th>Link Type</th></tr>
+        <tr><td>Imported families</td><td>PlayMetrics invite system</td><td>Personalized invite with pre-linked player data</td><td>Individual invite link</td></tr>
+        <tr><td>Everyone else</td><td>Sports Connect email blast ("all users" minus imported)</td><td>"Registration is now open on our new platform"</td><td>Generic program registration link</td></tr>
+      </table>
+
+      <h3>Registration Links</h3>
+      <p><strong>Club-level link:</strong> Shows all programs — use if you have multiple programs open.<br>
+      <strong>Program-specific link:</strong> Goes directly to Fall 2026 Core — grab from Programs → [Your Program] → Registration Link button. <em>Use this one for go-live.</em></p>
+
+      <h3>Sports Connect Website Redirect</h3>
+      <p>Submit a ticket or use chat through <strong>Sports Connect support</strong> (not PlayMetrics) to have the Register Now button on your SC website redirect to your PlayMetrics registration link.</p>
+
+      <ul class="checklist">
+        <li><input type="checkbox" id="c42"><label for="c42">Registration toggled open in PlayMetrics</label></li>
+        <li><input type="checkbox" id="c43"><label for="c43">Generic registration link email sent via SC to non-imported users</label></li>
+        <li><input type="checkbox" id="c44"><label for="c44">SC website redirect request submitted to Sports Connect support</label></li>
+      </ul>
+
+      <div class="help-links">
+        <a class="help-link" href="https://help.playmetrics.com/hc/en-us/articles/360051661633" target="_blank">Sharing Registration Link</a>
+        <a class="help-link" href="https://help.playmetrics.com/hc/en-us/articles/39138510386199" target="_blank">Launch Checklist</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== STEP 12 ========== -->
+  <div class="step" id="step12">
+    <div class="step-header">
+      <div class="step-number">12</div>
+      <div class="step-title">Post-Launch: Volunteer Import (Later)</div>
+    </div>
+    <div class="step-body">
+      <p>Volunteer data import doesn't block registration. Handle this after go-live when you have bandwidth. The full volunteer compliance workflow is documented separately.</p>
+
+      <h3>High-Level Volunteer Import Steps</h3>
+      <p>1. Add "Volunteer" label under Club Settings and enable Co-Ed Teams.<br>
+      2. Update Team Staff Titles to standardized AYSO roles (Head Coach, Assistant Coach, Team Manager, Board Member, Clerical, Concessions, Field Prep, Fund Raising, Referee, Team Parent).<br>
+      3. Import Volunteer team shells using the AYSO Pilot Import Template.<br>
+      4. Hide all Volunteer teams (Teams → More Actions → Set Visibility → Filter by "Volunteer" → Uncheck all roles).<br>
+      5. Export volunteers from your Core Program and Volunteer Sign Up.<br>
+      6. Map them into the Team Staff Import File (name, email, phone, team name, season).<br>
+      7. Upload via Staff → Team Staff → More Actions → Import Team Staff.<br>
+      8. Import staff into Governing System to trigger compliance emails.</p>
+
+      <div class="help-links">
+        <a class="help-link" href="https://help.playmetrics.com/hc/en-us/articles/39600070246807" target="_blank">Volunteer Compliance Checklist</a>
+        <a class="help-link" href="https://help.playmetrics.com/hc/en-us/articles/39429633833495" target="_blank">Volunteer Registration & Compliance</a>
+        <a class="help-link" href="https://docs.google.com/spreadsheets/d/1gAWje1-UGXT2NpbF3lgRgr0puUWxJxYTegiRgu5dIas/" target="_blank">AYSO Pilot Import Templates</a>
+        <a class="help-link" href="https://help.playmetrics.com/hc/en-us/articles/360046084314" target="_blank">Importing Team Staff</a>
+        <a class="help-link" href="https://help.playmetrics.com/hc/en-us/articles/9197605784215" target="_blank">Adding Staff Titles</a>
+        <a class="help-link" href="https://help.playmetrics.com/hc/en-us/articles/360021276353" target="_blank">Importing Teams</a>
+        <a class="help-link" href="https://playmetricsgs.zendesk.com/hc/en-us/articles/23301243189015" target="_blank">Import Staff → Governing System</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== QUICK REFERENCE ========== -->
+  <div class="step">
+    <div class="step-header">
+      <div class="step-number" style="background:#455a64;">⚡</div>
+      <div class="step-title">Quick Reference: CLI Commands</div>
+    </div>
+    <div class="step-body">
+      <div class="code-block">
+        <span class="comment"># Preview player counts by division</span><br>
+        <span class="cmd">python main.py --playmetrics-preview</span><br><br>
+
+        <span class="comment"># Export all players to PlayMetrics CSV</span><br>
+        <span class="cmd">python main.py --playmetrics-players</span><br><br>
+
+        <span class="comment"># Export with specific enrollment file</span><br>
+        <span class="cmd">python main.py --playmetrics-players --playmetrics-file data/Enrollment_Details_cleaned.xlsx</span><br><br>
+
+        <span class="comment"># Export only team-assigned players (post-draft)</span><br>
+        <span class="cmd">python main.py --playmetrics-players --exclude-unallocated</span><br><br>
+
+        <span class="comment"># Export coaches (always specify team-info-file)</span><br>
+        <span class="cmd">python main.py --playmetrics-coaches --team-info-file data/downloads/TeamInfo.xlsx</span><br><br>
+
+        <span class="comment"># Download team info report from SC</span><br>
+        <span class="cmd">python main.py TEAM_INFO</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== HELP LINKS ========== -->
+  <div class="step">
+    <div class="step-header">
+      <div class="step-number" style="background:#455a64;">📚</div>
+      <div class="step-title">All Help Center Links</div>
+    </div>
+    <div class="step-body">
+      <h3>Registration & Program Setup</h3>
+      <table>
+        <tr><td><a href="https://help.playmetrics.com/hc/en-us/articles/39138510386199" target="_blank">AYSO MY2026 Official Launch Checklist</a></td></tr>
+        <tr><td><a href="https://help.playmetrics.com/hc/en-us/articles/17919974997783" target="_blank">Creating a League Program</a></td></tr>
+        <tr><td><a href="https://help.playmetrics.com/hc/en-us/articles/360053281034" target="_blank">Creating a Season</a></td></tr>
+        <tr><td><a href="https://help.playmetrics.com/hc/en-us/articles/360051661633" target="_blank">Sharing Registration Link</a></td></tr>
+        <tr><td><a href="https://help.playmetrics.com/hc/en-us/articles/12213147157783" target="_blank">Package-Specific Player Questions</a></td></tr>
+        <tr><td><a href="https://help.playmetrics.com/hc/en-us/articles/4409832004119" target="_blank">Creating an In-House League</a></td></tr>
+      </table>
+
+      <h3>Financial</h3>
+      <table>
+        <tr><td><a href="https://help.playmetrics.com/hc/en-us/articles/4411787074071" target="_blank">Setting Up Merchant Account</a></td></tr>
+        <tr><td><a href="https://help.playmetrics.com/hc/en-us/articles/8273544475415" target="_blank">Creating Club Fees</a></td></tr>
+        <tr><td><a href="https://help.playmetrics.com/hc/en-us/articles/360049735273" target="_blank">Managing Subscriptions</a></td></tr>
+        <tr><td><a href="https://help.playmetrics.com/hc/en-us/articles/360056036194" target="_blank">Exporting Subscriptions</a></td></tr>
+        <tr><td><a href="https://help.playmetrics.com/hc/en-us/articles/360049329093" target="_blank">Issuing Refunds</a></td></tr>
+        <tr><td><a href="https://help.playmetrics.com/hc/en-us/articles/4409830221079" target="_blank">Creating Coupons</a></td></tr>
+        <tr><td><a href="https://help.playmetrics.com/hc/en-us/articles/12719140337303" target="_blank">Financial Summary</a></td></tr>
+        <tr><td><a href="https://help.playmetrics.com/hc/en-us/articles/33995138451351" target="_blank">Manage Discounts</a></td></tr>
+      </table>
+
+      <h3>Volunteer & Compliance</h3>
+      <table>
+        <tr><td><a href="https://help.playmetrics.com/hc/en-us/articles/39600070246807" target="_blank">AYSO Volunteer Compliance Checklist</a></td></tr>
+        <tr><td><a href="https://help.playmetrics.com/hc/en-us/articles/39429633833495" target="_blank">Volunteer Registration & Compliance Webinar</a></td></tr>
+        <tr><td><a href="https://help.playmetrics.com/hc/en-us/articles/18019657539351" target="_blank">Adding Coaches & Team Staff</a></td></tr>
+        <tr><td><a href="https://help.playmetrics.com/hc/en-us/articles/8137576216727" target="_blank">Coach Request Link</a></td></tr>
+        <tr><td><a href="https://help.playmetrics.com/hc/en-us/articles/16699152278039" target="_blank">Creating Volunteer Signups</a></td></tr>
+        <tr><td><a href="https://help.playmetrics.com/hc/en-us/articles/360046084314" target="_blank">Importing Team Staff</a></td></tr>
+        <tr><td><a href="https://help.playmetrics.com/hc/en-us/articles/9197605784215" target="_blank">Adding Staff Titles</a></td></tr>
+        <tr><td><a href="https://help.playmetrics.com/hc/en-us/articles/360021276353" target="_blank">Importing Teams</a></td></tr>
+        <tr><td><a href="https://playmetricsgs.zendesk.com/hc/en-us/articles/23301243189015" target="_blank">Import Staff → Governing System</a></td></tr>
+        <tr><td><a href="https://docs.google.com/spreadsheets/d/1gAWje1-UGXT2NpbF3lgRgr0puUWxJxYTegiRgu5dIas/" target="_blank">AYSO Pilot Import Templates (Google Sheet)</a></td></tr>
+      </table>
+
+      <h3>Webinars & Training</h3>
+      <table>
+        <tr><td><a href="https://help.playmetrics.com/hc/en-us/articles/39135262325527" target="_blank">Registration Recap & NPF Webinar</a></td></tr>
+        <tr><td><a href="https://help.playmetrics.com/hc/en-us/articles/38607116940823" target="_blank">Financial Admin, Discounts & Financial Aid Webinar</a></td></tr>
+        <tr><td><a href="https://help.playmetrics.com/hc/en-us/articles/38490695741463" target="_blank">AYSO Pilot Program FAQs</a></td></tr>
+      </table>
+
+      <h3>Key Contacts</h3>
+      <table>
+        <tr><td>PlayMetrics Support</td><td><a href="mailto:success@playmetrics.com">success@playmetrics.com</a></td></tr>
+        <tr><td>PlayMetrics Rep</td><td>Jason</td></tr>
+        <tr><td>SC Website Redirect</td><td>Sports Connect support (ticket or chat)</td></tr>
+      </table>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  // Progress tracking with localStorage
+  const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+  const progressFill = document.getElementById('progressFill');
+  const progressLabel = document.getElementById('progressLabel');
+  const STORAGE_KEY = 'r58-import-progress';
+
+  function updateProgress() {
+    const checked = document.querySelectorAll('input[type="checkbox"]:checked').length;
+    const total = checkboxes.length;
+    const pct = Math.round((checked / total) * 100);
+    progressFill.style.width = pct + '%';
+    progressLabel.textContent = checked + ' of ' + total + ' items checked (' + pct + '%)';
+
+    // Save state
+    const state = {};
+    checkboxes.forEach(cb => { state[cb.id] = cb.checked; });
+    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); } catch(e) {}
+  }
+
+  // Load saved state
+  try {
+    const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
+    checkboxes.forEach(cb => {
+      if (saved[cb.id]) cb.checked = true;
+    });
+  } catch(e) {}
+
+  checkboxes.forEach(cb => cb.addEventListener('change', updateProgress));
+  updateProgress();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Volunteer Compliance — Region 58 Implementation Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Anybody:wght@400;600;800&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1c1917;
+    --paper: #fafaf9;
+    --warm: #f5f0eb;
+    --accent: #1d4ed8;
+    --accent-soft: #dbeafe;
+    --green: #166534;
+    --green-soft: #dcfce7;
+    --amber: #92400e;
+    --amber-soft: #fef3c7;
+    --red: #991b1b;
+    --red-soft: #fee2e2;
+    --gray: #78716c;
+    --border: #e7e5e4;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Source Serif 4', Georgia, serif;
+    background: var(--paper);
+    color: var(--ink);
+    line-height: 1.7;
+    padding: 0;
+  }
+
+  header {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 3rem 2rem 2.5rem;
+  }
+
+  header h1 {
+    font-family: 'Anybody', sans-serif;
+    font-weight: 800;
+    font-size: 2rem;
+    letter-spacing: -0.03em;
+    line-height: 1.15;
+  }
+
+  header .meta {
+    font-size: 0.85rem;
+    opacity: 0.6;
+    margin-top: 0.5rem;
+    font-family: 'Anybody', sans-serif;
+    font-weight: 400;
+  }
+
+  .container {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem 4rem;
+  }
+
+  .summary-box {
+    background: var(--warm);
+    border-radius: 8px;
+    padding: 1.5rem 1.75rem;
+    margin: 2rem 0;
+    font-size: 0.95rem;
+  }
+
+  .summary-box strong {
+    font-family: 'Anybody', sans-serif;
+    font-weight: 600;
+    display: block;
+    margin-bottom: 0.4rem;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--gray);
+  }
+
+  h2 {
+    font-family: 'Anybody', sans-serif;
+    font-weight: 800;
+    font-size: 1.3rem;
+    margin: 2.5rem 0 0.75rem;
+    letter-spacing: -0.02em;
+    padding-bottom: 0.4rem;
+    border-bottom: 2px solid var(--ink);
+  }
+
+  h3 {
+    font-family: 'Anybody', sans-serif;
+    font-weight: 600;
+    font-size: 1.05rem;
+    margin: 1.5rem 0 0.5rem;
+    color: var(--accent);
+  }
+
+  p { margin-bottom: 0.75rem; }
+
+  .status-tag {
+    display: inline-block;
+    font-family: 'Anybody', sans-serif;
+    font-weight: 600;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    padding: 0.2rem 0.6rem;
+    border-radius: 3px;
+    vertical-align: middle;
+    margin-left: 0.5rem;
+  }
+
+  .tag-done { background: var(--green-soft); color: var(--green); }
+  .tag-ready { background: var(--accent-soft); color: var(--accent); }
+  .tag-waiting { background: var(--amber-soft); color: var(--amber); }
+  .tag-blocked { background: var(--red-soft); color: var(--red); }
+
+  .card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1.25rem 1.5rem;
+    margin: 1rem 0;
+  }
+
+  .card h4 {
+    font-family: 'Anybody', sans-serif;
+    font-weight: 600;
+    font-size: 0.95rem;
+    margin-bottom: 0.4rem;
+  }
+
+  .card p { font-size: 0.9rem; margin-bottom: 0.5rem; }
+
+  .flow {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0;
+    align-items: stretch;
+    margin: 1.25rem 0;
+  }
+
+  .flow-step {
+    flex: 1 1 120px;
+    min-width: 100px;
+    background: white;
+    border: 1px solid var(--border);
+    padding: 0.75rem;
+    text-align: center;
+    font-size: 0.8rem;
+    font-family: 'Anybody', sans-serif;
+    font-weight: 600;
+    position: relative;
+  }
+
+  .flow-step:not(:last-child)::after {
+    content: "→";
+    position: absolute;
+    right: -12px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1rem;
+    color: var(--gray);
+    z-index: 1;
+  }
+
+  .flow-step small {
+    display: block;
+    font-weight: 400;
+    font-family: 'Source Serif 4', serif;
+    color: var(--gray);
+    margin-top: 0.2rem;
+    font-size: 0.72rem;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0;
+    font-size: 0.88rem;
+  }
+
+  th {
+    font-family: 'Anybody', sans-serif;
+    font-weight: 600;
+    text-align: left;
+    padding: 0.6rem 0.75rem;
+    background: var(--warm);
+    border: 1px solid var(--border);
+    font-size: 0.82rem;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+  }
+
+  td {
+    padding: 0.5rem 0.75rem;
+    border: 1px solid var(--border);
+    vertical-align: top;
+  }
+
+  a { color: var(--accent); }
+
+  .timeline {
+    border-left: 3px solid var(--border);
+    padding-left: 1.5rem;
+    margin: 1.25rem 0 1.25rem 0.75rem;
+  }
+
+  .timeline-item {
+    position: relative;
+    margin-bottom: 1.25rem;
+  }
+
+  .timeline-item::before {
+    content: "";
+    position: absolute;
+    left: -1.85rem;
+    top: 0.45rem;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--border);
+    border: 2px solid var(--paper);
+  }
+
+  .timeline-item.active::before { background: var(--green); }
+  .timeline-item.current::before { background: var(--accent); }
+  .timeline-item.future::before { background: var(--amber); }
+
+  .timeline-item .label {
+    font-family: 'Anybody', sans-serif;
+    font-weight: 600;
+    font-size: 0.9rem;
+  }
+
+  .timeline-item .detail {
+    font-size: 0.85rem;
+    color: var(--gray);
+  }
+
+  .callout {
+    padding: 1rem 1.25rem;
+    border-left: 4px solid;
+    border-radius: 4px;
+    margin: 1rem 0;
+    font-size: 0.88rem;
+  }
+
+  .callout-blue { background: var(--accent-soft); border-color: var(--accent); }
+  .callout-amber { background: var(--amber-soft); border-color: #d97706; }
+  .callout-green { background: var(--green-soft); border-color: var(--green); }
+  .callout-red { background: var(--red-soft); border-color: var(--red); }
+
+  .callout strong { display: block; margin-bottom: 0.2rem; }
+
+  ul { padding-left: 1.25rem; margin-bottom: 0.75rem; }
+  li { margin-bottom: 0.3rem; font-size: 0.92rem; }
+
+  .ref-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin: 0.75rem 0;
+  }
+
+  .ref-link {
+    font-family: 'Anybody', sans-serif;
+    font-weight: 400;
+    font-size: 0.75rem;
+    padding: 0.2rem 0.5rem;
+    background: var(--accent-soft);
+    border-radius: 3px;
+    color: var(--accent);
+    text-decoration: none;
+    white-space: nowrap;
+  }
+
+  .ref-link:hover { text-decoration: underline; }
+
+  footer {
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border);
+    font-size: 0.8rem;
+    color: var(--gray);
+    font-family: 'Anybody', sans-serif;
+  }
+
+  @media (max-width: 600px) {
+    header { padding: 2rem 1rem; }
+    header h1 { font-size: 1.5rem; }
+    .container { padding: 1rem; }
+    .flow { flex-direction: column; }
+    .flow-step::after { display: none; }
+  }
+
+  @media print {
+    header { background: white; color: black; border-bottom: 3px solid black; }
+    .card { border: 1px solid #ccc; }
+    body { font-size: 11pt; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Volunteer Compliance<br>Implementation Guide</h1>
+  <div class="meta">AYSO Region 58 — Fall 2026 Season &nbsp;|&nbsp; Updated April 27, 2026</div>
+</header>
+
+<div class="container">
+
+  <div class="summary-box">
+    <strong>Bottom Line</strong>
+    Volunteer compliance in PlayMetrics works through a two-system model: the <em>Club System</em> (our registration platform — the blue interface) captures volunteer interest and designates staff roles, and the <em>Governing System</em> (AYSO National — the purple interface) handles background checks and certifications. Volunteers must flow from Club → Governing to trigger compliance. Right now, we can do everything on the Club side. The Governing side is not yet accessible to pilot regions — PlayMetrics is finalizing integrations with JDP (background checks) and AYSOU (certifications), expected this summer. In the meantime, returning volunteers continue using AYSOU through Sports Connect. AYSO National (Paula) has decided to pre-import existing risk data and certifications into the PM Governing System backend ahead of AYSOU availability — this data surfaces when a volunteer is added to the Governing System.
+  </div>
+
+  <!-- ===================== THE BIG PICTURE ===================== -->
+  <h2>How It Works</h2>
+
+  <div class="flow">
+    <div class="flow-step">Capture Interest<small>Registration, Coach Link, or Volunteer Signup</small></div>
+    <div class="flow-step">Designate as Staff<small>Admin, Coach, Director, or Team Staff</small></div>
+    <div class="flow-step">Sync to Governing<small>Import from Club → AYSO National</small></div>
+    <div class="flow-step">Compliance Triggers<small>Email sent, volunteer completes requirements</small></div>
+    <div class="flow-step">Track & Verify<small>Region monitors status in both systems</small></div>
+  </div>
+
+  <p>A volunteer <strong>cannot</strong> be imported into the AYSO Governing System for background checks and certifications unless they first exist as a staff member in the Club System. This is the critical pipeline — every volunteer must go through these steps in order.</p>
+
+  <!-- ===================== WHAT'S DONE ===================== -->
+  <h2>What We've Already Set Up <span class="status-tag tag-done">Done</span></h2>
+
+  <div class="card">
+    <h4>Volunteer Roles in Program Registration</h4>
+    <p>Head Coach, Assistant Coach, Referee, and Board Member are configured as volunteer positions in the Fall 2026 Core program. The "collect sign ups" boxes are checked so parents see volunteer options during player registration.</p>
+  </div>
+
+  <div class="card">
+    <h4>Coaching Request Questions in the League</h4>
+    <p>Custom questions are built under Leagues → Coaching Requests: role preference (HC/AC), training requirements acknowledgment, and coach shirt size with linked dropdown. The standalone Coach Request Link is available to share on our website for coaches who aren't registering a player.</p>
+  </div>
+
+  <div class="card">
+    <h4>Program Questions for Non-Coach Volunteers</h4>
+    <p>A "Are you aware this is a volunteer organization?" question is included as a program question (asked once per registration session). Additional volunteer detail questions for non-coaching roles (referee certification, board member expertise) can be added here if needed.</p>
+  </div>
+
+  <!-- ===================== THREE PATHWAYS ===================== -->
+  <h2>Three Pathways for Capturing Volunteer Interest</h2>
+
+  <table>
+    <tr>
+      <th>Pathway</th>
+      <th>Who It's For</th>
+      <th>Where It Lives</th>
+      <th>Status</th>
+    </tr>
+    <tr>
+      <td><strong>A. Program Registration</strong></td>
+      <td>Parents registering a player who want to volunteer</td>
+      <td>Program Builder → Volunteer Roles</td>
+      <td><span class="status-tag tag-done">Done</span></td>
+    </tr>
+    <tr>
+      <td><strong>B. Coach Request Link</strong></td>
+      <td>Coaches who skipped the prompt during registration, non-parent coaches, community coaches</td>
+      <td>Leagues → Coaching Requests → Coach Request Link</td>
+      <td><span class="status-tag tag-done">Done</span></td>
+    </tr>
+    <tr>
+      <td><strong>C. Volunteer Sign Up</strong></td>
+      <td>Non-coaching volunteers (board members, referees) who aren't registering a player</td>
+      <td>Volunteer Signups (left nav)</td>
+      <td><span class="status-tag tag-ready">Being Enabled</span></td>
+    </tr>
+  </table>
+
+  <div class="callout callout-blue">
+    <strong>💡 Volunteer Sign Up — Superusers Consensus: Enable for All</strong>
+    During the April Superusers call, the group agreed this should be enabled for all pilot regions. If no signups are configured, parents see "no signups at this time" — no harm done. Jason (Region 277) named his "Non Coach Volunteer" and put a note in the description redirecting coaches to the Coach Request Link instead. The feature was originally built for things like concessions and field duty signups, but it's being used in the interim to capture non-coach volunteer interest. Krista (Region 18) has requested that the Coach Request Link be expanded to a general "Volunteer Request Link" that includes referees — PlayMetrics noted the feedback.
+  </div>
+
+  <!-- ===================== STAFF DESIGNATION ===================== -->
+  <h2>Staff Designation: Who Goes Where</h2>
+
+  <p>Every volunteer must be categorized as "staff" in the Club System before they can flow to the Governing System. Different volunteer types have different paths:</p>
+
+  <table>
+    <tr>
+      <th>Volunteer Type</th>
+      <th>Staff Designation</th>
+      <th>How They Get There</th>
+    </tr>
+    <tr>
+      <td>Regional Commissioner, Treasurer, other admins</td>
+      <td><strong>Admin</strong></td>
+      <td>Added under Staff → Admins. Automatically syncs to Governing once added.</td>
+    </tr>
+    <tr>
+      <td>Division Coordinators</td>
+      <td><strong>Director</strong></td>
+      <td>Added under Staff → Directors. Automatically syncs to Governing once added.</td>
+    </tr>
+    <tr>
+      <td>Head Coaches, Assistant Coaches</td>
+      <td><strong>Coach</strong></td>
+      <td>Option 1: Assign directly to a team via League → Assignments (coach icon appears next to player name).<br>Option 2: Bulk import via Staff → Coaches → More Actions → Import Coaches.</td>
+    </tr>
+    <tr>
+      <td>Referees, Board Members, Team Parents, Concessions, Field Prep, etc.</td>
+      <td><strong>Team Staff</strong></td>
+      <td>Assigned to hidden "Volunteer" container teams. Requires team import + team staff import (see below).</td>
+    </tr>
+  </table>
+
+  <div class="callout callout-blue">
+    <strong>💡 Why Hidden Container Teams?</strong>
+    The system currently requires all Team Staff to be associated with a team. Since non-coaching volunteers aren't on player teams, we create invisible "container" teams (one per role: Referee Team, Board Member Team, etc.) just to house them administratively. These teams are hidden from public view — they're only for compliance tracking.
+  </div>
+
+  <!-- ===================== NON-COACH VOLUNTEER STEPS ===================== -->
+  <h2>Non-Coach Volunteer Setup Steps <span class="status-tag tag-ready">Do After Go-Live</span></h2>
+
+  <p>This is the most complex piece and doesn't need to happen before registration opens. Do this once you have volunteers who've expressed interest and you're ready to start compliance.</p>
+
+  <h3>Step 1: Club Settings Prep</h3>
+  <ul>
+    <li>Add a <strong>"Volunteer"</strong> level under Club Administration → Edit Settings → Add Level</li>
+    <li>Enable <strong>Co-Ed Teams</strong> in Club Settings</li>
+    <li>Update <strong>Team Staff Titles</strong> under Staff → Team Staff → More Actions → Manage Titles</li>
+  </ul>
+
+  <p>Standardized AYSO Team Staff Titles:</p>
+  <table>
+    <tr><td>Head Coach</td><td>Assistant Coach</td><td>Team Manager</td></tr>
+    <tr><td>Board Member</td><td>Clerical</td><td>Concessions</td></tr>
+    <tr><td>Field Prep</td><td>Fund Raising</td><td>Referee</td></tr>
+    <tr><td colspan="3">Team Parent</td></tr>
+  </table>
+
+  <h3>Step 2: Import Volunteer Team Shells</h3>
+  <ul>
+    <li>Download the <a href="https://docs.google.com/spreadsheets/d/1gAWje1-UGXT2NpbF3lgRgr0puUWxJxYTegiRgu5dIas/" target="_blank">AYSO Pilot Import Template</a></li>
+    <li>Import teams via Teams → More Actions → Import Teams</li>
+    <li>Each team = one volunteer role (Referee Team, Board Member Team, etc.)</li>
+    <li>Set gender to Co-Ed, level to Volunteer, season to your Fall 2026 season name</li>
+  </ul>
+
+  <h3>Step 3: Hide Volunteer Teams</h3>
+  <ul>
+    <li>Teams → More Actions → Set Visibility</li>
+    <li>Filter by Label "Volunteer" → Select All → Uncheck all roles</li>
+    <li>This keeps them functional but invisible to parents and coaches</li>
+  </ul>
+
+  <h3>Step 4: Export Volunteer Data</h3>
+  <ul>
+    <li><strong>From Program:</strong> Programs → [Fall 2026 Core] → More Actions → Export Volunteers</li>
+    <li><strong>From Volunteer Sign Up:</strong> Volunteer Signups → [Your Signup] → More Actions → Export Volunteers</li>
+    <li>Exclude head coaches and assistant coaches (they go through the Coach pathway, not Team Staff)</li>
+  </ul>
+
+  <h3>Step 5: Import as Team Staff</h3>
+  <ul>
+    <li>Map exported data into the Team Staff Import template (name, email, phone, title, season, team name)</li>
+    <li>Staff → Team Staff → More Actions → Import Team Staff</li>
+    <li>Duplicates are handled automatically — same person won't be imported twice</li>
+    <li>You can do multiple import rounds as new volunteers trickle in</li>
+  </ul>
+
+  <!-- ===================== COMPLIANCE TIERS ===================== -->
+  <h2>Compliance Tiers (From AYSO National)</h2>
+
+  <p>Paula (AYSO National) is defining tiered compliance requirements that map to Governing System roles. These determine what each volunteer must complete. The tiers are still being finalized, but the current thinking:</p>
+
+  <table>
+    <tr>
+      <th>Tier</th>
+      <th>Requirements</th>
+      <th>Who It's For</th>
+    </tr>
+    <tr>
+      <td><strong>Tier 1 — Full Clearance</strong></td>
+      <td>Background check + SafeSport + job-specific training</td>
+      <td>Coaches 10U+, referees (10U+), anyone with unsupervised player contact</td>
+    </tr>
+    <tr>
+      <td><strong>Tier 2 — Reduced</strong></td>
+      <td>Background check + job-specific training (no SafeSport)</td>
+      <td>6U/8U coaches and refs where parents are on the field (not unsupervised contact). Discussion ongoing — some regions may require Tier 1 for all coaches regardless.</td>
+    </tr>
+    <tr>
+      <td><strong>Tier 3 — Youth</strong></td>
+      <td>No background check — exempt until 18th birthday</td>
+      <td>Youth referees, youth coach assistants. JDP will warn if someone under 18 attempts screening, and PM will gatekeep at entry.</td>
+    </tr>
+  </table>
+
+  <div class="callout callout-amber">
+    <strong>⚠️ Tiers Are Still Being Finalized</strong>
+    Paula is working through edge cases with the Superuser group (e.g., Kickstart/Epic Buddy leaders as "Player Support" vs coaches, whether regions can mandate Tier 1 for all). The tier a volunteer is assigned in the Governing System determines their compliance requirements — regions control which tier each volunteer gets mapped to.
+  </div>
+
+  <!-- ===================== IMPORT WORKFLOW ===================== -->
+  <h2>Import Workflow: What Actually Happens</h2>
+
+  <p>Pierce clarified the exact mechanics of importing volunteers during the Superusers call. This is important because it means we can get ahead of things without chasing people:</p>
+
+  <div class="card">
+    <h4>Step 1: Import</h4>
+    <p>We import volunteers (from SC data or manually). They sit in the system in the background. At this point, we choose whether or not to invite them right away.</p>
+  </div>
+  <div class="card">
+    <h4>Step 2: Organize</h4>
+    <p>We can assign coaches to teams and organize staff BEFORE they verify their account. We don't need to wait for them to act first.</p>
+  </div>
+  <div class="card">
+    <h4>Step 3: Invite</h4>
+    <p>When we're ready, we send invitations. Volunteers get prompted to verify their account (first name, last name, email, phone). That's it — they can't do anything else in PM yet (no background screening available), which is fine for now.</p>
+  </div>
+  <div class="card">
+    <h4>Step 4: Track & Remind</h4>
+    <p>We can see who has verified and who hasn't. Send reminders through the system to anyone who hasn't finished. Custom reminder messages supported.</p>
+  </div>
+
+  <div class="callout callout-green">
+    <strong>✅ Key Takeaway: We Work Independently of the Volunteers</strong>
+    We don't need to chase volunteers before we can organize. Import → assign to teams → invite in parallel. They catch up on their end when they're ready. This is a much better workflow than SC where you had to wait for account acceptance.
+  </div>
+
+  <!-- ===================== LEGACY DATA MIGRATION ===================== -->
+  <h2>Legacy Data Migration (AYSO National Plan)</h2>
+
+  <p>Paula has decided to pre-import existing risk data and certifications from the SC Association site into the PM Governing System before AYSOU is available. Here's how this works:</p>
+
+  <h3>Two-Batch Approach</h3>
+  <ul>
+    <li><strong>Batch 1 (soon):</strong> All existing volunteer data — background check status, certifications — imported so regions can start the compliance clearance process. Spreads the work out rather than handing the whole pool on July 1st.</li>
+    <li><strong>Batch 2 (before JDP/AYSOU go live):</strong> Incremental update capturing any courses completed or background checks processed in the intervening months. Gets everyone up to date before the switches flip.</li>
+  </ul>
+
+  <h3>How Legacy Data Connects</h3>
+  <ul>
+    <li>Imported data sits on the PM Governing System <strong>backend</strong> — it's not visible until the volunteer is actually added to the Governing System</li>
+    <li>When a volunteer profile is created in the Governing System, PM does a lookup, recognizes the legacy data, and satisfies the matching requirements automatically</li>
+    <li>Existing background checks honored until their expiration date (annual renewal)</li>
+    <li><strong>Green status</strong> (cleared) → maps to "Cleared" in PM</li>
+    <li><strong>Red status</strong> (do not use / disqualified) → maps to "Not Cleared"</li>
+    <li><strong>Rainbow-adjudicated</strong> (yellow/brown/orange) → imported with <strong>no background check status</strong> — they'll go through the process fresh</li>
+    <li><strong>Blue</strong> (youth) → exempt, considered satisfied until 18th birthday</li>
+  </ul>
+
+  <h3>What Volunteers Will See Initially (Before Full Integration)</h3>
+  <table>
+    <tr><th>Item</th><th>Visible?</th><th>Notes</th></tr>
+    <tr><td>SafeSport</td><td><span class="status-tag tag-done">Yes</span></td><td>Pulled from existing data</td></tr>
+    <tr><td>Concussion Awareness</td><td><span class="status-tag tag-done">Yes</span></td><td>Pulled from existing data</td></tr>
+    <tr><td>Sudden Cardiac Arrest</td><td><span class="status-tag tag-done">Yes</span></td><td>Pulled from existing data</td></tr>
+    <tr><td>Risk / Background Check Status</td><td><span class="status-tag tag-done">Yes</span></td><td>Cleared / Not Cleared from import</td></tr>
+    <tr><td>AYSOU Coaching Licenses</td><td><span class="status-tag tag-blocked">Not Yet</span></td><td>Requires AYSOU integration build — PM currently only shows highest USSF license (sequential model). AYSOU licenses are non-sequential (6U, 10U, 12U, etc.) and require different display logic.</td></tr>
+    <tr><td>Referee Grades</td><td><span class="status-tag tag-blocked">Not Yet</span></td><td>Separate build step after AYSOU integration</td></tr>
+    <tr><td>Playground/Schoolyard/Kickstart</td><td><span class="status-tag tag-waiting">TBD</span></td><td>Being debated — may be treated as webinars rather than licenses. Don't show up in SC today either.</td></tr>
+  </table>
+
+  <div class="callout callout-blue">
+    <strong>💡 The Join Key Question</strong>
+    Annika confirmed the team is still determining the primary key for connecting PM accounts to AYSOU records. Options include email address, SC Association admin IDs/GUIDs, or a combination. Decision: use personal email addresses (not role emails like rc@ayso58.org) to ensure proper matching. The AYSOU data itself is NOT being migrated — eTrainU remains the source of truth. PM is building a lookup/API to fetch current data, not copying it.
+  </div>
+
+  <!-- ===================== GOVERNING SYSTEM ===================== -->
+  <h2>Governing System (AYSO National) <span class="status-tag tag-blocked">Not Yet Accessible</span></h2>
+
+  <p>Once volunteers are designated as staff in the Club System, the next step is importing them into the Governing System (the purple interface) to trigger compliance. However:</p>
+
+  <div class="callout callout-red">
+    <strong>⛔ Governing System Access Is Not Available Yet</strong>
+    PlayMetrics confirmed during the Volunteer Compliance webinar (April 2026): "Right now you don't have access to it… If we give you access to it now, it's not helpful because you might accidentally send volunteers across and the full compliance process is not set up as we need it to." Access will be granted once JDP and AYSOU integrations are finalized.
+  </div>
+
+  <h3>What It Will Look Like (When Available)</h3>
+  <p>Based on the webinar demo:</p>
+  <ul>
+    <li>You'll have a <strong>Club Admin role</strong> in the Governing System, accessible by toggling between accounts (blue = Club, purple = Governing)</li>
+    <li>Under <strong>Membership → Staff</strong>, you'll click <strong>More Actions → Import Staff → Import from Club OS</strong></li>
+    <li>This opens a selection worksheet showing all staff in your Club System — you select who to send for compliance</li>
+    <li>You choose which <strong>Governing System role</strong> each volunteer maps to (Coach, Referee, Board Member, etc.) — this determines their compliance requirements</li>
+    <li>Once imported, volunteers get an <strong>automatic email</strong> with a link to complete their compliance requirements</li>
+    <li>The region controls who gets sent — this saves money because not every "interested" volunteer goes through a background screen, only confirmed ones</li>
+    <li>Compliance status flows <strong>back to the Club System</strong> via a "Connected Systems" area so you can track it without staying in the purple interface</li>
+  </ul>
+
+  <h3>What the Volunteer Sees</h3>
+  <ul>
+    <li>They receive an email: "You've been added to Region 58 for AYSO. You have requirements to complete."</li>
+    <li>They log into PlayMetrics → see their member role in the Governing System</li>
+    <li>Click "Complete Requirements" → provide info (gender, DOB, address), agree to waivers, upload photo</li>
+    <li>Click "Complete Screening" → redirected to JDP for background check</li>
+    <li>SafeSport and certifications will be pulled from AYSOU (integration pending)</li>
+    <li>Fully mobile-friendly — most volunteers complete it on their phones</li>
+    <li>No need to chase emails — once added to Governing, they can log in anytime and complete requirements</li>
+  </ul>
+
+  <!-- ===================== WHAT TO DO RIGHT NOW ===================== -->
+  <h2>What Happens In the Meantime</h2>
+
+  <table>
+    <tr><th>Volunteer Type</th><th>What to Do Now</th></tr>
+    <tr>
+      <td><strong>Returning volunteers</strong> (have SC account)</td>
+      <td>Continue accessing AYSOU through their Sports Connect portal for courses and certifications. Their compliance history carries forward — Paula is importing risk data and certs into the PM Governing System backend in two batches. When we add them to the Governing System, their legacy data connects automatically.</td>
+    </tr>
+    <tr>
+      <td><strong>New volunteers</strong> (no SC account)</td>
+      <td>This is the gap. PlayMetrics is working on guidance for how new volunteers can access AYSOU. No solution available yet.</td>
+    </tr>
+    <tr>
+      <td><strong>Background checks (all)</strong></td>
+      <td>Let the current process continue running. Existing BG checks honored until expiration (annual renewal). Rainbow-adjudicated volunteers (yellow/brown/orange) will be imported with no status — they'll go through the process fresh under new guidelines. If our region is "region pays," continue using the JDP payment form.</td>
+    </tr>
+    <tr>
+      <td><strong>Youth volunteers (under 18)</strong></td>
+      <td>Will be exempt from background screening. PM will gatekeep at entry (preventing screening), and JDP will warn if someone under 18 attempts it. Status treated as "satisfied until 18th birthday" — on their 18th, the system sends a notification that screening is required.</td>
+    </tr>
+    <tr>
+      <td><strong>LiveScan / Fingerprinting</strong></td>
+      <td>Fingerprinting is a separate data migration step. No action needed yet.</td>
+    </tr>
+  </table>
+
+  <div class="callout callout-green">
+    <strong>✅ Our Existing Automation Still Works</strong>
+    Our Sports Affinity / ETrainU volunteer compliance automation continues to handle compliance tracking for returning volunteers during this transition period. Nothing changes on that front until the Governing System is live and AYSOU is integrated.
+  </div>
+
+  <!-- ===================== TIMELINE ===================== -->
+  <h2>Expected Timeline</h2>
+
+  <div class="timeline">
+    <div class="timeline-item active">
+      <div class="label">Now — Capture Interest ✅</div>
+      <div class="detail">Volunteer roles in program, coaching request link, and program questions are all live. Interest is being captured as parents register.</div>
+    </div>
+    <div class="timeline-item active">
+      <div class="label">Now — Admin & Director Setup ✅</div>
+      <div class="detail">Sara (RC), Kristen (Treasurer), and other admins are already in the system. They'll sync to Governing automatically when it's available.</div>
+    </div>
+    <div class="timeline-item current">
+      <div class="label">After Registration Opens — Coach Assignment</div>
+      <div class="detail">As coaches are identified and teams are formed, assign coaches to teams via League → Assignments. They become staff automatically.</div>
+    </div>
+    <div class="timeline-item current">
+      <div class="label">After Registration Opens — Non-Coach Team Staff Import</div>
+      <div class="detail">Once you have a group of non-coach volunteers, run the export/import process to add them as Team Staff on hidden container teams.</div>
+    </div>
+    <div class="timeline-item future">
+      <div class="label">Summer 2026 — Governing System Access</div>
+      <div class="detail">PlayMetrics grants access to the Governing System once JDP and AYSOU integrations are finalized. We import staff to trigger compliance.</div>
+    </div>
+    <div class="timeline-item future">
+      <div class="label">Summer 2026 — Legacy Data Batch 1</div>
+      <div class="detail">Paula imports existing risk data and certifications from SC Association site into PM Governing System backend. Data sits there until volunteers are added to Governing System, at which point it surfaces automatically.</div>
+    </div>
+    <div class="timeline-item future">
+      <div class="label">Summer 2026 — Legacy Data Batch 2</div>
+      <div class="detail">Incremental update capturing courses completed and background checks processed since Batch 1. Brings everyone up to date before JDP/AYSOU switches flip.</div>
+    </div>
+    <div class="timeline-item future">
+      <div class="label">Summer 2026 — AYSOU Integration</div>
+      <div class="detail">AYSOU certifications pulled into PlayMetrics via API lookup (eTrainU remains source of truth — no data migration on AYSOU side). SafeSport, concussion, and sudden cardiac arrest visible first. AYSOU coaching licenses require additional build for non-sequential display logic. Referee grades are a separate build step after that.</div>
+    </div>
+    <div class="timeline-item future">
+      <div class="label">Summer 2026 — JDP Integration</div>
+      <div class="detail">Background screening through JDP becomes available. Volunteers complete screening through PlayMetrics → JDP flow. Region pays model. Youth (under 18) exempt and gatekept from screening.</div>
+    </div>
+  </div>
+
+  <!-- ===================== KEY DETAILS ===================== -->
+  <h2>Key Details to Know</h2>
+
+  <div class="card">
+    <h4>Personal Emails for Compliance</h4>
+    <p>Everyone should use their <strong>personal email</strong> for PlayMetrics compliance, not region-role emails (like rc@ayso58.org). This is the data connectivity point for matching PM accounts to AYSOU records. Annika emphasized this repeatedly during the Superusers call — using role emails means next year's RC inherits the wrong compliance profile.</p>
+  </div>
+
+  <div class="card">
+    <h4>Coaches Get Notified Immediately</h4>
+    <p>When you assign a coach to a team, they're notified immediately. Players are only notified when you click "Notify" — different trigger timing.</p>
+  </div>
+
+  <div class="card">
+    <h4>One Volunteer, Multiple Teams</h4>
+    <p>A single volunteer can be assigned to as many teams as needed. No limitation of one team per person. Useful for referees and board members who serve across the whole region.</p>
+  </div>
+
+  <div class="card">
+    <h4>Compliance Requirements Vary by Role</h4>
+    <p>When importing to the Governing System, the role you assign determines compliance requirements. See the Compliance Tiers section above — Tier 1 (full clearance) vs Tier 2 (reduced) vs Tier 3 (youth exempt). The region controls who gets sent and at which tier, which controls cost.</p>
+  </div>
+
+  <div class="card">
+    <h4>Account Ownership Is Player-Centric</h4>
+    <p>Unlike SC's parent-centric model, PlayMetrics is player-centric. Account owners control which players are shared with which contacts. You can transfer ownership via admin, but the target must have a verified account first. If flipping account owner with multiple kids, you must switch on each player separately. Krista (Region 18) has been cleaning up account ownership during her import — much easier to fix in PM than in SC.</p>
+  </div>
+
+  <div class="card">
+    <h4>eTrainU Admin Access Recommended</h4>
+    <p>Paula is recommending that all coach admins (RC, CVPA, registrar, division coordinators) have admin access in eTrainU during the interim period. This lets you look up training reports directly if someone swears they have certifications that didn't show up in the import.</p>
+  </div>
+
+  <div class="card">
+    <h4>Birth Certificate Verification — Separate from Volunteers</h4>
+    <p>Existing BC verifications from Sports Connect transfer through an embedded lookup process. You can set PlayMetrics to delete the BC file after verification. Ongoing verification responsibility stays with the region.</p>
+  </div>
+
+  <!-- ===================== REFERENCES ===================== -->
+  <h2>Reference Links</h2>
+
+  <div class="ref-links">
+    <a class="ref-link" href="https://help.playmetrics.com/hc/en-us/articles/39600070246807" target="_blank">Volunteer Compliance Checklist</a>
+    <a class="ref-link" href="https://help.playmetrics.com/hc/en-us/articles/39429633833495" target="_blank">Volunteer Registration & Compliance Webinar</a>
+    <a class="ref-link" href="https://help.playmetrics.com/hc/en-us/articles/18019657539351" target="_blank">Adding Coaches & Team Staff</a>
+    <a class="ref-link" href="https://help.playmetrics.com/hc/en-us/articles/8137576216727" target="_blank">Coach Request Link</a>
+    <a class="ref-link" href="https://help.playmetrics.com/hc/en-us/articles/16699152278039" target="_blank">Creating Volunteer Signups</a>
+    <a class="ref-link" href="https://help.playmetrics.com/hc/en-us/articles/360046084314" target="_blank">Importing Team Staff</a>
+    <a class="ref-link" href="https://help.playmetrics.com/hc/en-us/articles/9197605784215" target="_blank">Adding Staff Titles</a>
+    <a class="ref-link" href="https://help.playmetrics.com/hc/en-us/articles/360021276353" target="_blank">Importing Teams</a>
+    <a class="ref-link" href="https://playmetricsgs.zendesk.com/hc/en-us/articles/23301243189015" target="_blank">Import Staff → Governing System</a>
+    <a class="ref-link" href="https://docs.google.com/spreadsheets/d/1gAWje1-UGXT2NpbF3lgRgr0puUWxJxYTegiRgu5dIas/" target="_blank">AYSO Pilot Import Templates</a>
+    <a class="ref-link" href="https://help.playmetrics.com/hc/en-us/articles/38946832703767" target="_blank">Adding an Admin to PlayMetrics</a>
+  </div>
+
+  <footer>
+    Region 58 — Van Nuys/Sherman Oaks, CA &nbsp;|&nbsp; Prepared by Steve Davis, Registrar &nbsp;|&nbsp; Sources: PlayMetrics Help Center, MY2026 webinars, Volunteer Compliance webinar (April 2026), Superusers meeting transcript (April 2026), setup session transcripts
+  </footer>
+
+</div>
+
+</body>
+</html>
