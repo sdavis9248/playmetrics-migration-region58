@@ -312,7 +312,7 @@
 
 <header>
   <h1>Volunteer Compliance<br>Implementation Guide</h1>
-  <div class="meta">AYSO Region 58 — Fall 2026 Season &nbsp;|&nbsp; Updated April 27, 2026</div>
+  <div class="meta">AYSO Region 58 — Fall 2026 Season &nbsp;|&nbsp; Updated April 29, 2026</div>
 </header>
 <nav style="background:#f5f0eb;padding:0.5rem 1.5rem;font-family:Anybody,sans-serif;font-size:0.82rem;border-bottom:1px solid #e7e5e4;"><a href="index.html" style="color:#1d4ed8;text-decoration:none;font-weight:600;">← All Region 58 Guides</a></nav>
 
@@ -754,14 +754,28 @@
   <div class="card">
     <h4>Birth Certificate Verification — Separate from Volunteers</h4>
     <p>Existing BC verifications from Sports Connect transfer through an embedded lookup process. You can set PlayMetrics to delete the BC file after verification. Ongoing verification responsibility stays with the region.</p>
-    <p><strong>Key learnings from Region 18 (Krista's setup):</strong></p>
+    <p><strong>Key learnings from Region 18 (Krista's setup — confirmed working April 29):</strong></p>
     <ul>
       <li><strong>Skip toggle:</strong> When BC-verified players are imported, a "skip" toggle means they won't be asked to upload a BC during registration — they're already verified. This eliminates the need for a conditional question ("have you provided a BC before?") for imported/verified players.</li>
-      <li><strong>BC verification through Leagues:</strong> Connect a league to a "Sanctioning Body," create a Team Assignment (auto-pulls players), then configure columns under Players Tab → More Actions → Configure Columns to show BC files uploaded during registration. Select "Show League Players currently not rostered to teams" to see the full player pool.</li>
-      <li><strong>Player Verification:</strong> A "Verifying Players Through Leagues" feature exists in PM — still being resolved for pilot regions. See: <a href="https://help.playmetrics.com/hc/en-us/articles/360025672314" target="_blank">Verifying Players Through Leagues</a></li>
       <li><strong>Can't delete questions once registration is open</strong> — only hide them. Plan question structure before go-live.</li>
     </ul>
-    <p><em>Our Region 58 approach: We use a conditional BC question (radio: "Have you played before and provided a BC?" → "No" triggers file upload). If we import BC-verified players before registration opens, the skip toggle could simplify this — worth confirming with PM.</em></p>
+
+    <p><strong>BC Verification Through Leagues — Step by Step (from Krista + Heather):</strong></p>
+    <ul>
+      <li><strong>Step 1: Connect League to Sanctioning Body</strong> — Navigate to Leagues → click the pencil icon next to the league → connect it to the Sanctioning Body you created.</li>
+      <li><strong>Step 2: Create a Team Assignment</strong> — In the League → Assignments Tab → Create Team Assignment. Provide a name (e.g., "League Name | Fall 2026"), choose an assignment type (Heather suggests "Send Notification of Assignment" but it doesn't matter for this step), season is already linked, select your Sign Up Program, then toggle on "Automatically add players based on the criteria below" and select the appropriate Program Package.</li>
+      <li><strong>Step 3: Configure Columns for BC</strong> — Navigate to the League → Players Tab → More Actions → Configure Columns. Connect it to pull in the BC files uploaded during registration. Select "Show League Players currently not rostered to teams" to see the full player pool.</li>
+      <li><strong>Step 4: Verify</strong> — Players populate under the Players Tab where you can see their files and verification status. Krista confirms: "It works great once you set it up." She's writing up notes on the actual verification workflow.</li>
+    </ul>
+
+    <div class="callout callout-green">
+      <strong>✅ Nothing Happens Until You Hit "Notify"</strong>
+      Creating Team Assignments and pulling players into a league is a sandbox. Parents and players are not notified. You can create teams, assign players, review BC files — none of it is visible to families until you explicitly click "Notify Players." This means we can set up the verification workflow without triggering any parent-facing communication.
+    </div>
+
+    <p><strong>Player Verification:</strong> A "Verifying Players Through Leagues" feature exists in PM — still being resolved for pilot regions. See: <a href="https://help.playmetrics.com/hc/en-us/articles/360025672314" target="_blank">Verifying Players Through Leagues</a></p>
+
+    <p><em>Our Region 58 approach: Heather recommended removing our conditional BC question since PM will import our BC-verified players and the skip toggle handles them automatically. We've asked Heather to confirm how brand new players (not in our import) would be prompted to upload their BC before we remove the question. Once clarified, we'll follow the same League → Sanctioning Body → Team Assignment workflow Krista has set up.</em></p>
   </div>
 
   <!-- ===================== REFERENCES ===================== -->

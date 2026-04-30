@@ -612,13 +612,25 @@
       </ul>
 
       <div class="alert alert-warning">
-        <strong>⚠️ Ask PM About This</strong>
-        PlayMetrics hasn't published the exact column name or format for BC verification in the CSV import template. Include this question in your review email or ask Jason directly.
+        <strong>⚠️ UPDATED April 29: PM Does This Import For Us</strong>
+        Heather confirmed during the program review that BC-verified player imports must be conducted by PlayMetrics, not by us. We provide them a file with verified players mapped to the Player Import template. Waiting on Heather to confirm the exact file format and whether to send all players (with a BC status column) or just verified ones.
       </div>
 
       <div class="alert alert-info" style="background:#dbeafe;border:1px solid #93c5fd;border-radius:6px;padding:0.85rem 1.1rem;margin:0.75rem 0;font-size:0.85rem;">
-        <strong>💡 New: BC Skip Toggle (from Region 18)</strong>
-        Krista discovered that when BC-verified players are imported, PM has a "skip" toggle that automatically skips the BC upload question during registration for those players — they're already verified. This means our conditional BC question ("Have you played before and provided a BC?") may not be needed for imported players if the skip toggle is enabled. Additionally, BC files can be viewed through Leagues → Players Tab → Configure Columns. PM also has a "Verifying Players Through Leagues" feature using a Sanctioning Body connection — still being resolved for pilot regions. Worth confirming with PM whether the skip toggle works with our import approach.
+        <strong>💡 BC Skip Toggle + Question Removal</strong>
+        Heather's program review recommended removing our conditional BC question entirely — verified players won't be asked to upload. We've asked Heather to clarify how brand new players (not in our import) would be prompted. Don't remove until that's answered.
+      </div>
+
+      <div class="alert alert-info" style="background:#dcfce7;border:1px solid #86efac;border-radius:6px;padding:0.85rem 1.1rem;margin:0.75rem 0;font-size:0.85rem;">
+        <strong>✅ Post-Import: BC Verification Through Leagues (from Krista, R18 — confirmed working)</strong>
+        After PM imports our BC-verified players, we verify them through a League workflow:
+        <ol style="margin:0.5rem 0 0 1.25rem;font-size:0.85rem;">
+          <li>Connect the League to a Sanctioning Body (League Settings → pencil icon)</li>
+          <li>Create a Team Assignment in the League (Assignments Tab → name it, select program, toggle "Automatically add players," select package)</li>
+          <li>Configure Columns (Players Tab → More Actions → Configure Columns → show BC files, show unrostered players)</li>
+          <li>Review and verify — players populate with BC files visible</li>
+        </ol>
+        <strong>Nothing happens until you hit "Notify Players"</strong> — this is a sandbox. You can pull players in, review BC files, and organize teams without triggering any parent-facing communication.
       </div>
     </div>
   </div>
