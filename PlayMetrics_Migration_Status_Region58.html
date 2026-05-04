@@ -18,7 +18,7 @@
   .progress-ring svg{transform:rotate(-90deg)}
   .progress-ring circle{fill:none;stroke-width:6}
   .progress-ring .bg{stroke:var(--border)}
-  .progress-ring .fill{stroke:var(--green);stroke-linecap:round;stroke-dasharray:220;stroke-dashoffset:26}
+  .progress-ring .fill{stroke:var(--green);stroke-linecap:round;stroke-dasharray:220;stroke-dashoffset:22}
   .progress-ring .pct{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:'Anybody',sans-serif;font-weight:800;font-size:1.1rem}
   .progress-stats{font-size:.88rem}
   .progress-stats strong{font-family:'Anybody',sans-serif;font-weight:700}
@@ -68,14 +68,14 @@
 
 <header>
   <h1>PlayMetrics Migration Status</h1>
-  <div class="meta">AYSO Region 58 — Fall 2026 Season &nbsp;|&nbsp; Last updated April 29, 2026</div>
+  <div class="meta">AYSO Region 58 — Fall 2026 Season &nbsp;|&nbsp; Last updated May 4, 2026</div>
 </header>
 <nav style="background:#f5f0eb;padding:0.5rem 1.5rem;font-family:Anybody,sans-serif;font-size:0.82rem;border-bottom:1px solid #e7e5e4;"><a href="index.html" style="color:#1d4ed8;text-decoration:none;font-weight:600;">← All Region 58 Guides</a></nav>
 <div class="container">
 
   <div class="progress-header">
-    <div class="progress-ring"><svg width="80" height="80" viewBox="0 0 80 80"><circle class="bg" cx="40" cy="40" r="35"/><circle class="fill" cx="40" cy="40" r="35"/></svg><div class="pct">88%</div></div>
-    <div class="progress-stats"><strong>Program review complete — action items in progress.</strong><br>Test parent walkthrough April 26. Program reviewed by Heather April 29. CC fees confirmed.<br>Remaining: BC clarification, import file format, merchant account activation, then go-live.</div>
+    <div class="progress-ring"><svg width="80" height="80" viewBox="0 0 80 80"><circle class="bg" cx="40" cy="40" r="35"/><circle class="fill" cx="40" cy="40" r="35"/></svg><div class="pct">90%</div></div>
+    <div class="progress-stats"><strong>All program review questions resolved — executing changes.</strong><br>Heather answered all 5 items May 4. NPF bulk attach, instructions text, BC question cleanup, refund waiver removal, and BC import file prep are remaining before go-live.</div>
   </div>
 
   <div class="callout callout-green"><strong>✅ Configuration Verified via Live Test Parent Walkthrough</strong>All data below has been verified by reading the live program builder (program 101848) and completing a full end-to-end test parent registration on April 26, 2026. Test players: Bruce S (07UB Boys), Mary S (10UG Girls), Harry S (12UB Boys), Chris S (14UB Boys).</div>
@@ -212,14 +212,14 @@
     <div class="item"><div class="item-icon">✅</div><div class="item-text">CC processing fee + service fee confirmed — Sara confirmed region absorbs, Heather acknowledged</div><div class="item-owner">Sara</div></div>
   </div>
 
-  <h3>Program Review Action Items (from Heather, April 29)</h3>
+  <h3>Program Review Action Items (from Heather — all resolved May 4)</h3>
   <div class="item-group">
-    <div class="item"><div class="item-icon">✅</div><div class="item-text"><strong>U19 age classification upgraded</strong> — PM added U19 as an age group. We can now use the age group selector instead of the birth date range workaround.</div></div>
-    <div class="item"><div class="item-icon">☐</div><div class="item-text"><strong>NPF must be aligned with all 17 packages</strong> — Verify the NPF club fee is attached to every package. Asked Heather if there's a bulk check method.<div class="detail">If any package is missing the NPF, players registering for that package won't be charged the $25 national fee.</div></div><div class="item-owner">Steven</div></div>
-    <div class="item"><div class="item-icon">☐</div><div class="item-text"><strong>Player Questions: Add instructions text</strong> — The instructions block at the top of player questions is empty. Add brief instructions.<div class="detail">Minor — quick fix once we decide on wording.</div></div><div class="item-owner">Steven</div></div>
-    <div class="item"><div class="item-icon">❓</div><div class="item-text"><strong>BC question: Remove or keep?</strong> — Heather says we can remove it since verified players won't be asked to upload. But we need clarification: how are brand new players (not in our import) prompted to upload their BC? Waiting on Heather's response.<div class="detail">If PM's built-in BC collection handles new players automatically, we remove the question. If not, we keep it. Critical question — don't remove until answered.</div></div><div class="item-owner">Steven</div></div>
-    <div class="item"><div class="item-icon">☐</div><div class="item-text"><strong>Refund Policy waiver: Remove</strong> — Heather confirmed it duplicates the Merchant Account refund policy at checkout. Remove from player questions. Confirming checkout agreement stays.<div class="detail">Will reduce waivers from 3 to 2 (Standards of Conduct + Liability Release).</div></div><div class="item-owner">Steven</div></div>
-    <div class="item"><div class="item-icon">❓</div><div class="item-text"><strong>BC-verified import file format</strong> — PM will conduct the BC-verified import for us (we can't do it ourselves). Asked Heather what file format/template is needed and whether to send all players or just verified ones.<div class="detail">Sara confirmed she wants BC-verified players imported.</div></div><div class="item-owner">Steven</div></div>
+    <div class="item"><div class="item-icon">✅</div><div class="item-text"><strong>U19 age classification upgraded</strong> — PM added U19 as an age group.</div></div>
+    <div class="item"><div class="item-icon">☐</div><div class="item-text"><strong>NPF: Attach to all 17 packages in bulk</strong> — Heather confirmed bulk selection is available. Do today.<div class="detail">Set accounting code to 5703. If any package is missing the NPF, players won't be charged the $25 national fee.</div></div><div class="item-owner">Steven</div></div>
+    <div class="item"><div class="item-icon">☐</div><div class="item-text"><strong>Instructions block: Add text</strong> — Quick fix. Do today.</div><div class="item-owner">Steven</div></div>
+    <div class="item"><div class="item-icon">☐</div><div class="item-text"><strong>BC question: Remove conditional, keep upload</strong> — Heather clarified: keep the BC upload element, remove the conditional question ("Have you played before?"). Verified players (from our import) automatically skip the upload. New players are prompted to upload. The system handles both cases.<div class="detail">This means our player questions go from 13 items to 12 (remove the conditional radio, keep the file upload).</div></div><div class="item-owner">Steven</div></div>
+    <div class="item"><div class="item-icon">☐</div><div class="item-text"><strong>Refund Policy waiver: Remove</strong> — Confirmed checkout refund policy from Merchant Account stays. Remove the waiver from player questions. Do today.<div class="detail">Waivers go from 3 to 2 (Standards of Conduct + Liability Release).</div></div><div class="item-owner">Steven</div></div>
+    <div class="item"><div class="item-icon">☐</div><div class="item-text"><strong>BC import file: Standard CSV, verified players only</strong> — Heather confirmed: use the standard Player Import CSV with just our BC-verified players. PM flags them as verified on import. We import non-verified players ourselves separately.</div><div class="item-owner">Steven → PM</div></div>
   </div>
 
   <h2>Waiting On <span class="tag tag-waiting">Blocked</span></h2>
@@ -227,9 +227,9 @@
     <div class="item"><div class="item-icon">✅</div><div class="item-text">PlayMetrics program review — completed April 29. 5 action items, clarifying questions sent.</div><div class="item-owner">PlayMetrics</div></div>
     <div class="item"><div class="item-icon">✅</div><div class="item-text">CC processing fee + service fee — Sara confirmed region absorbs, Heather acknowledged.</div><div class="item-owner">PlayMetrics</div></div>
     <div class="item"><div class="item-icon">⏳</div><div class="item-text">Merchant account activation</div><div class="item-owner">PlayMetrics</div></div>
-    <div class="item"><div class="item-icon">⏳</div><div class="item-text">Heather's response: how are new players (not imported) prompted for BC upload?</div><div class="item-owner">PlayMetrics</div></div>
-    <div class="item"><div class="item-icon">⏳</div><div class="item-text">BC-verified import file format/template</div><div class="item-owner">PlayMetrics</div></div>
-    <div class="item"><div class="item-icon">⏳</div><div class="item-text">PO box for customer service address — PM rejects it. Can this be overridden? Sara wants PO box on receipts, not a physical address.</div><div class="item-owner">PlayMetrics</div></div>
+    <div class="item"><div class="item-icon">✅</div><div class="item-text">BC question clarified (May 4): keep upload, remove conditional. Verified players skip, new players prompted automatically.</div><div class="item-owner">PlayMetrics</div></div>
+    <div class="item"><div class="item-icon">✅</div><div class="item-text">BC import format confirmed (May 4): standard Player Import CSV, verified players only. PM flags them.</div><div class="item-owner">PlayMetrics</div></div>
+    <div class="item"><div class="item-icon">⏳</div><div class="item-text">PO box for customer service address — PM rejects it. Can this be overridden?</div><div class="item-owner">PlayMetrics</div></div>
   </div>
 
   <h2>Kristen's Tasks <span class="tag tag-waiting">In Progress</span></h2>
@@ -245,9 +245,9 @@
     <div class="item"><div class="item-icon">✅</div><div class="item-text">NPF confirmed present: "AYSO Membership Fee MY2026", $25, Player, Checkout</div></div>
     <div class="item"><div class="item-icon">☐</div><div class="item-text">Verify NPF is attached to ALL 17 packages — Heather flagged this in program review<div class="detail">Set accounting code to 5703. If any package is missing the NPF, players won't be charged the $25 national fee.</div></div><div class="item-owner">Steven</div></div>
     <div class="item"><div class="item-icon">☐</div><div class="item-text">Add instructions text to Player Questions instructions block (currently empty)</div><div class="item-owner">Steven</div></div>
-    <div class="item"><div class="item-icon">☐</div><div class="item-text">Remove Refund Policy waiver from player questions (duplicates Merchant Account checkout agreement)</div><div class="item-owner">Steven</div></div>
-    <div class="item"><div class="item-icon">❓</div><div class="item-text">Resolve BC question — remove or keep? Waiting on Heather's clarification on how new players are prompted<div class="detail">If PM's built-in BC collection handles new players automatically, remove. If not, keep. Do NOT remove until Heather confirms.</div></div><div class="item-owner">Steven</div></div>
-    <div class="item"><div class="item-icon">☐</div><div class="item-text">Prepare BC-verified player file for PM to import<div class="detail">PM conducts this import (we can't do it ourselves). Waiting on Heather for file format/template. Sara confirmed she wants BC-verified players imported.</div></div><div class="item-owner">Steven → PM</div></div>
+    <div class="item"><div class="item-icon">☐</div><div class="item-text">Remove Refund Policy waiver from player questions</div><div class="item-owner">Steven</div></div>
+    <div class="item"><div class="item-icon">☐</div><div class="item-text">Remove conditional BC question ("Have you played before?"), keep the BC file upload element<div class="detail">Heather confirmed May 4: verified players skip automatically, new players are prompted to upload. System handles both cases.</div></div><div class="item-owner">Steven</div></div>
+    <div class="item"><div class="item-icon">☐</div><div class="item-text">Prepare BC-verified player CSV from Sports Affinity using standalone import tool<div class="detail">Source: SA "Player Detail | upload format" + "All Player Applications Detail" reports. Tool handles all formatting. Send output to PM.</div></div><div class="item-owner">Steven → PM</div></div>
     <div class="item"><div class="item-icon">☐</div><div class="item-text">Prepare general player import CSV from cleaned Enrollment Details</div><div class="item-owner">Steven</div></div>
     <div class="item"><div class="item-icon">☐</div><div class="item-text">Upload player CSV to PlayMetrics, verify 10-15 records</div><div class="item-owner">Steven</div></div>
     <div class="item"><div class="item-icon">☐</div><div class="item-text">Send invites to imported families</div><div class="item-owner">Steven</div></div>
@@ -301,7 +301,7 @@
     <tr><td>Fees</td><td>Region absorbs CC + service fees — confirmed April 29</td></tr>
     <tr><td>Friend/coach request</td><td>Package-specific: "Division" dropdown, linked questions for 6U/7U/8U only</td></tr>
     <tr><td>Uniform</td><td>3 fields: size category, jersey, shorts (with "Select..." instruction defaults)</td></tr>
-    <tr><td>Waivers</td><td>Pending: 2 after Refund Policy removal (Standards of Conduct + Liability Release). BC question also pending removal if PM confirms new players are handled automatically.</td></tr>
+    <tr><td>Waivers</td><td>2: Standards of Conduct + Liability Release. Refund Policy waiver being removed (duplicates checkout). BC conditional question being removed (system handles automatically).</td></tr>
     <tr><td>U19 age classification</td><td>Upgraded by PM — can now use age group selector instead of birth date range workaround</td></tr>
     <tr><td>Volunteer positions</td><td>5: Head Coach, Asst Coach, Team Manager, Referee, Board Member</td></tr>
     <tr><td>Refund deadline</td><td>July 15, 2026. $30 non-refundable (includes $25 NPF). Policy text updated in merchant account April 28.</td></tr>
@@ -314,7 +314,8 @@
   <h2>Project Documents</h2>
   <div class="card">
     <h4>Generated Guides</h4>
-    <p>Data Import Steps (HTML) — 12-step guide with interactive checklist</p>
+    <p>Data Import Steps (HTML) — 11-step guide with interactive checklist, SA-based workflow</p>
+    <p>PlayMetrics Import Tool (Python) — standalone tool for converting SA reports to PM import CSVs, shareable with other regions</p>
     <p>Volunteer Compliance Guide (HTML) — implementation guide for Sara</p>
     <p>Website Migration Guide (HTML) — SC→PM redirect, comms, embedded AYSO assets</p>
     <p>Game Scheduling Guide (HTML) — SC→PM scheduling concept map for Ben Hauser</p>
