@@ -575,7 +575,7 @@
         <li><strong>Prompts</strong> you to add additional seasons' files (if you downloaded prior years)</li>
         <li><strong>Merges</strong> multi-season data, deduplicating by player name + DOB</li>
         <li><strong>Filters out</strong> aged-out players (born before Aug 1, 2007 for Fall 2026)</li>
-        <li><strong>Clears team names</strong> for Jamboree players (keeps the player for BC verification)</li>
+        <li><strong>Blanks team column</strong> — prior season teams don't exist in PM; teams built fresh after draft</li>
         <li><strong>Determines BC status</strong> from the Applications report Media column (B = BC on file)</li>
         <li><strong>Formats</strong> phones (XXX-XXX-XXXX), ZIPs (5 digits), DOBs (MM/DD/YYYY)</li>
         <li><strong>Splits output</strong> into BC-verified and non-verified CSV files</li>
@@ -609,7 +609,7 @@
         <tr><td>city</td><td>City</td><td>None</td></tr>
         <tr><td>state</td><td>State</td><td>None</td></tr>
         <tr><td>zip</td><td>ZIPCode</td><td>91607-3715 → 91607 (truncate +4)</td></tr>
-        <tr><td>team</td><td>TeamName</td><td>Blanked for Jamboree teams</td></tr>
+        <tr><td>team</td><td>—</td><td>Always blank — SA has prior season teams that don't exist in PM. Teams built fresh after registration.</td></tr>
       </table>
 
       <div class="alert alert-info">
@@ -833,7 +833,6 @@
         <tr><th>Report</th><th>Use For Import?</th><th>Notes</th></tr>
         <tr><td>Player Detail | upload format</td><td><strong>✅ Required</strong></td><td>Pre-split names, M/F gender, parent2 data, addresses. Best source for PM import.</td></tr>
         <tr><td>All Player Applications Detail</td><td><strong>✅ Required</strong></td><td>Media column shows BC type (B = birth certificate). Also shows application history.</td></tr>
-        <tr><td>Player Detail With All Fields</td><td>Optional</td><td>78 columns including BC District Verified (Y/N), emergency contacts. Names are "Last First" format — requires splitting. Use if you need BC District Verified cross-reference.</td></tr>
         <tr><td>Player - Detail</td><td>No</td><td>Basic player info without parent2 or addresses.</td></tr>
         <tr><td>Address to Excel Format</td><td>No</td><td>Mailing labels format.</td></tr>
         <tr><td>Application Forms (PDF)</td><td>No</td><td>Individual player application forms as PDF.</td></tr>
