@@ -68,17 +68,17 @@
 
 <header>
   <h1>PlayMetrics Migration Status</h1>
-  <div class="meta">AYSO Region 58 — Fall 2026 Season &nbsp;|&nbsp; Last updated May 4, 2026</div>
+  <div class="meta">AYSO Region 58 — Fall 2026 Season &nbsp;|&nbsp; Last updated May 17, 2026</div>
 </header>
 <nav style="background:#f5f0eb;padding:0.5rem 1.5rem;font-family:Anybody,sans-serif;font-size:0.82rem;border-bottom:1px solid #e7e5e4;"><a href="index.html" style="color:#1d4ed8;text-decoration:none;font-weight:600;">← All Region 58 Guides</a></nav>
 <div class="container">
 
   <div class="progress-header">
-    <div class="progress-ring"><svg width="80" height="80" viewBox="0 0 80 80"><circle class="bg" cx="40" cy="40" r="35"/><circle class="fill" cx="40" cy="40" r="35"/></svg><div class="pct">92%</div></div>
-    <div class="progress-stats"><strong>Import tool built and tested — ready to execute.</strong><br>All program review items resolved May 4. SA data pipeline complete: 1,377 BC-verified / 32 non-verified. Remaining: execute PM config changes, send BC file to PM, merchant account activation.</div>
+    <div class="progress-ring"><svg width="80" height="80" viewBox="0 0 80 80"><circle class="bg" cx="40" cy="40" r="35"/><circle class="fill" cx="40" cy="40" r="35" style="stroke-dashoffset:22"/></svg><div class="pct">90%</div></div>
+    <div class="progress-stats"><strong>Test group launch succeeded May 16 — opening to public Monday.</strong><br>2,334 BC-verified players imported. 8 test registrations completed by board members. Account enabled. Remaining: import 178 non-verified players + ~25 new SC accounts, send bulk invitations, open to general public.</div>
   </div>
 
-  <div class="callout callout-green"><strong>✅ Configuration Verified via Live Test Parent Walkthrough</strong>All data below has been verified by reading the live program builder (program 101848) and completing a full end-to-end test parent registration on April 26, 2026. Test players: Bruce S (07UB Boys), Mary S (10UG Girls), Harry S (12UB Boys), Chris S (14UB Boys).</div>
+  <div class="callout callout-green"><strong>✅ Full Registration Flow Validated</strong>Test group (4 board families, 8 players) registered May 16 via imported invitation links. Invitation emails, registration, confirmation emails, volunteer signups, and coaching requests all working. Annie Grabarsky: "It was an easy process!" App flow also tested by Sara — "the app flow is great."</div>
 
   <h2>Team & Contacts</h2>
   <table>
@@ -137,7 +137,7 @@
   <p>19 form elements configured. Parent sees these for each child:</p>
   <div class="item-group">
     <div class="item"><div class="item-icon">1</div><div class="item-text"><strong>Player Photo</strong> — file upload, optional<div class="detail">"Please provide a forward facing headshot without any head gear, sunglasses, other people, or pets."</div></div></div>
-    <div class="item"><div class="item-icon">2</div><div class="item-text"><strong>BC Question</strong> — "Has your player played in AYSO Region 58 before and have you provided age verification/birth certificate before?" Yes/No<div class="detail">"No" triggers linked Birth Certificate file upload. Verified working.</div></div></div>
+    <div class="item"><div class="item-icon">2</div><div class="item-text"><strong>Birth Certificate Upload</strong> — file upload, "skip verified players" toggled ON<div class="detail">Conditional radio question ("Have you played before?") removed per Heather (May 14). Upload element retained. Verified players from import automatically skip.</div></div></div>
     <div class="item"><div class="item-icon">3</div><div class="item-text"><strong>Division</strong> — package-specific dropdown, auto-populated with division name<div class="detail">For 6U/7U/8U: shows "Do you have a team mate request?" Yes/No + "Do you have a coach request?" Yes/No. For 10U+: parent sees their division name only, no linked questions — clean display.</div></div></div>
     <div class="item"><div class="item-icon">4</div><div class="item-text"><strong>School Name</strong> — text field</div></div>
     <div class="item"><div class="item-icon">5</div><div class="item-text"><strong>Years of Soccer Experience</strong> — dropdown (None, 1, 2, 3, 4+)</div></div>
@@ -146,9 +146,11 @@
     <div class="item"><div class="item-icon">8</div><div class="item-text"><strong>Player Jersey Sizes</strong> — dropdown (Extra Small, Small, Medium, Large, Extra Large, Extra Extra Large)</div></div>
     <div class="item"><div class="item-icon">9</div><div class="item-text"><strong>Player Short Sizes</strong> — dropdown (Extra Small, Small, Medium, Large, Extra Large, Extra Extra Large)</div></div>
     <div class="item"><div class="item-icon">10</div><div class="item-text"><strong>Medical</strong> — "Does your player have any conditions of which program staff should be aware?" Yes/No<div class="detail">"Yes" triggers linked text field. Verified working on Mary's page.</div></div></div>
-    <div class="item"><div class="item-icon">11</div><div class="item-text"><strong>AYSO Standards of Conduct Waiver</strong></div></div>
-    <div class="item"><div class="item-icon">12</div><div class="item-text"><strong>AYSO Player and Parent Agreement & Liability Release Waiver</strong></div></div>
-    <div class="item"><div class="item-icon">13</div><div class="item-text"><strong>Refund Policy Waiver</strong> (regional)<div class="detail">Note: there is also a refund policy checkbox at checkout — both exist.</div></div></div>
+    <div class="item"><div class="item-icon">11</div><div class="item-text"><strong>Soccer experience outside Region 58</strong> — multi-select<div class="detail">"None" option added after test group feedback (Steve Post chose "Other" as workaround). Fixed by Sara May 16.</div></div></div>
+    <div class="item"><div class="item-icon">12</div><div class="item-text"><strong>Coach Request</strong> — full name text field (added from board meeting)</div></div>
+    <div class="item"><div class="item-icon">13</div><div class="item-text"><strong>Soccer Position Preference</strong> — dropdown (surfaces club experience without asking directly)</div></div>
+    <div class="item"><div class="item-icon">14</div><div class="item-text"><strong>AYSO Standards of Conduct Waiver</strong></div></div>
+    <div class="item"><div class="item-icon">15</div><div class="item-text"><strong>AYSO Player and Parent Agreement & Liability Release Waiver</strong></div></div>
   </div>
 
   <h3>Program Questions — Section 2 of 4 (once per registration)</h3>
@@ -183,7 +185,7 @@
   </table>
   <div class="item-group">
     <div class="item"><div class="item-icon">✅</div><div class="item-text">"Add a donation?" prompt, refund policy checkbox, mailing address captured</div></div>
-    <div class="item"><div class="item-icon">✅</div><div class="item-text">Payment Method: "Test Account - No Payment Method" (merchant not yet active)</div></div>
+    <div class="item"><div class="item-icon">✅</div><div class="item-text">Payment Method: Merchant account active — test group processed payments May 16</div></div>
   </div>
 
   <h3>Confirmation Page</h3>
@@ -196,6 +198,19 @@
     <div class="item"><div class="item-icon">✅</div><div class="item-text">Registration Confirmation (Standard) + Waitlist Confirmation (Standard)</div></div>
     <div class="item"><div class="item-icon">✅</div><div class="item-text">Variables: $$PlayerName$$, $$ProgramName$$, $$PackageName$$</div></div>
   </div>
+
+  <h3>Where to Find Registration Data (confirmed May 16–17)</h3>
+  <table>
+    <tr><th>Data</th><th>Path</th></tr>
+    <tr><td>Division enrollment breakdown</td><td>Programs → 2026 Fall Core (each package shows player count)</td></tr>
+    <tr><td>Individual player responses</td><td>Programs → 2026 Fall Core → click player's subscription</td></tr>
+    <tr><td>Bulk registration response export</td><td>Programs → 2026 Fall Core → More Actions → export options (CSV)</td></tr>
+    <tr><td>Volunteer signups from registration</td><td>Programs → 2026 Fall Core → More Actions → Export Volunteer Info</td></tr>
+    <tr><td>Coaching signups</td><td>Leagues → Coaching Requests (also shows Coach Request Link)</td></tr>
+    <tr><td>Parent's copy of all answers</td><td>Confirmation email from noreply@ayso58.playmetrics.com — includes every question response, waivers, volunteer positions</td></tr>
+    <tr><td>Active subscriptions</td><td>Programs → 2026 Fall Core dashboard — count of completed registrations (per player, not per family)</td></tr>
+  </table>
+  <div class="callout callout-blue"><strong>💡 Players vs Leagues</strong>Registered players appear under Programs → Program Players. They do NOT appear under Leagues until assigned to teams — that's the team formation step, covered in the July 1 League Operations webinar. This is expected behavior, not a bug.</div>
 
   <h2>Known Issues</h2>
   <div class="item-group">
@@ -214,24 +229,35 @@
     <div class="item"><div class="item-icon">✅</div><div class="item-text">Standalone import tool built, tested, published (May 4)<div class="detail">Python tool: SA playerUpload + Player Photo BC Info → PM Player Import CSV. Tested against real data: 1,377 verified / 32 non-verified. Supports --dir batch mode, multi-season merge, flexible filename matching. VS Code project with .exe build pipeline. Published at <a href="https://github.com/sdavis9248/playmetrics-import">github.com/sdavis9248/playmetrics-import</a>.</div></div><div class="item-owner">Steven</div></div>
   </div>
 
-  <h3>Program Review Action Items (from Heather — all resolved May 4, action plan confirmed)</h3>
+  <h3>Program Review Action Items (from Heather — all resolved, changes applied May 14)</h3>
   <div class="item-group">
     <div class="item"><div class="item-icon">✅</div><div class="item-text"><strong>U19 age classification upgraded</strong> — PM added U19 as an age group.</div></div>
-    <div class="item"><div class="item-icon">☐</div><div class="item-text"><strong>NPF: Attach to all 17 packages in bulk</strong> — Heather confirmed bulk selection is available. Steven and Sara reviewing together.<div class="detail">Set accounting code to 5703. If any package is missing the NPF, players won't be charged the $25 national fee.</div></div><div class="item-owner">Steven + Sara</div></div>
-    <div class="item"><div class="item-icon">☐</div><div class="item-text"><strong>Instructions block: Add text</strong> — Steven and Sara reviewing together.</div><div class="item-owner">Steven + Sara</div></div>
-    <div class="item"><div class="item-icon">☐</div><div class="item-text"><strong>BC question: Remove conditional, keep upload</strong> — Heather clarified: keep the BC upload element, remove the conditional question ("Have you played before?"). Verified players (from our import) automatically skip the upload. New players are prompted to upload. The system handles both cases.<div class="detail">This means our player questions go from 13 items to 12 (remove the conditional radio, keep the file upload).</div></div><div class="item-owner">Steven</div></div>
-    <div class="item"><div class="item-icon">☐</div><div class="item-text"><strong>Refund Policy waiver: Remove</strong> — Confirmed checkout refund policy from Merchant Account stays. Remove the waiver from player questions. Steven and Sara reviewing together.<div class="detail">Waivers go from 3 to 2 (Standards of Conduct + Liability Release).</div></div><div class="item-owner">Steven</div></div>
-    <div class="item"><div class="item-icon">☐</div><div class="item-text"><strong>BC import file: Standard CSV, verified players only</strong> — Heather confirmed: use the standard Player Import CSV with just our BC-verified players. PM flags them as verified on import. We import non-verified players ourselves separately.<div class="detail">BC source: SA "Player Photo BC Info" report (BC upload dates + verification dates). Standalone Python tool built and tested. R58 result: 1,377 verified / 32 non-verified out of 1,409 eligible. GitHub: <a href="https://github.com/sdavis9248/playmetrics-import">sdavis9248/playmetrics-import</a></div></div><div class="item-owner">Steven → PM</div></div>
+    <div class="item"><div class="item-icon">✅</div><div class="item-text"><strong>NPF: Attached to all 17 packages</strong> — accounting code 5703.</div><div class="item-owner">Steven + Sara</div></div>
+    <div class="item"><div class="item-icon">✅</div><div class="item-text"><strong>Instructions block: Cleared</strong> — empty block removed.</div><div class="item-owner">Steven + Sara</div></div>
+    <div class="item"><div class="item-icon">✅</div><div class="item-text"><strong>BC question: Conditional removed, upload kept</strong> — "skip verified players" ON. Sara confirmed to Heather May 14.</div><div class="item-owner">Steven + Sara</div></div>
+    <div class="item"><div class="item-icon">✅</div><div class="item-text"><strong>Refund Policy waiver: Removed</strong> — duplicated checkout refund policy. Waivers now 2: Standards of Conduct + Liability Release.</div><div class="item-owner">Steven</div></div>
+    <div class="item"><div class="item-icon">✅</div><div class="item-text"><strong>BC import: 2,334 verified players imported by Heather</strong> — 3 seasons (2023–2025) deduplicated. File sent via AES-256 encrypted ZIP. Non-verified (178 players) imported separately by Steven.<div class="detail">Import tool updated: multi-season merge, 2,512 total unique players. GitHub: <a href="https://github.com/sdavis9248/playmetrics-import">sdavis9248/playmetrics-import</a></div></div><div class="item-owner">Steven → PM</div></div>
   </div>
 
-  <h2>Waiting On <span class="tag tag-waiting">Blocked</span></h2>
+  <h2>Heather Q&A <span class="tag tag-progress">May 15</span></h2>
+  <table>
+    <tr><th>#</th><th>Question</th><th>Response</th><th>Status</th></tr>
+    <tr><td>1</td><td>Can we resend invitations?</td><td>"You can resend to any accounts that are not verified in the system still."</td><td><span class="tag tag-done">Answered</span></td></tr>
+    <tr><td>2</td><td>Can we get the unique invitation link per player?</td><td>"There isn't a way to invite a person to the system with specific links." — <em>Clarification sent; PM's own help docs describe unique Sign Up links for imported players.</em></td><td><span class="tag tag-progress">Clarifying</span></td></tr>
+    <tr><td>3</td><td>Invitation status per player?</td><td>Screenshot didn't come through Zendesk — asked to resend.</td><td><span class="tag tag-progress">Clarifying</span></td></tr>
+    <tr><td>4</td><td>Player export ID = invitation URL?</td><td>"I do not believe so."</td><td><span class="tag tag-done">Answered</span></td></tr>
+    <tr><td>5</td><td>Enable Mailchimp beta?</td><td>"Enabled"</td><td><span class="tag tag-done">Done</span></td></tr>
+    <tr><td>6</td><td>Gotchas for 178 non-verified import?</td><td>"Nothing special, just need to import them."</td><td><span class="tag tag-done">Clear</span></td></tr>
+    <tr><td>7</td><td>Enable/activate the account?</td><td>Account enabled — test registrations processed May 16.</td><td><span class="tag tag-done">Done</span></td></tr>
+  </table>
+
+  <h2>Remaining Blockers</h2>
   <div class="item-group">
-    <div class="item"><div class="item-icon">✅</div><div class="item-text">PlayMetrics program review — completed April 29. 5 action items, clarifying questions sent.</div><div class="item-owner">PlayMetrics</div></div>
-    <div class="item"><div class="item-icon">✅</div><div class="item-text">CC processing fee + service fee — Sara confirmed region absorbs, Heather acknowledged.</div><div class="item-owner">PlayMetrics</div></div>
-    <div class="item"><div class="item-icon">⏳</div><div class="item-text">Merchant account activation</div><div class="item-owner">PlayMetrics</div></div>
-    <div class="item"><div class="item-icon">✅</div><div class="item-text">BC question clarified (May 4): keep upload, remove conditional. Verified players skip, new players prompted automatically.</div><div class="item-owner">PlayMetrics</div></div>
-    <div class="item"><div class="item-icon">✅</div><div class="item-text">BC import format confirmed (May 4): standard Player Import CSV, verified players only. PM flags them.</div><div class="item-owner">PlayMetrics</div></div>
-    <div class="item"><div class="item-icon">⏳</div><div class="item-text">PO box for customer service address — PM rejects it. Can this be overridden?</div><div class="item-owner">PlayMetrics</div></div>
+    <div class="item"><div class="item-icon">✅</div><div class="item-text">PlayMetrics program review — completed, all 5 items resolved.</div><div class="item-owner">PlayMetrics</div></div>
+    <div class="item"><div class="item-icon">✅</div><div class="item-text">CC processing fee + service fee — region absorbs, confirmed.</div><div class="item-owner">PlayMetrics</div></div>
+    <div class="item"><div class="item-icon">✅</div><div class="item-text">Merchant account activation — active, test group payments processed.</div><div class="item-owner">PlayMetrics</div></div>
+    <div class="item"><div class="item-icon">✅</div><div class="item-text">BC question + import — both resolved and executed.</div><div class="item-owner">PlayMetrics</div></div>
+    <div class="item"><div class="item-icon">⚠️</div><div class="item-text">PO box for customer service address — PM rejects it. Low priority.</div><div class="item-owner">PlayMetrics</div></div>
   </div>
 
   <h2>Kristen's Tasks <span class="tag tag-waiting">In Progress</span></h2>
@@ -241,28 +267,32 @@
     <div class="item"><div class="item-icon">☐</div><div class="item-text">Verify tax ID (showing 95-6205398) and set payout frequency</div><div class="item-owner">Kristen</div></div>
   </div>
 
-  <h2>Pre-Launch Steps <span class="tag tag-progress">Next Up</span></h2>
-  <div class="callout callout-red"><strong>⛔ Import players BEFORE opening registration</strong>Importing after parents register creates account conflicts. Sequence: PM approves → import → send invites → open registration.</div>
+  <h2>Pre-Launch Steps <span class="tag tag-progress">Almost There</span></h2>
+  <div class="callout callout-green"><strong>✅ Import → Invite → Register flow confirmed</strong>Test group proved the full cycle: imported players received unique Sign Up links, clicked through, created passwords, and pre-loaded data was waiting. Parents completed remaining questions and registered. Full confirmation emails received with all responses.</div>
   <div class="item-group">
-    <div class="item"><div class="item-icon">✅</div><div class="item-text">NPF confirmed present: "AYSO Membership Fee MY2026", $25, Player, Checkout</div></div>
-    <div class="item"><div class="item-icon">☐</div><div class="item-text">Verify NPF is attached to ALL 17 packages — Heather flagged this in program review<div class="detail">Set accounting code to 5703. If any package is missing the NPF, players won't be charged the $25 national fee.</div></div><div class="item-owner">Steven + Sara</div></div>
-    <div class="item"><div class="item-icon">☐</div><div class="item-text">Add instructions text to Player Questions instructions block (currently empty)</div><div class="item-owner">Steven + Sara</div></div>
-    <div class="item"><div class="item-icon">☐</div><div class="item-text">Remove Refund Policy waiver from player questions</div><div class="item-owner">Steven + Sara</div></div>
-    <div class="item"><div class="item-icon">☐</div><div class="item-text">Remove conditional BC question ("Have you played before?"), keep the BC file upload element<div class="detail">Heather confirmed May 4: verified players skip automatically, new players are prompted to upload. System handles both cases.</div></div><div class="item-owner">Steven</div></div>
-    <div class="item"><div class="item-icon">☐</div><div class="item-text">Prepare BC-verified player CSV using standalone import tool and send to PM<div class="detail">Source: SA "Player Detail | upload format" + "Player Photo BC Info" reports. Tool uses BC upload/verification dates (not Media=B). Run with <code>--dir</code> for batch mode. Tested: 1,377 verified / 32 non-verified for R58.</div></div><div class="item-owner">Steven → PM</div></div>
-    <div class="item"><div class="item-icon">☐</div><div class="item-text">Prepare general player import CSV from cleaned Enrollment Details</div><div class="item-owner">Steven</div></div>
-    <div class="item"><div class="item-icon">☐</div><div class="item-text">Upload player CSV to PlayMetrics, verify 10-15 records</div><div class="item-owner">Steven</div></div>
-    <div class="item"><div class="item-icon">☐</div><div class="item-text">Send invites to imported families</div><div class="item-owner">Steven</div></div>
-    <div class="item"><div class="item-icon">☐</div><div class="item-text">Set up BC verification workflow: League → Sanctioning Body → Team Assignment → Configure Columns<div class="detail">Krista (R18) confirmed this is working as of April 29. Sandbox mode — nothing triggers parent notification until you click "Notify Players." Krista is writing up detailed verification notes.</div></div><div class="item-owner">Steven</div></div>
+    <div class="item"><div class="item-icon">✅</div><div class="item-text">NPF attached to all 17 packages — accounting code 5703</div></div>
+    <div class="item"><div class="item-icon">✅</div><div class="item-text">Instructions block cleared</div></div>
+    <div class="item"><div class="item-icon">✅</div><div class="item-text">Refund Policy waiver removed from player questions</div></div>
+    <div class="item"><div class="item-icon">✅</div><div class="item-text">Conditional BC question removed, BC upload kept with skip-verified ON</div></div>
+    <div class="item"><div class="item-icon">✅</div><div class="item-text">BC-verified player CSV sent to PM — 2,334 players imported by Heather</div></div>
+    <div class="item"><div class="item-icon">✅</div><div class="item-text">Account enabled — merchant active, test registrations processed</div></div>
+    <div class="item"><div class="item-icon">✅</div><div class="item-text">Test group: 4 families, 8 players registered successfully (May 16)</div></div>
+    <div class="item"><div class="item-icon">✅</div><div class="item-text">Sara drafted heads-up email for imported families — tested with board group</div></div>
+    <div class="item"><div class="item-icon">✅</div><div class="item-text">Volunteer positions toggle added to confirmation email template by Sara</div></div>
+    <div class="item"><div class="item-icon">✅</div><div class="item-text">"None" option added to soccer experience question (bug fix from test group)</div></div>
+    <div class="item"><div class="item-icon">☐</div><div class="item-text">Import 178 non-verified players — file ready, Heather confirmed no gotchas</div><div class="item-owner">Steven</div></div>
+    <div class="item"><div class="item-icon">☐</div><div class="item-text">Import ~25 new Sports Connect accounts (created 2026, players attached)</div><div class="item-owner">Steven</div></div>
   </div>
 
-  <h2>Go-Live Steps <span class="tag tag-blocked">After All Above</span></h2>
+  <h2>Go-Live Steps <span class="tag tag-waiting">Target: Monday May 18</span></h2>
   <div class="item-group">
-    <div class="item"><div class="item-icon">☐</div><div class="item-text">Toggle registration OPEN</div><div class="item-owner">Sara</div></div>
-    <div class="item"><div class="item-icon">☐</div><div class="item-text">Send go-live email via SC (AYSO template + header graphic) to non-imported families</div><div class="item-owner">Steven</div></div>
-    <div class="item"><div class="item-icon">☐</div><div class="item-text">Submit SC website redirect (through SC support, not PM)</div><div class="item-owner">Steven</div></div>
+    <div class="item"><div class="item-icon">☐</div><div class="item-text">Send Track 1 heads-up email to all imported families via Gmail mail merge from commissioner@ayso58.org</div><div class="item-owner">Sara + Steven</div></div>
+    <div class="item"><div class="item-icon">☐</div><div class="item-text">Trigger PM invitation emails (24-48 hrs after Track 1) from Players screen</div><div class="item-owner">Sara / Steven</div></div>
+    <div class="item"><div class="item-icon">☐</div><div class="item-text">SC "Register Now" button redirect to PM + hide SC login button</div><div class="item-owner">Sara → PM</div></div>
+    <div class="item"><div class="item-icon">☐</div><div class="item-text">Send Track 2 SC email blast to non-imported families (Fall Email Template ready)</div><div class="item-owner">Steven</div></div>
     <div class="item"><div class="item-icon">☐</div><div class="item-text">Upload rotator banner + announcement to SC website</div><div class="item-owner">Steven</div></div>
     <div class="item"><div class="item-icon">☐</div><div class="item-text">Post to Region 58 social media</div><div class="item-owner">Sara</div></div>
+    <div class="item"><div class="item-icon">☐</div><div class="item-text">Email tournament teams</div><div class="item-owner">Sara</div></div>
   </div>
 
   <h2>Post-Launch <span class="tag tag-later">Later</span></h2>
@@ -271,21 +301,33 @@
     <div class="item"><div class="item-icon">☐</div><div class="item-text">Add "Volunteer" level, enable Co-Ed Teams, update Team Staff Titles</div></div>
     <div class="item"><div class="item-icon">☐</div><div class="item-text">Import hidden Volunteer container teams, hide visibility</div></div>
     <div class="item"><div class="item-icon">☐</div><div class="item-text">Export volunteer data → import as Team Staff</div></div>
-    <div class="item"><div class="item-icon">☐</div><div class="item-text">Import to Governing System when access granted (summer 2026)</div></div>
+    <div class="item"><div class="item-icon">☐</div><div class="item-text">New volunteers without SC accounts → add directly in Sports Affinity to get AYSO ID and enter compliance pipeline<div class="detail">Closes the "new volunteer gap" — no need to wait for PM Governing System. Confirm exact SA admin steps with Jay.</div></div><div class="item-owner">Jay</div></div>
+    <div class="item"><div class="item-icon">☐</div><div class="item-text">Import to Governing System when access granted (summer 2026 — July 9 webinar expected to cover)</div></div>
     <div class="item"><div class="item-icon">☐</div><div class="item-text">Organize R58 Fingerprint Fair — early August (Jay coordinating, Sara to combine with coach meetings/training)</div><div class="item-owner">Jay</div></div>
+    <div class="item"><div class="item-icon">☐</div><div class="item-text">Play-up request Google Form — structured intake for parents requesting child play up (July 31 age cutoff)</div><div class="item-owner">Sara</div></div>
   </div>
   <div class="callout callout-amber">
     <strong>⚠️ Compliance → Scheduling Dependency</strong>
-    Jay's enforcement plan: no team without BG check + fingerprinting cleared, no game card without video training by Game 1. This means compliance deadlines drive the team formation timeline, which drives Ben's scheduling timeline. Sequence: Fingerprint fair (early Aug) → compliance verified → teams formed → Ben builds schedule → first games (Sep 19).
+    Jay's two-step enforcement: (1) BG check + fingerprinting before team assignment, (2) video training before Game 1 (Aug 24). This drives Ben's scheduling timeline. Sequence: Fingerprint fair (early Aug) → compliance verified → teams formed → Ben builds schedule → first games (Sep 19).
   </div>
-  <div class="callout callout-green"><strong>✅ Existing automation covers the gap</strong>Sports Affinity / ETrainU compliance automation continues for returning volunteers.</div>
+  <div class="callout callout-green"><strong>✅ Existing automation + SA workaround covers the gap</strong>Sports Affinity / ETrainU compliance automation continues for all volunteers. New volunteers without SC accounts can be added directly in SA. Full details in <a href="Volunteer_Compliance_Guide_Region58.html">Volunteer Compliance Guide</a>.</div>
+
+  <h3>Website (Duda)</h3>
+  <div class="item-group">
+    <div class="item"><div class="item-icon">✅</div><div class="item-text">Sara attended Duda training Zoom (May 14) — drag-and-drop builder</div></div>
+    <div class="item"><div class="item-icon">⚠️</div><div class="item-text">Privacy issue: board member gallery widgets expose personal emails from PM accounts<div class="detail">Sara set her info to private, added commissioner@ as secondary. All board members need to do the same before profiles go on Duda site.</div></div></div>
+    <div class="item"><div class="item-icon">☐</div><div class="item-text">Sara prefers fresh start — streamline, no import from old SC site</div></div>
+    <div class="item"><div class="item-icon">☐</div><div class="item-text">FAQ widget — convert registration info into modern FAQ. AI email agent can identify common questions.</div></div>
+    <div class="item"><div class="item-icon">☐</div><div class="item-text">Confirm with Paula that ayso58.org domain switchover is in Duda rollout plan</div><div class="item-owner">Steven</div></div>
+  </div>
   <h3>Other</h3>
   <div class="item-group">
-    <div class="item"><div class="item-icon">☐</div><div class="item-text">Volunteer Sign Up — Superusers agreed to enable for all pilot regions (confirm it's on for Region 58)</div></div>
+    <div class="item"><div class="item-icon">☐</div><div class="item-text">Volunteer Sign Up beta — confirm enabled for Region 58 (for non-coaching volunteer signups after registration)</div></div>
+    <div class="item"><div class="item-icon">✅</div><div class="item-text">Mailchimp beta integration enabled by Heather — set up for ongoing season communications</div></div>
     <div class="item"><div class="item-icon">☐</div><div class="item-text">Archive old test season/league</div></div>
     <div class="item"><div class="item-icon">☐</div><div class="item-text">Update SportsConnectAutomation modules for PlayMetrics data sources</div></div>
+    <div class="item"><div class="item-icon">☐</div><div class="item-text">Update AI email agent with PlayMetrics knowledge base for registrar@ayso58.org auto-drafts</div></div>
     <div class="item"><div class="item-icon">☐</div><div class="item-text">Set up Locations & Fields in PM for game scheduling (Ben Hauser) — attend scheduling webinar first</div></div>
-    <div class="item"><div class="item-icon">☐</div><div class="item-text">Confirm with Paula that ayso58.org domain switchover is in the Duda rollout plan<div class="detail">Domain is owned by AYSO National — they handle DNS. We don't need to do anything, but need to make sure it's on their list for when the Duda website is ready.</div></div><div class="item-owner">Steven</div></div>
   </div>
 
   <h2>Quick Reference</h2>
@@ -303,11 +345,11 @@
     <tr><td>Fees</td><td>Region absorbs CC + service fees — confirmed April 29</td></tr>
     <tr><td>Friend/coach request</td><td>Package-specific: "Division" dropdown, linked questions for 6U/7U/8U only</td></tr>
     <tr><td>Uniform</td><td>3 fields: size category, jersey, shorts (with "Select..." instruction defaults)</td></tr>
-    <tr><td>Waivers</td><td>2: Standards of Conduct + Liability Release. Refund Policy waiver being removed (duplicates checkout). BC conditional question being removed (system handles automatically).</td></tr>
+    <tr><td>Waivers</td><td>2: Standards of Conduct + Liability Release. Refund Policy waiver removed (duplicates checkout). BC conditional question removed (system handles automatically).</td></tr>
     <tr><td>U19 age classification</td><td>Upgraded by PM — can now use age group selector instead of birth date range workaround</td></tr>
     <tr><td>Volunteer positions</td><td>5: Head Coach, Asst Coach, Team Manager, Referee, Board Member</td></tr>
     <tr><td>Refund deadline</td><td>July 15, 2026. $30 non-refundable (includes $25 NPF). Policy text updated in merchant account April 28.</td></tr>
-    <tr><td>Registration target</td><td>May 1, 2026</td></tr>
+    <tr><td>Registration target</td><td>Open to public May 18, 2026 (test group launched May 16)</td></tr>
     <tr><td>TAX ID</td><td>95-6205398</td></tr>
     <tr><td>Email variables</td><td>$$PlayerName$$, $$ProgramName$$, $$PackageName$$</td></tr>
     <tr><td>Domain</td><td>ayso58.org — owned by AYSO National, they handle DNS. Stays on SC until Duda website is ready.</td></tr>
@@ -361,7 +403,7 @@
     <a class="ref-link" href="https://home.playmetrics.com/youth-soccer-field-manager" target="_blank">PM Field Manager</a>
   </div>
 
-  <footer>Region 58 — Van Nuys/Sherman Oaks, CA &nbsp;|&nbsp; Prepared by Steve Davis, Registrar<br>Sources: Live program builder read (program 101848), test parent walkthrough (April 26, 2026), PlayMetrics Help Center, MY2026 webinars, setup sessions with Sara, AYSO National assets</footer>
+  <footer>Region 58 — Van Nuys/Sherman Oaks, CA &nbsp;|&nbsp; Prepared by Steve Davis, Registrar<br>Sources: Live program builder (101848), test parent walkthrough (April 26), test group launch (May 16), PlayMetrics Help Center, MY2026 webinars, Heather Deist correspondence, Sara/Steven planning sessions (May 14–17), AYSO National assets</footer>
 
 </div>
 </body>
