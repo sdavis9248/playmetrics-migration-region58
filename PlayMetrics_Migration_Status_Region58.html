@@ -68,14 +68,14 @@
 
 <header>
   <h1>PlayMetrics Migration Status</h1>
-  <div class="meta">AYSO Region 58 — Fall 2026 Season &nbsp;|&nbsp; Last updated May 17, 2026</div>
+  <div class="meta">AYSO Region 58 — Fall 2026 Season &nbsp;|&nbsp; Last updated May 19, 2026</div>
 </header>
 <nav style="background:#f5f0eb;padding:0.5rem 1.5rem;font-family:Anybody,sans-serif;font-size:0.82rem;border-bottom:1px solid #e7e5e4;"><a href="index.html" style="color:#1d4ed8;text-decoration:none;font-weight:600;">← All Region 58 Guides</a></nav>
 <div class="container">
 
   <div class="progress-header">
-    <div class="progress-ring"><svg width="80" height="80" viewBox="0 0 80 80"><circle class="bg" cx="40" cy="40" r="35"/><circle class="fill" cx="40" cy="40" r="35" style="stroke-dashoffset:22"/></svg><div class="pct">90%</div></div>
-    <div class="progress-stats"><strong>Test group launch succeeded May 16 — opening to public Monday.</strong><br>2,334 BC-verified players imported. 8 test registrations completed by board members. Account enabled. Remaining: import 178 non-verified players + ~25 new SC accounts, send bulk invitations, open to general public.</div>
+    <div class="progress-ring"><svg width="80" height="80" viewBox="0 0 80 80"><circle class="bg" cx="40" cy="40" r="35"/><circle class="fill" cx="40" cy="40" r="35" style="stroke-dashoffset:4"/></svg><div class="pct">98%</div></div>
+    <div class="progress-stats"><strong>Heads-up emails sending. Registration launch in progress.</strong><br>2,000 of 2,152 heads-up emails sent May 19 via custom Python campaign tool from registrar@ayso58.org. Remaining ~152 send after midnight. PM invitations trigger tomorrow. Professional HTML email with personalization, AYSO branding, and positive BC messaging.</div>
   </div>
 
   <div class="callout callout-green"><strong>✅ Full Registration Flow Validated</strong>Test group (4 board families, 8 players) registered May 16 via imported invitation links. Invitation emails, registration, confirmation emails, volunteer signups, and coaching requests all working. Annie Grabarsky: "It was an easy process!" App flow also tested by Sara — "the app flow is great."</div>
@@ -96,7 +96,7 @@
 
   <h3>Program & Region</h3>
   <div class="item-group">
-    <div class="item"><div class="item-icon">✅</div><div class="item-text">Program: "League 2026 Fall Core" (ID 101848), status: Draft<div class="detail">Region: AYSO Region 58 (Van Nuys/Sherman Oaks). Signup type: Open to everyone.</div></div></div>
+    <div class="item"><div class="item-icon">✅</div><div class="item-text">Program: "League 2026 Fall Core" (ID 101848), status: Published — May 16, 2026<div class="detail">Region: AYSO Region 58 (Van Nuys/Sherman Oaks). Signup type: Open to everyone. Registration: Open. Waitlist: Open.</div></div></div>
     <div class="item"><div class="item-icon">✅</div><div class="item-text">Season starts Saturday September 19, 2026 for 14U and younger<div class="detail">16U and 19U tentatively start SUNDAY August 16, 2026, expected to finish before high school soccer season.</div></div></div>
   </div>
 
@@ -239,19 +239,21 @@
     <div class="item"><div class="item-icon">✅</div><div class="item-text"><strong>BC import: 2,334 verified players imported by Heather</strong> — 3 seasons (2023–2025) deduplicated. File sent via AES-256 encrypted ZIP. Non-verified (178 players) imported separately by Steven.<div class="detail">Import tool updated: multi-season merge, 2,512 total unique players. GitHub: <a href="https://github.com/sdavis9248/playmetrics-import">sdavis9248/playmetrics-import</a></div></div><div class="item-owner">Steven → PM</div></div>
   </div>
 
-  <h2>Heather Q&A <span class="tag tag-progress">May 15</span></h2>
+  <h2>Heather Q&A <span class="tag tag-done">Resolved</span></h2>
   <table>
     <tr><th>#</th><th>Question</th><th>Response</th><th>Status</th></tr>
-    <tr><td>1</td><td>Can we resend invitations?</td><td>"You can resend to any accounts that are not verified in the system still."</td><td><span class="tag tag-done">Answered</span></td></tr>
-    <tr><td>2</td><td>Can we get the unique invitation link per player?</td><td>"There isn't a way to invite a person to the system with specific links." — <em>Clarification sent; PM's own help docs describe unique Sign Up links for imported players.</em></td><td><span class="tag tag-progress">Clarifying</span></td></tr>
-    <tr><td>3</td><td>Invitation status per player?</td><td>Screenshot didn't come through Zendesk — asked to resend.</td><td><span class="tag tag-progress">Clarifying</span></td></tr>
-    <tr><td>4</td><td>Player export ID = invitation URL?</td><td>"I do not believe so."</td><td><span class="tag tag-done">Answered</span></td></tr>
+    <tr><td>1</td><td>Can we resend invitations?</td><td>"You can resend to any accounts that are not verified… as many times as you want in bulk." Use Players → All Players → Manage Invitations.</td><td><span class="tag tag-done">Answered</span></td></tr>
+    <tr><td>2</td><td>Can we get the unique invitation link per player?</td><td>Links ARE unique per contact (token uses contact_id + cryptographic signature). We can't construct them ourselves, but resend via Manage Invitations handles it.</td><td><span class="tag tag-done">Resolved</span></td></tr>
+    <tr><td>3</td><td>Invitation status per player?</td><td>Players → All Players shows Invitations dashboard: Not Verified (invited, not registered), Not Invited, Delivery Failed (bounced), No Contacts. Manage Invitations button for bulk resend.</td><td><span class="tag tag-done">Answered</span></td></tr>
+    <tr><td>4</td><td>Player export ID = invitation URL?</td><td>No — token uses contact_id (from Player Contacts export), not player_id. Confirmed by decoding test group invitation links.</td><td><span class="tag tag-done">Confirmed</span></td></tr>
     <tr><td>5</td><td>Enable Mailchimp beta?</td><td>"Enabled"</td><td><span class="tag tag-done">Done</span></td></tr>
     <tr><td>6</td><td>Gotchas for 178 non-verified import?</td><td>"Nothing special, just need to import them."</td><td><span class="tag tag-done">Clear</span></td></tr>
     <tr><td>7</td><td>Enable/activate the account?</td><td>Account enabled — test registrations processed May 16.</td><td><span class="tag tag-done">Done</span></td></tr>
   </table>
 
-  <h2>Remaining Blockers</h2>
+  <div class="callout callout-green"><strong>✅ Invitation Tracking — Fully Solved</strong>Players → All Players shows an Invitations dashboard with real-time counts of Not Verified, Not Invited, Delivery Failed, and No Contacts. The "Manage Invitations" button allows bulk resend to anyone who hasn't responded. Combined with the Player Contacts export (which contains the contact_id used in invitation tokens), we can cross-reference and build targeted follow-up lists. Invitation emails are delivered via Mailjet (nvo1.mjt.lu tracking links).</div>
+
+  <h2>Remaining Blockers <span class="tag tag-done">None</span></h2>
   <div class="item-group">
     <div class="item"><div class="item-icon">✅</div><div class="item-text">PlayMetrics program review — completed, all 5 items resolved.</div><div class="item-owner">PlayMetrics</div></div>
     <div class="item"><div class="item-icon">✅</div><div class="item-text">CC processing fee + service fee — region absorbs, confirmed.</div><div class="item-owner">PlayMetrics</div></div>
@@ -267,7 +269,7 @@
     <div class="item"><div class="item-icon">☐</div><div class="item-text">Verify tax ID (showing 95-6205398) and set payout frequency</div><div class="item-owner">Kristen</div></div>
   </div>
 
-  <h2>Pre-Launch Steps <span class="tag tag-progress">Almost There</span></h2>
+  <h2>Pre-Launch Steps <span class="tag tag-done">Complete</span></h2>
   <div class="callout callout-green"><strong>✅ Import → Invite → Register flow confirmed</strong>Test group proved the full cycle: imported players received unique Sign Up links, clicked through, created passwords, and pre-loaded data was waiting. Parents completed remaining questions and registered. Full confirmation emails received with all responses.</div>
   <div class="item-group">
     <div class="item"><div class="item-icon">✅</div><div class="item-text">NPF attached to all 17 packages — accounting code 5703</div></div>
@@ -280,19 +282,23 @@
     <div class="item"><div class="item-icon">✅</div><div class="item-text">Sara drafted heads-up email for imported families — tested with board group</div></div>
     <div class="item"><div class="item-icon">✅</div><div class="item-text">Volunteer positions toggle added to confirmation email template by Sara</div></div>
     <div class="item"><div class="item-icon">✅</div><div class="item-text">"None" option added to soccer experience question (bug fix from test group)</div></div>
-    <div class="item"><div class="item-icon">☐</div><div class="item-text">Import 178 non-verified players — file ready, Heather confirmed no gotchas</div><div class="item-owner">Steven</div></div>
-    <div class="item"><div class="item-icon">☐</div><div class="item-text">Import ~25 new Sports Connect accounts (created 2026, players attached)</div><div class="item-owner">Steven</div></div>
+    <div class="item"><div class="item-icon">✅</div><div class="item-text">Import 178 non-verified players — completed May 18</div></div>
+    <div class="item"><div class="item-icon">✅</div><div class="item-text">Import new SC accounts (created on/after 04/01/2025, never enrolled) — completed May 18</div></div>
   </div>
 
-  <h2>Go-Live Steps <span class="tag tag-waiting">Target: Monday May 18</span></h2>
+  <h2>Go-Live Steps <span class="tag tag-progress">In Progress</span></h2>
+  <div class="callout callout-green"><strong>✅ Email Campaign Infrastructure Built</strong>Custom PlayMetrics email campaign module (<code>playmetrics_email_campaign.py</code>) added to SportsConnectAutomation framework. Sends personalized HTML emails via Gmail OAuth2, tracks per-recipient send status, respects 2,000/day Gmail limit with automatic resume, and cross-references PM Export Responses to track registration conversion. AI inbox assistant updated with PlayMetrics knowledge base for auto-drafting responses to registration questions.</div>
   <div class="item-group">
-    <div class="item"><div class="item-icon">☐</div><div class="item-text">Send Track 1 heads-up email to all imported families via Gmail mail merge from commissioner@ayso58.org</div><div class="item-owner">Sara + Steven</div></div>
-    <div class="item"><div class="item-icon">☐</div><div class="item-text">Trigger PM invitation emails (24-48 hrs after Track 1) from Players screen</div><div class="item-owner">Sara / Steven</div></div>
-    <div class="item"><div class="item-icon">☐</div><div class="item-text">SC "Register Now" button redirect to PM + hide SC login button</div><div class="item-owner">Sara → PM</div></div>
-    <div class="item"><div class="item-icon">☐</div><div class="item-text">Send Track 2 SC email blast to non-imported families (Fall Email Template ready)</div><div class="item-owner">Steven</div></div>
-    <div class="item"><div class="item-icon">☐</div><div class="item-text">Upload rotator banner + announcement to SC website</div><div class="item-owner">Steven</div></div>
+    <div class="item"><div class="item-icon">✅</div><div class="item-text">Heads-up email sent to ~2,000 families (May 19) — personalized HTML from registrar@ayso58.org<div class="detail">Professional HTML template with AYSO blue/gold branding, numbered steps, positive BC messaging ("your information will already be there including any birth certificate you previously uploaded"), personalized greeting per parent. Sent via custom Python campaign tool with tracking.</div></div><div class="item-owner">Steven</div></div>
+    <div class="item"><div class="item-icon">☐</div><div class="item-text">Send remaining ~152 heads-up emails (after midnight — Gmail daily limit)</div><div class="item-owner">Steven</div></div>
+    <div class="item"><div class="item-icon">☐</div><div class="item-text">Trigger PM invitation emails from Players → All Players → Manage Invitations</div><div class="item-owner">Sara / Steven</div></div>
+    <div class="item"><div class="item-icon">☐</div><div class="item-text">Monitor Invitations dashboard — track Not Verified, Delivery Failed, No Contacts</div><div class="item-owner">Steven</div></div>
+    <div class="item"><div class="item-icon">☐</div><div class="item-text">Resend invitations to non-responders after a few days via Manage Invitations</div><div class="item-owner">Steven</div></div>
     <div class="item"><div class="item-icon">☐</div><div class="item-text">Post to Region 58 social media</div><div class="item-owner">Sara</div></div>
+    <div class="item"><div class="item-icon">☐</div><div class="item-text">Update SC website — rotator banner + announcement bar pointing to PlayMetrics</div><div class="item-owner">Steven</div></div>
+    <div class="item"><div class="item-icon">☐</div><div class="item-text">SC "Register Now" button redirect to PM + hide SC login button</div><div class="item-owner">Sara → PM</div></div>
     <div class="item"><div class="item-icon">☐</div><div class="item-text">Email tournament teams</div><div class="item-owner">Sara</div></div>
+    <div class="item"><div class="item-icon">☐</div><div class="item-text">Run <code>--pm-campaign-status</code> with Export Responses CSV to track registration conversion</div><div class="item-owner">Steven</div></div>
   </div>
 
   <h2>Post-Launch <span class="tag tag-later">Later</span></h2>
@@ -325,8 +331,8 @@
     <div class="item"><div class="item-icon">☐</div><div class="item-text">Volunteer Sign Up beta — confirm enabled for Region 58 (for non-coaching volunteer signups after registration)</div></div>
     <div class="item"><div class="item-icon">✅</div><div class="item-text">Mailchimp beta integration enabled by Heather — set up for ongoing season communications</div></div>
     <div class="item"><div class="item-icon">☐</div><div class="item-text">Archive old test season/league</div></div>
-    <div class="item"><div class="item-icon">☐</div><div class="item-text">Update SportsConnectAutomation modules for PlayMetrics data sources</div></div>
-    <div class="item"><div class="item-icon">☐</div><div class="item-text">Update AI email agent with PlayMetrics knowledge base for registrar@ayso58.org auto-drafts</div></div>
+    <div class="item"><div class="item-icon">✅</div><div class="item-text">SportsConnectAutomation updated with PlayMetrics campaign module<div class="detail">New <code>playmetrics_email_campaign.py</code> module: loads PM All Players export, deduplicates by parent email, sends personalized HTML emails via Gmail OAuth2, tracks sends per-recipient, respects 2,000/day limit with auto-resume, cross-references against PM Export Responses for registration conversion tracking. CLI: <code>--pm-campaign</code>, <code>--pm-campaign-status</code>, <code>--pm-test</code>, <code>--pm-export</code>.</div></div></div>
+    <div class="item"><div class="item-icon">✅</div><div class="item-text">AI inbox assistant updated with PlayMetrics knowledge base<div class="detail">Updated <code>registrar_email_assistant.py</code>, <code>config.json</code>, and <code>response_style_guide.json</code>. New intent categories: invitation_link_issue, duplicate_account, playmetrics_help, bc_verification. PM-aware system prompt with invitation flow guidance, common troubleshooting, and fee info. Data context loads PM Export Responses CSV with SC fallback.</div></div></div>
     <div class="item"><div class="item-icon">☐</div><div class="item-text">Set up Locations & Fields in PM for game scheduling (Ben Hauser) — attend scheduling webinar first</div></div>
   </div>
 
@@ -349,7 +355,7 @@
     <tr><td>U19 age classification</td><td>Upgraded by PM — can now use age group selector instead of birth date range workaround</td></tr>
     <tr><td>Volunteer positions</td><td>5: Head Coach, Asst Coach, Team Manager, Referee, Board Member</td></tr>
     <tr><td>Refund deadline</td><td>July 15, 2026. $30 non-refundable (includes $25 NPF). Policy text updated in merchant account April 28.</td></tr>
-    <tr><td>Registration target</td><td>Open to public May 18, 2026 (test group launched May 16)</td></tr>
+    <tr><td>Registration target</td><td>Launched May 19, 2026 (test group May 16, heads-up emails sending May 19)</td></tr>
     <tr><td>TAX ID</td><td>95-6205398</td></tr>
     <tr><td>Email variables</td><td>$$PlayerName$$, $$ProgramName$$, $$PackageName$$</td></tr>
     <tr><td>Domain</td><td>ayso58.org — owned by AYSO National, they handle DNS. Stays on SC until Duda website is ready.</td></tr>
@@ -366,6 +372,8 @@
     <p>Website Migration Guide (HTML) — SC→PM redirect, comms, embedded AYSO assets</p>
     <p>Game Scheduling Guide (HTML) — SC→PM scheduling concept map for Ben Hauser</p>
     <p>Annotated Launch Checklist (DOCX) — checklist with video annotations</p>
+    <p>PlayMetrics Email Campaign Tool (Python) — <code>playmetrics_email_campaign.py</code> module in SportsConnectAutomation. Sends personalized HTML heads-up emails, tracks sends, cross-references registration conversion. CLI: <code>--pm-campaign</code>, <code>--pm-campaign-status</code>.</p>
+    <p>AI Inbox Assistant (Python) — <code>registrar_email_assistant.py</code> updated with PM knowledge base. Auto-drafts responses to registration questions about invitation links, duplicate accounts, BC verification, fees, and PlayMetrics navigation.</p>
   </div>
   <div class="card">
     <h4>Communication Assets (AYSO National)</h4>
@@ -403,7 +411,7 @@
     <a class="ref-link" href="https://home.playmetrics.com/youth-soccer-field-manager" target="_blank">PM Field Manager</a>
   </div>
 
-  <footer>Region 58 — Van Nuys/Sherman Oaks, CA &nbsp;|&nbsp; Prepared by Steve Davis, Registrar<br>Sources: Live program builder (101848), test parent walkthrough (April 26), test group launch (May 16), PlayMetrics Help Center, MY2026 webinars, Heather Deist correspondence, Sara/Steven planning sessions (May 14–17), AYSO National assets</footer>
+  <footer>Region 58 — Van Nuys/Sherman Oaks, CA &nbsp;|&nbsp; Prepared by Steve Davis, Registrar<br>Sources: Live program builder (101848), test parent walkthrough (April 26), test group launch (May 16), email campaign launch (May 19), PlayMetrics Help Center, MY2026 webinars, Heather Deist correspondence, Sara/Steven planning sessions (May 14–19), AYSO National assets</footer>
 
 </div>
 </body>
