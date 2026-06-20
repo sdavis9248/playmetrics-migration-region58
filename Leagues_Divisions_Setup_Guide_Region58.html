@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Leagues &amp; Divisions Setup — Region 58 Fall 2026 Runbook</title>
+<link href="https://fonts.googleapis.com/css2?family=Anybody:wght@400;600;800&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1c1917;
+    --paper: #fafaf9;
+    --warm: #f5f0eb;
+    --accent: #1d4ed8;
+    --accent-soft: #dbeafe;
+    --green: #166534;
+    --green-soft: #dcfce7;
+    --amber: #92400e;
+    --amber-soft: #fef3c7;
+    --red: #991b1b;
+    --red-soft: #fee2e2;
+    --gray: #78716c;
+    --border: #e7e5e4;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Source Serif 4', Georgia, serif;
+    background: var(--paper);
+    color: var(--ink);
+    line-height: 1.7;
+    padding: 0;
+  }
+
+  header {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 3rem 2rem 2.5rem;
+  }
+
+  header h1 {
+    font-family: 'Anybody', sans-serif;
+    font-weight: 800;
+    font-size: 2rem;
+    letter-spacing: -0.03em;
+    line-height: 1.15;
+  }
+
+  header .meta {
+    font-size: 0.85rem;
+    opacity: 0.6;
+    margin-top: 0.5rem;
+    font-family: 'Anybody', sans-serif;
+    font-weight: 400;
+  }
+
+  .container {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem 4rem;
+  }
+
+  .summary-box {
+    background: var(--warm);
+    border-radius: 8px;
+    padding: 1.5rem 1.75rem;
+    margin: 2rem 0;
+    font-size: 0.95rem;
+  }
+
+  .summary-box strong {
+    font-family: 'Anybody', sans-serif;
+    font-weight: 600;
+    display: block;
+    margin-bottom: 0.4rem;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--gray);
+  }
+
+  h2 {
+    font-family: 'Anybody', sans-serif;
+    font-weight: 800;
+    font-size: 1.3rem;
+    margin: 2.5rem 0 0.75rem;
+    letter-spacing: -0.02em;
+    padding-bottom: 0.4rem;
+    border-bottom: 2px solid var(--ink);
+  }
+
+  h2 .phase-num {
+    color: var(--accent);
+    margin-right: 0.4rem;
+  }
+
+  h3 {
+    font-family: 'Anybody', sans-serif;
+    font-weight: 600;
+    font-size: 1.05rem;
+    margin: 1.5rem 0 0.5rem;
+    color: var(--accent);
+  }
+
+  p { margin-bottom: 0.75rem; }
+
+  .status-tag {
+    display: inline-block;
+    font-family: 'Anybody', sans-serif;
+    font-weight: 600;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    padding: 0.2rem 0.6rem;
+    border-radius: 3px;
+    vertical-align: middle;
+    margin-left: 0.5rem;
+  }
+
+  .tag-done { background: var(--green-soft); color: var(--green); }
+  .tag-ready { background: var(--accent-soft); color: var(--accent); }
+  .tag-waiting { background: var(--amber-soft); color: var(--amber); }
+  .tag-optional { background: var(--warm); color: var(--gray); }
+
+  .card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1.25rem 1.5rem;
+    margin: 1rem 0;
+  }
+
+  .card h4 {
+    font-family: 'Anybody', sans-serif;
+    font-weight: 600;
+    font-size: 0.95rem;
+    margin-bottom: 0.4rem;
+  }
+
+  .card p { font-size: 0.9rem; margin-bottom: 0.5rem; }
+
+  .path {
+    font-family: 'Anybody', sans-serif;
+    font-weight: 600;
+    font-size: 0.8rem;
+    background: var(--accent-soft);
+    color: var(--accent);
+    padding: 0.15rem 0.5rem;
+    border-radius: 3px;
+    white-space: nowrap;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0;
+    font-size: 0.88rem;
+  }
+
+  th {
+    font-family: 'Anybody', sans-serif;
+    font-weight: 600;
+    text-align: left;
+    padding: 0.6rem 0.75rem;
+    background: var(--warm);
+    border: 1px solid var(--border);
+    font-size: 0.82rem;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+  }
+
+  td {
+    padding: 0.5rem 0.75rem;
+    border: 1px solid var(--border);
+    vertical-align: top;
+  }
+
+  td.center, th.center { text-align: center; }
+  .box { font-family: 'Anybody', sans-serif; color: var(--gray); }
+
+  a { color: var(--accent); }
+
+  ol, ul { padding-left: 1.4rem; margin-bottom: 0.75rem; }
+  li { margin-bottom: 0.4rem; font-size: 0.92rem; }
+  ol li { padding-left: 0.2rem; }
+
+  .callout {
+    padding: 1rem 1.25rem;
+    border-left: 4px solid;
+    border-radius: 4px;
+    margin: 1rem 0;
+    font-size: 0.88rem;
+  }
+
+  .callout-blue { background: var(--accent-soft); border-color: var(--accent); }
+  .callout-amber { background: var(--amber-soft); border-color: #d97706; }
+  .callout-green { background: var(--green-soft); border-color: var(--green); }
+  .callout-red { background: var(--red-soft); border-color: var(--red); }
+
+  .callout strong { display: block; margin-bottom: 0.2rem; font-family: 'Anybody', sans-serif; }
+  .callout .rec { font-style: italic; }
+
+  .checklist { list-style: none; padding-left: 0; }
+  .checklist li {
+    padding-left: 1.8rem;
+    position: relative;
+    margin-bottom: 0.55rem;
+    font-size: 0.92rem;
+  }
+  .checklist li::before {
+    content: "\2610";
+    position: absolute;
+    left: 0;
+    top: -0.05rem;
+    font-size: 1.1rem;
+    color: var(--accent);
+    font-family: 'Anybody', sans-serif;
+  }
+
+  .ref-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin: 0.75rem 0;
+  }
+
+  .ref-link {
+    font-family: 'Anybody', sans-serif;
+    font-weight: 400;
+    font-size: 0.75rem;
+    padding: 0.2rem 0.5rem;
+    background: var(--accent-soft);
+    border-radius: 3px;
+    color: var(--accent);
+    text-decoration: none;
+    white-space: nowrap;
+  }
+
+  .ref-link:hover { text-decoration: underline; }
+
+  footer {
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border);
+    font-size: 0.8rem;
+    color: var(--gray);
+    font-family: 'Anybody', sans-serif;
+  }
+
+  @media (max-width: 600px) {
+    header { padding: 2rem 1rem; }
+    header h1 { font-size: 1.5rem; }
+    .container { padding: 1rem; }
+    .path { white-space: normal; }
+  }
+
+  @media print {
+    header { background: white; color: black; border-bottom: 3px solid black; }
+    .card { border: 1px solid #ccc; }
+    body { font-size: 11pt; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Leagues &amp; Divisions Setup<br>Region 58 Runbook</h1>
+  <div class="meta">AYSO Region 58 — Fall 2026 (Membership Year 2026) Core / Recreational &nbsp;|&nbsp; Prepared June 20, 2026</div>
+</header>
+
+<div class="container">
+
+  <div class="summary-box">
+    <strong>What This Covers</strong>
+    A start-to-finish runbook for building the <em>leagues</em> and <em>divisions</em> that hold our Fall 2026 core/rec season in PlayMetrics. PlayMetrics organizes play as <strong>Programs → Leagues → Sanctioning Bodies</strong>. Registration (the Program) already exists; this guide stands up the operational <strong>In-House league</strong> and its <strong>divisions</strong> on top of it. Travel leagues and sanctioning bodies are for EXTRA/Alliance competitive play and are <strong>not</strong> needed here. Work through the pre-flight checklist first, then the phases in order. Every decision point is flagged with a recommended default, and every step whose exact in-product label we haven't yet confirmed is marked so it can be verified live or with PlayMetrics support.
+  </div>
+
+  <div class="callout callout-amber">
+    <strong>A note on confidence</strong>
+    The PlayMetrics <em>league-creation</em> flow below is confirmed from the Competitive League Operations webinar. The deeper <em>recreational</em> mechanics — the exact path to create a division, set roster size, and choose draft vs. director — were deferred by PlayMetrics to a separate "recreational league operations" training that hasn't happened yet. Those steps are written to the structure we know is correct, but the precise button labels should be confirmed in-product or with <a href="mailto:success@playmetrics.com">success@playmetrics.com</a>. Each is marked <strong>CONFIRM IN-PRODUCT</strong>.
+  </div>
+
+  <!-- ===================== PRE-FLIGHT ===================== -->
+  <h2>Pre-Flight Checklist</h2>
+  <p>Confirm all of the following <strong>before</strong> creating the league. The league pulls its season, classification, teams, and tagged documents from things that must already exist upstream.</p>
+
+  <ul class="checklist">
+    <li><strong>Registration program is live.</strong> The Fall 2026 Core registration program exists and is open/collecting (ours is). The league will draw players and divisions from this program's season.</li>
+    <li><strong>The Fall 2026 / MY2026 season is defined</strong> in PlayMetrics with its playing dates, classification, and sport set. League creation auto-populates from this — if it's wrong here, it's wrong everywhere downstream.</li>
+    <li><strong>Facilities / fields are entered.</strong> Not strictly required to create divisions, but required later for game scheduling, so enter them now to avoid "field not found" rework.</li>
+    <li><strong>Resource tags exist.</strong> Every region ships with <em>birth certificate</em> and <em>player photo</em> tags by default (<span class="path">Club Administration → Edit Settings → Player Resource Tags</span>). Only relevant if we choose to verify documents (Phase 5) — no action needed otherwise.</li>
+    <li><strong>Admin access confirmed.</strong> Both Steven and Sara have admin access to the club system, and you've agreed who will be the league <em>owner</em> (Phase 1).</li>
+    <li><strong>Division plan agreed.</strong> The Region 58 division list, roster sizes, and formation methods (table at the end) are approved by Sara and the Division Coordinators.</li>
+  </ul>
+
+  <!-- ===================== PHASE 1 ===================== -->
+  <h2><span class="phase-num">Phase 1</span> Create the Fall 2026 In-House League</h2>
+  <p>Navigation: <span class="path">Leagues → Create League</span> (build from scratch — do not copy a Travel/EXTRA league).</p>
+
+  <ol>
+    <li>
+      <strong>League Name.</strong> PlayMetrics recommends being explicit with verbiage. Use our season-naming convention so it reads unambiguously in lists and exports.
+      <div class="callout callout-blue">
+        <strong>Decision — League name</strong>
+        <span class="rec">Recommended default: <strong>2026 Fall Core</strong></span> (matches the naming we already use in registration and data exports, e.g. "2025 Fall Core"). Keep it consistent so the league, season, and CSV exports all line up.
+      </div>
+    </li>
+    <li>
+      <strong>Owner.</strong> Assign a league owner.
+      <div class="callout callout-blue">
+        <strong>Decision — Owner</strong>
+        <span class="rec">Recommended default: <strong>Steven (Registrar)</strong> as owner, with Sara retaining admin access regionally.</span> Whether PlayMetrics allows more than one owner per league is <strong>CONFIRM IN-PRODUCT</strong> — if co-ownership is supported, add Sara as a second owner; if not, ownership can be reassigned later.
+      </div>
+    </li>
+    <li>
+      <strong>League Type → In-House.</strong> Select <em>In-House</em>. This is the rec/core container: it unlocks team assignments, divisions, and generated game schedules. After creation, an In-House league shows more tabs than a Travel league.
+      <div class="callout callout-green">
+        <strong>Decision — League type (effectively fixed)</strong>
+        For core/rec, the answer is always <strong>In-House</strong>. <em>Travel</em> is only for EXTRA/Alliance teams that import schedules from outside competitions and need roster-movement guardrails — not applicable to this season. Do not select Travel.
+      </div>
+    </li>
+    <li>
+      <strong>Season.</strong> Select the Fall 2026 / MY2026 core season. PlayMetrics auto-populates classification, playing season, and sport from it. Verify those auto-filled values look right before continuing.
+    </li>
+    <li>
+      <strong>Sanctioning Body.</strong> Leave <strong>unlinked</strong> for core. (See Phase 5 — sanctioning bodies are an optional player-document ledger, not needed for rec.)
+    </li>
+    <li>
+      <strong>Teams.</strong> Select teams from the season (covered in Phase 4). You can refine team selection after creation, so it's fine to proceed and add/adjust later.
+    </li>
+    <li>
+      <strong>Create League.</strong> Click <em>Create League</em>. You'll land in the league with its Teams / Players / Divisions / Games tabs available.
+    </li>
+  </ol>
+
+  <!-- ===================== PHASE 2 ===================== -->
+  <h2><span class="phase-num">Phase 2</span> Set Up the Divisions</h2>
+  <p>Divisions live <em>inside</em> the In-House league (league → divisions → teams). PlayMetrics' Division is the equivalent of the old SportsConnect "Division" — the age/gender flight that holds teams. We are creating <strong>16 team divisions</strong>: eight age groups, each Boys and Girls.</p>
+
+  <div class="callout callout-blue">
+    <strong>Decision — Division naming convention</strong>
+    <span class="rec">Recommended default: keep our zero-padded, gendered convention — <strong>"06U Boys", "06U Girls", "10U Boys", … "19U Girls"</strong>.</span> Zero-padding (06U, 07U, 08U before 10U) is what makes divisions sort youngest-to-oldest in PlayMetrics lists; without it, "10U" sorts before "6U". Apply it to every division.
+  </div>
+
+  <h3>Per-division settings</h3>
+  <p>For each of the 16 divisions, set its <strong>roster size</strong> (max players per team) and its <strong>formation method</strong> (draft vs. director-formed). Use the values in the checklist table at the end of this guide.</p>
+
+  <div class="callout callout-amber">
+    <strong>Confirm in-product — division create path &amp; roster/draft labels</strong>
+    The exact path to add a division, the field that sets <em>roster size / max roster</em>, and the toggle that distinguishes a <strong>draft</strong> division from a <strong>director-formed</strong> one were not shown in the webinar (rec operations were deferred). The likely locations are within the league's <span class="path">Divisions</span> tab and PlayMetrics' team-formation / draft tooling, but confirm the labels live or with <a href="mailto:success@playmetrics.com">success@playmetrics.com</a> before relying on them. Do not assume a label that isn't on screen.
+  </div>
+
+  <div class="callout callout-blue">
+    <strong>Decision — Formation method per division</strong>
+    <span class="rec">Recommended default follows our existing practice:</span> <strong>6U, 7U, 8U are director-formed</strong> (no draft — coordinators place players directly). <strong>10U, 12U, 14U, 16U, 19U run a DRAFT.</strong> For the draft divisions, also decide <em>when</em> each draft runs and lock team rosters only after the draft completes — schedule those draft events on the regional calendar so coordinators aren't drafting against a moving registration count.
+  </div>
+
+  <div class="card">
+    <h4>Order of operations within a division</h4>
+    <p>1. Create the division using the naming convention. &nbsp; 2. Set its roster size. &nbsp; 3. Set its formation method (director vs. draft). &nbsp; 4. Leave team creation/seating until registration numbers are firm (Phase 4). Director divisions can be seated as players come in; draft divisions wait for the draft.</p>
+  </div>
+
+  <!-- ===================== PHASE 3 ===================== -->
+  <h2><span class="phase-num">Phase 3</span> Non-Team Programs — 5U Schoolyard &amp; KickStart</h2>
+  <p>These are handled <strong>differently</strong>. They have no teams, no rosters, and no draft, so they are <em>not</em> built as competitive divisions with team capacity. Their capacity is governed by a <strong>registration cap</strong> on the program itself, and coaches do not drive registration demand.</p>
+
+  <div class="card">
+    <h4>05U Schoolyard <span class="status-tag tag-optional">Non-team</span></h4>
+    <p>Fun-soccer learning sessions in groups of roughly 20. No teams, no rosters, no draft. Manage headcount through the program's registration capacity, not through team slots. If a division object is needed at all for reporting, name it <strong>05U</strong> (zero-padded) so it sorts at the top — but it carries no roster size or formation method.</p>
+  </div>
+
+  <div class="card">
+    <h4>KickStart (if offered) <span class="status-tag tag-optional">Jamboree</span></h4>
+    <p>A jamboree program with an entered registration cap. No teams are formed; coach signups do not affect the registration count. Manage purely by the cap.</p>
+  </div>
+
+  <div class="callout callout-amber">
+    <strong>Confirm in-product — do these need a league at all?</strong>
+    Because Schoolyard and KickStart have no teams or schedules, they most likely live entirely at the <strong>Program / registration</strong> level (capacity set by registration cap) and do <em>not</em> require an In-House league or divisions. Confirm with PlayMetrics whether any league object is needed for them, or whether the registration cap alone is sufficient. The field/label where the registration cap is set should be confirmed in-product.
+  </div>
+
+  <!-- ===================== PHASE 4 ===================== -->
+  <h2><span class="phase-num">Phase 4</span> Teams &amp; Capacity</h2>
+  <p>Teams are pulled from the season selected at league creation and grouped under their divisions.</p>
+  <ul>
+    <li><strong>Roster size = the per-team cap</strong> for that division (the values in the checklist table). It defines how many players a team can hold.</li>
+    <li><strong>Target number of teams ≈ projected registrations ÷ roster size</strong>, rounded to keep rosters near full without overloading. Fill the target-teams column once registration counts are firm.</li>
+    <li><strong>Director divisions (6U–8U):</strong> seat players into teams directly as they register, keeping each team at or under its roster size.</li>
+    <li><strong>Draft divisions (10U–19U):</strong> hold team seating until the draft; the draft assigns players into the team count you've set for that division.</li>
+  </ul>
+  <div class="callout callout-amber">
+    <strong>Confirm in-product — where team capacity is enforced</strong>
+    Whether the roster size is set at the <em>division</em> level (applies to all teams) or per individual <em>team</em>, and the exact field label, is <strong>CONFIRM IN-PRODUCT</strong>. Set it wherever PlayMetrics exposes "max roster" / "team capacity" for In-House divisions.
+  </div>
+
+  <!-- ===================== PHASE 5 ===================== -->
+  <h2><span class="phase-num">Phase 5</span> Optional — Document Verification &amp; Sanctioning Body</h2>
+  <p>This entire phase is optional and, for a core/rec season, recommended <strong>off</strong>.</p>
+
+  <div class="callout callout-blue">
+    <strong>Decision — Verify birth certificate / player photo?</strong>
+    <span class="rec">Recommended default: <strong>No</strong> for core/rec.</span> AYSO does <em>not</em> require birth-certificate verification for any play type or competition level — it is purely a regional choice, and turning it on adds per-player admin load. If the board <em>wants</em> age/photo verification anyway, it's done in the club system (below), not the Governing System.
+  </div>
+
+  <div class="callout callout-blue">
+    <strong>Decision — Create a sanctioning body?</strong>
+    <span class="rec">Recommended default: <strong>No</strong> for core/rec.</span> A sanctioning body is a ledger for tracking player documents required by an <em>outside</em> league (e.g., a state association an EXTRA team registers with). Core/rec has no external registration requirement, so skip it.
+  </div>
+
+  <p><strong>If — and only if — the region decides to verify documents</strong>, the sequence is:</p>
+  <ol>
+    <li>Confirm the program's document questions are <strong>tagged</strong> (birth certificate → "birth certificate", player photo → "player photo") so files flow downstream into the league. <span class="path">Edit Program → Questions → Advanced Options</span>.</li>
+    <li>Create a sanctioning body and add verification requirements (resource tag, effective date, expiry — e.g., photo valid 2 years, birth certificate "do not expire"). <span class="path">Club Administration → Leagues / Sanctioning Bodies</span> — <strong>CONFIRM IN-PRODUCT</strong> for the exact path.</li>
+    <li>Link that sanctioning body to the league (Phase 1, step 5).</li>
+  </ol>
+
+  <div class="callout callout-red">
+    <strong>Do not touch Clearance Tracking</strong>
+    The "Clearance Tracking" toggle at the bottom of the sanctioning-body screen is for <em>volunteer/coach</em> clearances (background checks, coaching courses). Leave it alone. Those are tracked in the <strong>AYSO Governing System</strong>, not here, with only a rolled-up cleared/not-cleared status flowing back into the club system.
+  </div>
+
+  <!-- ===================== CHECKLIST TABLE ===================== -->
+  <h2>Per-Division Checklist</h2>
+  <p>Tick each division as it's created. Roster size and formation are fixed from our Fall 2026 plan; fill <em>target # teams</em> once registration numbers are firm (≈ registrations ÷ roster size).</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th class="center">✓</th>
+        <th>Division</th>
+        <th>Gender</th>
+        <th class="center">Roster</th>
+        <th>Formation</th>
+        <th class="center">Target&nbsp;Teams</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td class="center box">&#9744;</td><td>06U Boys</td><td>Boys</td><td class="center">6</td><td>Director-formed</td><td class="center box">&mdash;</td></tr>
+      <tr><td class="center box">&#9744;</td><td>06U Girls</td><td>Girls</td><td class="center">6</td><td>Director-formed</td><td class="center box">&mdash;</td></tr>
+      <tr><td class="center box">&#9744;</td><td>07U Boys</td><td>Boys</td><td class="center">7</td><td>Director-formed</td><td class="center box">&mdash;</td></tr>
+      <tr><td class="center box">&#9744;</td><td>07U Girls</td><td>Girls</td><td class="center">7</td><td>Director-formed</td><td class="center box">&mdash;</td></tr>
+      <tr><td class="center box">&#9744;</td><td>08U Boys</td><td>Boys</td><td class="center">7</td><td>Director-formed</td><td class="center box">&mdash;</td></tr>
+      <tr><td class="center box">&#9744;</td><td>08U Girls</td><td>Girls</td><td class="center">7</td><td>Director-formed</td><td class="center box">&mdash;</td></tr>
+      <tr><td class="center box">&#9744;</td><td>10U Boys</td><td>Boys</td><td class="center">9</td><td><strong>Draft</strong></td><td class="center box">&mdash;</td></tr>
+      <tr><td class="center box">&#9744;</td><td>10U Girls</td><td>Girls</td><td class="center">9</td><td><strong>Draft</strong></td><td class="center box">&mdash;</td></tr>
+      <tr><td class="center box">&#9744;</td><td>12U Boys</td><td>Boys</td><td class="center">12</td><td><strong>Draft</strong></td><td class="center box">&mdash;</td></tr>
+      <tr><td class="center box">&#9744;</td><td>12U Girls</td><td>Girls</td><td class="center">12</td><td><strong>Draft</strong></td><td class="center box">&mdash;</td></tr>
+      <tr><td class="center box">&#9744;</td><td>14U Boys</td><td>Boys</td><td class="center">14</td><td><strong>Draft</strong></td><td class="center box">&mdash;</td></tr>
+      <tr><td class="center box">&#9744;</td><td>14U Girls</td><td>Girls</td><td class="center">14</td><td><strong>Draft</strong></td><td class="center box">&mdash;</td></tr>
+      <tr><td class="center box">&#9744;</td><td>16U Boys</td><td>Boys</td><td class="center">14</td><td><strong>Draft</strong></td><td class="center box">&mdash;</td></tr>
+      <tr><td class="center box">&#9744;</td><td>16U Girls</td><td>Girls</td><td class="center">14</td><td><strong>Draft</strong></td><td class="center box">&mdash;</td></tr>
+      <tr><td class="center box">&#9744;</td><td>19U Boys</td><td>Boys</td><td class="center">22</td><td><strong>Draft</strong></td><td class="center box">&mdash;</td></tr>
+      <tr><td class="center box">&#9744;</td><td>19U Girls</td><td>Girls</td><td class="center">22</td><td><strong>Draft</strong></td><td class="center box">&mdash;</td></tr>
+      <tr style="background:var(--warm);"><td class="center box">&#9744;</td><td>05U Schoolyard</td><td>Mixed</td><td class="center">&mdash;</td><td>Non-team (cap ~20/group)</td><td class="center box">n/a</td></tr>
+      <tr style="background:var(--warm);"><td class="center box">&#9744;</td><td>KickStart (if offered)</td><td>Mixed</td><td class="center">&mdash;</td><td>Non-team jamboree (reg. cap)</td><td class="center box">n/a</td></tr>
+    </tbody>
+  </table>
+  <p style="font-size:0.85rem;color:var(--gray);">16 team divisions (8 age groups × Boys/Girls) plus 2 non-team programs. Schoolyard and KickStart are managed by registration cap, not roster/draft.</p>
+
+  <!-- ===================== VERIFICATION ===================== -->
+  <h2>Final Verification <span class="status-tag tag-ready">Before opening play</span></h2>
+  <p>Walk this list before the season is treated as live. The goal is to catch a wrong roster size or a mis-sorted division <em>now</em>, not after teams are seated.</p>
+
+  <ul class="checklist">
+    <li><strong>All 16 team divisions exist</strong> under the 2026 Fall Core In-House league — every age group has both a Boys and a Girls division.</li>
+    <li><strong>Names sort youngest-to-oldest.</strong> The list reads 05U, 06U, 07U, 08U, 10U, 12U, 14U, 16U, 19U — proving the zero-padding is applied. Any "10U" appearing before "06U" means a division is missing its leading zero.</li>
+    <li><strong>Roster sizes match the table</strong> exactly: 6 / 7 / 7 / 9 / 12 / 14 / 14 / 22 across 6U→19U.</li>
+    <li><strong>Formation method is correct</strong> per division: 6U–8U director-formed, 10U–19U draft. Draft events are on the regional calendar.</li>
+    <li><strong>Team counts are sane:</strong> for each division, target teams ≈ registrations ÷ roster size, with no team over its roster cap.</li>
+    <li><strong>Non-team programs carry a registration cap</strong> and have no teams, no draft, no roster — Schoolyard and KickStart only.</li>
+    <li><strong>Verification decision is applied:</strong> either no sanctioning body / no document verification (recommended), or — if the board chose to verify — the sanctioning body is linked and Clearance Tracking is left untouched.</li>
+    <li><strong>Cross-check against registration.</strong> The league's divisions line up one-to-one with the age/gender groups in the Fall 2026 registration program — no orphans on either side.</li>
+    <li><strong>Sara has reviewed</strong> the division list and team targets with the Division Coordinators.</li>
+  </ul>
+
+  <div class="callout callout-green">
+    <strong>When all boxes are ticked</strong>
+    The league and divisions are ready. Facilities and game scheduling come next (the upcoming PlayMetrics "recreational league operations" session covers team assignment and schedule generation in depth) — but the structural backbone for Fall 2026 core play is in place.
+  </div>
+
+  <h2>Reference Links</h2>
+  <div class="ref-links">
+    <a class="ref-link" href="https://help.playmetrics.com/" target="_blank">PlayMetrics Help Center</a>
+    <a class="ref-link" href="mailto:success@playmetrics.com">success@playmetrics.com</a>
+    <a class="ref-link" href="https://github.com/sdavis9248/playmetrics-migration-region58" target="_blank">Region 58 Migration Repo</a>
+  </div>
+  <p style="font-size:0.82rem;color:var(--gray);">Help-center deep links for "creating divisions," "roster size," and "draft setup" should be added once the recreational league operations training confirms the exact in-product paths.</p>
+
+  <footer>
+    Region 58 — Van Nuys &amp; Sherman Oaks, CA &nbsp;|&nbsp; Prepared by Steven Davis, Registrar &nbsp;|&nbsp; Sources: PlayMetrics Competitive League Operations webinar (June 2026), PlayMetrics Help Center, Region 58 Fall 2026 configuration. Items marked "Confirm in-product" await the PlayMetrics recreational league operations training.
+  </footer>
+
+</div>
+
+</body>
+</html>
