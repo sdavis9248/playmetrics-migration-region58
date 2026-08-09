@@ -388,8 +388,8 @@
     <li>
       <strong>Additional settings.</strong> Two optional toggles appear here: allow coaches and team staff to <strong>submit official game scores</strong>, and <strong>enable game cards for printing</strong>.
       <div class="callout callout-blue">
-        <strong>Decision — Coach-submitted scores</strong>
-        <span class="rec">Recommended default: <strong>on</strong>, paired with the scoring rules in Phase 3.</span> It is how standings stay current without the Registrar keying results. Turn game cards on only if we actually print them.
+        <strong>Decision — Scores and game cards</strong>
+        <span class="rec">Coach-submitted scores: <strong>OFF</strong>. &nbsp;Game cards for printing: <strong>ON</strong>.</span> Region 58 results are entered by <strong>Jeff Loeb, our statistician</strong>, working directly from the physical game cards. So the cards must print, and coaches must <em>not</em> have a second, competing route to file a result. One authoritative source (the card), one person entering it. This does not affect the Phase 3 scoring rules — those still compute the standings; only the data-entry route changes.
       </div>
     </li>
     <li>
@@ -406,20 +406,30 @@
       </div>
     </li>
     <li>
-      <strong>Sanctioning Body.</strong> This is where you attach one, if the region is verifying players.
+      <strong>Sanctioning Body.</strong> This is where you attach one.
       <div class="callout callout-blue">
-        <strong>Decision — Attach a sanctioning body?</strong>
-        <span class="rec">Recommended default: <strong>leave unlinked</strong>.</span> Confirmed in the webinar: "If your region doesn't verify players, you won't have to set this up. You'll still be able to run the league as normal." AYSO National does not currently require birth-certificate verification. See Phase 9 if the board decides otherwise.
+        <strong>Decision — Attach a sanctioning body to <em>this</em> league?</strong>
+        <span class="rec">Recommended default: <strong>leave the core in-house league unlinked</strong>.</span> Confirmed in the webinar: "If your region doesn't verify players, you won't have to set this up. You'll still be able to run the league as normal." AYSO National does not currently require birth-certificate verification for core play. <strong>Teams playing outside the region are a different league, not this one</strong> — see Phase 9, which explains what a sanctioning body does and does not do, and where it belongs if an outside competition requires tracked player documents.
       </div>
     </li>
     <li>
       <strong>Teams.</strong> Select the team shells to include (Phase 2). You can leave this empty and add them from inside the league later.
     </li>
     <li>
-      <strong>Link to the program.</strong> Point the league at the 2026 Fall AYSO Core program. This pulls in program information and volunteer signups. Two sub-options worth setting: <strong>automatically add coach volunteers</strong>, and <strong>notify the league owner</strong> whenever someone completes a coaching request.
+      <strong>Link to the program.</strong> Point the league at the 2026 Fall AYSO Core program. This is the plumbing that makes the league aware of who registered and who volunteered — without it, the league is an empty shell and Phase 4 has nothing in it.
+      <div class="card">
+        <h4>What the two coach-volunteer toggles actually do</h4>
+        <p><strong>1. Automatically add coach volunteers.</strong> There are two ways a person becomes a coach volunteer: they tick the volunteer question <em>during their child's registration</em>, or they use the public <strong>coach request link</strong> we publish. With this on, both routes flow straight into the league's <strong>Coach Requests</strong> list (Phase 4) as they happen. With it off, the signups still exist on the registration side, but somebody has to bring them into the league by hand.</p>
+        <p><strong>2. Notify the league owner.</strong> Emails the league owner each time someone completes a coaching request, so recruitment is a live feed rather than something you audit in August.</p>
+        <p style="margin-bottom:0;">The payoff shows up twice later. In <strong>Phase 4</strong> you can filter coach requests by age group and see which flights are short. In <strong>Phase 6</strong>, because a volunteer stays attached to their own child, dragging that child onto a team makes PlayMetrics offer to install the parent as head coach in the same motion — but only if the volunteer record reached the league in the first place.</p>
+      </div>
       <div class="callout callout-blue">
         <strong>Decision — Coach volunteer automation</strong>
-        <span class="rec">Recommended default: <strong>both on</strong>.</span> Auto-adding volunteers saves re-keying, and owner notification means Steven sees coach signups as they arrive rather than discovering a gap in August.
+        <span class="rec">Recommended default: <strong>both on</strong>.</span> There is no real downside: neither toggle assigns anyone to a team or contacts the volunteer. They only populate a list and email Steven. Everything about who actually coaches which team stays a manual decision in Phase 6.
+      </div>
+      <div class="callout callout-amber">
+        <strong>CONFIRM IN-PRODUCT — what "add" means</strong>
+        The webinar showed these toggles being enabled but did not spell out whether "automatically add coach volunteers" populates the <em>Coach Requests</em> list only, or also creates a team-staff record. Everything downstream in this guide assumes the former (a list of candidates, no team attachment). Worth a five-minute check before the first season, because if it also creates staff records, the volunteer list and the roster could disagree.
       </div>
     </li>
     <li><strong>Save.</strong> You land in the league with its Teams / Players / Divisions / Games areas available.</li>
@@ -651,11 +661,35 @@
   </ul>
 
   <!-- ===================== PHASE 9 ===================== -->
-  <h2><span class="phase-num">Phase 9</span> Optional — Player Verifications &amp; Sanctioning Body</h2>
+  <h2><span class="phase-num">Phase 9</span> Player Verifications &amp; Sanctioning Body</h2>
+
+  <div class="callout callout-red">
+    <strong>What a sanctioning body is — and what it is not</strong>
+    A sanctioning body does <strong>not</strong> grant, register, or enable outside play. In the webinar's words it "functions more like a ledger within our system. <strong>It's not submitting anything externally</strong>, but it gives you a centralized place to track all required documentation." Creating one sends nothing to AYSO, to an Area, or to any other region. It is a document tracker with expiry rules, nothing more.
+  </div>
+
+  <div class="callout callout-amber">
+    <strong>Playing outside the region is a <em>league</em> question, not a sanctioning-body question</strong>
+    Interregional and Area play live in a <strong>separate League</strong> within the same Season — our own Terminology Guide records this: "in-house games and interregional play would be separate Leagues." EXTRA/Alliance teams that import outside schedules use a <strong>Travel</strong>-type league. So if Region 58 teams will play outside the region, the thing to create is that second league, and the sanctioning body is attached to <em>it</em> if — and only if — the outside competition requires us to hold and track player documents.
+  </div>
 
   <div class="callout callout-blue">
-    <strong>Decision — Verify birth certificates / player photos?</strong>
-    <span class="rec">Recommended default: <strong>No</strong> for core/rec.</span> Confirmed on the webinar: "at this time, AYSO National isn't requiring birth certificate verification" — it is purely a regional choice and adds per-player admin load. Also note verification is <strong>region-specific</strong>: a player we verify will <em>not</em> show as verified to another region. Skip the rest of this phase unless the board decides otherwise.
+    <strong>Decision — Do we need a sanctioning body?</strong>
+    <span class="rec">Recommended: <strong>yes, if an outside competition requires documented players — attached to the outside-play league, not the core in-house league.</strong></span> Two separate questions to settle before building it:
+    <ol style="margin-top:0.5rem;margin-bottom:0;">
+      <li><strong>Which outside play?</strong> EXTRA/Alliance, Area play, or interregional friendlies — each has a different governing body and a different document list.</li>
+      <li><strong>What does that body actually require?</strong> Build verification requirements to match their list, not to a guess. A sanctioning body with the wrong requirements creates admin load without satisfying anyone.</li>
+    </ol>
+  </div>
+
+  <div class="callout callout-green">
+    <strong>Core/rec on its own still doesn't need one</strong>
+    "At this time, AYSO National isn't requiring birth certificate verification" for core play. If the only driver is outside play, scope the sanctioning body to that league and leave core alone — it keeps per-player admin load off the ~90% of our players who never leave the region.
+  </div>
+
+  <div class="callout callout-amber">
+    <strong>Verification does not travel between regions</strong>
+    Asked directly in the Q&amp;A: "If a player is verified, will other regions see them as verified?" Answer: "This is just region-specific or club-instance-specific." So verifying a player here satisfies <em>our</em> ledger; a receiving region running PlayMetrics will still see them unverified. Do not expect our verification to substitute for whatever the outside competition asks of us.
   </div>
 
   <h3>If we do verify — set up the sanctioning body first</h3>
