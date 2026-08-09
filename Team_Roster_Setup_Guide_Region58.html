@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Team &amp; Player Roster Setup — Region 58 Fall 2026 Runbook</title>
+<link href="https://fonts.googleapis.com/css2?family=Anybody:wght@400;600;800&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1c1917;
+    --paper: #fafaf9;
+    --warm: #f5f0eb;
+    --accent: #1d4ed8;
+    --accent-soft: #dbeafe;
+    --green: #166534;
+    --green-soft: #dcfce7;
+    --amber: #92400e;
+    --amber-soft: #fef3c7;
+    --red: #991b1b;
+    --red-soft: #fee2e2;
+    --gray: #78716c;
+    --border: #e7e5e4;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Source Serif 4', Georgia, serif;
+    background: var(--paper);
+    color: var(--ink);
+    line-height: 1.7;
+    padding: 0;
+  }
+
+  header {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 3rem 2rem 2.5rem;
+  }
+
+  header h1 {
+    font-family: 'Anybody', sans-serif;
+    font-weight: 800;
+    font-size: 2rem;
+    letter-spacing: -0.03em;
+    line-height: 1.15;
+  }
+
+  header .meta {
+    font-size: 0.85rem;
+    opacity: 0.6;
+    margin-top: 0.5rem;
+    font-family: 'Anybody', sans-serif;
+    font-weight: 400;
+  }
+
+  .container {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem 4rem;
+  }
+
+  .summary-box {
+    background: var(--warm);
+    border-radius: 8px;
+    padding: 1.5rem 1.75rem;
+    margin: 2rem 0;
+    font-size: 0.95rem;
+  }
+
+  .summary-box strong {
+    font-family: 'Anybody', sans-serif;
+    font-weight: 600;
+    display: block;
+    margin-bottom: 0.4rem;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--gray);
+  }
+
+  h2 {
+    font-family: 'Anybody', sans-serif;
+    font-weight: 800;
+    font-size: 1.3rem;
+    margin: 2.5rem 0 0.75rem;
+    letter-spacing: -0.02em;
+    padding-bottom: 0.4rem;
+    border-bottom: 2px solid var(--ink);
+  }
+
+  h2 .phase-num {
+    color: var(--accent);
+    margin-right: 0.4rem;
+  }
+
+  h3 {
+    font-family: 'Anybody', sans-serif;
+    font-weight: 600;
+    font-size: 1.05rem;
+    margin: 1.5rem 0 0.5rem;
+    color: var(--accent);
+  }
+
+  p { margin-bottom: 0.75rem; }
+
+  .status-tag {
+    display: inline-block;
+    font-family: 'Anybody', sans-serif;
+    font-weight: 600;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    padding: 0.2rem 0.6rem;
+    border-radius: 3px;
+    vertical-align: middle;
+    margin-left: 0.5rem;
+  }
+
+  .tag-done { background: var(--green-soft); color: var(--green); }
+  .tag-ready { background: var(--accent-soft); color: var(--accent); }
+  .tag-waiting { background: var(--amber-soft); color: var(--amber); }
+  .tag-optional { background: var(--warm); color: var(--gray); }
+
+  .card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1.25rem 1.5rem;
+    margin: 1rem 0;
+  }
+
+  .card h4 {
+    font-family: 'Anybody', sans-serif;
+    font-weight: 600;
+    font-size: 0.95rem;
+    margin-bottom: 0.4rem;
+  }
+
+  .card p { font-size: 0.9rem; margin-bottom: 0.5rem; }
+
+  .path {
+    font-family: 'Anybody', sans-serif;
+    font-weight: 600;
+    font-size: 0.8rem;
+    background: var(--accent-soft);
+    color: var(--accent);
+    padding: 0.15rem 0.5rem;
+    border-radius: 3px;
+    white-space: nowrap;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0;
+    font-size: 0.88rem;
+  }
+
+  th {
+    font-family: 'Anybody', sans-serif;
+    font-weight: 600;
+    text-align: left;
+    padding: 0.6rem 0.75rem;
+    background: var(--warm);
+    border: 1px solid var(--border);
+    font-size: 0.82rem;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+  }
+
+  td {
+    padding: 0.5rem 0.75rem;
+    border: 1px solid var(--border);
+    vertical-align: top;
+  }
+
+  td.center, th.center { text-align: center; }
+  .box { font-family: 'Anybody', sans-serif; color: var(--gray); }
+
+  a { color: var(--accent); }
+
+  ol, ul { padding-left: 1.4rem; margin-bottom: 0.75rem; }
+  li { margin-bottom: 0.4rem; font-size: 0.92rem; }
+  ol li { padding-left: 0.2rem; }
+
+  .callout {
+    padding: 1rem 1.25rem;
+    border-left: 4px solid;
+    border-radius: 4px;
+    margin: 1rem 0;
+    font-size: 0.88rem;
+  }
+
+  .callout-blue { background: var(--accent-soft); border-color: var(--accent); }
+  .callout-amber { background: var(--amber-soft); border-color: #d97706; }
+  .callout-green { background: var(--green-soft); border-color: var(--green); }
+  .callout-red { background: var(--red-soft); border-color: var(--red); }
+
+  .callout strong { display: block; margin-bottom: 0.2rem; font-family: 'Anybody', sans-serif; }
+  .callout .rec { font-style: italic; }
+
+  .checklist { list-style: none; padding-left: 0; }
+  .checklist li {
+    padding-left: 1.8rem;
+    position: relative;
+    margin-bottom: 0.55rem;
+    font-size: 0.92rem;
+  }
+  .checklist li::before {
+    content: "\2610";
+    position: absolute;
+    left: 0;
+    top: -0.05rem;
+    font-size: 1.1rem;
+    color: var(--accent);
+    font-family: 'Anybody', sans-serif;
+  }
+
+  .ref-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin: 0.75rem 0;
+  }
+
+  .ref-link {
+    font-family: 'Anybody', sans-serif;
+    font-weight: 400;
+    font-size: 0.75rem;
+    padding: 0.2rem 0.5rem;
+    background: var(--accent-soft);
+    border-radius: 3px;
+    color: var(--accent);
+    text-decoration: none;
+    white-space: nowrap;
+  }
+
+  .ref-link:hover { text-decoration: underline; }
+
+  .xlate td:first-child { background: #faf7f4; }
+  .xlate .arrow { text-align: center; color: var(--gray); font-family: 'Anybody', sans-serif; }
+
+  .toc { background: white; border: 1px solid var(--border); border-radius: 8px; padding: 1.1rem 1.5rem; margin: 1.5rem 0; }
+  .toc ol { margin-bottom: 0; }
+  .toc li { font-size: 0.88rem; margin-bottom: 0.25rem; }
+
+  footer {
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border);
+    font-size: 0.8rem;
+    color: var(--gray);
+    font-family: 'Anybody', sans-serif;
+  }
+
+  @media (max-width: 600px) {
+    header { padding: 2rem 1rem; }
+    header h1 { font-size: 1.5rem; }
+    .container { padding: 1rem; }
+    .path { white-space: normal; }
+    table { display: block; overflow-x: auto; }
+  }
+
+  @media print {
+    header { background: white; color: black; border-bottom: 3px solid black; }
+    .card { border: 1px solid #ccc; }
+    body { font-size: 11pt; }
+  }
+</style>
+</head>
+<body>
+<div style="background:#0a2351;padding:8px 16px;text-align:center;">
+  <a href="index.html" style="color:rgba(255,255,255,0.85);text-decoration:none;font-family:Anybody,-apple-system,sans-serif;font-size:13px;font-weight:600;letter-spacing:0.02em;">← AYSO Region 58 — All Guides</a>
+</div>
+
+<header>
+  <h1>Team &amp; Player Roster Setup<br>Region 58 Runbook</h1>
+  <div class="meta">AYSO Region 58 — Fall 2026 (Membership Year 2026) Core / Recreational &nbsp;|&nbsp; Prepared August 9, 2026</div>
+</header>
+
+<div class="container">
+
+  <div class="summary-box">
+    <strong>What This Covers</strong>
+    Everything between "registration is collecting names" and "players are on teams and know it." This guide replaces the earlier <em>Leagues &amp; Divisions Setup</em> runbook and absorbs it whole. It is written for people whose muscle memory is SportsConnect, so each phase names the SC equivalent before it names the clicks. Every in-product step below is taken from the PlayMetrics <em>Recreational League Operations</em> and <em>Coaching &amp; Divisional Coordinator Tools</em> webinars; anything still unverified is marked.
+  </div>
+
+  <div class="callout callout-blue">
+    <strong>Who does what</strong>
+    <span class="rec">Steven (Registrar) and Sara: Phases 1&ndash;5 and 9. Division Coordinators: Phases 6 and 7 only.</span> A coordinator never needs the league setup — hand them "What Changed" plus the one-page card at the end and nothing else.
+  </div>
+
+  <div class="toc">
+    <strong style="font-family:'Anybody',sans-serif;font-size:0.85rem;text-transform:uppercase;letter-spacing:0.05em;color:var(--gray);display:block;margin-bottom:0.5rem;">Order of Work</strong>
+    <ol>
+      <li>Create the Fall 2026 In-House League</li>
+      <li>Create your team shells</li>
+      <li>Build divisions &amp; scoring rules</li>
+      <li>Review coach requests</li>
+      <li>Create team assignments &amp; scope your coordinators</li>
+      <li>Put players on teams &nbsp;<span style="color:var(--gray);">← coordinator's job</span></li>
+      <li>Balance teams &nbsp;<span style="color:var(--gray);">← coordinator's job</span></li>
+      <li>Notify families</li>
+      <li>Optional: player verifications &amp; sanctioning body</li>
+    </ol>
+  </div>
+
+  <!-- ===================== WHAT CHANGED ===================== -->
+  <h2>What Changed From SportsConnect</h2>
+  <p>Three differences cause nearly all the confusion. Read these before touching anything.</p>
+
+  <h3>1. The nesting order is different</h3>
+  <p>In SC, the Program was the top-level container and the season was a label on it. In PlayMetrics the <strong>Season is top-level</strong>, and it sets the date range and age classifications that everything underneath inherits.</p>
+
+  <table class="xlate">
+    <thead>
+      <tr><th>SportsConnect</th><th class="center">&rarr;</th><th>PlayMetrics</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Organization</td><td class="arrow">&rarr;</td><td>Club</td></tr>
+      <tr><td><em>(season was just a label)</em></td><td class="arrow">&rarr;</td><td><strong>Season</strong> &mdash; top-level; sets dates &amp; age classifications</td></tr>
+      <tr><td>Program</td><td class="arrow">&rarr;</td><td>Program &mdash; the registration container, now <em>inside</em> a Season</td></tr>
+      <tr><td>Division</td><td class="arrow">&rarr;</td><td><strong>Package</strong> (registration) <em>or</em> <strong>Division</strong> (in a League) &mdash; see below</td></tr>
+      <tr><td>Team</td><td class="arrow">&rarr;</td><td>Team &mdash; a shell you create up front, filled via Team Assignments</td></tr>
+      <tr><td>Team Assignment / Allocation</td><td class="arrow">&rarr;</td><td>Team Assignment &mdash; drag-and-drop sandbox</td></tr>
+    </tbody>
+  </table>
+
+  <h3>2. "Division" means two different things</h3>
+  <div class="callout callout-red">
+    <strong>The single most expensive misunderstanding in this migration</strong>
+    PlayMetrics uses the word <em>division</em> for two unrelated objects. A <strong>Package</strong> is the registration-side thing families pick when they sign up — age group, gender, price, linked questions. A <strong>Division</strong> is the league-side thing that holds teams and drives game scheduling and standings. Our SC "10U Boys" was one object; in PlayMetrics it is two, created in two different places at two different times. The two are connected in Phase 5, where you tell a team assignment which registration <em>packages</em> feed it. When someone says "did you set up the division," ask which one they mean.
+  </div>
+
+  <h3>3. Putting a player on a team tells nobody</h3>
+  <div class="callout callout-amber">
+    <strong>Assigned &rarr; notified &rarr; rostered</strong>
+    In SC, team assignment and family notification were effectively one motion. In PlayMetrics they are separate, and the middle step is a button someone has to press. Drag a player onto a team and they sit in <strong>assigned</strong> status — "they're not aware that they have been added to this team yet." Only when you hit <strong>Notify</strong> are they emailed and <em>automatically moved to</em> <strong>rostered</strong>. Rostered is what gives the family app access to the team and its schedule.
+  </div>
+
+  <div class="callout callout-green">
+    <strong>What did <em>not</em> get worse</strong>
+    Region 58's use of SC's automatic team builder was discretionary and instructional-only — a coordinator could use it or not. PlayMetrics' equivalent (player ranking and auto-assignment) is not in the initial release, but since auto-balancing was never our standard practice, this is a minor gap. Phase 7 covers what to do meanwhile, and the feature was slated for <strong>mid-August 2026</strong> — likely live by the time you read this.
+  </div>
+
+  <!-- ===================== PRE-FLIGHT ===================== -->
+  <h2>Pre-Flight Checklist</h2>
+  <p>Confirm all of the following <strong>before</strong> creating the league.</p>
+
+  <ul class="checklist">
+    <li><strong>Registration program is live.</strong> The Fall 2026 Core registration program exists and is open/collecting. The league and its team assignments draw players from this program's packages.</li>
+    <li><strong>The Fall 2026 / MY2026 season is defined</strong> with its playing dates, classification, and sport set. League creation auto-populates from this — if it's wrong here, it's wrong everywhere downstream.</li>
+    <li><strong>Facilities / fields are entered.</strong> Required in Phase 3 — you assign fields per division, and you can only pick from what's already in the system.</li>
+    <li><strong>Resource tags exist.</strong> Every region ships with <em>birth certificate</em> and <em>player photo</em> tags by default (<span class="path">Club Administration → Edit Settings → Player Resource Tags</span>). Only relevant if we verify documents (Phase 9).</li>
+    <li><strong>Admin access confirmed</strong> for Steven and Sara, and you've agreed who will be the league <em>owner</em>.</li>
+    <li><strong>Division plan agreed.</strong> The division list, roster sizes, and formation methods (table near the end) are approved by Sara and the Division Coordinators.</li>
+    <li><strong>Coordinator map agreed.</strong> You know which person coordinates which age group(s) — this determines how you carve up team assignments in Phase 5, and it is awkward to change later.</li>
+    <li><strong>Verification decision made.</strong> If the region will verify birth certificates or photos, the sanctioning body must exist <em>before</em> you finish Phase 1 — do Phase 9's first half now.</li>
+  </ul>
+
+  <!-- ===================== PHASE 1 ===================== -->
+  <h2><span class="phase-num">Phase 1</span> Create the Fall 2026 In-House League</h2>
+  <p>Navigation: <span class="path">Programs → Leagues</span>. A league is where you centralize your teams and players — it is, in the webinar's words, "the operational feature for you within PlayMetrics for the upcoming season." If you already built this league to hold your coach-request questions during registration setup, open it with the <strong>pencil icon</strong> instead of creating a new one.</p>
+
+  <ol>
+    <li>
+      <strong>League Name.</strong> Use our season-naming convention so it reads unambiguously in lists and exports.
+      <div class="callout callout-blue">
+        <strong>Decision — League name</strong>
+        <span class="rec">Recommended default: <strong>2026 Fall Core</strong></span> (matches the naming we already use in registration and data exports, e.g. "2025 Fall Core").
+      </div>
+    </li>
+    <li>
+      <strong>Owner.</strong> Assign a league owner.
+      <div class="callout callout-blue">
+        <strong>Decision — Owner</strong>
+        <span class="rec">Recommended default: <strong>Steven (Registrar)</strong> as owner, with Sara retaining admin access regionally.</span> Whether PlayMetrics allows more than one owner per league is <strong>CONFIRM IN-PRODUCT</strong>.
+      </div>
+    </li>
+    <li>
+      <strong>League Type → In-House.</strong> This is the rec/core container: it unlocks team assignments, divisions, and generated game schedules.
+      <div class="callout callout-green">
+        <strong>Decision — League type (effectively fixed)</strong>
+        For core/rec the answer is always <strong>In-House</strong>. <em>Travel</em> is only for EXTRA/Alliance teams importing outside schedules. Do not select Travel.
+      </div>
+    </li>
+    <li>
+      <strong>Additional settings.</strong> Two optional toggles appear here: allow coaches and team staff to <strong>submit official game scores</strong>, and <strong>enable game cards for printing</strong>.
+      <div class="callout callout-blue">
+        <strong>Decision — Coach-submitted scores</strong>
+        <span class="rec">Recommended default: <strong>on</strong>, paired with the scoring rules in Phase 3.</span> It is how standings stay current without the Registrar keying results. Turn game cards on only if we actually print them.
+      </div>
+    </li>
+    <li>
+      <strong>Season and Age Classification.</strong> Four fields appear, but only the first is a choice &mdash; the other three are read-only and fill in automatically from the season you select:
+      <ul style="margin-top:0.4rem;">
+        <li><strong>Season</strong> &mdash; <em>selectable.</em> Choose the Fall 2026 / MY2026 core season. This is the only field you set here.</li>
+        <li><strong>Age Classification</strong> &mdash; <em>read-only.</em> Inherited from the season.</li>
+        <li><strong>Playing Season</strong> &mdash; <em>read-only.</em> Inherited from the season.</li>
+        <li><strong>Sport</strong> &mdash; <em>read-only.</em> Inherited (expected: Soccer).</li>
+      </ul>
+      <div class="callout callout-amber">
+        <strong>VERIFY &mdash; if an auto-filled value looks wrong</strong>
+        These come from the season's own definition, so the fix is upstream, not on this form: re-pick the Season, or correct the season's configuration. If the Season is right but a value still looks off, confirm with <a href="mailto:success@playmetrics.com">success@playmetrics.com</a> before creating the league.
+      </div>
+    </li>
+    <li>
+      <strong>Sanctioning Body.</strong> This is where you attach one, if the region is verifying players.
+      <div class="callout callout-blue">
+        <strong>Decision — Attach a sanctioning body?</strong>
+        <span class="rec">Recommended default: <strong>leave unlinked</strong>.</span> Confirmed in the webinar: "If your region doesn't verify players, you won't have to set this up. You'll still be able to run the league as normal." AYSO National does not currently require birth-certificate verification. See Phase 9 if the board decides otherwise.
+      </div>
+    </li>
+    <li>
+      <strong>Teams.</strong> Select the team shells to include (Phase 2). You can leave this empty and add them from inside the league later.
+    </li>
+    <li>
+      <strong>Link to the program.</strong> Point the league at the 2026 Fall AYSO Core program. This pulls in program information and volunteer signups. Two sub-options worth setting: <strong>automatically add coach volunteers</strong>, and <strong>notify the league owner</strong> whenever someone completes a coaching request.
+      <div class="callout callout-blue">
+        <strong>Decision — Coach volunteer automation</strong>
+        <span class="rec">Recommended default: <strong>both on</strong>.</span> Auto-adding volunteers saves re-keying, and owner notification means Steven sees coach signups as they arrive rather than discovering a gap in August.
+      </div>
+    </li>
+    <li><strong>Save.</strong> You land in the league with its Teams / Players / Divisions / Games areas available.</li>
+  </ol>
+
+  <!-- ===================== PHASE 2 ===================== -->
+  <h2><span class="phase-num">Phase 2</span> Create Your Team Shells</h2>
+  <p>PlayMetrics wants the <strong>shells of all your teams</strong> to exist before you assign anyone. They are needed twice over — once so team assignments have somewhere to drop players, and once so the division scheduler has teams to schedule. Empty teams now, players later.</p>
+
+  <div class="callout callout-green">
+    <strong>Don't create them one at a time</strong>
+    A webinar attendee asked exactly this ("I've had to manually create each team, would love a quicker way"). From the <strong>Teams</strong> tab in the left-hand menu, go to <span class="path">More Actions → Import Teams</span>. PlayMetrics gives you a sample template.
+  </div>
+
+  <div class="callout callout-red">
+    <strong>Import template — do not delete column headers</strong>
+    The <strong>highlighted (yellow) fields are required</strong>. Fields you don't know yet — number of players, starting players — <em>may be left blank</em>, but if you <strong>delete the column header</strong> the import errors out. Keep every header, blank the values you don't have.
+  </div>
+
+  <div class="callout callout-blue">
+    <strong>Decision — Team naming</strong>
+    <span class="rec">Recommended default: create shells as <strong>&lt;Division&gt;-&lt;NN&gt;</strong> (e.g. "10UB-01"), then rename to the coach's surname once known.</span> The webinar showed renaming a team to "Barrett" after its head coach at assignment time, which matches our SC habit ("10UB-01 Zamani"). Starting numbered means the import doesn't block on coach recruitment.
+  </div>
+
+  <!-- ===================== PHASE 3 ===================== -->
+  <h2><span class="phase-num">Phase 3</span> Build Divisions &amp; Scoring Rules</h2>
+  <p>These are the league-side Divisions from the warning above. They are "the starting process to how you're going to be able to create your schedules for in-house game scheduling." Path: <span class="path">More Actions → Build Divisions</span>.</p>
+
+  <h3>Choose a build method</h3>
+  <p>PlayMetrics offers three:</p>
+  <ol>
+    <li><strong>One division for each gender and age classification</strong> — pick a gender and an age range, and it generates the set. "A lot of clubs or regions will likely use" this.</li>
+    <li><strong>By grouping of age classifications and gender</strong> — for combined flights like "9U to 10U Boys".</li>
+    <li><strong>Manually</strong> — one at a time.</li>
+  </ol>
+
+  <div class="callout callout-blue">
+    <strong>Decision — Build method for Region 58</strong>
+    <span class="rec">Recommended default: <strong>method 1</strong>, run twice — Boys 06U&ndash;19U and Girls 06U&ndash;19U.</span> It generates our 16 divisions in two passes. Use method 2 only if a division lacks the numbers to stand alone; the Q&amp;A confirmed combined divisions are fully supported, since "any teams that are going to be playing each other essentially can be included in the same division."
+  </div>
+
+  <p>Before it commits, PlayMetrics shows you <strong>all the generated division names so you can edit them</strong>. Do it here — this is where our zero-padding gets applied.</p>
+
+  <div class="callout callout-blue">
+    <strong>Decision — Division naming convention</strong>
+    <span class="rec">Recommended default: keep our zero-padded, gendered convention — <strong>"06U Boys", "06U Girls", … "19U Girls"</strong>.</span> Zero-padding is what makes divisions sort youngest-to-oldest; without it "10U" sorts before "6U".
+  </div>
+
+  <div class="callout callout-green">
+    <strong>Turn on "automatically add new teams to these divisions"</strong>
+    <span class="rec">Recommended default: <strong>on</strong>.</span> With it set, a new 9U team added to the league lands in the 9U division by itself. The league dashboard carries an <strong>icon legend</strong> showing which divisions auto-assign. Saves a whole class of "why isn't this team on the schedule" problems.
+  </div>
+
+  <p>After generating, every division appears in a list. If we end up without enough teams for a flight, <strong>you can delete that division individually</strong> from the list.</p>
+
+  <h3>Per-division settings</h3>
+  <p>Each division carries: <strong>number of teams, games per team, game duration, division settings, schedule status, and scoring rules</strong>. You can edit one division, or <strong>select several and use Manage Settings</strong> to set them together — the right move for us, since all our 7v7 flights share parameters.</p>
+
+  <p>Manage Settings covers:</p>
+  <ul>
+    <li><strong>Number of games per team</strong> (the webinar used 8).</li>
+    <li><strong>Default arrival time</strong> — what the app tells families, e.g. "arrive 15 minutes prior to kickoff."</li>
+    <li><strong>Game duration.</strong></li>
+    <li><strong>Game periods</strong> — set the season's start and end weekends and PlayMetrics populates the playing periods, then <strong>switch individual weekends off</strong>. The demo turned off Labor Day and Halloween weekends, leaving "nine playing periods for eight games." No games get generated for the weekends you disable.</li>
+    <li><strong>Game fields</strong> — pick from facilities already in the system. Assign per division so 7v7 flights only schedule onto 7v7 fields.</li>
+  </ul>
+  <p>To change one division later: click into it, then <span class="path">More Actions → Division Settings</span>.</p>
+
+  <div class="callout callout-amber">
+    <strong>Roster size is not on this screen</strong>
+    The per-division parameters demonstrated were about <em>scheduling</em> — games, duration, periods, fields. A max-roster / team-capacity field was not shown. Our per-division roster sizes in the table below may therefore be a <em>planning</em> figure we enforce ourselves rather than a value PlayMetrics caps. <strong>CONFIRM IN-PRODUCT</strong> before relying on the system to stop an over-full team.
+  </div>
+
+  <h3>Division assignments</h3>
+  <p><span class="path">Division Assignments</span> is where teams get associated with divisions. With auto-add on, most of this is already done. To add one by hand, add the team at its age group and it drops into the matching division. To adjust from the other direction, open <span class="path">Division Settings</span> and select or remove teams at the bottom.</p>
+
+  <h3>Scoring rules</h3>
+  <p>Optional, and set per division or in bulk. <span class="path">Create New Rule</span> gives you:</p>
+  <ul>
+    <li><strong>Points model</strong> — the basic 3 for a win, 1 for a tie, 0 for a loss.</li>
+    <li><strong>Additional points per goal</strong>, optionally capped (the demo used +1 per goal up to 3).</li>
+    <li><strong>Or team winning percentage</strong> instead of points.</li>
+    <li><strong>Tiebreakers</strong>, ordered — the demo put goal difference first, then head-to-head. Reorderable during the season.</li>
+  </ul>
+
+  <div class="callout callout-blue">
+    <strong>Decision — Scoring rules for Region 58</strong>
+    <span class="rec">Recommended default: <strong>no scoring rule for 05U&ndash;08U; a simple 3/1/0 rule with goal-difference-then-head-to-head tiebreakers for 10U and up.</strong></span> This mirrors the demo's own logic — they left 4U/5U general because "we technically don't want to collect any scores." Leave the per-goal bonus off; it rewards running up scores, which sits badly with Everyone Plays.
+  </div>
+
+  <div class="callout callout-green">
+    <strong>If we keep using an outside scheduler</strong>
+    Directly asked in the Q&amp;A. Game scheduling "is going to be separate from the teams and roster generation system," so skipping it does <strong>not</strong> block team building or rosters. And if we receive schedules from elsewhere, league settings offer <strong>import games via CSV</strong> instead of generating them.
+  </div>
+
+  <!-- ===================== PHASE 4 ===================== -->
+  <h2><span class="phase-num">Phase 4</span> Review Coach Requests</h2>
+  <p>Do this before team assignments, because who is coaching shapes how you build teams. <span class="path">League → Coach Requests</span> collects every head and assistant coach volunteer — both those who volunteered during registration and those who used the public <strong>coach request link</strong>.</p>
+
+  <ul>
+    <li>Volunteers who came in via the public link <strong>may not be attached to a player</strong>. That is expected.</li>
+    <li>The <strong>pencil icon</strong> opens a volunteer's question responses and the <strong>age groups they're interested in coaching</strong>.</li>
+    <li><strong>Filter on the right</strong> by age group to count coaches per flight. This is our early-warning system: filter 07U, see two coaches, and start recruiting in July rather than September.</li>
+    <li><span class="path">More Actions</span> sets the region's coach request questions, and exports both the questions and the package data.</li>
+  </ul>
+
+  <!-- ===================== PHASE 5 ===================== -->
+  <h2><span class="phase-num">Phase 5</span> Create Team Assignments &amp; Scope Your Coordinators</h2>
+  <p><span class="path">League → Assignments</span> is "the tool that you're going to use to create all of your teams and roster players." Click <strong>Create Assignment</strong>.</p>
+
+  <h3>How to carve them up</h3>
+  <div class="callout callout-blue">
+    <strong>Decision — One assignment per coordinator's scope</strong>
+    <span class="rec">Recommended default: <strong>one team assignment per Division Coordinator</strong>, covering exactly the age groups that person owns.</span> PlayMetrics' own guidance: build assignments "based on those parameters — if you have a specific divisional coordinator for your U8 boys, create that assignment separately." A single coordinator covering 6U&ndash;8U gets one assignment spanning all three. Also a hard technical limit: <strong>no more than 40 teams per assignment</strong>, or the interface slows down.
+  </div>
+
+  <h3>Settings when creating</h3>
+  <ol>
+    <li><strong>Name</strong> it for the scope, e.g. "08U&ndash;10U Boys".</li>
+    <li><strong>Assignment type → send the notification of assignment.</strong> This is what makes the assignment a sandbox: players sit in <em>assigned</em> status until you press Notify, at which point they are automatically rostered.</li>
+    <li><strong>Program</strong> — point it at 2026 Fall AYSO Core.</li>
+    <li>
+      <strong>Player placement rules</strong> — select the registration <strong>packages</strong> this assignment covers (e.g. 08U Boys, 09U Boys, 10U Boys). <em>Anyone who registered for those packages automatically funnels into this assignment.</em> This is the join between the registration side and the league side.
+      <div class="callout callout-amber">
+        <strong>This is where Package and Division finally meet</strong>
+        If our packages aren't cut the same way as our divisions, this step is where it hurts. Check the package list against the division list before creating assignments.
+      </div>
+    </li>
+    <li>
+      <strong>Associate the divisional coordinator</strong> at the bottom, and set the permission for whether they may notify players.
+      <div class="callout callout-blue">
+        <strong>Decision — Let coordinators send invitations?</strong>
+        <span class="rec">Recommended default: <strong>off</strong> for the first season.</span> Coordinators build and reshuffle freely while Steven or Sara controls the one moment families hear anything. With it off the coordinator has no Notify button, so they cannot fire early by accident. It is a one-click change per assignment when we're ready to delegate.
+      </div>
+    </li>
+    <li><strong>Continue</strong> — you land on the assignment page with <strong>Teams</strong>, <strong>Players</strong>, and <strong>Rosters</strong> tabs.</li>
+  </ol>
+
+  <h3>Attach the teams</h3>
+  <p>The <strong>Players</strong> tab is already populated from the packages. Go to <strong>Teams</strong>, filter on the right by age group and gender, select the team shells, and <strong>Save</strong>. The <strong>Rosters</strong> tab gives the holistic view once assigning starts, and its view options can include assistant coaches and team staff.</p>
+
+  <div class="callout callout-amber">
+    <strong>One primary director per team</strong>
+    A coordinator can hold many assignments, but there can only be <strong>one primary director per team</strong>. If two people share an age group, decide now which is primary. How best to give a co-coordinator visibility is <strong>CONFIRM IN-PRODUCT</strong>.
+  </div>
+
+  <!-- ===================== PHASE 6 ===================== -->
+  <h2><span class="phase-num">Phase 6</span> Put Players on Teams <span class="status-tag tag-ready">Coordinator</span></h2>
+  <p>Open the assignment and click the blue <strong>Edit Assignment</strong> button. Teams on the left, players on the right, drag between them.</p>
+
+  <ol>
+    <li><strong>Filter both sides.</strong> Age-group filter on the left narrows teams; the right-hand filters narrow players. Working one age group at a time is far less error-prone.</li>
+    <li>
+      <strong>Configure Columns — do this first.</strong> It pulls registration answers onto the player list: <strong>buddy requests, coach requests</strong>, and any other question we ask. You can promote the ones that matter to the top of the list and remove noise like default jersey number or date of birth.
+      <div class="callout callout-green">
+        <strong>This is the feature that replaces our SC paperwork</strong>
+        Buddy and coach requests become sortable, searchable columns right next to the player while you're placing them. Type a name into the search — the demo typed "Adams" and immediately saw that Benny had requested Melissa Adams as coach. This is better than what we had.
+      </div>
+    </li>
+    <li>
+      <strong>Watch for the volunteer icon.</strong> An icon beside a player means <em>someone volunteered alongside them</em> — typically a parent. Use the ellipses → <strong>View Responses</strong> to see what they signed up for.
+      <div class="callout callout-blue">
+        <strong>Volunteers travel with their player</strong>
+        Drag a player whose parent volunteered as head coach and PlayMetrics <strong>offers to assign that coach to the team at the same moment</strong>. Take it — it is how a team gets its coach without a second pass. Then rename the team to the coach's surname, exactly as we did in SC.
+      </div>
+    </li>
+    <li><strong>Drag players onto teams.</strong> Multi-select works — grab several and drop them together.</li>
+    <li><strong>Save changes.</strong> Then check the <strong>Rosters</strong> tab to see the division as a whole.</li>
+  </ol>
+
+  <div class="callout callout-green">
+    <strong>You cannot break anything by dragging</strong>
+    Players stay in <em>assigned</em> status and, in the webinar's words, "are not aware that they have been added to this team yet." Reshuffle as much as you like. Nothing reaches a family until Phase 8.
+  </div>
+
+  <!-- ===================== PHASE 7 ===================== -->
+  <h2><span class="phase-num">Phase 7</span> Balance Teams <span class="status-tag tag-ready">Coordinator</span></h2>
+  <p>This is what stands in for SC's automatic team builder.</p>
+
+  <div class="callout callout-amber">
+    <strong>Check whether auto-assignment has shipped before doing this manually</strong>
+    PlayMetrics acknowledged the gap directly: "we know that it's important for you guys to have that player ranking and auto assignment feature. Since that's not quite ready yet, we are hoping for that <strong>mid-August release</strong>." That is now. <strong>Check the current release, or ask <a href="mailto:success@playmetrics.com">success@playmetrics.com</a>, before running a season on the manual loop below.</strong>
+  </div>
+
+  <p>Until then, or if a coordinator prefers it:</p>
+  <ol>
+    <li><strong>Score the players</strong> — individually in the assignment, or in bulk by <strong>exporting the assignment</strong>, adding notes and scores in the spreadsheet, and <strong>re-importing</strong>.</li>
+    <li>In <strong>Edit Assignment</strong>, use the right-hand filters to <strong>filter by score</strong>.</li>
+    <li>Drag players onto teams working down the score bands so each team draws evenly from each.</li>
+  </ol>
+
+  <div class="callout callout-blue">
+    <strong>Decision — Is scoring mandatory for us?</strong>
+    <span class="rec">Recommended default: <strong>coordinator's choice, exactly as it was in SC.</strong></span> Region 58 only ever used automatic balancing for instructional divisions, and only when the coordinator wanted it. Offer the workflow; don't mandate it. Draft divisions get their balance from the draft itself.
+  </div>
+
+  <!-- ===================== PHASE 8 ===================== -->
+  <h2><span class="phase-num">Phase 8</span> Notify Families</h2>
+  <p>The deliberate act. Until this happens, no family knows anything.</p>
+
+  <div class="callout callout-red">
+    <strong>Notify once, and only when the division is frozen</strong>
+    Because assignment is silent, you can notify a family and then keep reshuffling — which is how a child gets told they're on two different teams. Treat notification as the line that closes a division: rosters final, coaches assigned, then notify.
+  </div>
+
+  <h3>Set up templates first (once per season)</h3>
+  <p><span class="path">Teams → Team Assignments → More Actions → Manage Notification Templates</span>. Save custom wording for:</p>
+  <ul>
+    <li><strong>Invite</strong> — the main one.</li>
+    <li><strong>Reminder</strong> — for families invited who haven't responded.</li>
+    <li><strong>"Rejected"</strong> — for a player who did not make a team. The system calls it that internally, but <em>the word never appears in the message</em>. Write this one carefully; for us it most likely means a waitlist or a move to another division.</li>
+  </ul>
+  <p>Saving these means you pull a template in at send time instead of retyping.</p>
+
+  <h3>Send</h3>
+  <ol>
+    <li>From the assignment, click <strong>Notify Players</strong>.</li>
+    <li>Select recipients — all in bulk, or narrowed by team, level, gender, or age group. <em>Send one division at a time</em>, in line with the freeze rule above.</li>
+    <li>A pre-populated message appears. <strong>Edit Message</strong> and use the <strong>template guide</strong> to insert variables — player name, team name, and head coach details.</li>
+    <li>Send. Those players are <strong>automatically rostered</strong>, and the family gains app access to the team and its schedule.</li>
+  </ol>
+
+  <ul class="checklist">
+    <li>Division's rosters are final and reviewed by the coordinator.</li>
+    <li>Every team in the division has its head coach assigned and is renamed accordingly.</li>
+    <li>Notification templates reviewed and saved.</li>
+    <li>Steven or Sara sends, filtered to that division only.</li>
+    <li>Spot-check that a test family received it and can see the team in the app.</li>
+  </ul>
+
+  <!-- ===================== PHASE 9 ===================== -->
+  <h2><span class="phase-num">Phase 9</span> Optional — Player Verifications &amp; Sanctioning Body</h2>
+
+  <div class="callout callout-blue">
+    <strong>Decision — Verify birth certificates / player photos?</strong>
+    <span class="rec">Recommended default: <strong>No</strong> for core/rec.</span> Confirmed on the webinar: "at this time, AYSO National isn't requiring birth certificate verification" — it is purely a regional choice and adds per-player admin load. Also note verification is <strong>region-specific</strong>: a player we verify will <em>not</em> show as verified to another region. Skip the rest of this phase unless the board decides otherwise.
+  </div>
+
+  <h3>If we do verify — set up the sanctioning body first</h3>
+  <p>A sanctioning body "functions more like a ledger within our system. It's not submitting anything externally" — it is a centralized place to track required documentation. It must exist before you can attach it in Phase 1.</p>
+  <ol>
+    <li><span class="path">Programs → Leagues → Create Sanctioning Body</span>. Name it, e.g. "AYSO Region 58 Core".</li>
+    <li><strong>Add Verification Requirement</strong> for <em>birth certificate</em>. It keys off the registration <strong>tag</strong> — so if the registration question carries the birth certificate tag, uploads sync across automatically.</li>
+    <li>Set the <strong>effective date</strong> (seasons starting after this date require it), the <strong>view permissions</strong> (who among directors, coaches, and team staff can see the document), and the expiry — <strong>do not expire</strong> is right for a birth certificate.</li>
+    <li>Repeat for <em>player photo</em>, but set it to expire <strong>every two years</strong> so a long-tenured player refreshes their photo. As the webinar put it, this is what "ensures the right player is on the right team."</li>
+  </ol>
+
+  <div class="callout callout-red">
+    <strong>Do not touch Clearance Tracking</strong>
+    The Clearance Tracking area at the bottom of the sanctioning-body screen is for <em>volunteer/coach</em> clearances — background screenings and coaching courses. Confirmed again in this webinar: "you leave this area alone." Those live in the <strong>AYSO Governing System</strong>.
+  </div>
+
+  <h3>Verifying players</h3>
+  <p>Work from <span class="path">League → Players</span>.</p>
+  <ol>
+    <li>
+      <strong><span class="path">More Actions → Configure Columns</span> — click this first.</strong> Add the birth certificate and player photo sources from registration so uploads appear here.
+      <div class="callout callout-amber">
+        <strong>Turn it on so you can verify before rostering</strong>
+        The presenter recommended enabling it "because you can start verifying players before you roster them to teams if this is on." Note the Q&amp;A separately said this player list "populates from the teams that you've added to the league… once the players are rostered." Those sit in tension; assume pre-roster verification requires the configured registration source, and <strong>CONFIRM IN-PRODUCT</strong> if the list looks empty before rostering.
+      </div>
+    </li>
+    <li>The list shows at a glance who has uploaded and who hasn't.</li>
+    <li><strong>Verify Players</strong> on an individual opens their details, lets you view the uploaded document and image, and <strong>Approve</strong> each.</li>
+    <li>
+      Approving <strong>locks the player's date of birth</strong> — the parent can no longer change it on their profile.
+      <div class="callout callout-green">
+        <strong>The DOB lock is the real prize</strong>
+        Directly asked in the Q&amp;A: yes, verification locks the birth date against parent edits, and an admin can unlock and re-lock it. For a region that has ever had an age-group dispute, this alone may justify verifying.
+      </div>
+    </li>
+    <li><strong>Approve offline</strong> for a player whose document you saw in person but who never uploaded.</li>
+    <li><strong>Request</strong> a specific missing item with a custom message — it notifies the player contact to upload, and the file lands back here for approval.</li>
+    <li><strong>Bulk request:</strong> select multiple players, then <span class="path">More Actions → Request Missing Resources</span>. The demo fired requests at 36 and 35 players in one go.</li>
+  </ol>
+
+  <!-- ===================== NON-TEAM PROGRAMS ===================== -->
+  <h2>Non-Team Programs — 5U Schoolyard &amp; KickStart</h2>
+  <p>Handled <strong>differently</strong>: no teams, no rosters, no draft. Capacity is governed by a <strong>registration cap</strong> on the program itself.</p>
+
+  <div class="card">
+    <h4>05U Schoolyard <span class="status-tag tag-optional">Non-team</span></h4>
+    <p>Fun-soccer sessions in groups of roughly 20. Manage headcount through registration capacity, not team slots. If a division object is needed for reporting, name it <strong>05U</strong> so it sorts at the top — it carries no roster size or formation method. Leave it out of scoring rules entirely.</p>
+  </div>
+
+  <div class="card">
+    <h4>KickStart (if offered) <span class="status-tag tag-optional">Jamboree</span></h4>
+    <p>A jamboree program with an entered registration cap. No teams are formed; coach signups do not affect the registration count.</p>
+  </div>
+
+  <div class="callout callout-amber">
+    <strong>Confirm in-product — do these need a league at all?</strong>
+    With no teams or schedules, these most likely live entirely at the <strong>Program / registration</strong> level. Confirm whether any league object is needed, or whether the registration cap alone suffices.
+  </div>
+
+  <!-- ===================== CHECKLIST TABLE ===================== -->
+  <h2>Per-Division Checklist</h2>
+  <p>Tick each division as it's created. Fill <em>target # teams</em> once registration numbers are firm (≈ registrations ÷ roster size).</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th class="center">✓</th>
+        <th>Division</th>
+        <th>Gender</th>
+        <th class="center">Roster</th>
+        <th>Formation</th>
+        <th class="center">Target&nbsp;Teams</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td class="center box">&#9744;</td><td>06U Boys</td><td>Boys</td><td class="center">6</td><td>Director-formed</td><td class="center box">&mdash;</td></tr>
+      <tr><td class="center box">&#9744;</td><td>06U Girls</td><td>Girls</td><td class="center">6</td><td>Director-formed</td><td class="center box">&mdash;</td></tr>
+      <tr><td class="center box">&#9744;</td><td>07U Boys</td><td>Boys</td><td class="center">7</td><td>Director-formed</td><td class="center box">&mdash;</td></tr>
+      <tr><td class="center box">&#9744;</td><td>07U Girls</td><td>Girls</td><td class="center">7</td><td>Director-formed</td><td class="center box">&mdash;</td></tr>
+      <tr><td class="center box">&#9744;</td><td>08U Boys</td><td>Boys</td><td class="center">7</td><td>Director-formed</td><td class="center box">&mdash;</td></tr>
+      <tr><td class="center box">&#9744;</td><td>08U Girls</td><td>Girls</td><td class="center">7</td><td>Director-formed</td><td class="center box">&mdash;</td></tr>
+      <tr><td class="center box">&#9744;</td><td>10U Boys</td><td>Boys</td><td class="center">9</td><td><strong>Draft</strong></td><td class="center box">&mdash;</td></tr>
+      <tr><td class="center box">&#9744;</td><td>10U Girls</td><td>Girls</td><td class="center">9</td><td><strong>Draft</strong></td><td class="center box">&mdash;</td></tr>
+      <tr><td class="center box">&#9744;</td><td>12U Boys</td><td>Boys</td><td class="center">12</td><td><strong>Draft</strong></td><td class="center box">&mdash;</td></tr>
+      <tr><td class="center box">&#9744;</td><td>12U Girls</td><td>Girls</td><td class="center">12</td><td><strong>Draft</strong></td><td class="center box">&mdash;</td></tr>
+      <tr><td class="center box">&#9744;</td><td>14U Boys</td><td>Boys</td><td class="center">14</td><td><strong>Draft</strong></td><td class="center box">&mdash;</td></tr>
+      <tr><td class="center box">&#9744;</td><td>14U Girls</td><td>Girls</td><td class="center">14</td><td><strong>Draft</strong></td><td class="center box">&mdash;</td></tr>
+      <tr><td class="center box">&#9744;</td><td>16U Boys</td><td>Boys</td><td class="center">14</td><td><strong>Draft</strong></td><td class="center box">&mdash;</td></tr>
+      <tr><td class="center box">&#9744;</td><td>16U Girls</td><td>Girls</td><td class="center">14</td><td><strong>Draft</strong></td><td class="center box">&mdash;</td></tr>
+      <tr><td class="center box">&#9744;</td><td>19U Boys</td><td>Boys</td><td class="center">22</td><td><strong>Draft</strong></td><td class="center box">&mdash;</td></tr>
+      <tr><td class="center box">&#9744;</td><td>19U Girls</td><td>Girls</td><td class="center">22</td><td><strong>Draft</strong></td><td class="center box">&mdash;</td></tr>
+      <tr style="background:var(--warm);"><td class="center box">&#9744;</td><td>05U Schoolyard</td><td>Mixed</td><td class="center">&mdash;</td><td>Non-team (cap ~20/group)</td><td class="center box">n/a</td></tr>
+      <tr style="background:var(--warm);"><td class="center box">&#9744;</td><td>KickStart (if offered)</td><td>Mixed</td><td class="center">&mdash;</td><td>Non-team jamboree (reg. cap)</td><td class="center box">n/a</td></tr>
+    </tbody>
+  </table>
+  <p style="font-size:0.85rem;color:var(--gray);">16 team divisions (8 age groups × Boys/Girls) plus 2 non-team programs. Roster sizes are our planning figures — see the Phase 3 note on whether PlayMetrics enforces them.</p>
+
+  <!-- ===================== COORDINATOR CARD ===================== -->
+  <h2>One-Page Card for Division Coordinators</h2>
+  <p>Everything a coordinator needs, once Steven and Sara have finished Phases 1&ndash;5. Print this page alone.</p>
+
+  <div class="card">
+    <h4>Your job, in order</h4>
+    <ol style="margin-bottom:0;">
+      <li>Log in with your <strong>director</strong> role → <span class="path">Teams → Team Assignments</span>.</li>
+      <li>Open your assignment. The <strong>Players</strong> tab shows who is still unplaced.</li>
+      <li>Click the blue <strong>Edit Assignment</strong> button.</li>
+      <li><strong>Configure Columns</strong> → add <em>buddy request</em> and <em>coach request</em>, and pull them to the top.</li>
+      <li>Filter teams on the left and players on the right to one age group at a time.</li>
+      <li>Drag players onto teams. Watch for the <strong>volunteer icon</strong> — if a parent volunteered to coach, PlayMetrics offers to make them head coach as you drop their child. Say yes, then rename the team to their surname.</li>
+      <li><strong>Save changes.</strong> Check the <strong>Rosters</strong> tab.</li>
+      <li>Optional: score players (or export → score → re-import), then filter by score to balance.</li>
+      <li>Tell Steven or Sara when your division is final. <strong>You do not notify families</strong> — that is deliberate, and you won't see the button.</li>
+    </ol>
+  </div>
+
+  <div class="callout callout-green">
+    <strong>You cannot break anything by dragging</strong>
+    Assigning and unassigning sends no email and tells no family. Move people around as much as you need. Nothing is announced until the invitations go out, and that is not your button.
+  </div>
+
+  <!-- ===================== VERIFICATION ===================== -->
+  <h2>Final Verification <span class="status-tag tag-ready">Before opening play</span></h2>
+
+  <ul class="checklist">
+    <li><strong>All 16 team divisions exist</strong> under the 2026 Fall Core In-House league — both Boys and Girls for every age group.</li>
+    <li><strong>Names sort youngest-to-oldest:</strong> 05U, 06U, 07U, 08U, 10U, 12U, 14U, 16U, 19U. Any "10U" before "06U" means a missing leading zero.</li>
+    <li><strong>"Automatically add new teams" is on</strong>, and the dashboard icon legend confirms it per division.</li>
+    <li><strong>Game periods exclude</strong> the weekends we're not playing, and the remaining period count is ≥ the games-per-team figure.</li>
+    <li><strong>Fields are attached</strong> to every division that will be scheduled, and small-sided flights point only at small-sided fields.</li>
+    <li><strong>Scoring rules applied</strong> from 10U up, none below; tiebreakers ordered goal difference then head-to-head.</li>
+    <li><strong>Every package maps to a division</strong> and vice versa — no orphans on either side.</li>
+    <li><strong>Every team assignment</strong> has its coordinator attached, is under 40 teams, and has the notify permission set as decided (default: off).</li>
+    <li><strong>Every team has exactly one primary director</strong> and a named head coach.</li>
+    <li><strong>No player is left unassigned</strong> in any assignment's Players tab.</li>
+    <li><strong>Team counts are sane:</strong> target teams ≈ registrations ÷ roster size, none over cap.</li>
+    <li><strong>Notification templates</strong> (invite, reminder, "rejected") are written and saved before the first send.</li>
+    <li><strong>Invitations sent exactly once per division</strong>, after that division was frozen, with a test family confirming receipt and app access.</li>
+    <li><strong>Non-team programs carry a registration cap</strong> and have no teams, no draft, no roster.</li>
+    <li><strong>Verification decision applied:</strong> either no sanctioning body (recommended), or one linked with Clearance Tracking left untouched.</li>
+    <li><strong>Sara has reviewed</strong> the division list and team targets with the Division Coordinators.</li>
+  </ul>
+
+  <h2>Reference Links</h2>
+  <div class="ref-links">
+    <a class="ref-link" href="AYSO_PlayMetrics_Terminology_Guide.html">Terminology Guide</a>
+    <a class="ref-link" href="Game_Scheduling_Guide_Region58.html">Game Scheduling Guide</a>
+    <a class="ref-link" href="PlayMetrics_Migration_Status_Region58.html">Migration Status</a>
+    <a class="ref-link" href="https://help.playmetrics.com/hc/en-us/articles/41837881091863-AYSO-Recreational-League-Operations-Webinar" target="_blank">Rec League Operations Webinar</a>
+    <a class="ref-link" href="https://help.playmetrics.com/" target="_blank">PlayMetrics Help Center</a>
+    <a class="ref-link" href="mailto:success@playmetrics.com">success@playmetrics.com</a>
+  </div>
+
+  <footer>
+    Region 58 — Van Nuys &amp; Sherman Oaks, CA &nbsp;|&nbsp; Prepared by Steven Davis, Registrar &nbsp;|&nbsp; Supersedes the standalone <em>Leagues &amp; Divisions Setup</em> runbook, whose content is absorbed here. Sources: PlayMetrics <em>Recreational League Operations</em> webinar (11 sections, 55 min) and <em>Coaching &amp; Divisional Coordinator Tools</em> webinar (9 sections, 28 min), both transcribed in full; PlayMetrics Help Center; Region 58 Fall 2026 configuration. Items marked "Confirm in-product" were not demonstrated on either webinar.
+  </footer>
+
+</div>
+
+</body>
+</html>
