@@ -505,19 +505,29 @@
     The template carries <code>num_starting_players</code> — the 7 in 7v7 — and nothing that caps a roster. This corroborates the Phase 3 warning: our per-division roster sizes are almost certainly <strong>our own planning figures, not limits PlayMetrics enforces</strong>. Expect the coordinator to respect the cap, not the system to reject an over-full team.
   </div>
 
-  <h3>Generating the file from Portal enrollments</h3>
-  <p>Team count is just <em>enrolled ÷ roster size</em>, so the import can be generated rather than typed. <span class="path">tools/build_team_import.py</span> in this repo does it: feed it a two-column export from the Region 58 Portal and it emits all thirteen columns in order.</p>
+  <h3>Generating the file from live enrollment</h3>
+  <p>We already have the enrollment data. <span class="path">tools/build_team_import.py</span> reads <code>packages.json</code> — the same feed the Region 58 Portal renders — and emits all thirteen columns. No spreadsheet to maintain, and team counts track registration as it fills.</p>
 
   <div class="card">
     <h4>Usage</h4>
-    <p style="font-family:'Anybody',sans-serif;font-size:0.82rem;background:var(--warm);padding:0.6rem 0.8rem;border-radius:4px;">python tools/build_team_import.py --enrollments enrollments.csv --out teams.csv</p>
-    <p>Where <code>enrollments.csv</code> is <code>division,enrolled</code> — one row per division, e.g. <code>10U Boys,84</code>. It prints its arithmetic per division so you can sanity-check before importing:</p>
-    <p style="font-family:'Anybody',sans-serif;font-size:0.8rem;color:var(--gray);margin-bottom:0;">10U Boys: 84 enrolled / 9 roster &rarr; 10 team(s), ~8.4 players each</p>
+    <p style="font-family:'Anybody',sans-serif;font-size:0.82rem;background:var(--warm);padding:0.6rem 0.8rem;border-radius:4px;">gsutil cp gs://region58-portal-data/packages.json .<br>python tools/build_team_import.py --packages packages.json --out teams.csv</p>
+    <p>Or point it straight at the producer's output in <code>AYSORegionAutomation/data/playmetrics/</code>. It prints its arithmetic per division so you can sanity-check before importing:</p>
+    <p style="font-family:'Anybody',sans-serif;font-size:0.8rem;color:var(--gray);margin-bottom:0;">10UB Boys: 84/108 enrolled (+3 wait) / 9 roster &rarr; 10 team(s), ~8.4 players each<br>05U Schoolyard Coed: non-team program, no shells generated</p>
+  </div>
+
+  <div class="callout callout-green">
+    <strong>Why <code>packages.json</code> and not an export</strong>
+    Because max spots exist nowhere else. Our admin reference is explicit: the Packages tab is the <strong>only</strong> source for live "Active Registrations X of Y", waitlist counts, and financials — <em>"Max spots are NOT in any export CSV."</em> Roster sizes come from the Portal's <code>DIVISION_CONFIG</code>, so the numbers here and the numbers on the Portal's enrollment page cannot drift.
   </div>
 
   <div class="callout callout-amber">
-    <strong>Two values in the script to confirm before the first real run</strong>
-    <code>LEVEL</code> is set to "Core" as a guess, and <code>num_starting_players</code> per age group (4/5/5/7/9/11/11/11) is inferred from our roster sizes rather than read off an AYSO playing-format table. Both are single constants at the top of the file. Check them against AYSO's small-sided standards and PlayMetrics' accepted level values, then re-run — the script is idempotent.
+    <strong>One deliberate disagreement with the Portal</strong>
+    The Portal computes <code>current_teams</code> by <em>flooring</em> — it answers "how many full teams does this enrollment support," a fullness metric. This script <em>rounds up</em>, because shells have to seat everyone: flooring gives 84 players at roster 9 nine teams of 9.3, and 40 at roster 22 a single team of 40, both over cap. Everyone Plays wins. Don't "fix" the script to match the Portal — the difference is intentional and documented in <code>team_count()</code>.
+  </div>
+
+  <div class="callout callout-amber">
+    <strong>One value still to confirm</strong>
+    <code>LEVEL</code> is set to "Core" as a guess — the PlayMetrics sample only showed "Classic" and "Academy", which are club-soccer levels. <code>num_starting_players</code> is no longer guesswork: it now comes from the Portal's <code>on_field</code> values (4/4/5/7/9/11), which corrected an earlier assumption of 5 at 07U.
   </div>
 
   <div class="callout callout-blue">
@@ -546,7 +556,17 @@
 
   <div class="callout callout-blue">
     <strong>Decision — Division naming convention</strong>
-    <span class="rec">Recommended default: keep our zero-padded, gendered convention — <strong>"06U Boys", "06U Girls", … "19U Girls"</strong>.</span> Zero-padding is what makes divisions sort youngest-to-oldest; without it "10U" sorts before "6U".
+    <span class="rec">Recommended default: use the names our own systems already key on — <strong>"06UB Boys", "06UG Girls", "10UB Boys", … "19UG Girls"</strong>, plus <strong>"05U Schoolyard Coed"</strong>.</span> These are the exact keys in the Region 58 Portal's <code>DIVISION_CONFIG</code>, so matching them means the portal, the automation repo, and PlayMetrics all agree without a translation layer. Zero-padding is what makes divisions sort youngest-to-oldest; without it "10U" sorts before "6U".
+  </div>
+
+  <div class="callout callout-red">
+    <strong>The gender letter is load-bearing — never substring-match on it</strong>
+    Our automation repo records this the hard way: division codes are gendered (<code>08UB</code>, <code>08UG</code>) and you must <strong>match the full gendered code, never the first three characters</strong>. Substring-matching <code>08U</code> silently merges Boys and Girls and inflates every count downstream. It applies equally to anything you build against PlayMetrics exports.
+  </div>
+
+  <div class="callout callout-amber">
+    <strong>PlayMetrics appends a date range to package names</strong>
+    A package comes back as <code>10UB Boys - August 1, 2016 - July 31, 2018</code>, not <code>10UB Boys</code>. Anything joining our division names to PlayMetrics data has to strip the suffix first — the portal does, and so does <span class="path">tools/build_team_import.py</span>.
   </div>
 
   <div class="callout callout-green">
@@ -679,8 +699,13 @@
   </ol>
 
   <div class="callout callout-green">
-    <strong>You cannot break anything by dragging</strong>
-    Players stay in <em>assigned</em> status and, in the webinar's words, "are not aware that they have been added to this team yet." Reshuffle as much as you like. Nothing reaches a family until Phase 8.
+    <strong>Dragging players is safe</strong>
+    Players stay in <em>assigned</em> status and, in the webinar's words, "are not aware that they have been added to this team yet." Reshuffle as much as you like — no player or parent hears anything until Phase 8.
+  </div>
+
+  <div class="callout callout-red">
+    <strong>But accepting the head-coach prompt is NOT silent</strong>
+    Our own PlayMetrics admin reference records the asymmetry: <strong>"Coaches are notified immediately when assigned to a team; players only on 'Notify.'"</strong> So the convenient prompt in step 3 above sends mail the moment you accept it. Assign a coach only once you have actually decided they are coaching that team — unlike player placement, it is not a sandbox action.
   </div>
 
   <!-- ===================== PHASE 7 ===================== -->
@@ -879,7 +904,7 @@
       <li>Click the blue <strong>Edit Assignment</strong> button.</li>
       <li><strong>Configure Columns</strong> → add <em>buddy request</em> and <em>coach request</em>, and pull them to the top.</li>
       <li>Filter teams on the left and players on the right to one age group at a time.</li>
-      <li>Drag players onto teams. Watch for the <strong>volunteer icon</strong> — if a parent volunteered to coach, PlayMetrics offers to make them head coach as you drop their child. Say yes, then rename the team to their surname.</li>
+      <li>Drag players onto teams. Watch for the <strong>volunteer icon</strong> — if a parent volunteered to coach, PlayMetrics offers to make them head coach as you drop their child. <strong>Only accept once that coaching decision is final: coaches are emailed immediately, unlike players.</strong> Then rename the team to their surname.</li>
       <li><strong>Save changes.</strong> Check the <strong>Rosters</strong> tab.</li>
       <li>Optional: score players (or export → score → re-import), then filter by score to balance.</li>
       <li>Tell Steven or Sara when your division is final. <strong>You do not notify families</strong> — that is deliberate, and you won't see the button.</li>
@@ -887,8 +912,18 @@
   </div>
 
   <div class="callout callout-green">
-    <strong>You cannot break anything by dragging</strong>
-    Assigning and unassigning sends no email and tells no family. Move people around as much as you need. Nothing is announced until the invitations go out, and that is not your button.
+    <strong>Moving players around is safe</strong>
+    Assigning and unassigning players sends no email and tells no family. Move them as much as you need. Nothing is announced to families until the invitations go out, and that is not your button.
+  </div>
+
+  <div class="callout callout-red">
+    <strong>The one thing that is not safe: assigning a coach</strong>
+    <strong>Coaches are emailed the instant you assign them</strong> — there is no sandbox for that. When the drag prompt offers to make a parent head coach, say yes only if that is settled. Everything else on this page you can undo silently; that one you cannot.
+  </div>
+
+  <div class="callout callout-amber">
+    <strong>California AB 506 — fingerprinting gates the finish line</strong>
+    AB 506 requires fingerprinting before teams can be activated and official rosters printed. A division can be fully assigned and still be stuck here. If a coach is not cleared, raise it with Steven rather than swapping the coach out at the last minute.
   </div>
 
   <!-- ===================== VERIFICATION ===================== -->

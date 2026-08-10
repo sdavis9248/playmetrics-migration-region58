@@ -1,116 +1,151 @@
 #!/usr/bin/env python3
-"""Generate a PlayMetrics Import Teams CSV for AYSO Region 58 from enrollment counts.
+"""Generate a PlayMetrics Import Teams CSV for AYSO Region 58.
 
-Team count per division is derived as ceil(enrollments / roster_size), so the
-shells you import match the demand you actually have. Feed it enrollment numbers
-from the Region 58 Portal and it emits a file matching PlayMetrics' sample-teams
-template exactly, column for column.
+Reads `packages.json` -- the same feed the Region 58 Portal uses -- so team
+counts come from live "Active Registrations X of Y" data rather than a
+hand-maintained spreadsheet. The Packages tab is the *only* source for max
+spots; they appear in no export CSV.
 
-    python build_team_import.py --enrollments enrollments.csv --out teams.csv
+    # from the producer's output directory
+    python build_team_import.py --packages ../../AYSORegionAutomation/data/playmetrics/packages.json
 
-enrollments.csv is two columns, division and count:
+    # or straight from the bucket
+    gsutil cp gs://region58-portal-data/packages.json .
+    python build_team_import.py --packages packages.json --out teams.csv
 
-    division,enrolled
-    06U Boys,48
-    06U Girls,31
-    10U Boys,84
-
-Divisions absent from the enrollment file are skipped, so you can run it early
-with partial numbers and re-run as registration fills.
+Division sizing mirrors region58-portal's DIVISION_CONFIG (data_service.py),
+which is the source of truth -- if roster sizes change there, update them here.
+The team-count arithmetic deliberately does NOT match the portal's; see
+team_count() for why.
 """
 from __future__ import annotations
 
 import argparse
 import csv
+import json
 import math
+import re
 import sys
 from pathlib import Path
 
-# PlayMetrics sample-teams template, in order. Do not reorder or drop any of
-# these -- the import errors out if a header is missing, even when the value
-# below it is blank.
+# PlayMetrics sample-teams template, in order. Never reorder or drop a header --
+# the import errors out on a missing header even when the value below it is blank.
 COLUMNS = [
     "season", "name", "acct_code", "gender", "level", "birth_year", "age_group",
     "minimum_age", "coach_first_name", "coach_last_name", "coach_email",
     "coach_mobile", "num_starting_players",
 ]
 
-SEASON = "Fall 2026"          # must match the PlayMetrics Season name exactly
-LEVEL = "Core"                # CONFIRM: sample template showed Classic / Academy
+SEASON = "Fall 2026"   # must match the PlayMetrics Season name exactly
+LEVEL = "Core"         # CONFIRM: sample template showed Classic / Academy
 
-# Region 58 Fall 2026 plan. roster is our own planning cap (PlayMetrics may not
-# enforce it -- see Phase 3 of the Team & Player Roster Setup guide).
-# starters is num_starting_players: players on the field at kickoff, NOT roster
-# size. Inferred from our roster sizes; CONFIRM against AYSO playing formats
-# before importing.
-PLAN = {
-    # age_group: (roster, starters)
-    "06U": (6, 4),
-    "07U": (7, 5),
-    "08U": (7, 5),
-    "10U": (9, 7),
-    "12U": (12, 9),
-    "14U": (14, 11),
-    "16U": (14, 11),
-    "19U": (22, 11),
+# Mirrors region58-portal data_service.DIVISION_CONFIG. on_field is what the
+# import calls num_starting_players -- players at kickoff, NOT roster size.
+DIVISION_CONFIG = {
+    "05U Schoolyard Coed": {"roster_size":  0, "roster_min":  0, "on_field":  0},
+    "06UB Boys":           {"roster_size":  6, "roster_min":  5, "on_field":  4},
+    "06UG Girls":          {"roster_size":  6, "roster_min":  5, "on_field":  4},
+    "07UB Boys":           {"roster_size":  7, "roster_min":  6, "on_field":  4},
+    "07UG Girls":          {"roster_size":  7, "roster_min":  6, "on_field":  4},
+    "08UB Boys":           {"roster_size":  7, "roster_min":  6, "on_field":  5},
+    "08UG Girls":          {"roster_size":  7, "roster_min":  6, "on_field":  5},
+    "10UB Boys":           {"roster_size":  9, "roster_min":  8, "on_field":  7},
+    "10UG Girls":          {"roster_size":  9, "roster_min":  8, "on_field":  7},
+    "12UB Boys":           {"roster_size": 12, "roster_min": 10, "on_field":  9},
+    "12UG Girls":          {"roster_size": 12, "roster_min": 10, "on_field":  9},
+    "14UB Boys":           {"roster_size": 14, "roster_min": 12, "on_field": 11},
+    "14UG Girls":          {"roster_size": 14, "roster_min": 12, "on_field": 11},
+    "16UB Boys":           {"roster_size": 14, "roster_min": 12, "on_field": 11},
+    "16UG Girls":          {"roster_size": 14, "roster_min": 12, "on_field": 11},
+    "19UB Boys":           {"roster_size": 22, "roster_min": 12, "on_field": 11},
+    "19UG Girls":          {"roster_size": 22, "roster_min": 12, "on_field": 11},
 }
 
-GENDERS = {"Boys": "M", "Girls": "F"}
+# Gendered division codes must be matched whole. Substring-matching the first
+# three chars merges Boys and Girls and silently inflates every count.
+DIV_RE = re.compile(r"^(\d{2})U([BG])\s", re.I)
 
 
-def parse_division(label: str) -> tuple[str, str]:
-    """'10U Boys' -> ('10U', 'Boys'). Raises on anything unexpected."""
-    parts = label.strip().split()
-    if len(parts) != 2 or parts[0] not in PLAN or parts[1] not in GENDERS:
-        raise ValueError(f"unrecognized division {label!r}")
-    return parts[0], parts[1]
+def clean_division(name: str) -> str:
+    """PlayMetrics package names carry a date-range suffix; drop it.
+
+    '10UB Boys - August 1, 2016 - July 31, 2018' -> '10UB Boys'
+    """
+    return name.split(" - ", 1)[0].strip()
 
 
-def read_enrollments(path: Path) -> dict[str, int]:
-    counts: dict[str, int] = {}
-    with path.open(newline="", encoding="utf-8-sig") as handle:
-        for row in csv.DictReader(handle):
-            division = (row.get("division") or "").strip()
-            if not division:
-                continue
-            raw = (row.get("enrolled") or "").strip()
-            try:
-                counts[division] = int(raw)
-            except ValueError:
-                raise ValueError(f"{division}: enrolled={raw!r} is not a number")
-    return counts
+def team_count(active: int, maximum: int, waitlist: int, cfg: dict) -> int:
+    """How many team shells this division needs.
+
+    DELIBERATELY DIFFERENT from region58-portal's current_teams, which floors:
+    `int(capped / roster)`. That is right for the portal, where the number
+    answers "how many *full* teams does this enrollment support" -- a fullness
+    metric. It is wrong for creating shells, because flooring leaves players
+    with nowhere to sit: 84 players at roster 9 floors to 9 teams of 9.3, and
+    40 at roster 22 floors to a single team of 40. Both exceed the cap.
+
+    Everyone Plays means every registered player needs a seat, so we round up.
+    The roster_min guard is kept from the portal: a division just under one
+    full roster still forms its single team.
+    """
+    roster = cfg["roster_size"]
+    if roster <= 0:
+        return 0
+    if active < cfg["roster_min"]:
+        return 0
+    return math.ceil(active / roster)
 
 
-def build_rows(counts: dict[str, int]) -> tuple[list[dict[str, str]], list[str]]:
-    rows: list[dict[str, str]] = []
+def load_packages(path: Path) -> list[dict]:
+    with path.open(encoding="utf-8-sig") as handle:
+        data = json.load(handle)
+    return data.get("packages", [])
+
+
+def build_rows(packages: list[dict], season: str) -> tuple[list[dict], list[str]]:
+    rows: list[dict] = []
     notes: list[str] = []
-    for division in sorted(counts):
-        age_group, gender_word = parse_division(division)
-        roster, starters = PLAN[age_group]
-        enrolled = counts[division]
-        if enrolled <= 0:
-            notes.append(f"{division}: 0 enrolled, no teams generated")
+    for pkg in packages:
+        name = clean_division(pkg.get("name", ""))
+        cfg = DIVISION_CONFIG.get(name)
+        if not cfg:
+            # Fee/admin packages ('Additional Fees') have no gender token.
+            if DIV_RE.match(name):
+                notes.append(f"SKIPPED unknown division {name!r} -- add it to DIVISION_CONFIG")
             continue
-        teams = math.ceil(enrolled / roster)
-        per_team = enrolled / teams
-        notes.append(f"{division}: {enrolled} enrolled / {roster} roster -> "
-                     f"{teams} team(s), ~{per_team:.1f} players each")
+        if cfg["roster_size"] == 0:
+            notes.append(f"{name}: non-team program, no shells generated")
+            continue
+
+        active = int(pkg.get("active_registrations") or 0)
+        maximum = int(pkg.get("max_spots") or 0)
+        waitlist = int(pkg.get("waitlist") or pkg.get("waitlist_count") or 0)
+        teams = team_count(active, maximum, waitlist, cfg)
+        if teams <= 0:
+            notes.append(f"{name}: {active} enrolled, below one roster -- no teams yet")
+            continue
+
+        notes.append(f"{name}: {active}/{maximum} enrolled (+{waitlist} wait) "
+                     f"/ {cfg['roster_size']} roster -> {teams} team(s), "
+                     f"~{active/teams:.1f} players each")
+
+        gender = "M" if name[3].upper() == "B" else "F"
+        age_group = f"{name[:3]}"          # '10U'
         for n in range(1, teams + 1):
             rows.append({
-                "season": SEASON,
-                # e.g. "10U Boys-01" -- rename to the coach's surname once known
-                "name": f"{age_group} {gender_word}-{n:02d}",
+                "season": season,
+                "name": f"{name}-{n:02d}",   # '10UB Boys-01'; renamed to coach surname later
                 "acct_code": "",
-                "gender": GENDERS[gender_word],
+                "gender": gender,
                 "level": LEVEL,
-                "birth_year": "",          # blank: this season is age-group based
+                "birth_year": "",            # blank: this season is age-group based
                 "age_group": age_group,
                 "minimum_age": "",
-                "coach_first_name": "",    # filled in PlayMetrics at assignment time
-                "coach_last_name": "",
+                "coach_first_name": "",      # coaches attach in PlayMetrics, and are
+                "coach_last_name": "",       # emailed the instant they are assigned
                 "coach_email": "",
                 "coach_mobile": "",
-                "num_starting_players": str(starters),
+                "num_starting_players": str(cfg["on_field"]),
             })
     return rows, notes
 
@@ -118,21 +153,18 @@ def build_rows(counts: dict[str, int]) -> tuple[list[dict[str, str]], list[str]]
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__,
                                      formatter_class=argparse.RawDescriptionHelpFormatter)
-    parser.add_argument("--enrollments", type=Path, required=True,
-                        help="CSV with division,enrolled columns")
+    parser.add_argument("--packages", type=Path, required=True,
+                        help="packages.json from AYSORegionAutomation or the GCS bucket")
     parser.add_argument("--out", type=Path, default=Path("teams.csv"))
     parser.add_argument("--season", default=SEASON)
     args = parser.parse_args(argv)
 
-    counts = read_enrollments(args.enrollments)
-    if not counts:
-        print("No enrollment rows found.", file=sys.stderr)
+    packages = load_packages(args.packages)
+    if not packages:
+        print("No packages found in that file.", file=sys.stderr)
         return 2
 
-    rows, notes = build_rows(counts)
-    for row in rows:
-        row["season"] = args.season
-
+    rows, notes = build_rows(packages, args.season)
     with args.out.open("w", newline="", encoding="utf-8") as handle:
         writer = csv.DictWriter(handle, fieldnames=COLUMNS)
         writer.writeheader()
@@ -141,9 +173,6 @@ def main(argv: list[str] | None = None) -> int:
     for note in notes:
         print(note)
     print(f"\n{len(rows)} team shells -> {args.out}")
-    print("Coach columns left blank on purpose: coaches are attached in "
-          "PlayMetrics during team assignment, where a parent volunteer can be "
-          "installed as head coach in the same motion as their child is placed.")
     return 0
 
 
