@@ -470,7 +470,7 @@
 
   <div class="callout callout-blue">
     <strong>Decision — Team naming</strong>
-    <span class="rec">Recommended default: create shells as <strong>&lt;Division&gt;-&lt;NN&gt;</strong> (e.g. "10U Boys-01"), then rename to the coach's surname once known.</span> The webinar showed renaming a team to "Barrett" after its head coach at assignment time, which matches our SC habit ("10UB-01 Zamani"). Starting numbered means the import doesn't block on coach recruitment.
+    <span class="rec">Recommended default: <strong>&lt;gendered division code&gt;-&lt;NN&gt;</strong> — <code>10UG-01</code>, <code>06UB-14</code> — then append the coach's surname once known.</span> The <strong>B/G in the code already carries gender</strong>, so a trailing "Boys"/"Girls" is noise. This is the SportsConnect convention we're carrying over (<code>10UB-01 Zamani</code>), which keeps historical rosters and exports lining up. The webinar showed renaming a team to "Barrett" after its head coach at assignment time, which is exactly the same habit. Starting numbered means the import doesn't block on coach recruitment.
   </div>
 
   <h3>The import template, column by column</h3>
@@ -480,7 +480,7 @@
     <thead><tr><th>Column</th><th>Region 58 value</th><th>Notes</th></tr></thead>
     <tbody>
       <tr><td><strong>season</strong></td><td>Fall 2026</td><td>Must match the PlayMetrics Season name exactly.</td></tr>
-      <tr><td><strong>name</strong></td><td>10U Boys-01</td><td>Renamed to the coach's surname later.</td></tr>
+      <tr><td><strong>name</strong></td><td>10UB-01</td><td>Gendered code plus sequence — the B/G already says Boys/Girls. Coach's surname appended later.</td></tr>
       <tr><td>acct_code</td><td><em>blank</em></td><td>Accounting code; blank in the sample's own rows.</td></tr>
       <tr><td><strong>gender</strong></td><td>M / F</td><td>Co-ed value for 05U is <strong>CONFIRM IN-PRODUCT</strong> — the sample shows only M and F.</td></tr>
       <tr><td><strong>level</strong></td><td>Core</td><td><strong>CONFIRM</strong> — sample shows "Classic" and "Academy", which are club-soccer levels.</td></tr>
