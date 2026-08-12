@@ -505,29 +505,34 @@
     The template carries <code>num_starting_players</code> — the 7 in 7v7 — and nothing that caps a roster. This corroborates the Phase 3 warning: our per-division roster sizes are almost certainly <strong>our own planning figures, not limits PlayMetrics enforces</strong>. Expect the coordinator to respect the cap, not the system to reject an over-full team.
   </div>
 
-  <h3>Generating the file from live enrollment</h3>
-  <p>We already have the enrollment data. <span class="path">tools/build_team_import.py</span> reads <code>packages.json</code> — the same feed the Region 58 Portal renders — and emits all thirteen columns. No spreadsheet to maintain, and team counts track registration as it fills.</p>
+  <h3>Don't type this file — generate it</h3>
+  <p>We already have the enrollment data, so the whole import is arithmetic. The automation repo has a flag for it:</p>
 
   <div class="card">
     <h4>Usage</h4>
-    <p style="font-family:'Anybody',sans-serif;font-size:0.82rem;background:var(--warm);padding:0.6rem 0.8rem;border-radius:4px;">gsutil cp gs://region58-portal-data/packages.json .<br>python tools/build_team_import.py --packages packages.json --out teams.csv</p>
-    <p>Or point it straight at the producer's output in <code>AYSORegionAutomation/data/playmetrics/</code>. It prints its arithmetic per division so you can sanity-check before importing:</p>
-    <p style="font-family:'Anybody',sans-serif;font-size:0.8rem;color:var(--gray);margin-bottom:0;">10UB Boys: 84/108 enrolled (+3 wait) / 9 roster &rarr; 10 team(s), ~8.4 players each<br>05U Schoolyard Coed: non-team program, no shells generated</p>
+    <p style="font-family:'Anybody',sans-serif;font-size:0.82rem;background:var(--warm);padding:0.6rem 0.8rem;border-radius:4px;">python src\main.py --pm-team-import --team-import-season "Fall 2026"</p>
+    <p>Run it from <code>AYSORegionAutomation</code>. It reads the latest <code>packages.json</code> already sitting in <code>data/playmetrics/</code> and writes <code>reports/teams_import_&lt;date&gt;.csv</code>, printing its arithmetic per division so you can sanity-check before importing:</p>
+    <p style="font-family:'Anybody',sans-serif;font-size:0.8rem;color:var(--gray);margin-bottom:0;">10UB Boys: 84/108 enrolled (+3 wait) / 9 roster -&gt; 10 team(s), ~8.4 players each<br>07UG Girls: 3 enrolled, under the 6 minimum - no teams yet<br>05U Schoolyard Coed: non-team program (registration cap), no shells generated</p>
   </div>
 
   <div class="callout callout-green">
     <strong>Why <code>packages.json</code> and not an export</strong>
-    Because max spots exist nowhere else. Our admin reference is explicit: the Packages tab is the <strong>only</strong> source for live "Active Registrations X of Y", waitlist counts, and financials — <em>"Max spots are NOT in any export CSV."</em> Roster sizes come from the Portal's <code>DIVISION_CONFIG</code>, so the numbers here and the numbers on the Portal's enrollment page cannot drift.
+    Because max spots exist nowhere else. Our admin reference is explicit: the Packages tab is the <strong>only</strong> source for live "Active Registrations X of Y", waitlist counts, and financials — <em>"Max spots are NOT in any export CSV."</em> Roster sizes and <code>on_field</code> come from <code>DIVISION_CONFIG</code>, so these numbers and the Portal's enrollment page cannot drift.
   </div>
 
   <div class="callout callout-amber">
-    <strong>One deliberate disagreement with the Portal</strong>
-    The Portal computes <code>current_teams</code> by <em>flooring</em> — it answers "how many full teams does this enrollment support," a fullness metric. This script <em>rounds up</em>, because shells have to seat everyone: flooring gives 84 players at roster 9 nine teams of 9.3, and 40 at roster 22 a single team of 40, both over cap. Everyone Plays wins. Don't "fix" the script to match the Portal — the difference is intentional and documented in <code>team_count()</code>.
+    <strong>One deliberate disagreement with the enrollment report</strong>
+    The Portal and the enrollment report compute <code>current_teams</code> by <em>flooring</em> — they answer "how many full teams does this enrollment support," a fullness metric. The importer <em>rounds up</em>, because shells have to seat everyone: flooring gives 84 players at roster 9 nine teams of 9.3, and 40 at roster 22 a single team of 40, both over cap. Everyone Plays wins. Don't reconcile the two — the difference is intentional and documented in <code>team_count()</code>.
   </div>
 
   <div class="callout callout-amber">
-    <strong>One value still to confirm</strong>
-    <code>LEVEL</code> is set to "Core" as a guess — the PlayMetrics sample only showed "Classic" and "Academy", which are club-soccer levels. <code>num_starting_players</code> is no longer guesswork: it now comes from the Portal's <code>on_field</code> values (4/4/5/7/9/11), which corrected an earlier assumption of 5 at 07U.
+    <strong>One value still to confirm before a real import</strong>
+    The level defaults to "Core", which is a guess — the PlayMetrics sample only showed "Classic" and "Academy", club-soccer levels. Override with <code>--team-import-level</code> once <a href="mailto:success@playmetrics.com">success@playmetrics.com</a> confirms the right AYSO rec value. <code>num_starting_players</code> is no longer guesswork: it comes from <code>on_field</code> (4/4/5/7/9/11), which corrected an earlier assumption of 5 at 07U.
+  </div>
+
+  <div class="callout callout-blue">
+    <strong>A division PlayMetrics knows about but we don't</strong>
+    If a package looks like a division but isn't in <code>DIVISION_CONFIG</code> — say we add an 11U flight — the run prints <code>SKIPPED unknown division '11UB Boys'</code> rather than quietly dropping it. Add the division to <code>DIVISION_CONFIG</code> and re-run; don't hand-edit the CSV, or the next run loses the fix.
   </div>
 
   <div class="callout callout-blue">
@@ -566,7 +571,7 @@
 
   <div class="callout callout-amber">
     <strong>PlayMetrics appends a date range to package names</strong>
-    A package comes back as <code>10UB Boys - August 1, 2016 - July 31, 2018</code>, not <code>10UB Boys</code>. Anything joining our division names to PlayMetrics data has to strip the suffix first — the portal does, and so does <span class="path">tools/build_team_import.py</span>.
+    A package comes back as <code>10UB Boys - August 1, 2016 - July 31, 2018</code>, not <code>10UB Boys</code>. Anything joining our division names to PlayMetrics data has to strip the suffix first — the portal does, and so does <span class="path">--pm-team-import</span>.
   </div>
 
   <div class="callout callout-green">
