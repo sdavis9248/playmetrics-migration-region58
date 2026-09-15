@@ -18,6 +18,7 @@ The audience is volunteers (registrar, division coordinators, scheduler), not de
 | --- | --- |
 | `PlayMetrics_Migration_Status_Region58.html` | Living project dashboard — percent-complete ring, per-item status tags, go-live checklist |
 | `Team_Roster_Setup_Guide_Region58.html` | Steven & Sara + a printable one-page card for Division Coordinators; the most actively edited page |
+| `DC_Roster_Waitlist_Guide_Region58.html` | Division Coordinators granted self-service (roster moves + waitlist invites); sourced from the live coordinator walkthroughs, screenshots from the PM Help Center |
 | `Game_Scheduling_Guide_Region58.html` | Ben Hauser and schedulers |
 | `Volunteer_Compliance_Guide_Region58.html` | Two-system compliance model, AB 506 |
 | `PlayMetrics_Data_Import_Steps.html` | 12-step historical data import checklist |
