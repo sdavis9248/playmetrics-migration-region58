@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Player Ratings — Current State &amp; Improvement Resource, Region 58</title>
+<link href="https://fonts.googleapis.com/css2?family=Anybody:wght@400;600;800&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1c1917; --paper: #fafaf9; --warm: #f5f0eb;
+    --accent: #1d4ed8; --accent-soft: #dbeafe;
+    --green: #166534; --green-soft: #dcfce7;
+    --amber: #92400e; --amber-soft: #fef3c7;
+    --red: #991b1b; --red-soft: #fee2e2;
+    --gray: #78716c; --border: #e7e5e4;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Source Serif 4', Georgia, serif; background: var(--paper); color: var(--ink); line-height: 1.7; }
+  header { background: var(--ink); color: var(--paper); padding: 3rem 2rem 2.5rem; }
+  header h1 { font-family: 'Anybody', sans-serif; font-weight: 800; font-size: 2rem; letter-spacing: -0.03em; line-height: 1.15; }
+  header .meta { font-size: 0.85rem; opacity: 0.6; margin-top: 0.5rem; font-family: 'Anybody', sans-serif; }
+  .container { max-width: 820px; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
+  .summary-box { background: var(--warm); border-radius: 8px; padding: 1.5rem 1.75rem; margin: 2rem 0; font-size: 0.95rem; }
+  .summary-box strong { font-family: 'Anybody', sans-serif; font-weight: 600; display: block; margin-bottom: 0.4rem; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--gray); }
+  h2 { font-family: 'Anybody', sans-serif; font-weight: 800; font-size: 1.3rem; margin: 2.75rem 0 0.75rem; letter-spacing: -0.02em; padding-bottom: 0.4rem; border-bottom: 2px solid var(--ink); }
+  h2 .phase-num { color: var(--accent); margin-right: 0.4rem; }
+  h3 { font-family: 'Anybody', sans-serif; font-weight: 600; font-size: 1.05rem; margin: 1.5rem 0 0.5rem; color: var(--accent); }
+  p { margin-bottom: 0.75rem; }
+  .card { background: white; border: 1px solid var(--border); border-radius: 8px; padding: 1.25rem 1.5rem; margin: 1rem 0; }
+  .card h4 { font-family: 'Anybody', sans-serif; font-weight: 600; font-size: 0.95rem; margin-bottom: 0.4rem; }
+  .card p { font-size: 0.9rem; margin-bottom: 0.5rem; }
+  .path { font-family: 'Anybody', sans-serif; font-weight: 600; font-size: 0.8rem; background: var(--accent-soft); color: var(--accent); padding: 0.15rem 0.5rem; border-radius: 3px; white-space: nowrap; }
+  code { font-family: 'Anybody', monospace; font-size: 0.82rem; background: var(--warm); padding: 0.1rem 0.35rem; border-radius: 3px; }
+  table { width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.88rem; }
+  th { font-family: 'Anybody', sans-serif; font-weight: 600; text-align: left; padding: 0.6rem 0.75rem; background: var(--warm); border: 1px solid var(--border); font-size: 0.82rem; text-transform: uppercase; letter-spacing: 0.03em; }
+  td { padding: 0.5rem 0.75rem; border: 1px solid var(--border); vertical-align: top; }
+  a { color: var(--accent); }
+  ol, ul { padding-left: 1.4rem; margin-bottom: 0.75rem; }
+  li { margin-bottom: 0.4rem; font-size: 0.92rem; }
+  .callout { padding: 1rem 1.25rem; border-left: 4px solid; border-radius: 4px; margin: 1rem 0; font-size: 0.88rem; }
+  .callout-blue { background: var(--accent-soft); border-color: var(--accent); }
+  .callout-amber { background: var(--amber-soft); border-color: #d97706; }
+  .callout-green { background: var(--green-soft); border-color: var(--green); }
+  .callout-red { background: var(--red-soft); border-color: var(--red); }
+  .callout strong { display: block; margin-bottom: 0.2rem; font-family: 'Anybody', sans-serif; }
+  .toc { background: white; border: 1px solid var(--border); border-radius: 8px; padding: 1.1rem 1.5rem; margin: 1.5rem 0; }
+  .toc strong { font-family: 'Anybody', sans-serif; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--gray); display: block; margin-bottom: 0.5rem; }
+  .toc ol { margin-bottom: 0; }
+  .toc li { font-size: 0.9rem; margin-bottom: 0.25rem; }
+  .q { background: white; border: 1px solid var(--border); border-left: 4px solid var(--accent); border-radius: 4px; padding: 0.9rem 1.1rem; margin: 0.6rem 0; font-size: 0.9rem; }
+  .q b { font-family: 'Anybody', sans-serif; }
+  .flow { font-family: 'Anybody', sans-serif; font-size: 0.82rem; background: var(--warm); border: 1px solid var(--border); border-radius: 8px; padding: 1rem 1.25rem; margin: 1rem 0; line-height: 1.9; }
+  footer { margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border); font-size: 0.8rem; color: var(--gray); font-family: 'Anybody', sans-serif; }
+  @media (max-width: 600px) {
+    header { padding: 2rem 1rem; } header h1 { font-size: 1.5rem; }
+    .container { padding: 1rem; } .path { white-space: normal; }
+    table { display: block; overflow-x: auto; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Player Ratings &mdash; Current State &amp; Improvement Resource</h1>
+  <div class="meta">AYSO Region 58 &middot; Van Nuys / Sherman Oaks &middot; Prepared October 2026 &middot; working document to open the conversation</div>
+</header>
+
+<div class="container">
+
+  <div class="summary-box">
+    <strong>What this is &amp; how to use it</strong>
+    Player ratings are the fuel of balanced team formation &mdash; the draft runs on them. Today ratings live across three systems that were built up over several seasons: our <b>automation pipeline</b> (where ratings are stored and the draft is balanced), the <b>Region 58 portal</b> (where directors view them), and <b>PlayMetrics itself</b> (which has since added its own native ratings and auto-draft). This document pulls all three together, answers the opposing-roster question Steve Post raised at the board meeting, and ends with a set of gaps and open questions to probe. It is deliberately a <em>starting point for discussion</em>, not a decision &mdash; everything describing an existing system is verified against the code and the PlayMetrics help center; everything in the recommendations is framed as a question, not a conclusion.
+  </div>
+
+  <div class="toc">
+    <strong>Contents</strong>
+    <ol>
+      <li>The big picture: three systems, one rating</li>
+      <li>Where ratings live today (the automation pipeline)</li>
+      <li>How ratings drive the draft</li>
+      <li>What the portal does with ratings</li>
+      <li>PlayMetrics' own native ratings &mdash; the built-in alternative</li>
+      <li>The opposing-roster question (Steve Post)</li>
+      <li>Gaps &amp; friction in today's process</li>
+      <li>Recommendations &amp; questions to probe</li>
+    </ol>
+  </div>
+
+  <!-- ===================== 1 ===================== -->
+  <h2><span class="phase-num">1.</span> The Big Picture: Three Systems, One Rating</h2>
+  <p>A player rating starts with a <b>coach's observation</b> and ends up <b>balancing a draft</b>. Between those two points it passes through three systems we run, plus &mdash; now &mdash; a fourth capability PlayMetrics has built natively. Here is the whole landscape at a glance:</p>
+
+  <table>
+    <tr><th>System</th><th>Role in ratings</th><th>Who touches it</th></tr>
+    <tr><td><b>Coach rating sheets</b> (Excel)</td><td>Where ratings are <b>entered</b> &mdash; one workbook per division/season, coaches score their own players 1&ndash;9 with sub-scores and a comment.</td><td>Coaches (fill), registrar (collect)</td></tr>
+    <tr><td><b>Automation pipeline</b> (AYSORegionAutomation / cert_model)</td><td>The <b>system of record</b>. Ingests the sheets into a <code>player_rating</code> store, keeps full multi-season history, and runs the <b>rating-balanced draft</b>. Produces the draft kit and the board feed.</td><td>Registrar (runs it)</td></tr>
+    <tr><td><b>Region 58 portal</b></td><td>The <b>read-only window</b>. Directors view the ratings worklist, the draft board, and per-player rating detail &mdash; and flag a rating "under review." It never originates or edits scores.</td><td>Admins &amp; directors</td></tr>
+    <tr><td><b>PlayMetrics (native)</b></td><td>A <b>built-in alternative</b> added after we built the above: in-app tryout ratings (1&ndash;10) entered in a team assignment, plus an <b>Auto Assign / Auto Draft</b> that balances teams by rating. We are not using it yet.</td><td>Admins &amp; directors (if adopted)</td></tr>
+  </table>
+
+  <div class="flow">
+    Coach rates player on the division sheet &nbsp;&rarr;&nbsp; sheet ingested into <code>player_rating</code> (cert_model) &nbsp;&rarr;&nbsp; draft auto-balances teams by rating &nbsp;&rarr;&nbsp; Division Manager finalizes picks on the Excel draft kit (or Numbers board) &nbsp;&rarr;&nbsp; placements confirmed, families notified &nbsp;&rarr;&nbsp; directors review ratings &amp; draft in the portal
+  </div>
+
+  <div class="callout callout-blue">
+    <strong>One rating number, three provenances</strong>
+    Everything downstream keys off a single <b>Overall</b> score per player. But that number can come from a coach sheet (Region 58, 1&ndash;9), a player-rankings export (Region 18's 12-year system, a weighted 1&ndash;10 "Working Score"), or a PlayMetrics parent form. A <b>coach rating always wins</b> over a parent rating, and the <b>most recent</b> coach rating wins over older ones. A parent rating is used only when a player has no coach rating at all.
+  </div>
+
+  <!-- ===================== 2 ===================== -->
+  <h2><span class="phase-num">2.</span> Where Ratings Live Today</h2>
+  <p>The automation pipeline stores every rating as a durable record in a <code>player_rating</code> table &mdash; the system of record. A rating is modeled as <b>"an observation by a rater,"</b> so the same player can carry many ratings across seasons, divisions, and raters; nothing is overwritten.</p>
+
+  <h3>What a rating record holds</h3>
+  <ul>
+    <li><b>Overall</b> &mdash; the single number the draft uses. Sub-scores are also kept: <b>Technical, Tactical, Athletic, Personal</b>, plus <b>Team Rank</b> (where the player ranked within their team).</li>
+    <li><b>Provenance</b> &mdash; who rated (the coach/source), the season it describes, the division, the player's prior team, a free-text comment, and the source system.</li>
+    <li><b>The coach's raw scores</b> &mdash; the original columns the coach filled (Speed, Kick, Ball Control, Passing, Aggressiveness, Defending, Attitude, Game Knowledge, Attendance, Rank in Team) are preserved verbatim. The four sub-scores are a roll-up of these; a few raw fields (e.g. Defending) survive only inside the weighted Overall.</li>
+  </ul>
+
+  <h3>The three ways ratings get in</h3>
+  <table>
+    <tr><th>Source</th><th>Who / where</th><th>Scale</th></tr>
+    <tr><td><b>Coach rating sheets</b> (our path)</td><td>One Excel workbook per division, foldered by year. Coaches enter Technical / Tactical / Athletic / Personal / Overall / Team Rank / Comment. Adding a new year's sheets <b>accumulates history</b>.</td><td>1&ndash;9 (competitive); 1&ndash;5 (instructional)</td></tr>
+    <tr><td><b>player-rankings.com export</b> (Region 18)</td><td>Region 18's long-running rating system, exported as CSV; a weighted formula across seven skills produces a normalized score.</td><td>~1&ndash;10 "Working Score"</td></tr>
+    <tr><td><b>PlayMetrics parent form</b> (Region 18)</td><td>A parent-facing rating form in PlayMetrics. Kept distinct (tagged as a parent rating) and used only as a fallback.</td><td>~1&ndash;10</td></tr>
+  </table>
+
+  <div class="callout callout-amber">
+    <strong>The scale is not uniform &mdash; worth deciding on</strong>
+    Because ratings come from different sources, the Overall column mixes scales: Region 58 coach sheets are 1&ndash;9 (instructional divisions 1&ndash;5), while the Region 18 paths land on ~1&ndash;10. Within a single Region 58 division this is consistent, but any cross-division or cross-region comparison has to account for it. A documented, region-wide scale would make ratings portable.
+  </div>
+
+  <h3>Linking ratings to players</h3>
+  <p>Ratings are matched to the registered player by AYSO ID first, then name + date of birth, then a guarded fuzzy name match (with a nickname table). A rating whose player can't be resolved is <b>kept anyway</b> &mdash; stored with the name/DOB so it can be re-linked later once the player appears. This is why a mistyped name on a coach sheet doesn't lose the rating, but it is also a source of manual cleanup.</p>
+
+  <!-- ===================== 3 ===================== -->
+  <h2><span class="phase-num">3.</span> How Ratings Drive the Draft</h2>
+  <p>The pipeline runs a <b>rating-balanced auto-draft</b>, then hands Division Managers a kit to finalize by hand. The automatic pass does three things in order:</p>
+  <ol>
+    <li><b>Pins each coach's own child</b> to that coach's team (the kid rides the coach, and consumes that team's pick).</li>
+    <li><b>Keeps siblings together</b> on one team &mdash; unless a parent asked to separate them.</li>
+    <li><b>Places everyone else strongest-first onto the lightest team</b>, where "lightest" means the lowest total team rating. This drives every team's <b>average rating toward the middle</b> (about 5 in a 1&ndash;9 system).</li>
+  </ol>
+  <p>A player with <b>no rating is treated as a 5</b> (neutral) for the balancing math and flagged as unrated &mdash; so missing ratings don't break the draft, but they do dilute how well it balances.</p>
+
+  <h3>What the Division Manager actually drafts on</h3>
+  <p>The pipeline generates an Excel <b>draft kit</b> &mdash; a "Draft Pool" sheet with every player <b>sorted strongest-first</b>, split into older and younger birth-year cohorts, showing Rating, Rated By, Coach's-Kid-Of, Sibling-Of, and Comments, with an editable <b>TEAM</b> column (a dropdown of the DM's team names, each head coach's kid pre-filled onto their team). The DM drafts live in that column; it imports straight back as confirmed placements. The sheet header literally reads <em>"Keep ratings CONFIDENTIAL."</em> A second "Draft Order" tab shows the serpentine pick order.</p>
+
+  <div class="callout callout-blue">
+    <strong>The Numbers-board path uses no ratings</strong>
+    When a coordinator drafts on an Apple Numbers chart instead of the Excel kit, the import reads only team columns and player names &mdash; it carries no ratings. So ratings fuel the board the region <em>builds</em>, but a Numbers board handed back in is placement-only. Ratings reach DMs through the Excel draft kit and the portal board, both generated from the <code>player_rating</code> store.
+  </div>
+
+  <!-- ===================== 4 ===================== -->
+  <h2><span class="phase-num">4.</span> What the Portal Does with Ratings</h2>
+  <p>The Region 58 portal is a <b>read-only consumer</b> &mdash; it displays ratings but never originates or edits a score. It's where directors actually look at ratings between drafts. Everything here is gated to <b>admins and directors</b>, and a director only sees their own divisions; ratings are labeled confidential throughout.</p>
+  <ul>
+    <li><b>Ratings Worklist</b> (<span class="path">/ratings</span>) &mdash; every enrolled player in your division(s) with their latest rating and status (Rated / Unrated / Under review), plus bulk "email parents." This is the tool for seeing <b>who still needs rating</b>.</li>
+    <li><b>Draft Board</b> (<span class="path">/draft</span>) &mdash; teams with each player's rating and the team average, plus a full rating-detail table (the sub-scores, rater, season, prior team, comment).</li>
+    <li><b>"Under review" flag</b> &mdash; the one thing the portal writes: a director can flag a player's rating for follow-up with a note. It records who flagged it and when. It never changes the score.</li>
+    <li><b>Draft workbook &amp; retention list</b> &mdash; a downloadable per-division workbook joining roster to ratings, and a non-returning-player list sorted highest-rated-first (so the strongest departures surface for outreach).</li>
+  </ul>
+  <div class="callout callout-amber">
+    <strong>Coaches do not log in to the portal</strong>
+    The portal has no coach role &mdash; coaches neither enter nor see ratings there. Ratings are entered on the Excel sheets outside any app, and viewed only by admins/directors. That is a deliberate confidentiality choice, but it also means the people who <em>produce</em> the ratings (coaches) have no in-system view of them.
+  </div>
+
+  <!-- ===================== 5 ===================== -->
+  <h2><span class="phase-num">5.</span> PlayMetrics' Own Native Ratings &mdash; the Built-In Alternative</h2>
+  <p>Since our pipeline was built, PlayMetrics has added native ratings and auto-draft, and &mdash; per their help center &mdash; made them available to AYSO regions for <b>recreational core leagues</b>. This matters because it overlaps a lot of what our custom pipeline does, in-app. We are <b>not using it yet</b>; this section is here so the comparison is on the table.</p>
+
+  <h3>Player Tryout Ratings in a Team Assignment</h3>
+  <ul>
+    <li>Turned on per team assignment (<span class="path">Enable Tryout Ratings</span>), with a configurable <b>1&ndash;10</b> whole-number range.</li>
+    <li>Admins and directors rate players right in the <b>Players</b> tab &mdash; a score plus a note &mdash; or in bulk by exporting the players to CSV, filling a rating column, and re-importing.</li>
+    <li>PlayMetrics explicitly suggests importing prior ratings as a note (e.g. <em>"Legacy Rating: 4"</em>) to <b>carry rating history forward</b> &mdash; the same idea our pipeline does with multi-season history.</li>
+    <li>When assigning, you can <b>filter by score</b> (a specific rating or a range) and place accordingly.</li>
+  </ul>
+
+  <h3>Auto Assign / Auto Draft (Beta)</h3>
+  <ul>
+    <li>Automatically forms balanced teams from the rated pool &mdash; prioritize by <b>rating or age</b>, choose <b>standard or snake</b> draft order, and it <b>seeds lower-average-rating teams higher</b> so rosters even out. This is essentially the same balancing goal as our <code>run_draft</code>.</li>
+    <li>In-house leagues only; it is a <b>beta that PlayMetrics must switch on</b> (email success@playmetrics.com).</li>
+    <li>Without ratings it falls back to balancing by age.</li>
+  </ul>
+
+  <div class="callout callout-green">
+    <strong>Why this is the central strategic question</strong>
+    PlayMetrics now offers, natively, most of what our custom pipeline was built to provide: a rating scale, bulk rating import that preserves history, and a rating-balanced snake/standard auto-draft. The open question for the board is whether ratings should migrate <em>into</em> PlayMetrics over time, stay in our pipeline, or run as a hybrid &mdash; and what each choice costs in coach workflow, confidentiality, and the draft experience DMs are used to.
+  </div>
+
+  <!-- ===================== 6 ===================== -->
+  <h2><span class="phase-num">6.</span> The Opposing-Roster Question (Steve Post)</h2>
+  <p>At the board meeting Steve Post noted that in <b>Sports Connect</b> coaches could see the rosters of other teams, but in <b>PlayMetrics</b> they cannot &mdash; and that this bears on the ratings process. Here is what is actually true in PlayMetrics, verified against the help center and the product:</p>
+
+  <div class="callout callout-red">
+    <strong>Confirmed: a PlayMetrics coach sees only their own team's roster</strong>
+    A coach's view is limited to <b>"My Teams."</b> There is <b>no opposing-team or cross-team roster view</b> anywhere in the coach experience, and <b>no setting to grant one</b>. The only roster-visibility control ("Set Team Visibility") is <em>narrower</em>, not broader &mdash; it governs which roles <em>on a given team</em> can see that team. What a coach can see about an opponent is the schedule (team name, date, field) and, once posted, scores and standings &mdash; <b>not the opponent's players</b>. Sports Connect allowed cross-team visibility; PlayMetrics does not, and it is not a toggle we can flip.
+  </div>
+
+  <h3>Why it matters for ratings &mdash; and why it's worth probing</h3>
+  <p>Our rating model rests on coaches rating <b>their own</b> players, which the PlayMetrics limitation does not block. But cross-team visibility in Sports Connect plausibly supported the ratings process in ways worth naming before deciding whether its loss is a real problem:</p>
+  <ul>
+    <li><b>Calibration.</b> Seeing other teams let a coach sanity-check their own 1&ndash;9 scale against players they'd watched elsewhere, so a "7" meant roughly the same thing across coaches.</li>
+    <li><b>Validation / scouting.</b> A coordinator or coach could eyeball whether the draft actually balanced, by seeing who landed where.</li>
+    <li><b>Cross-team observation.</b> Any rating of a player a coach only saw as an opponent now has no roster to attach to.</li>
+  </ul>
+  <p>The honest framing for the board: PlayMetrics' model is "coach sees own team only," full stop &mdash; there is no hidden setting. If cross-team visibility is genuinely important to how Region 58 wants ratings to work, that is a <b>feature request to PlayMetrics</b>, not a configuration change. The question to settle first is <em>what the visibility was actually used for</em>, so the request (or the workaround) is precise.</p>
+
+  <!-- ===================== 7 ===================== -->
+  <h2><span class="phase-num">7.</span> Gaps &amp; Friction in Today's Process</h2>
+  <div class="card">
+    <h4>Rating coverage is the weak link</h4>
+    <p>The draft is only as balanced as its ratings, and an unrated player is drafted as a neutral 5. The draft-board spec says every U10+ player should be rated before placement &mdash; the degree to which that holds in practice is the single biggest lever on draft quality. (In Region 18's parent-form rollout, a large majority of players had no coach rating at all, which is why the parent form existed.) Knowing Region 58's actual coverage, division by division, should come first.</p>
+  </div>
+  <div class="card">
+    <h4>Entry is out-of-band and manual</h4>
+    <p>Ratings are typed into Excel sheets outside any system, then ingested with name-matching that sometimes needs hand cleanup (unresolved rows). There is no in-app entry for Region 58 coaches &mdash; which is exactly the gap PlayMetrics' native tryout ratings would close.</p>
+  </div>
+  <div class="card">
+    <h4>Two systems now do the same job</h4>
+    <p>Our custom pipeline and PlayMetrics' native ratings/auto-draft now overlap heavily. Running both risks divergence and double work; neither is yet designated the canonical one.</p>
+  </div>
+  <div class="card">
+    <h4>Scale inconsistency</h4>
+    <p>1&ndash;9, 1&ndash;5, and ~1&ndash;10 coexist depending on source/division. Fine within a division; a hazard across them.</p>
+  </div>
+  <div class="card">
+    <h4>Confidentiality cuts both ways</h4>
+    <p>Ratings are director-confidential, which protects kids and families &mdash; but the coaches who produce them have no view of how they're used, and there's no feedback loop to improve rating quality season over season.</p>
+  </div>
+  <div class="card">
+    <h4>The opposing-roster change (Section 6)</h4>
+    <p>Whatever cross-team visibility supported in Sports Connect is simply gone in PlayMetrics, with no setting to restore it.</p>
+  </div>
+
+  <!-- ===================== 8 ===================== -->
+  <h2><span class="phase-num">8.</span> Recommendations &amp; Questions to Probe</h2>
+  <p>These are starting points, not decisions &mdash; framed as questions so the board can work them.</p>
+
+  <div class="q"><b>1. Pick a canonical ratings system.</b> Do we migrate ratings into PlayMetrics (native tryout ratings + Auto Assign), keep them in our pipeline, or run a defined hybrid? This is the anchor decision &mdash; most of the others depend on it. A low-cost first step: enable the PlayMetrics Auto Assign beta on one division next cycle and run it alongside our draft to compare the results.</div>
+
+  <div class="q"><b>2. Measure coverage before anything else.</b> What fraction of U10+ players actually carry a coach rating, by division? If it's low, improving <em>coverage</em> will beat any algorithm change. The portal's Ratings Worklist already shows Rated / Unrated per division &mdash; that's the baseline.</div>
+
+  <div class="q"><b>3. Make rating easier for coaches.</b> The Excel-sheet workflow is the friction point. Would in-app entry (PlayMetrics tryout ratings, scored right in the team assignment) raise coverage and cut the name-matching cleanup? What would coaches actually use?</div>
+
+  <div class="q"><b>4. Standardize the scale.</b> Settle on one region-wide scale (PlayMetrics' native range is 1&ndash;10) and a definition of what each number means, so ratings are comparable across coaches and divisions and portable season to season.</div>
+
+  <div class="q"><b>5. Resolve the opposing-roster question precisely.</b> What did cross-team visibility actually do for ratings in Sports Connect &mdash; calibration, validation, scouting? If it's genuinely needed, raise it with PlayMetrics as a feature request (it is not a setting). If it was mostly calibration, a shared rating rubric may substitute.</div>
+
+  <div class="q"><b>6. Decide the confidentiality + feedback policy.</b> Keep ratings director-only, or give coaches a limited view of the aggregate / how their inputs shaped the draft, to improve rating quality over time? Where's the line that protects kids while closing the feedback loop?</div>
+
+  <div class="q"><b>7. Preserve history through any transition.</b> Whatever we choose, multi-season rating history is valuable (retention outreach, re-draft). PlayMetrics' "Legacy Rating" note import is the documented way to carry prior ratings in if we move &mdash; make history preservation a requirement of any migration.</div>
+
+  <footer>
+    AYSO Region 58 &mdash; Player Ratings resource. Descriptions of existing systems are verified against the automation and portal source and the PlayMetrics help center (archived Sept&ndash;Oct 2026); recommendations are discussion prompts, not decisions. Prepared to open the conversation with the ratings working group.
+  </footer>
+
+</div>
+</body>
+</html>
