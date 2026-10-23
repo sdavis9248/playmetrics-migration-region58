@@ -498,6 +498,35 @@
     The SportsConnectAutomation export manager already has these columns defined and can produce game CSVs in this format. Note PM has no public API or webhooks — all exports (schedules, games, attendance) are manual CSV pulls from the More Actions menus, so the export manager remains the only automation path for schedule data.
   </div>
 
+  <!-- ===================== REFEREE SCHEDULING ===================== -->
+  <h2>Referee Scheduling</h2>
+
+  <div class="callout callout-amber">
+    <strong>⚠️ The short answer: PlayMetrics does not assign or pay referees.</strong>
+    PM is the source of truth for the <em>game schedule</em>, then hands that schedule off to an outside assignor system. Its own help center says the ref role "does not support assignment of officials or payments — those functions will need to be handled through an external system." So the model is: <strong>PlayMetrics builds the games → an external tool assigns the refs</strong>. What PM <em>does</em> provide is two bridges to that external tool.
+  </div>
+
+  <h3>Bridge 1 — The "Ref Assignor" role (read-only schedule access)</h3>
+  <p>PM has a built-in <strong>Ref Assignor</strong> account type (added under Staff → Ref Assignors). It gives a booking agent read access to league schedules so they can plan around them — no assigning or paying refs inside PM. A Ref Assignor can:</p>
+  <ul>
+    <li><strong>View game schedules</strong> with date-range filters and search.</li>
+    <li><strong>Export games to CSV</strong> (Schedules → Export Games, by date range) to feed into their own ref tool.</li>
+    <li><strong>Game Tracking</strong> — a "Game Changes" tab flags every reschedule/field change the league makes so the assignor can reconcile it in their external system and mark it resolved. This is the closest thing to a live link short of the full integration below.</li>
+    <li><strong>Message their league contact.</strong></li>
+  </ul>
+
+  <h3>Bridge 2 — The Assignr.com integration (real-time sync)</h3>
+  <p>PM offers a native, real-time integration with <strong>Assignr.com</strong> — Assignr is the third-party platform that actually assigns refs and handles ref pay. Once connected, scheduled games and any changes push from PM into Assignr automatically (field/venue mapping, division→age-group mapping, pay settings, per-game sync status with failure notifications). The actual assigning and paying still happens <em>in Assignr</em>, not PM.</p>
+  <div class="callout callout-blue">
+    <strong>💡 It has to be switched on by PlayMetrics.</strong>
+    The Assignr integration isn't self-serve — your org needs an Assignr agreement first (set up at <code>assignr.com/playmetrics</code>), then email <code>success@playmetrics.com</code> to have it enabled. There is no equivalent native integration for CGI or any other assignor tool.
+  </div>
+
+  <div class="callout callout-green">
+    <strong>✅ What this means for Region 58</strong>
+    Mike Lauer (<code>refadmin@ayso58.org</code>) owns referee scheduling. We currently use <strong>CGI (~$350/yr)</strong>; <strong>Assignr was demoed but runs ~$5,000</strong>. Because there's no native CGI bridge, the practical path with CGI is the manual one: Mike gets a Ref Assignor login (or Ben pulls the CSV) and we feed PM's game-schedule export into CGI, using Game Tracking to catch changes. Going with the live Assignr sync would mean paying for Assignr <em>and</em> asking PM to enable the integration — a cost/benefit call for Mike, not a technical blocker.
+  </div>
+
   <!-- ===================== WHAT WE DON'T KNOW YET ===================== -->
   <h2>What's Still Open</h2>
 
@@ -512,8 +541,8 @@
   </div>
 
   <div class="card">
-    <h4>Referee Assignment Integration</h4>
-    <p>Mike Lauer (refadmin@ayso58.org) handles referee scheduling. We currently use CGI (~$350/yr); Assigner was demoed but is ~$5,000. PM has no public API, so the bridge is a manual game-data CSV export from PM into whatever ref tool Mike uses. No native integration confirmed for AYSO.</p>
+    <h4>Referee Assignment — decision pending</h4>
+    <p>How PM hands off to a ref tool is now documented in the <strong>Referee Scheduling</strong> section above (Ref Assignor role + the native Assignr.com sync). What's still open for us is the <em>choice</em>: stay on CGI (~$350/yr) with a manual CSV bridge, or move to Assignr (~$5,000) for the live integration. Mike Lauer's call.</p>
   </div>
 
   <div class="card">
@@ -578,6 +607,10 @@
   <div class="ref-links">
     <a class="ref-link" href="https://help.playmetrics.com/hc/en-us/articles/17919974997783" target="_blank">Creating a League Program</a>
     <a class="ref-link" href="https://help.playmetrics.com/hc/en-us/articles/360021201253" target="_blank">Introduction to PlayMetrics</a>
+    <a class="ref-link" href="https://help.playmetrics.com/hc/en-us/articles/4424846415383-Using-PlayMetrics-as-a-Ref-Assignor" target="_blank">Using PlayMetrics as a Ref Assignor</a>
+    <a class="ref-link" href="https://help.playmetrics.com/hc/en-us/articles/8531978108439-How-to-Add-A-Ref-Assignor" target="_blank">How to Add A Ref Assignor</a>
+    <a class="ref-link" href="https://help.playmetrics.com/hc/en-us/articles/37642083289367-Integrate-with-Assignr" target="_blank">Integrate with Assignr</a>
+    <a class="ref-link" href="https://help.playmetrics.com/hc/en-us/articles/37642012748695-Assignr-Integration-for-Ref-Assignors" target="_blank">Assignr Integration for Ref Assignors</a>
   </div>
 
   <h3>PlayMetrics Feature Pages (public)</h3>
