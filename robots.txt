@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /Leagues_Divisions_Setup_Guide_Region58.html
+Disallow: /enrollment_dashboard.html
+
+Sitemap: https://playmetrics.ayso58.org/sitemap.xml

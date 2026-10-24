@@ -6,13 +6,13 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 A static, dependency-free set of HTML documents for AYSO Region 58 (Van Nuys / Sherman Oaks) covering its migration from SportsConnect to PlayMetrics. Every tracked file is a hand-written `.html` page plus one logo PNG. There is no build step, no package manager, no test suite, and no server-side code — what is in the repo is exactly what ships.
 
-Published via GitHub Pages at `https://sdavis9248.github.io/playmetrics-migration-region58/`; `main` is the published branch, so merging to `main` *is* the deploy. Preview locally with `python -m http.server 8000` and open `http://localhost:8000/`.
+Published via GitHub Pages at `https://playmetrics.ayso58.org/` (custom domain set by the `CNAME` file; DNS CNAME record at GoDaddy points to `sdavis9248.github.io`, and the old `https://sdavis9248.github.io/playmetrics-migration-region58/` address redirects); `main` is the published branch, so merging to `main` *is* the deploy. Preview locally with `python -m http.server 8000` and open `http://localhost:8000/`.
 
 The audience is volunteers (registrar, division coordinators, scheduler), not developers. Prose accuracy and printability matter more than markup elegance.
 
 ## The pages
 
-`index.html` is the hand-maintained hub — a card grid linking every guide. It is not generated; **a new guide is invisible until you add a card to it**, and card blurbs are the only place the guides are summarized for a reader choosing among them.
+`index.html` is the hand-maintained hub — a card grid linking every guide. It is not generated; **a new guide is invisible until you add a card to it**, and card blurbs are the only place the guides are summarized for a reader choosing among them. `sitemap.xml` is hand-maintained too — add the new guide there as well. Every page carries `<meta name="description">`, a canonical link and Open Graph tags in `<head>` so shared links preview properly; copy that block into a new guide and adjust it.
 
 | File | Audience / role |
 | --- | --- |

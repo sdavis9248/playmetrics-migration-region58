@@ -3,6 +3,16 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Volunteer-written guides for moving an AYSO region from SportsConnect to PlayMetrics: rosters, waitlists, scheduling, compliance, data import, terminology, and website migration." />
+  <link rel="canonical" href="https://playmetrics.ayso58.org/" />
+  <link rel="icon" type="image/png" href="AYSO58_logo.png" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="AYSO PlayMetrics Guides" />
+  <meta property="og:title" content="AYSO Region 58 — PlayMetrics Migration Resources" />
+  <meta property="og:description" content="Volunteer-written guides for moving an AYSO region from SportsConnect to PlayMetrics: rosters, waitlists, scheduling, compliance, data import, terminology, and website migration." />
+  <meta property="og:url" content="https://playmetrics.ayso58.org/" />
+  <meta property="og:image" content="https://playmetrics.ayso58.org/AYSO58_logo.png" />
+  <meta name="twitter:card" content="summary" />
   <title>AYSO Region 58 — PlayMetrics Migration Resources</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -85,6 +95,19 @@
     }
     .card a:hover { background: #163b78; }
     .card-wide { grid-column: 1 / -1; }
+    .notice {
+      grid-column: 1 / -1;
+      background: #fffbeb;
+      border: 1px solid #fcd34d;
+      border-radius: 12px;
+      padding: 14px 20px;
+      font-size: 13.5px;
+      color: #78350f;
+      line-height: 1.55;
+    }
+    .notice strong { color: #92400e; }
+    .notice a { color: #92400e; }
+    .footer a { color: rgba(255,255,255,0.7); text-decoration: none; }
     .footer {
       text-align: center;
       padding: 20px;
@@ -110,9 +133,13 @@
 
   <div class="grid">
 
+    <div class="notice">
+      <strong>Reading this from another region?</strong> These guides were written for AYSO Region 58's own SportsConnect &rarr; PlayMetrics move, but most of the content applies to any AYSO region. Values that are Region 58 planning numbers rather than PlayMetrics limits are called out in the text, and anything marked <strong>CONFIRM IN-PRODUCT</strong> has not yet been verified in PlayMetrics &mdash; corrections are welcome. The Migration Status dashboard is Region 58's internal tracker. Share this site as <strong>playmetrics.ayso58.org</strong>.
+    </div>
+
     <div class="card card-wide">
       <div class="card-icon icon-blue">&#x1F4CB;</div>
-      <h3>Migration Status</h3>
+      <h3>Migration Status <span style="font-size:12px;font-weight:600;color:#92400e;background:#fef3c7;padding:2px 8px;border-radius:999px;vertical-align:middle;margin-left:6px;">Region 58 internal</span></h3>
       <p>Live project dashboard showing verified configuration, completed steps, pending tasks, merchant account items, pre-launch sequence, and go-live checklist. All data verified from the test parent registration walkthrough on April 26, 2026.</p>
       <a href="PlayMetrics_Migration_Status_Region58.html">Open Status Dashboard &rarr;</a>
     </div>
@@ -177,6 +204,7 @@
 
   <div class="footer">
     AYSO Region 58 &bull; Everyone Plays&reg; &bull; Balanced Teams &bull; Positive Coaching &bull; Good Sportsmanship
+    <div style="margin-top:8px;"><a href="https://playmetrics.ayso58.org/">playmetrics.ayso58.org</a> &bull; <a href="https://github.com/sdavis9248/playmetrics-migration-region58">Source on GitHub</a></div>
   </div>
 
 </body>
