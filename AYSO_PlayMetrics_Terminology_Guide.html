@@ -477,7 +477,7 @@
 
 <header>
   <h1>AYSO ↔ PlayMetrics<br>Terminology Guide</h1>
-  <div class="meta">For AYSO volunteers navigating the SportsConnect → PlayMetrics transition &nbsp;|&nbsp; Updated April 27, 2026</div>
+  <div class="meta">For AYSO volunteers navigating the SportsConnect → PlayMetrics transition &nbsp;|&nbsp; Updated October 25, 2026</div>
 </header>
 
 <div class="container">
@@ -820,12 +820,12 @@
     <tr>
       <td>Regional Commissioner</td>
       <td>Admin (System Administrator)</td>
-      <td>Full system access. Added under Staff → Admins. Auto-syncs to Governing System. <a href="https://help.playmetrics.com/hc/en-us/articles/38946832703767" class="ext" target="_blank">Adding an Admin</a></td>
+      <td>Full system access. Added under Staff → Admins. Eligible for the Governing System import as soon as they are added. <a href="https://help.playmetrics.com/hc/en-us/articles/38946832703767" class="ext" target="_blank">Adding an Admin</a></td>
     </tr>
     <tr>
       <td>Division Coordinator</td>
       <td>Director</td>
-      <td>Oversight of a subset of teams. Added under Staff → Directors. Auto-syncs to Governing System.</td>
+      <td>Oversight of a subset of teams. Added under Staff → Directors. Eligible for the Governing System import as soon as they are added.</td>
     </tr>
     <tr>
       <td>Registrar</td>
@@ -875,7 +875,7 @@
     <tr>
       <td>Risk Status</td>
       <td>JDP Background Check</td>
-      <td>See <a href="#compliance">Compliance</a> section. SC pulled this from Sports Affinity. In PM, this flows through JDP integration — <strong>not yet available</strong> as of April 2026.</td>
+      <td>See <a href="#compliance">Compliance</a> section. SC pulled this from Sports Affinity. In PM the volunteer starts the JDP screening from the <strong>Complete Screening</strong> button in the Governing System, and the region sees Cleared / Not Cleared under Membership → Staff. <span class="tag tag-same">Live</span></td>
     </tr>
     <tr>
       <td>Team Staff Titles</td>
@@ -888,9 +888,9 @@
   <!-- ================================================================ -->
   <h2 id="compliance"><a class="anchor" href="#compliance">Compliance &amp; Background Checks</a></h2>
 
-  <div class="callout callout-red">
-    <strong>⛔ Governing System Not Yet Accessible</strong>
-    Pilot regions do not yet have access to the Governing System (purple interface). JDP (background checks) and AYSOU (certifications) integrations are expected summer 2026. In the meantime, returning volunteers continue using AYSOU through Sports Connect.
+  <div class="callout callout-green">
+    <strong>✅ Governing System Is Live — Sports Connect and Sports Affinity Are Being Retired</strong>
+    Regions have the Governing System (purple interface) with JDP background screening and the AYSOU connection in place: past course completions were synced in and new ones arrive automatically. Volunteers reach AYSOU from their PlayMetrics <strong>Member</strong> role, not through Sports Connect, and new volunteers create their AYSOU account from inside PlayMetrics. Fingerprinting (LiveScan) is the one requirement still outside PlayMetrics. The full workflow is in the <a href="Volunteer_Compliance_Guide_Region58.html">Volunteer Compliance Guide</a>.
   </div>
 
   <table class="glossary">
@@ -898,27 +898,27 @@
     <tr>
       <td>Sports Affinity Portal</td>
       <td>Governing System</td>
-      <td>The purple interface. Handles background checks, certifications, member IDs. <a href="https://playmetricsgs.zendesk.com/hc/en-us/articles/23301243189015" class="ext" target="_blank">Import Staff → Governing System</a></td>
+      <td>The purple interface. Handles background checks, certifications, member IDs, official rosters and member cards. Sports Affinity is retired; the region adds volunteers with Membership → Staff → Import Staff → Import from Club OS. <a href="https://playmetricsgs.zendesk.com/hc/en-us/articles/39598850765079" class="ext" target="_blank">Import Staff from Club OS</a></td>
     </tr>
     <tr>
       <td>Admin Credentials Report</td>
-      <td>Connected Systems (Club)</td>
-      <td>Once volunteers complete requirements in the Governing System, compliance status flows back to the Club System via "Connected Systems." Export capability TBD.</td>
+      <td>Membership → Staff (Governing System)</td>
+      <td>The per-volunteer status list in the Governing System replaces the report: Not Registered, Pending Member, In Club Review, In Governing Review, Verified. The <strong>Expirations</strong> tab replaces the yearly renewal chase. A downloadable equivalent of the old report is CONFIRM IN-PRODUCT.</td>
     </tr>
     <tr>
       <td>Risk Status: Green</td>
-      <td>Background Check: Cleared</td>
-      <td>JDP integration pending. Exact terminology for statuses TBD.</td>
+      <td>Cleared → Verified</td>
+      <td>JDP returns Cleared or Not Cleared. A volunteer becomes <strong>Verified</strong> only when every requirement for their title is met, and only Verified staff print on official rosters and game cards. Rainbow-adjudicated SC statuses were migrated with no status and screen fresh. <span class="tag tag-same">Live</span></td>
     </tr>
     <tr>
       <td>AYSOU Certifications</td>
-      <td>AYSOU Integration</td>
-      <td>Safe Haven, Concussion, SafeSport, coaching certs — will be pulled from AYSOU into the Governing System. <strong>Not yet live.</strong></td>
+      <td>Education tab (Member role)</td>
+      <td>Safe Haven, role training, coaching licenses and referee grades are completed in eTrainU and synced into the Governing System automatically. The concussion course is now state-specific and its expiration is enforced. SafeSport is <em>not</em> an AYSOU course — see USSF below. <span class="tag tag-same">Live</span></td>
     </tr>
     <tr>
       <td>USSF License</td>
       <td>USSF License</td>
-      <td>Already integrated — PM displays USSF licenses via the Learning Center. AYSOU grades pending. <span class="tag tag-same">Live</span></td>
+      <td>SafeSport is verified through the U.S. Soccer Learning Center: the volunteer enters their USSF ID in the Governing System and the completion and expiration sync automatically. Only SafeSport is required, not other USSF courses. <span class="tag tag-same">Live</span></td>
     </tr>
     <tr>
       <td>ID Verification</td>
@@ -927,8 +927,8 @@
     </tr>
     <tr>
       <td>LiveScan / Fingerprinting</td>
-      <td>Migration Process TBD</td>
-      <td>No current PM workflow. Data migration to be defined once additional functionality is built.</td>
+      <td>Outside PlayMetrics</td>
+      <td>Still no PM workflow. The region tracks LiveScan results and reports them to AYSO National; PlayMetrics will define a migration process once the functionality to hold the data is built.</td>
     </tr>
   </table>
 
@@ -1023,8 +1023,8 @@
     </tr>
     <tr>
       <td>Admin Credentials Report</td>
-      <td><em>Governing System (pending)</em></td>
-      <td>Not available until <a href="#compliance">Governing System</a> access is granted. Export capability TBD.</td>
+      <td>Membership → Staff (Governing System)</td>
+      <td>Replaced by the <a href="#compliance">Governing System</a> staff list and Expirations tab. A downloadable equivalent is CONFIRM IN-PRODUCT.</td>
     </tr>
     <tr>
       <td>Financial Summary</td>
@@ -1240,6 +1240,9 @@
     <a class="ref-link" href="https://playmetricsgs.zendesk.com/hc/en-us/articles/23301243189015" target="_blank">Import Staff → Governing System</a>
     <a class="ref-link" href="https://help.playmetrics.com/hc/en-us/articles/39600070246807" target="_blank">Volunteer Compliance Checklist</a>
     <a class="ref-link" href="https://help.playmetrics.com/hc/en-us/articles/39429633833495" target="_blank">Volunteer Registration &amp; Compliance Webinar</a>
+    <a class="ref-link" href="https://help.playmetrics.com/hc/en-us/articles/42624650027287" target="_blank">Accessing AYSOU as an AYSO Member</a>
+    <a class="ref-link" href="https://help.playmetrics.com/hc/en-us/articles/43074496225303" target="_blank">AYSOU FAQs</a>
+    <a class="ref-link" href="https://playmetricsgs.zendesk.com/hc/en-us/articles/23844188298263" target="_blank">Verifying Staff as a Club Admin</a>
   </div>
 
   <h3>AYSO Resources</h3>
@@ -1262,7 +1265,7 @@
   <p>No PlayMetrics screenshots are included in this document, consistent with current guidelines. All PM configuration is described in text only (field names, navigation paths, question labels).</p>
 
   <footer>
-    Prepared by Steve Davis, Registrar — AYSO Region 58 &nbsp;|&nbsp; Sources: PlayMetrics Help Center, MY2026 webinar Q&amp;A transcripts, setup session recordings, Volunteer Compliance webinar (April 2026), Superusers group discussions
+    Prepared by Steve Davis, Registrar — AYSO Region 58 &nbsp;|&nbsp; Sources: PlayMetrics Help Center (compliance section re-sourced from the October 2026 Help Center archive), MY2026 webinar Q&amp;A transcripts, setup session recordings, Volunteer Compliance webinar (April 2026), Superusers group discussions
   </footer>
 
 </div>
