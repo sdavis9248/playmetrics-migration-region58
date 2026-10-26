@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="How Region 58's Volunteer Hub guides each volunteer through compliance and training, and how it hands the official record to the PlayMetrics Governing System (PMGS) as Sports Connect and Sports Affinity retire: who does what, the volunteer's path, and a step-by-step transition plan." />
+  <link rel="canonical" href="https://playmetrics.ayso58.org/Volunteer_Hub_PMGS_Transition_Guide_Region58.html" />
+  <link rel="icon" type="image/png" href="AYSO58_logo.png" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="AYSO PlayMetrics Guides" />
+  <meta property="og:title" content="Volunteer Hub and PMGS — Transition Plan" />
+  <meta property="og:description" content="How Region 58's Volunteer Hub guides each volunteer through compliance and training, and how it hands the official record to the PlayMetrics Governing System (PMGS) as Sports Connect and Sports Affinity retire: who does what, the volunteer's path, and a step-by-step transition plan." />
+  <meta property="og:url" content="https://playmetrics.ayso58.org/Volunteer_Hub_PMGS_Transition_Guide_Region58.html" />
+  <meta property="og:image" content="https://playmetrics.ayso58.org/AYSO58_logo.png" />
+  <meta name="twitter:card" content="summary" />
+<title>Volunteer Hub ↔ PMGS Transition — Region 58</title>
+<link href="https://fonts.googleapis.com/css2?family=Anybody:wght@400;600;800&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1c1917;
+    --paper: #fafaf9;
+    --warm: #f5f0eb;
+    --accent: #1d4ed8;
+    --accent-soft: #dbeafe;
+    --green: #166534;
+    --green-soft: #dcfce7;
+    --amber: #92400e;
+    --amber-soft: #fef3c7;
+    --red: #991b1b;
+    --red-soft: #fee2e2;
+    --gray: #78716c;
+    --border: #e7e5e4;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Source Serif 4', Georgia, serif;
+    background: var(--paper);
+    color: var(--ink);
+    line-height: 1.7;
+    padding: 0;
+  }
+
+  header {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 3rem 2rem 2.5rem;
+  }
+
+  header h1 {
+    font-family: 'Anybody', sans-serif;
+    font-weight: 800;
+    font-size: 2rem;
+    letter-spacing: -0.03em;
+    line-height: 1.15;
+  }
+
+  header .meta {
+    font-size: 0.85rem;
+    opacity: 0.6;
+    margin-top: 0.5rem;
+    font-family: 'Anybody', sans-serif;
+    font-weight: 400;
+  }
+
+  .container {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem 4rem;
+  }
+
+  .summary-box {
+    background: var(--warm);
+    border-radius: 8px;
+    padding: 1.5rem 1.75rem;
+    margin: 2rem 0;
+    font-size: 0.95rem;
+  }
+
+  .summary-box strong {
+    font-family: 'Anybody', sans-serif;
+    font-weight: 600;
+    display: block;
+    margin-bottom: 0.4rem;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--gray);
+  }
+
+  h2 {
+    font-family: 'Anybody', sans-serif;
+    font-weight: 800;
+    font-size: 1.3rem;
+    margin: 2.5rem 0 0.75rem;
+    letter-spacing: -0.02em;
+    padding-bottom: 0.4rem;
+    border-bottom: 2px solid var(--ink);
+  }
+
+  h3 {
+    font-family: 'Anybody', sans-serif;
+    font-weight: 600;
+    font-size: 1.05rem;
+    margin: 1.5rem 0 0.5rem;
+    color: var(--accent);
+  }
+
+  p { margin-bottom: 0.75rem; }
+
+  .status-tag {
+    display: inline-block;
+    font-family: 'Anybody', sans-serif;
+    font-weight: 600;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    padding: 0.2rem 0.6rem;
+    border-radius: 3px;
+    vertical-align: middle;
+    margin-left: 0.5rem;
+  }
+
+  .tag-done { background: var(--green-soft); color: var(--green); }
+  .tag-ready { background: var(--accent-soft); color: var(--accent); }
+  .tag-waiting { background: var(--amber-soft); color: var(--amber); }
+  .tag-blocked { background: var(--red-soft); color: var(--red); }
+
+  .card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1.25rem 1.5rem;
+    margin: 1rem 0;
+  }
+
+  .card h4 {
+    font-family: 'Anybody', sans-serif;
+    font-weight: 600;
+    font-size: 0.95rem;
+    margin-bottom: 0.4rem;
+  }
+
+  .card p { font-size: 0.9rem; margin-bottom: 0.5rem; }
+
+  .flow {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0;
+    align-items: stretch;
+    margin: 1.25rem 0;
+  }
+
+  .flow-step {
+    flex: 1 1 120px;
+    min-width: 100px;
+    background: white;
+    border: 1px solid var(--border);
+    padding: 0.75rem;
+    text-align: center;
+    font-size: 0.8rem;
+    font-family: 'Anybody', sans-serif;
+    font-weight: 600;
+    position: relative;
+  }
+
+  .flow-step:not(:last-child)::after {
+    content: "→";
+    position: absolute;
+    right: -12px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1rem;
+    color: var(--gray);
+    z-index: 1;
+  }
+
+  .flow-step small {
+    display: block;
+    font-weight: 400;
+    font-family: 'Source Serif 4', serif;
+    color: var(--gray);
+    margin-top: 0.2rem;
+    font-size: 0.72rem;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0;
+    font-size: 0.88rem;
+  }
+
+  th {
+    font-family: 'Anybody', sans-serif;
+    font-weight: 600;
+    text-align: left;
+    padding: 0.6rem 0.75rem;
+    background: var(--warm);
+    border: 1px solid var(--border);
+    font-size: 0.82rem;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+  }
+
+  td {
+    padding: 0.5rem 0.75rem;
+    border: 1px solid var(--border);
+    vertical-align: top;
+  }
+
+  a { color: var(--accent); }
+
+  .timeline {
+    border-left: 3px solid var(--border);
+    padding-left: 1.5rem;
+    margin: 1.25rem 0 1.25rem 0.75rem;
+  }
+
+  .timeline-item {
+    position: relative;
+    margin-bottom: 1.25rem;
+  }
+
+  .timeline-item::before {
+    content: "";
+    position: absolute;
+    left: -1.85rem;
+    top: 0.45rem;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--border);
+    border: 2px solid var(--paper);
+  }
+
+  .timeline-item.active::before { background: var(--green); }
+  .timeline-item.current::before { background: var(--accent); }
+  .timeline-item.future::before { background: var(--amber); }
+
+  .timeline-item .label {
+    font-family: 'Anybody', sans-serif;
+    font-weight: 600;
+    font-size: 0.9rem;
+  }
+
+  .timeline-item .detail {
+    font-size: 0.85rem;
+    color: var(--gray);
+  }
+
+  .callout {
+    padding: 1rem 1.25rem;
+    border-left: 4px solid;
+    border-radius: 4px;
+    margin: 1rem 0;
+    font-size: 0.88rem;
+  }
+
+  .callout-blue { background: var(--accent-soft); border-color: var(--accent); }
+  .callout-amber { background: var(--amber-soft); border-color: #d97706; }
+  .callout-green { background: var(--green-soft); border-color: var(--green); }
+  .callout-red { background: var(--red-soft); border-color: var(--red); }
+
+  .callout strong { display: block; margin-bottom: 0.2rem; }
+
+  ul { padding-left: 1.25rem; margin-bottom: 0.75rem; }
+  li { margin-bottom: 0.3rem; font-size: 0.92rem; }
+
+  .ref-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin: 0.75rem 0;
+  }
+
+  .ref-link {
+    font-family: 'Anybody', sans-serif;
+    font-weight: 400;
+    font-size: 0.75rem;
+    padding: 0.2rem 0.5rem;
+    background: var(--accent-soft);
+    border-radius: 3px;
+    color: var(--accent);
+    text-decoration: none;
+    white-space: nowrap;
+  }
+
+  .ref-link:hover { text-decoration: underline; }
+
+  footer {
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border);
+    font-size: 0.8rem;
+    color: var(--gray);
+    font-family: 'Anybody', sans-serif;
+  }
+
+  .path {
+    font-family: 'Anybody', sans-serif;
+    font-weight: 600;
+    font-size: 0.8rem;
+    background: var(--accent-soft);
+    color: var(--accent);
+    padding: 0.15rem 0.5rem;
+    border-radius: 4px;
+    white-space: nowrap;
+  }
+  ol { padding-left: 1.4rem; margin-bottom: 0.75rem; }
+  ol li { margin-bottom: 0.5rem; }
+
+  @media (max-width: 600px) {
+    header { padding: 2rem 1rem; }
+    header h1 { font-size: 1.5rem; }
+    .container { padding: 1rem; }
+    .flow { flex-direction: column; }
+    .flow-step::after { display: none; }
+    .path { white-space: normal; }
+    table { display: block; overflow-x: auto; }
+  }
+
+  @media print {
+    header { background: white; color: black; border-bottom: 3px solid black; }
+    .card { border: 1px solid #ccc; }
+    body { font-size: 11pt; }
+  }
+</style>
+</head>
+<body>
+
+  <div style="background:#0a2351;padding:8px 16px;text-align:center;">
+    <a href="index.html" style="color:rgba(255,255,255,0.85);text-decoration:none;font-family:Anybody,-apple-system,sans-serif;font-size:13px;font-weight:600;letter-spacing:0.02em;">← AYSO Region 58 — All Guides</a>
+  </div>
+
+
+<header>
+  <h1>Volunteer Hub &amp; the Governing System<br>Transition Guide</h1>
+  <div class="meta">AYSO Region 58 — Fall 2026 &rarr; MY2027 &nbsp;|&nbsp; Prepared October 26, 2026</div>
+</header>
+<nav style="background:#f5f0eb;padding:0.5rem 1.5rem;font-family:Anybody,sans-serif;font-size:0.82rem;border-bottom:1px solid #e7e5e4;"><a href="index.html" style="color:#1d4ed8;text-decoration:none;font-weight:600;">← All Region 58 Guides</a></nav>
+
+<div class="container">
+
+  <div class="summary-box">
+    <strong>Bottom Line</strong>
+    Region 58 runs two things for its volunteers: the <em>Volunteer Hub</em> at volunteer.ayso58.org, which walks each person through exactly what they owe and does the clicking for them, and the official AYSO record, which until now lived in Sports Connect and the Sports Affinity association site. That official record is moving to the PlayMetrics <em>Governing System</em> (PMGS). The Hub was built so that it does not care where the official record lives &mdash; it reads it, explains it, and helps the volunteer close the gaps. This guide proposes how Region 58 moves the Hub's source of truth from Sports Connect and Sports Affinity to PMGS, and settles <b>who does what</b> afterwards so that no requirement is tracked twice and none goes dark. The short version: PMGS becomes the record of authority for registration, background screening, SafeSport and AYSOU completions; the Hub keeps the parts PMGS does not do &mdash; role and division candidacy, the exact course for an age group, in-person session sign-up, fingerprinting, referee scheduling, and plain-English guidance.
+  </div>
+
+  <div class="callout callout-blue">
+    <strong>Who this is for</strong>
+    The registrar, the CVPA, division coordinators and the referee administrator, plus anyone at another region evaluating the Hub. The companion <a href="Volunteer_Compliance_Guide_Region58.html">Volunteer Compliance Guide</a> explains how PMGS itself works; this page explains how the Hub fits around it. Where this page proposes a step rather than describes a current fact, it says so. Anything marked CONFIRM IN-PRODUCT has not yet been verified in PlayMetrics.
+  </div>
+
+  <!-- ================================================================ -->
+  <h2>What the Volunteer Hub Is</h2>
+
+  <p>The Volunteer Hub is Region 58's volunteer-facing website (volunteer.ayso58.org; Region 18 runs the same software at volunteer.ayso18.org). A volunteer signs in with a one-time link sent to their email &mdash; there is no password to create, remember or reset &mdash; and lands on a single page that answers three questions: <em>what am I signed up for, what do I still owe, and what do I click next?</em> It is one copy of the Hub per region, scoped to that region's volunteers only.</p>
+
+  <div class="flow">
+    <div class="flow-step">Sign in<small>One-time email link, no password</small></div>
+    <div class="flow-step">My Compliance<small>Roles, what's met, what's left, expirations</small></div>
+    <div class="flow-step">Training<small>The exact course, online or in person</small></div>
+    <div class="flow-step">Do it<small>One-click enroll, session sign-up, SafeSport, LiveScan</small></div>
+    <div class="flow-step">Done<small>Record syncs; region sees it; nudges stop</small></div>
+  </div>
+
+  <div class="card">
+    <h4>My Compliance &mdash; the one-page answer</h4>
+    <p>Shows the volunteer's current-season roles and divisions, their AYSO ID, each requirement with its status (met, in progress, needed, expiring in N days), and a meter such as "4 of 6 shared requirements met &mdash; 1 to go, 1 in progress." It is read-only and says so: it reflects the official records on file as of the last sync, which runs several times a day. A background check that has been submitted but not returned shows as <em>in progress</em>, not as missing, so nobody is nagged for something already underway.</p>
+  </div>
+
+  <div class="card">
+    <h4>Training &mdash; the exact course, not a catalog</h4>
+    <p>For each role and division the volunteer declared, the Hub names the one course that satisfies the gap: a 10U coach is told they need the 10U Coach course and that they currently hold 6U and 8U; a 14U referee is told Intermediate grade is required. For online AYSOU courses (Safe Haven, Concussion Awareness, Sudden Cardiac Arrest, Regional Board Member) one click enrolls them. For courses with an in-person field session it lists upcoming sessions nearest first (Region 58's own class outranks a nearer one in another region), enrolls them on request, and lets them switch sessions later. It tracks "online portion done, field session pending" so a half-finished hybrid course is not shown as untouched.</p>
+  </div>
+
+  <div class="card">
+    <h4>SafeSport and fingerprinting &mdash; the two outside websites, explained</h4>
+    <p>SafeSport is not an AYSO University course and LiveScan fingerprinting is not in any system, so these are where volunteers get stuck. The Hub carries a screenshot walkthrough for creating a SafeSport account (including the easy-to-miss "Name of Sport or Community Organization: AYSO" field), the refresher path for renewals, and an upload box for the completion certificate that goes straight to the registrar. For fingerprinting it explains the AYSO LiveScan site, the AYSO-discounted rate at Live Scan Service Centers, what to bring, the ORI number for an outside provider, and asks the volunteer to send their ATI number so the region can record the fingerprinting while the state finishes processing. The reimbursement form is attached.</p>
+  </div>
+
+  <div class="card">
+    <h4>Register and candidacy &mdash; what will you actually do?</h4>
+    <p>A volunteer tells the Hub which roles they want (Head Coach, Assistant Coach, Referee, Youth Referee, Team Manager) and which of the 16 divisions, or "any division." A minor can only choose Youth Referee. A 14U-and-up referee candidacy from someone without an Intermediate grade is recorded but flagged for the referee administrator. This candidacy is what makes the requirements list age-correct, and it feeds team formation: the division coordinators' coach queue and the draft board draw from it.</p>
+  </div>
+
+  <div class="card">
+    <h4>Nudges and the back office</h4>
+    <p>The Hub emails sign-in links to volunteers who signed up in PlayMetrics but have no official record yet, tells a volunteer when the region has submitted a background-check renewal on their behalf so the provider's email is not a surprise, and lets a volunteer withdraw (which notifies their division coordinator). Everything the Hub shows comes from the region's compliance automation, which also feeds the board-only Region 58 Portal: the same facts, one view per volunteer and one view per division.</p>
+  </div>
+
+  <div class="callout callout-amber">
+    <strong>What the Hub is not</strong>
+    The Hub is not a system of record. It never invents an AYSO ID, a clearance or a certification; it shows what the official system holds and queues requests to change it. For background checks it shows <b>status only</b> (cleared, pending, action needed), never report detail, which is the Fair Credit Reporting Act line the region keeps on the right side of. A request made in the Hub is honest about its state: <em>submitted, processing, done, needs attention</em>.
+  </div>
+
+  <!-- ================================================================ -->
+  <h2>How the Hub Worked in the Sports Connect Era</h2>
+
+  <p>Through the Fall 2026 season the official record lived in Sports Connect (the volunteer application) and Sports Affinity (membership, AYSO ID, risk status, certifications), with AYSO University reached only through Sports Connect's single sign-on. Neither has an API, so the Hub's back office drives them the way a registrar would, in a browser, on the volunteer's behalf. That was always a bridge, and most of it retires with those two systems.</p>
+
+  <table>
+    <tr><th style="width:34%">Bridge-era piece</th><th>What it did</th><th style="width:26%">Fate</th></tr>
+    <tr>
+      <td>Delegated Sports Connect registration</td>
+      <td>The volunteer authorized Region 58 to operate their Sports Connect account; the Hub created the account or stored their existing password in a sealed form only the back office can open, then filed the volunteer application for the season. Volunteers never logged into Sports Connect again.</td>
+      <td>Ends with Sports Connect. Stored credentials are deleted on retirement, as the authorization promised.</td>
+    </tr>
+    <tr>
+      <td>Passwordless AYSO University launch</td>
+      <td>Replayed Sports Connect's eTrainU single sign-on so a Hub volunteer landed in their own AYSOU account without a password; also opened a specific course directly.</td>
+      <td>Ends with Sports Connect. PMGS-homed volunteers open AYSOU from their PlayMetrics Member role instead.</td>
+    </tr>
+    <tr>
+      <td>Sports Affinity exports as the certification source</td>
+      <td>Admin Credentials and Admin Details reports, scraped several times a day, became the certification, risk-status and AYSO-ID facts behind My Compliance.</td>
+      <td>Replaced by PMGS reads. Affinity history is kept so past seasons stay visible.</td>
+    </tr>
+    <tr>
+      <td>Sterling background-check renewals</td>
+      <td>The back office invoked re-checks inside the renewal window and the Hub warned the volunteer to expect Sterling's email.</td>
+      <td>Replaced by JDP, started by the volunteer with <b>Complete Screening</b> in PMGS.</td>
+    </tr>
+    <tr>
+      <td>Course enrollment as region admin</td>
+      <td>Assigned online courses and in-person sessions to a learner from the region's AYSOU admin account, searched by email.</td>
+      <td>Survives in principle: it is an AYSOU admin action, not a Sports Connect one. Whether the admin session still reaches AYSOU after Sports Connect closes is CONFIRM IN-PRODUCT.</td>
+    </tr>
+    <tr>
+      <td>Candidacy, session finder, SafeSport and LiveScan guidance, nudges</td>
+      <td>The volunteer-facing half of the Hub.</td>
+      <td>Unchanged. None of it depended on which system holds the official record.</td>
+    </tr>
+  </table>
+
+  <!-- ================================================================ -->
+  <h2>What PMGS Does Now</h2>
+
+  <p>The <a href="Volunteer_Compliance_Guide_Region58.html">Volunteer Compliance Guide</a> covers this in full; the essentials for the reconciliation below are these.</p>
+
+  <ul>
+    <li><strong>Registration of record.</strong> The region designates each volunteer as staff in the Club System, then <span class="path">Membership &rarr; Staff &rarr; More Actions &rarr; Import Staff &rarr; Import from Club OS</span> creates their Governing System membership. The staff title chosen at import sets which requirements apply. Volunteers who sign up through League Volunteer Signups (Beta) follow the same path once accepted (CONFIRM IN-PRODUCT that the beta feeds the import directly).</li>
+    <li><strong>The volunteer's own checklist.</strong> In the Member role: photo and waivers, <em>Clearances</em> (SafeSport by entering a U.S. Soccer Federation ID, JDP background screening by clicking Complete Screening), and the <em>Education</em> tab, which opens AYSO University and syncs completions back automatically.</li>
+    <li><strong>Status and expirations.</strong> Each member is Not Registered, Pending Member, In Club Review, In Governing Review or <b>Verified</b>; only Verified staff print on official rosters. The Expirations tab flags items 45 days out and emails at 30.</li>
+    <li><strong>What it holds from AYSOU.</strong> Safe Haven, Concussion, Sudden Cardiac Arrest, coach licenses and referee grades arrive by sync. SafeSport comes from the Learning Center. Legacy Sports Affinity risk status and certifications were migrated by AYSO National.</li>
+    <li><strong>What it does not do.</strong> It does not track fingerprinting (PlayMetrics has said the data has no home there yet). It holds a staff <em>title</em>, not the division the person will serve, so it does not say whether a 12U license is enough for the 10U team they are about to coach (CONFIRM IN-PRODUCT; the Help Center describes license display, not age-adequacy checks). It does not enroll anyone in a field session, approve referees for the scheduling system, or take a role and division preference for team formation.</li>
+  </ul>
+
+  <!-- ================================================================ -->
+  <h2>Who Does What &mdash; the Reconciliation</h2>
+
+  <p>The rule that makes this work is simple: <strong>one owner per fact, and the Hub never contradicts the owner.</strong> Where two systems can both hold a credential during the changeover, the region's standing policy applies: <em>the most favorable current record prevails</em>, so a volunteer cleared in PMGS is never shown as expired because an old Affinity row says so.</p>
+
+  <table>
+    <tr><th style="width:17%">Capability</th><th style="width:12%">PMGS</th><th style="width:14%">Volunteer Hub</th><th style="width:13%">Region people</th><th>Notes</th></tr>
+    <tr>
+      <td>Capture volunteer interest</td>
+      <td><span class="status-tag tag-ready">Club System</span></td>
+      <td>Secondary</td>
+      <td>Registrar</td>
+      <td>Volunteer Roles in registration, Coaching Requests and League Volunteer Signups are the front door. The Hub's Register page remains for people without a child registering, and feeds the same candidacy queue.</td>
+    </tr>
+    <tr>
+      <td>Official record, AYSO ID, staff title</td>
+      <td><span class="status-tag tag-done">Owner</span></td>
+      <td>Reads</td>
+      <td>Registrar imports; CVPA reviews</td>
+      <td>The Hub shows the member ID and a "Registered in PlayMetrics" banner; it never routes a PMGS member to its own Register page.</td>
+    </tr>
+    <tr>
+      <td>Role and division candidacy</td>
+      <td>&mdash;</td>
+      <td><span class="status-tag tag-done">Owner</span></td>
+      <td>DCs select; Ref Admin approves referees</td>
+      <td>PMGS has titles, not divisions. Candidacy is what makes "what's left" age-correct and is the input to the coach queue and draft board.</td>
+    </tr>
+    <tr>
+      <td>Background screening (JDP)</td>
+      <td><span class="status-tag tag-done">Owner</span></td>
+      <td>Status only</td>
+      <td>CVPA for Not Cleared</td>
+      <td>Started by the volunteer in PMGS. The Hub shows cleared / pending / action needed and stops invoking renewals itself.</td>
+    </tr>
+    <tr>
+      <td>SafeSport</td>
+      <td><span class="status-tag tag-done">Owner</span></td>
+      <td>Walkthrough; certificate upload as fallback</td>
+      <td>Registrar records fallback uploads</td>
+      <td>PMGS verifies through the USSF ID. Keep the Hub's account-creation walkthrough (volunteers still get lost there) and keep the certificate upload until every volunteer's USSF ID sync is proven &mdash; whether it is still needed after that is CONFIRM IN-PRODUCT.</td>
+    </tr>
+    <tr>
+      <td>Online AYSOU courses</td>
+      <td><span class="status-tag tag-done">Launch &amp; sync</span></td>
+      <td>Says which, links to PlayMetrics</td>
+      <td>&mdash;</td>
+      <td>For a PMGS-homed volunteer the Hub's "Open my training" button goes to their PlayMetrics Education tab; an older AYSOU account is offered second. Admin-side enrollment stays available but off by default.</td>
+    </tr>
+    <tr>
+      <td>Coach license and referee grade for the division</td>
+      <td>Holds the credential</td>
+      <td><span class="status-tag tag-done">Decides adequacy</span></td>
+      <td>Coach Admin, Ref Admin</td>
+      <td>AYSOU issues it, PMGS stores it, the Hub compares it with the declared division and names the one course that closes the gap.</td>
+    </tr>
+    <tr>
+      <td>In-person field sessions</td>
+      <td>&mdash;</td>
+      <td><span class="status-tag tag-done">Owner</span></td>
+      <td>Hosts record completion</td>
+      <td>Nearest-first list, one-click enroll, switch sessions, attendance reminder. Not a PMGS feature.</td>
+    </tr>
+    <tr>
+      <td>Fingerprinting (LiveScan)</td>
+      <td>&mdash;</td>
+      <td>Guides, captures ATI</td>
+      <td><span class="status-tag tag-done">CVPA records</span></td>
+      <td>Outside every system. The region's own record is authoritative until PMGS adds a field; results are reported to AYSO National as today.</td>
+    </tr>
+    <tr>
+      <td>Expirations and renewals</td>
+      <td><span class="status-tag tag-done">Owner</span></td>
+      <td>Mirrors, nudges with the next step</td>
+      <td>&mdash;</td>
+      <td>PMGS emails at 30 days and weekly after; the Hub shows "expires in N days" and what to click, so the two agree on the date.</td>
+    </tr>
+    <tr>
+      <td>Verified / eligible to roster</td>
+      <td><span class="status-tag tag-done">Owner</span></td>
+      <td>Shows "all set"</td>
+      <td>Region 58 Portal for the division view</td>
+      <td>Only Verified staff print on official rosters. The Portal keeps the by-division and by-requirement views the board uses, across sources, while PMGS is the final word per person.</td>
+    </tr>
+    <tr>
+      <td>Referee scheduling approval</td>
+      <td>&mdash;</td>
+      <td>Explains the gate</td>
+      <td><span class="status-tag tag-done">Ref Admin</span></td>
+      <td>The scheduling system opens a referee's account only when the region's compliance automation reports them cleared; that feed will read PMGS instead of Affinity.</td>
+    </tr>
+    <tr>
+      <td>Adult players (19U, turning 18)</td>
+      <td><span class="status-tag tag-waiting">18+ Youth Players tab</span></td>
+      <td>&mdash;</td>
+      <td>Registrar</td>
+      <td>Players, not volunteers; handled in PMGS and the Portal's 18+ tab. Whether AYSO National has enabled the PMGS view for 19U is CONFIRM IN-PRODUCT.</td>
+    </tr>
+  </table>
+
+  <div class="callout callout-green">
+    <strong>Why both, and not just PMGS</strong>
+    PMGS answers "is this person Verified?" The Hub answers "what exactly do I do next, for the division I am actually going to coach, and can you do the clicking for me?" The second question is where volunteers drop out, and it is region-specific: the class Region 58 runs after the season starts, the fingerprinting reimbursement, the referee administrator's Intermediate-grade rule for 14U. Nothing in PMGS carries that, and nothing in the Hub needs to own the official record to carry it.
+  </div>
+
+  <!-- ================================================================ -->
+  <h2>The Volunteer's Path After the Transition</h2>
+
+  <div class="flow">
+    <div class="flow-step">Sign up<small>Registration volunteer role, Coaching Request or Hub</small></div>
+    <div class="flow-step">Region imports<small>Staff in Club System &rarr; PMGS member</small></div>
+    <div class="flow-step">Two emails<small>PMGS requirements + Hub sign-in link</small></div>
+    <div class="flow-step">Clearances in PMGS<small>Photo, waivers, JDP, SafeSport</small></div>
+    <div class="flow-step">Training via Hub<small>Which course, enroll, field session, LiveScan</small></div>
+    <div class="flow-step">Verified<small>PMGS marks it; Hub shows all set</small></div>
+  </div>
+
+  <ol>
+    <li><strong>Sign up.</strong> A parent ticks a volunteer role while registering their player, or answers the Coaching Request; anyone else uses the Hub's Register page. Either way they end up in the Hub's candidacy with a role and divisions.</li>
+    <li><strong>The region makes them official.</strong> The registrar designates them as staff in the Club System and imports them to PMGS with the right title. This is the step that creates the AYSO membership and starts the clock on requirements.</li>
+    <li><strong>Two emails arrive.</strong> PMGS invites them to complete member requirements; the Hub (or the registrar's nudge) sends the one-time sign-in link. The Hub's My Compliance page now opens with the "Registered in PlayMetrics" banner: registration and clearances are managed in PlayMetrics, this page is for everything else.</li>
+    <li><strong>Clearances in PMGS.</strong> From their Member role: photo, waivers, Complete Screening for JDP, USSF ID for SafeSport. The Hub shows each as it lands, and keeps the SafeSport walkthrough one click away for anyone who gets lost on the Learning Center.</li>
+    <li><strong>Training through the Hub.</strong> The Hub names the course for each role and division. Online courses open through the volunteer's PlayMetrics Education tab (completions sync to PMGS and then to the Hub). Field sessions and referee courses are enrolled from the Hub's session list. Fingerprinting follows the Hub's LiveScan steps; the volunteer sends the ATI and the CVPA records it.</li>
+    <li><strong>Verified.</strong> PMGS flips them to Verified; the Hub reads it and shows "You're all set for the season"; a referee's scheduling account opens. Renewals come back the same way a year later, from both PMGS and the Hub, agreeing on the date.</li>
+  </ol>
+
+  <div class="callout callout-blue">
+    <strong>What changes for a returning volunteer</strong>
+    Nothing they will notice except fewer accounts. They stop having a Sports Connect password (the Hub never asked them to remember it anyway), they get a PlayMetrics Member role they may already have as a parent, and AYSO University opens from PlayMetrics instead of from the Hub's launch button. Their training history, licenses and grades were migrated by AYSO National; the Hub links a volunteer's older AYSOU account to their PMGS identity so a course taken under the old account still counts.
+  </div>
+
+  <!-- ================================================================ -->
+  <h2>Proposed Transition Plan for Region 58</h2>
+
+  <p>Region 18, the other pilot region on the same software, moved its official record to PMGS in September 2026 and has run the Hub against it since. Region 58 has not yet connected its Club System to the Governing System or imported its volunteers; every Region 58 volunteer is still homed on the Sports Connect bridge. The proposal is to do the switch between seasons, in the order below, so that no volunteer is mid-requirement when their source of truth moves.</p>
+
+  <div class="timeline">
+    <div class="timeline-item active">
+      <div class="label">Now (October 2026) &mdash; Fall season on the bridge &#9989;</div>
+      <div class="detail">The Hub is live on Sports Connect and Affinity. PMGS is live for pilot regions with JDP and the AYSOU connection working. The automation already knows how to read PMGS (membership status, per-requirement dates, licenses and grades) because Region 18 needed it; the Hub already knows how to present a PMGS-homed volunteer. Nothing to do for Fall volunteers; let the season finish on the system they started on.</div>
+    </div>
+    <div class="timeline-item current">
+      <div class="label">Step 1 (November&ndash;December 2026) &mdash; Connect and import</div>
+      <div class="detail"><strong>Registrar:</strong> connect the Club System to the Governing System (Administration &rarr; More Actions &rarr; Connect to PlayMetrics Club OS, from the PMGS side), confirm the green Connected badge, then import current Fall staff with their final titles (see the compliance guide for the title tiers). Start with board, coaches and referees who are already Verified-equivalent in Affinity so the migrated data can be checked against known-good people. <strong>Automation:</strong> turn on the PMGS pulls for Region 58, link each person's PlayMetrics member number to their existing record, and publish with the most-favorable-prevails rule. <strong>Hub:</strong> no code change; imported volunteers flip to the "Registered in PlayMetrics" view automatically.</div>
+    </div>
+    <div class="timeline-item future">
+      <div class="label">Step 2 (January 2027, before Spring registration) &mdash; PMGS-first for everyone new</div>
+      <div class="detail">New volunteers are imported to PMGS as they sign up and are never registered in Sports Connect. The Hub's Register page stops creating Sports Connect accounts for Region 58 (it already skips them for PMGS-homed people) and its delegated-registration consent text is retired. The Portal's "Not Registered" tab becomes "import to PMGS." JDP renewals are left to PMGS and the volunteer; the automation stops invoking Sterling re-checks. Fingerprinting and in-person sessions carry on exactly as now.</div>
+    </div>
+    <div class="timeline-item future">
+      <div class="label">Step 3 (Spring 2027 season) &mdash; Prove it on a full season</div>
+      <div class="detail">Run Spring with PMGS as the only official record for Region 58 while Affinity is still readable, so any discrepancy (a license PMGS did not receive, a SafeSport that did not sync from the USSF ID) can be compared against the old export and reported to PlayMetrics or AYSO National. Decide from the evidence whether the Hub's SafeSport certificate upload is still needed. Verify the AYSOU admin path for field-session enrollment still works without Sports Connect.</div>
+    </div>
+    <div class="timeline-item future">
+      <div class="label">Step 4 (by the Sports Connect and Affinity retirement) &mdash; Cut the bridge</div>
+      <div class="detail">Delete every stored Sports Connect credential (the authorization volunteers signed said this would happen), remove the Sports Connect sign-on launch and the Affinity scrapers, and keep only the Affinity history already captured. AYSO National relayed September 30, 2027 as the vendor's retirement date in June 2026; confirm it before planning the last step around it.</div>
+    </div>
+  </div>
+
+  <div class="callout callout-amber">
+    <strong>Do not do this mid-season</strong>
+    A volunteer whose background check is pending in Affinity and whose record moves to PMGS the same week will see "in progress" become "not started" unless the migrated status arrives first. Import between seasons, import the already-cleared people first, and keep the old export readable until the new one has been checked against it for a full cycle.
+  </div>
+
+  <!-- ================================================================ -->
+  <h2>Risks and Open Questions</h2>
+
+  <div class="card">
+    <h4>Two AYSO University accounts for one person</h4>
+    <p>PlayMetrics mints a new AYSOU learner for each member, so a veteran can end up with an old account from the Sports Connect years and a new one from PMGS. In Region 18 roughly one in twelve PMGS volunteers has both. The Hub links the two to one person so completions roll up, but merging the accounts inside AYSOU is a national admin action. Expect "I already took Safe Haven" questions during the first PMGS season and answer them from the linked record.</p>
+  </div>
+
+  <div class="card">
+    <h4>PMGS does not tell us the email</h4>
+    <p>The membership list the automation reads carries the PlayMetrics user ID and name but no email, so the join to the Hub's identity runs through the Club System's coach-request and signup exports and, as a last resort, by name. Anyone the join cannot place is listed as unmatched rather than dropped. Region 58's overrides file is the place to pin the handful of ambiguous ones, as it was for Affinity.</p>
+  </div>
+
+  <div class="card">
+    <h4>Fingerprinting stays homeless</h4>
+    <p>Until PMGS has a field for it, the region's own LiveScan record is the authority and the CVPA keeps reporting results to AYSO National outside PlayMetrics. The Club System's new Staff Clearance Submissions beta could hold a LiveScan proof as a custom requirement, but that would be a region-only record that AYSO National does not see &mdash; CONFIRM IN-PRODUCT, and probably not worth the second place to look.</p>
+  </div>
+
+  <div class="card">
+    <h4>Title tiers versus the Hub's requirement model</h4>
+    <p>PMGS applies requirements by staff title; the Hub applies them by role, division and age (a minor referee is exempt from SafeSport and fingerprinting; a board member owes the Regional Board Member course). The two must agree or the volunteer sees two different lists. The proposal is that the Hub adopts PMGS's title as the base and keeps only region additions on top (fingerprinting, the division-specific course, the referee-grade rule), and that any disagreement is treated as a bug in the Hub, not in PMGS.</p>
+  </div>
+
+  <div class="card">
+    <h4>The "no-name region" path</h4>
+    <p>AYSO National's fallback for someone with no PlayMetrics or Sports Connect record is to give them AYSOU access through a holding region and move them later by script. A person in that holding state is invisible to Region 58's automation until the move, so their training will look missing. Importing them to PMGS through our own Club System avoids the holding region entirely; the Hub's Register page exists precisely so that nobody needs it.</p>
+  </div>
+
+  <div class="card">
+    <h4>Privacy posture does not change</h4>
+    <p>Status only for background checks, no report detail, no new copies of birth dates or addresses beyond what PMGS already holds. The Hub continues to read, never to export en masse, and the board Portal stays behind the region's Google sign-in.</p>
+  </div>
+
+  <!-- ================================================================ -->
+  <h2>Who to Contact</h2>
+
+  <table>
+    <tr><th style="width:45%">Question</th><th>Contact</th></tr>
+    <tr><td>Something on the Hub looks wrong (a role, a requirement, a course that does not fit)</td><td>Region 58 registrar, by replying to any Hub email</td></tr>
+    <tr><td>Fingerprinting, LiveScan results, Not Cleared background checks</td><td>Region 58 CVPA (Jay)</td></tr>
+    <tr><td>Referee grades, Intermediate requirement for 14U, scheduling account not open</td><td>Region 58 referee administrator</td></tr>
+    <tr><td>PMGS import, Connected Systems, League Volunteer Signups beta</td><td>success@playmetrics.com</td></tr>
+    <tr><td>Duplicate AYSOU accounts, course taken but not showing in PMGS</td><td>support@ayso.org (AYSO National governing administrators)</td></tr>
+    <tr><td>Running the Hub in another region</td><td>Region 58 registrar; the software is the same for every region and is configured, not forked</td></tr>
+  </table>
+
+  <!-- ================================================================ -->
+  <h2>Related Region 58 Guides</h2>
+  <ul>
+    <li><a href="Volunteer_Compliance_Guide_Region58.html">Volunteer Compliance Guide</a> &mdash; how PMGS works end to end: the Club &rarr; Governing pipeline, title tiers, what each volunteer completes, tracking Verified status.</li>
+    <li><a href="AYSO_PlayMetrics_Terminology_Guide.html">Terminology Guide</a> &mdash; Sports Connect and Affinity terms mapped to PlayMetrics and PMGS.</li>
+    <li><a href="Team_Roster_Setup_Guide_Region58.html">Team &amp; Player Roster Setup</a> &mdash; where the Hub's candidacy data ends up: coach requests, team assignments, the draft.</li>
+    <li><a href="PlayMetrics_Migration_Status_Region58.html">Migration Status</a> &mdash; the live checklist, including the PMGS import item this plan expands.</li>
+  </ul>
+
+  <h2>Reference Links</h2>
+
+  <div class="ref-links">
+    <a class="ref-link" href="https://volunteer.ayso58.org/" target="_blank">Region 58 Volunteer Hub</a>
+    <a class="ref-link" href="https://playmetricsgs.zendesk.com/hc/en-us/articles/38962821284119" target="_blank">What Is Connected Systems</a>
+    <a class="ref-link" href="https://playmetricsgs.zendesk.com/hc/en-us/articles/21981416677655" target="_blank">Connect Your PlayMetrics Club to a Governing System</a>
+    <a class="ref-link" href="https://playmetricsgs.zendesk.com/hc/en-us/articles/39598850765079" target="_blank">Adding Staff via the Connected Club System</a>
+    <a class="ref-link" href="https://playmetricsgs.zendesk.com/hc/en-us/articles/23844188298263" target="_blank">Verifying Staff as a Club Admin</a>
+    <a class="ref-link" href="https://help.playmetrics.com/hc/en-us/articles/39600070246807" target="_blank">AYSO Volunteer Compliance Checklist (tiers)</a>
+    <a class="ref-link" href="https://help.playmetrics.com/hc/en-us/articles/42624650027287" target="_blank">Accessing AYSOU as an AYSO Member</a>
+    <a class="ref-link" href="https://help.playmetrics.com/hc/en-us/articles/43074496225303" target="_blank">AYSOU FAQs</a>
+    <a class="ref-link" href="https://help.playmetrics.com/hc/en-us/articles/42288955482519" target="_blank">League Volunteer Signups (Beta)</a>
+    <a class="ref-link" href="https://help.playmetrics.com/hc/en-us/articles/42288622903063" target="_blank">Staff Clearance Submissions (Beta)</a>
+    <a class="ref-link" href="https://www.applicantservices.com/AYSO" target="_blank">AYSO LiveScan (ApplicantServices)</a>
+    <a class="ref-link" href="https://wiki.ayso.org/wiki/California_AB_506" target="_blank">AYSO Wiki: California AB 506</a>
+  </div>
+
+  <footer>
+    Region 58 &mdash; Van Nuys/Sherman Oaks, CA &nbsp;|&nbsp; Prepared by Steve Davis, Registrar &nbsp;|&nbsp; Sources: the Volunteer Hub, Region 58 Portal and region automation as built through October 26, 2026 (their change logs and design notes), the PlayMetrics Help Center and Governing System Help Center as archived October 25, 2026, AYSO National calls of June 23 and June 30, 2026, and the Region 18 referee signups walkthrough of September 4, 2026. Vendor commercial terms discussed on those calls are deliberately left out. Marked CONFIRM IN-PRODUCT where a claim has not been verified in PlayMetrics.
+  </footer>
+
+</div>
+
+</body>
+</html>
