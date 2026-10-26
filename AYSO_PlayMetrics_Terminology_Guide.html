@@ -477,7 +477,7 @@
 
 <header>
   <h1>AYSO ↔ PlayMetrics<br>Terminology Guide</h1>
-  <div class="meta">For AYSO volunteers navigating the SportsConnect → PlayMetrics transition &nbsp;|&nbsp; Updated October 25, 2026</div>
+  <div class="meta">For AYSO volunteers navigating the SportsConnect → PlayMetrics transition &nbsp;|&nbsp; Updated October 26, 2026</div>
 </header>
 
 <div class="container">
@@ -527,14 +527,24 @@
       <td>The registration and operations platform your region uses day-to-day. Sometimes called "Club OS." The interface is <strong>blue</strong>.</td>
     </tr>
     <tr>
+      <td>Portal</td>
+      <td>Instance</td>
+      <td>SC called your region's copy of the system a "portal." PlayMetrics calls it your <strong>instance</strong> (or Club System). <a href="https://help.playmetrics.com/hc/en-us/articles/42955409906839" class="ext" target="_blank">AYSO Glossary</a></td>
+    </tr>
+    <tr>
+      <td>Play Level</td>
+      <td>Competition Level / Level</td>
+      <td>Levels (Core, EXTRA, Alliance, Kickstart, Epic, Adult) are set once under organization settings and every team is attached to one. The Governing System matches teams to AYSO by competition level when it syncs them. <a href="https://help.playmetrics.com/hc/en-us/articles/42955409906839" class="ext" target="_blank">AYSO Glossary</a></td>
+    </tr>
+    <tr>
       <td>Sports Affinity</td>
       <td><a href="#compliance">Governing System</a></td>
-      <td>The national-level system for background checks, certifications, and member IDs. In PM, this is a separate interface you toggle into — same login, different account. The interface is <strong>purple</strong>. <a href="https://playmetricsgs.zendesk.com/hc/en-us/articles/23301243189015" class="ext" target="_blank">Import Staff → Governing System</a></td>
+      <td>The national-level system for background checks, certifications, and member IDs. In PM, this is a separate interface you toggle into — same login, different account. The interface is <strong>purple</strong>. It also generates the official AYSO rosters and member cards. <a href="https://playmetricsgs.zendesk.com/hc/en-us/articles/39598850765079" class="ext" target="_blank">Adding Staff via the Connected Club System</a></td>
     </tr>
     <tr>
       <td>AYSO National</td>
       <td>Governing Body</td>
-      <td>The organization above all regions. Operates the Governing System and pushes requirements (waivers, NPF) down into your Club System via "<a href="#embedded-reg">embedded registration</a>."</td>
+      <td>The organization above all regions. Operates the Governing System, sets the compliance requirements, and migrated the legacy Sports Affinity data. Its registration requirements do <em>not</em> arrive automatically: the region creates the <a href="#npf">National Player Fee</a> as a Club Fee and adds the AYSO National player questions and waivers (Code of Conduct, Liability Release) to its own program from the AYSO wiki. <a href="https://help.playmetrics.com/hc/en-us/articles/39138510386199" class="ext" target="_blank">MY2026 Launch Checklist</a></td>
     </tr>
     <tr>
       <td>Region</td>
@@ -548,8 +558,8 @@
     </tr>
     <tr id="embedded-reg">
       <td><em>(no SC equivalent)</em></td>
-      <td>Embedded Registration</td>
-      <td>The connection between Club System and Governing System. AYSO National's requirements (waivers, NPF, birth certificate lookup) are automatically injected into your regional registration flow. You don't build these manually.</td>
+      <td>Connected Systems</td>
+      <td>The link between your Club System and the Governing System, set up from the Club System's <strong>Connected Systems</strong> menu. Team sync with <strong>Auto Rostering</strong> pushes rostered players and staff (with their photo and birth-certificate resources) to the Governing System as they are added; competition schedules can flow back. The pilot webinars called this "embedded registration"; the Help Center now says Connected Systems. Governing-body questionnaires can be embedded in league programs, but whether AYSO National publishes one is CONFIRM IN-PRODUCT. <a href="https://playmetricsgs.zendesk.com/hc/en-us/articles/38962821284119" class="ext" target="_blank">What Is Connected Systems</a></td>
     </tr>
   </table>
 
@@ -619,7 +629,7 @@
     <tr>
       <td>Membership Year (MY26)</td>
       <td>Season</td>
-      <td>AYSO's MY runs Aug–Jul. Your PM Season would span this period, or you'd create separate Fall and Spring seasons.</td>
+      <td>AYSO's MY runs Aug 1–Jul 31 and you enter it when you create the Season. Your PM Season would span this period, or you'd create separate Fall and Spring seasons. The National Player Fee is paid once per Membership Year.</td>
     </tr>
   </table>
 
@@ -636,13 +646,18 @@
     </tr>
     <tr>
       <td>Order</td>
-      <td>Receipt</td>
-      <td>SC called each registration an "order." PM uses "receipt" for the payment record.</td>
+      <td>Subscription</td>
+      <td>SC called each registration an "order." PlayMetrics' own AYSO glossary maps it to <strong>subscription</strong>, which can be a one-time payment or a payment plan. The individual payment record is a "receipt."</td>
     </tr>
     <tr>
       <td>Order Number</td>
       <td>Subscription ID</td>
       <td>The unique registration identifier.</td>
+    </tr>
+    <tr>
+      <td>Chargeback</td>
+      <td>Dispute</td>
+      <td>A cardholder contesting a charge with their bank. Initiated outside both platforms. PM suggests naming the organization that appears on card statements in the confirmation email. <a href="https://help.playmetrics.com/hc/en-us/articles/1500002196221" class="ext" target="_blank">How to Manage a Dispute</a></td>
     </tr>
     <tr>
       <td>Open Order / Pending</td>
@@ -672,7 +687,7 @@
     <tr id="npf">
       <td>National Player Fee (NPF)</td>
       <td>Club Fee / National Membership</td>
-      <td>The $25 AYSO National fee. In PM, this comes down automatically through <a href="#embedded-reg">embedded registration</a> — you don't build it manually.</td>
+      <td>The annual per-player AYSO National fee. The region creates it as a <strong>Club Fee</strong> (Financials → Additional Fees → Club Fees; PlayMetrics recommends naming it "AYSO Membership Fee MY2027") and then selects it in each program's Additional Fees. It is not injected automatically. <a href="https://help.playmetrics.com/hc/en-us/articles/8273544475415" class="ext" target="_blank">Creating Club Fees</a></td>
     </tr>
     <tr>
       <td>Non-Resident Fee</td>
@@ -687,12 +702,12 @@
     <tr>
       <td>Early Bird Discount</td>
       <td>Early Bird Discount</td>
-      <td>Set start/end dates per package. <span class="tag tag-same">Same</span></td>
+      <td>Set start/end dates per package; since 2026 each package can carry its own early-bird dates and amount. <span class="tag tag-same">Same</span></td>
     </tr>
     <tr>
       <td>Late Fee</td>
       <td>Late Fee</td>
-      <td>PM supports flat or percentage-based late fees. <span class="tag tag-same">Same</span></td>
+      <td>PM supports flat or percentage-based late fees, and since 2026 they can differ per package. <span class="tag tag-same">Same</span></td>
     </tr>
     <tr>
       <td>Financial Aid / Scholarship</td>
@@ -744,8 +759,8 @@
     </tr>
     <tr>
       <td>Birth Certificate Verification</td>
-      <td>Embedded BC Lookup</td>
-      <td>When a returning SC player registers in PM, the system looks them up in the <a href="#compliance">Governing System</a>. If verified in SC, the verification carries over. Ongoing verification stays with the region.</td>
+      <td>Player Verification (Governing System)</td>
+      <td>When a returning SC player registers in PM, the system looks them up in the <a href="#compliance">Governing System</a>. If verified in SC, the verification carries over. Ongoing verification stays with the region: Membership → Players shows each player as Not Registered, In Club Review, In Governing Review or <strong>Verified</strong>, and only Verified players print on official rosters. The club admin reviews the photo and birth certificate synced from registration, or marks a requirement <strong>Approved Offline</strong>. <a href="https://playmetricsgs.zendesk.com/hc/en-us/articles/23843663781911" class="ext" target="_blank">Verifying Players as a Club Admin</a></td>
     </tr>
     <tr>
       <td>Division Assignment</td>
@@ -764,8 +779,8 @@
     </tr>
     <tr>
       <td>Player Evaluation / Rating</td>
-      <td>Tryout Evaluation</td>
-      <td>In SC, evaluations were a field on the player record. In PM, evaluations run through a dedicated Tryout feature with sessions, check-in, and evaluator scoring (max 10). <a href="https://help.playmetrics.com/hc/en-us/articles/22996140182551" class="ext" target="_blank">Tryout Evaluations</a></td>
+      <td>Tryout Rating / Tryout Evaluation</td>
+      <td>In SC, evaluations were a field on the player record. For Core, PM now has <strong>Tryout Ratings</strong> inside a team assignment: a 1–10 whole-number score plus a note per player, enterable one at a time or imported in bulk from the assignment-players CSV, then filtered on when assigning. EXTRA and Alliance use the full Tryout feature with sessions, check-in and evaluator scoring. <a href="https://help.playmetrics.com/hc/en-us/articles/42030347393943" class="ext" target="_blank">AYSO: Player Tryout Ratings</a> <a href="https://help.playmetrics.com/hc/en-us/articles/22996140182551" class="ext" target="_blank">Tryout Evaluations</a></td>
     </tr>
     <tr>
       <td>Jersey Number</td>
@@ -780,7 +795,7 @@
     <tr>
       <td>Association Player ID</td>
       <td>Member ID</td>
-      <td>The AYSO national player ID (XXXXX-XXXXXX). Lives in the <a href="#compliance">Governing System</a>, not the Club System.</td>
+      <td>The AYSO national player ID (XXXXX-XXXXXX). Lives in the <a href="#compliance">Governing System</a>, not the Club System. PlayMetrics' AYSO glossary just calls it the <strong>ID</strong> and says it stays with the person for as long as they are with AYSO.</td>
     </tr>
     <tr>
       <td>Buddy / Friend Request</td>
@@ -794,8 +809,13 @@
     </tr>
     <tr>
       <td>Play Up</td>
-      <td>Manual Exception</td>
-      <td>No automated play-up workflow. Handle case-by-case by manually registering in a different package.</td>
+      <td>Manual Exception / Multi-Age Team</td>
+      <td>No automated play-up workflow at registration. Handle case-by-case by manually registering in a different package. On the team side, a team can now be given an <strong>age range</strong> (several birth years) instead of a single year, and Auto Assign can pull in players outside the selected age group. <a href="https://help.playmetrics.com/hc/en-us/articles/360024086533" class="ext" target="_blank">Edit Team Settings</a></td>
+    </tr>
+    <tr>
+      <td>Transfer to another Region</td>
+      <td>Player Release &amp; Transfer</td>
+      <td>In the Governing System a player is linked to the first club that adds them for the season. If another region adds the same player (name, DOB and gender must match exactly) it is prompted to request a release; the current region approves or denies under Membership → Players → Player Releases, and denials can be appealed to AYSO National. <a href="https://playmetricsgs.zendesk.com/hc/en-us/articles/24045615746327" class="ext" target="_blank">Player Release and Transfer</a></td>
     </tr>
   </table>
 
@@ -835,7 +855,12 @@
     <tr>
       <td>Treasurer</td>
       <td>Controller</td>
-      <td>PM has a specific "Controller" role for financial management. Controllers no longer need to be System Administrators (changed May 2024).</td>
+      <td>PM has a specific "Controller" role for financial management. Controllers no longer need to be System Administrators (changed May 2024). The person named in the merchant account (SC's "beneficial owner" or "Stack Pay Admin") is the <strong>designated Controller</strong>.</td>
+    </tr>
+    <tr>
+      <td>Website Manager-Admin</td>
+      <td>Marketer</td>
+      <td>A separate role, not an Admin permission. Required to open the web builder and the marketing dashboard (attribution tags, email-marketing connectors). <a href="https://help.playmetrics.com/hc/en-us/articles/43730441406871" class="ext" target="_blank">AYSO: Building Your Website</a></td>
     </tr>
     <tr>
       <td>Head Coach</td>
@@ -864,8 +889,8 @@
     </tr>
     <tr>
       <td>Volunteer Interest (registration)</td>
-      <td>Volunteer Sign-Up</td>
-      <td>Three capture pathways: (A) role checkboxes during player registration, (B) standalone <a href="https://help.playmetrics.com/hc/en-us/articles/8137576216727" class="ext" target="_blank">Coach Request Link</a>, (C) separate <a href="https://help.playmetrics.com/hc/en-us/articles/16699152278039" class="ext" target="_blank">Volunteer Sign Up</a> (beta — must request activation).</td>
+      <td>League Volunteer Signups / Coaching Requests</td>
+      <td>Three capture pathways: (A) <strong>League Volunteer Signups</strong> — positions, an application template and optional admin accept/reject, shown during player registration or via its own link; this is what the MY2027 Core registration checklist tells regions to use, and it is still a beta that success@playmetrics.com has to switch on; (B) <a href="https://help.playmetrics.com/hc/en-us/articles/8137576216727" class="ext" target="_blank">Coaching Requests</a> for head/assistant coach preferences, which link parent-coaches to their own players for team assignments; (C) <a href="https://help.playmetrics.com/hc/en-us/articles/16699152278039" class="ext" target="_blank">Club Volunteer Signups</a> for time-slot shifts such as snack bar or field setup. None of these is compliance — that starts when the volunteer is imported to the Governing System. <a href="https://help.playmetrics.com/hc/en-us/articles/42288955482519" class="ext" target="_blank">League Volunteer Signups</a> <span class="tag tag-new">Beta</span></td>
     </tr>
     <tr>
       <td>Association Volunteer ID</td>
@@ -928,7 +953,12 @@
     <tr>
       <td>LiveScan / Fingerprinting</td>
       <td>Outside PlayMetrics</td>
-      <td>Still no PM workflow. The region tracks LiveScan results and reports them to AYSO National; PlayMetrics will define a migration process once the functionality to hold the data is built.</td>
+      <td>Still no PM workflow. The region tracks LiveScan results and reports them to AYSO National; PlayMetrics will define a migration process once the functionality to hold the data is built. The Club System's new <strong>Staff Clearance Submissions</strong> beta (Club Administration → Requirements) could hold a LiveScan proof as a custom file-upload requirement, but that would be a region-only record that AYSO National does not see — CONFIRM IN-PRODUCT. <a href="https://help.playmetrics.com/hc/en-us/articles/42288622903063" class="ext" target="_blank">Staff Clearance Submissions</a></td>
+    </tr>
+    <tr>
+      <td>Adult players (19U turning 18)</td>
+      <td>18+ Youth Players tab</td>
+      <td>If the governing organization requires SafeSport for players who turn 18 during the season, Membership → Players gets an <strong>18+ Youth Players</strong> view (Missing Accounts, Upcoming at ~45 days, Expired). The club admin sets an email on the player so they can log in as a Member and complete it. Whether AYSO National has turned this on for 19U is CONFIRM IN-PRODUCT. <a href="https://playmetricsgs.zendesk.com/hc/en-us/articles/39460310928151" class="ext" target="_blank">Managing 18+ Youth Player Requirements</a></td>
     </tr>
   </table>
 
@@ -961,7 +991,7 @@
     <tr>
       <td>Waivers</td>
       <td>Agreements</td>
-      <td>PM calls them "agreements." Standard AYSO waivers come down through <a href="#embedded-reg">embedded registration</a>. You can add region-specific agreements.</td>
+      <td>PM calls them "agreements." The AYSO National waivers (Code of Conduct, Liability Release) are <em>not</em> pushed into your program: the launch checklist has the region paste them in from the AYSO wiki as program waivers, alongside any region-specific agreements. A governing-body questionnaire can be embedded in a league program if AYSO National publishes one — CONFIRM IN-PRODUCT.</td>
     </tr>
     <tr>
       <td>Refund Policy</td>
@@ -1067,7 +1097,7 @@
     <tr>
       <td>SC Website</td>
       <td>PM Website (Duda)</td>
-      <td>Drag-and-drop editor with templates. Mobile-responsive. Auto-updates from PM data.</td>
+      <td>Drag-and-drop editor with templates, managed from the <strong>Marketer</strong> role. Mobile-responsive. Auto-updates from PM data. New sites use the Flex Template on Duda's Editor 2.0 (2026). <a href="https://help.playmetrics.com/hc/en-us/articles/43730441406871" class="ext" target="_blank">AYSO: Building Your Website</a></td>
     </tr>
     <tr>
       <td>Registration Link</td>
@@ -1089,13 +1119,18 @@
     </tr>
     <tr>
       <td>Game Card</td>
-      <td><em>No built-in equivalent</em></td>
-      <td>PM doesn't have printable game cards. Export roster data and populate your Area's template externally.</td>
+      <td>In-House Game Cards / Official Roster</td>
+      <td>Two things now. In the Club System, Leagues → Games → More Actions → <strong>Export Game Cards</strong> prints in-house game cards in bulk (by facility, division or game, four per page), or Print → Print Game Card on a single game. In the Governing System, team admins print the <strong>official AYSO roster</strong> and member cards, which list only Verified players and staff. Whether an Area still wants its own card template is a local question. <a href="https://help.playmetrics.com/hc/en-us/articles/39018950720023" class="ext" target="_blank">In-House Game Cards</a> <a href="https://playmetricsgs.zendesk.com/hc/en-us/articles/25304425570455" class="ext" target="_blank">Print Official Rosters</a> <span class="tag tag-new">New 2026</span></td>
     </tr>
     <tr>
       <td>GotSport Format</td>
       <td>GotSport Import</td>
       <td>PM supports importing games in GotSport export format. <span class="tag tag-same">Supported</span></td>
+    </tr>
+    <tr>
+      <td>Referee Assignments</td>
+      <td>Ref Assignor role / Assignr integration</td>
+      <td>A Ref Assignor sees the game schedule (optionally limited to chosen fields) and PM can push games and changes to Assignr.com for regions that assign there. This is the one outbound integration PM offers. <a href="https://help.playmetrics.com/hc/en-us/articles/37642083289367" class="ext" target="_blank">Integrate with Assignr</a></td>
     </tr>
     <tr>
       <td>Field Assignment</td>
@@ -1160,6 +1195,26 @@
       <td>Programs can be copied from one season to the next. Saves significant setup time after year one.</td>
       <td>Confirmed in the webinar: "Programs are easily duplicated."</td>
     </tr>
+    <tr>
+      <td>Auto Assign (Auto Draft)</td>
+      <td>Drafts unassigned players onto teams in an in-house league: set age/gender/max per team, prioritize by age or tryout rating, seed teams automatically or by hand, standard or snake order, with balancing for uneven rosters. <a href="https://help.playmetrics.com/hc/en-us/articles/42466410988567" class="ext" target="_blank">Using Auto Assign</a></td>
+      <td>The balanced-team tool regions asked for in 2026. In-house leagues only; success@playmetrics.com must enable it. <span class="tag tag-new">Beta</span></td>
+    </tr>
+    <tr>
+      <td>Multi-Age Teams</td>
+      <td>A team can be set to an age range of several birth years instead of one.</td>
+      <td>Useful for combined divisions and sanctioned play-ups. <span class="tag tag-new">New 2026</span></td>
+    </tr>
+    <tr>
+      <td>League Brackets</td>
+      <td>Single-elimination end-of-season brackets for one division of an in-house league, built from reusable templates and scheduled with the game scheduling tool. <a href="https://help.playmetrics.com/hc/en-us/articles/43708525843607" class="ext" target="_blank">League Brackets</a></td>
+      <td>Playoffs without a spreadsheet. success@playmetrics.com must enable it. <span class="tag tag-new">Beta</span></td>
+    </tr>
+    <tr>
+      <td>Staff Clearance Submissions</td>
+      <td>Region-defined clearance requirements (file upload or waiver) attached to a sanctioning body, with expirations, that coaches and volunteers complete under My Compliance. <a href="https://help.playmetrics.com/hc/en-us/articles/42288622903063" class="ext" target="_blank">Staff Clearance Submissions</a></td>
+      <td>Region-side only. AYSO compliance still lives in the Governing System; see <a href="#compliance">Compliance</a>. <span class="tag tag-new">Beta</span></td>
+    </tr>
   </table>
 
 
@@ -1177,13 +1232,13 @@
   </div>
 
   <div class="gotcha">
-    <div class="q">"I created a Program but can't open registration"</div>
-    <div class="a">Registration can't open until <a href="#npf">NPF</a> functionality is connected through <a href="#embedded-reg">embedded registration</a>. This was being finalized for the MY2026 launch.</div>
+    <div class="q">"Where do I put the National Player Fee?"</div>
+    <div class="a">It is a <a href="#npf">Club Fee</a> you create once per Membership Year (Financials → Additional Fees → Club Fees) and then select in each program's Additional Fees. Nothing arrives from AYSO National automatically, and a program with no club fee attached will open and collect money without it.</div>
   </div>
 
   <div class="gotcha">
     <div class="q">"Where are my volunteers?"</div>
-    <div class="a">PM doesn't have a single "Volunteers" tab. <a href="#volunteers">Staff</a> are split across Admins, Directors, Coaches, and Team Staff — each under the Staff menu. Volunteer <em>interest</em> captured during registration shows under Programs → Export Volunteers.</div>
+    <div class="a">PM doesn't have a single "Volunteers" tab. <a href="#volunteers">Staff</a> are split across Admins, Directors, Coaches, and Team Staff — each under the Staff menu. Volunteer <em>interest</em> captured by a program's Volunteer Roles exports from that program (Export Volunteers); League Volunteer Signups applications live under Leagues → your league → <strong>Volunteers</strong> tab (Needs Review / Accepted / All) with their own Export Volunteers. Compliance status is in the Governing System under Membership → Staff.</div>
   </div>
 
   <div class="gotcha">
@@ -1193,7 +1248,7 @@
 
   <div class="gotcha">
     <div class="q">"Where's the auto-team builder?"</div>
-    <div class="a">Not available in PM's initial release. Use the drag-and-drop Team Assignment interface with player data (age, evaluations, question responses). Some regions export to Excel, use a tool like Bravaia, and re-import. PM confirmed balanced team tooling is under review.</div>
+    <div class="a">It exists now, in beta: <strong>Auto Assign Players</strong> inside a team assignment for an in-house league drafts by age or tryout rating with team seeding and balancing. Ask success@playmetrics.com to turn it on. Until then (or for anything it can't express) use the drag-and-drop Team Assignment interface with player data, or export to Excel, use a tool like Bravaia, and re-import. <a href="https://help.playmetrics.com/hc/en-us/articles/42466410988567" class="ext" target="_blank">Using Auto Assign</a></div>
   </div>
 
   <div class="gotcha">
@@ -1233,16 +1288,43 @@
     <a class="ref-link" href="https://help.playmetrics.com/hc/en-us/articles/9197605784215" target="_blank">Adding Staff Titles</a>
     <a class="ref-link" href="https://help.playmetrics.com/hc/en-us/articles/360021276353" target="_blank">Importing Teams</a>
     <a class="ref-link" href="https://help.playmetrics.com/hc/en-us/articles/38946832703767" target="_blank">Adding an Admin</a>
+    <a class="ref-link" href="https://help.playmetrics.com/hc/en-us/articles/42288955482519" target="_blank">League Volunteer Signups (Beta)</a>
+    <a class="ref-link" href="https://help.playmetrics.com/hc/en-us/articles/42466410988567" target="_blank">Auto Assign Players (Beta)</a>
+    <a class="ref-link" href="https://help.playmetrics.com/hc/en-us/articles/39018950720023" target="_blank">In-House Game Cards</a>
+    <a class="ref-link" href="https://help.playmetrics.com/hc/en-us/articles/43708525843607" target="_blank">League Brackets (Beta)</a>
+    <a class="ref-link" href="https://help.playmetrics.com/hc/en-us/articles/42288622903063" target="_blank">Staff Clearance Submissions (Beta)</a>
+    <a class="ref-link" href="https://help.playmetrics.com/hc/en-us/articles/37642462177175" target="_blank">Feature Updates 2026</a>
+  </div>
+
+  <h3>PlayMetrics Help Center (AYSO MY2027 series)</h3>
+  <div class="ref-links">
+    <a class="ref-link" href="https://help.playmetrics.com/hc/en-us/articles/42955409906839" target="_blank">AYSO Glossary</a>
+    <a class="ref-link" href="https://help.playmetrics.com/hc/en-us/articles/39419857922839" target="_blank">Moving from Sports Connect to PlayMetrics</a>
+    <a class="ref-link" href="https://help.playmetrics.com/hc/en-us/articles/42480758514583" target="_blank">Getting Started Checklist</a>
+    <a class="ref-link" href="https://help.playmetrics.com/hc/en-us/articles/43000211179031" target="_blank">Core Recreational Registration Checklist</a>
+    <a class="ref-link" href="https://help.playmetrics.com/hc/en-us/articles/42030347393943" target="_blank">Player Tryout Ratings in Team Assignments</a>
+    <a class="ref-link" href="https://help.playmetrics.com/hc/en-us/articles/43730441406871" target="_blank">Building and Managing Your Website</a>
+    <a class="ref-link" href="https://help.playmetrics.com/hc/en-us/articles/42960403709463" target="_blank">MY2027 Training Schedule</a>
+    <a class="ref-link" href="https://help.playmetrics.com/hc/en-us/articles/44070703355287" target="_blank">Webinar 1: Core Registration</a>
+    <a class="ref-link" href="https://help.playmetrics.com/hc/en-us/articles/44270255062039" target="_blank">Webinar 2: Discounts, Financial Aid, Subscriptions</a>
+    <a class="ref-link" href="https://help.playmetrics.com/hc/en-us/articles/44423248954519" target="_blank">Webinar 3: EXTRA/Alliance &amp; Team Formation</a>
   </div>
 
   <h3>PlayMetrics Help Center (Governing System)</h3>
   <div class="ref-links">
-    <a class="ref-link" href="https://playmetricsgs.zendesk.com/hc/en-us/articles/23301243189015" target="_blank">Import Staff → Governing System</a>
+    <a class="ref-link" href="https://playmetricsgs.zendesk.com/hc/en-us/articles/38962821284119" target="_blank">What Is Connected Systems</a>
+    <a class="ref-link" href="https://playmetricsgs.zendesk.com/hc/en-us/articles/39598850765079" target="_blank">Adding Staff via the Connected Club System</a>
+    <a class="ref-link" href="https://playmetricsgs.zendesk.com/hc/en-us/articles/39589949608727" target="_blank">Add Teams via the Connected Club System</a>
     <a class="ref-link" href="https://help.playmetrics.com/hc/en-us/articles/39600070246807" target="_blank">Volunteer Compliance Checklist</a>
     <a class="ref-link" href="https://help.playmetrics.com/hc/en-us/articles/39429633833495" target="_blank">Volunteer Registration &amp; Compliance Webinar</a>
     <a class="ref-link" href="https://help.playmetrics.com/hc/en-us/articles/42624650027287" target="_blank">Accessing AYSOU as an AYSO Member</a>
     <a class="ref-link" href="https://help.playmetrics.com/hc/en-us/articles/43074496225303" target="_blank">AYSOU FAQs</a>
     <a class="ref-link" href="https://playmetricsgs.zendesk.com/hc/en-us/articles/23844188298263" target="_blank">Verifying Staff as a Club Admin</a>
+    <a class="ref-link" href="https://playmetricsgs.zendesk.com/hc/en-us/articles/23843663781911" target="_blank">Verifying Players as a Club Admin</a>
+    <a class="ref-link" href="https://playmetricsgs.zendesk.com/hc/en-us/articles/25304425570455" target="_blank">View and Print Official Rosters</a>
+    <a class="ref-link" href="https://playmetricsgs.zendesk.com/hc/en-us/articles/25337398517783" target="_blank">View and Print Member Cards</a>
+    <a class="ref-link" href="https://playmetricsgs.zendesk.com/hc/en-us/articles/24045615746327" target="_blank">Player Release and Transfer</a>
+    <a class="ref-link" href="https://playmetricsgs.zendesk.com/hc/en-us/articles/39460310928151" target="_blank">18+ Youth Player Requirements</a>
   </div>
 
   <h3>AYSO Resources</h3>
@@ -1265,7 +1347,7 @@
   <p>No PlayMetrics screenshots are included in this document, consistent with current guidelines. All PM configuration is described in text only (field names, navigation paths, question labels).</p>
 
   <footer>
-    Prepared by Steve Davis, Registrar — AYSO Region 58 &nbsp;|&nbsp; Sources: PlayMetrics Help Center (compliance section re-sourced from the October 2026 Help Center archive), MY2026 webinar Q&amp;A transcripts, setup session recordings, Volunteer Compliance webinar (April 2026), Superusers group discussions
+    Prepared by Steve Davis, Registrar — AYSO Region 58 &nbsp;|&nbsp; Sources: PlayMetrics Help Center (re-checked row by row against the October 2026 Help Center archive, including PlayMetrics' own AYSO Glossary and MY2027 training series), MY2026 webinar Q&amp;A transcripts, setup session recordings, Volunteer Compliance webinar (April 2026), Superusers group discussions
   </footer>
 
 </div>
