@@ -368,7 +368,7 @@
 
   <div class="card">
     <h4>My Compliance &mdash; the one-page answer</h4>
-    <p>Shows the volunteer's current-season roles and divisions, their AYSO ID, each requirement with its status (met, in progress, needed, expiring in N days), and a meter such as "4 of 6 shared requirements met &mdash; 1 to go, 1 in progress." It is read-only and says so: it reflects the official records on file as of the last sync, which runs several times a day. A background check that has been submitted but not returned shows as <em>in progress</em>, not as missing, so nobody is nagged for something already underway.</p>
+    <p>Shows the volunteer's current-season roles and divisions, their member ID (the PlayMetrics ID number that replaces the old-style AYSO ID), each requirement with its status (met, in progress, needed, expiring in N days), and a meter such as "4 of 6 shared requirements met &mdash; 1 to go, 1 in progress." It is read-only and says so: it reflects the official records on file as of the last sync, which runs several times a day. A background check that has been submitted but not returned shows as <em>in progress</em>, not as missing, so nobody is nagged for something already underway.</p>
   </div>
 
   <div class="card">
@@ -463,11 +463,11 @@
       <td>Volunteer Roles in registration, Coaching Requests and League Volunteer Signups are the front door. The Hub's Register page remains for people without a child registering, and feeds the same candidacy queue.</td>
     </tr>
     <tr>
-      <td>Official record, AYSO ID, staff title</td>
+      <td>Official record, member ID, staff title</td>
       <td><span class="status-tag tag-done">Owner</span></td>
       <td>Reads</td>
       <td>Registrar imports; CVPA reviews</td>
-      <td>The Hub shows the member ID and a "Registered in PlayMetrics" banner; it never routes a PMGS member to its own Register page.</td>
+      <td>The PlayMetrics member ID replaces the old-style XXXXX-XXXXXX AYSO ID as the number a volunteer is known by; the Hub shows the new number, keeps the old one linked underneath, and shows a "Registered in PlayMetrics" banner. It never routes a PMGS member to its own Register page.</td>
     </tr>
     <tr>
       <td>Role and division candidacy</td>
@@ -576,7 +576,7 @@
 
   <div class="callout callout-blue">
     <strong>What changes for a returning volunteer</strong>
-    Nothing they will notice except fewer accounts. They stop having a Sports Connect password (the Hub never asked them to remember it anyway), they get a PlayMetrics Member role they may already have as a parent, and AYSO University opens from PlayMetrics instead of from the Hub's launch button. Their training history, licenses and grades were migrated by AYSO National; the Hub links a volunteer's older AYSOU account to their PMGS identity so a course taken under the old account still counts.
+    Nothing they will notice except fewer accounts. They stop having a Sports Connect password (the Hub never asked them to remember it anyway), they get a PlayMetrics Member role they may already have as a parent, and AYSO University opens from PlayMetrics instead of from the Hub's launch button. Their old-style AYSO ID (XXXXX-XXXXXX) gives way to the PlayMetrics member ID as the number they are known by; the Hub shows the new one and keeps the old one linked underneath. Their training history, licenses and grades were migrated by AYSO National; the Hub links a volunteer's older AYSOU account to their PMGS identity so a course taken under the old account still counts.
   </div>
 
   <!-- ================================================================ -->
@@ -621,8 +621,8 @@
   </div>
 
   <div class="card">
-    <h4>PMGS does not tell us the email</h4>
-    <p>The membership list the automation reads carries the PlayMetrics user ID and name but no email, so the join to the Hub's identity runs through the Club System's coach-request and signup exports and, as a last resort, by name. Anyone the join cannot place is listed as unmatched rather than dropped. Region 58's overrides file is the place to pin the handful of ambiguous ones, as it was for Affinity.</p>
+    <h4>PMGS identity fields arrive in two steps</h4>
+    <p>The bulk membership list the automation reads carries the PlayMetrics user ID and name only. Since October 2026 the automation also reads each member's profile, which carries the email, gender and date of birth, and writes them onto the volunteer's record without overwriting anything the region already held. When Region 18 pulled this, most members had all three and a minority did not, which looks like a transitional gap rather than a design limit. For anyone still missing an email the join falls back to the Club System's coach-request and signup exports, then to name; anyone it cannot place is listed as unmatched rather than dropped, and Region 58's overrides file pins the handful of ambiguous ones, as it did for Affinity.</p>
   </div>
 
   <div class="card">
